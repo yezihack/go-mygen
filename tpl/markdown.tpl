@@ -2,7 +2,7 @@
 
 |序列| 表名 | 说明 | 备注 |
 |:---|:----|:----| :----|
-{{range .TableList}}| {{.Index}}|[ {{.TableName}}](#{Index}{{.TableName}})       |{{.Comment}}| |
+{{range .TableList}}| {{.Index}}|[ {{.TableName}}](#{{.Index}}{{.TableName}})       |{{.Comment}}| |
 {{end}}
 
 {{range $key, $item := .DescList}}
