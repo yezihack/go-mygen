@@ -624,3 +624,6 @@ runtime.main
 2019-02-25T17:40:24.933+0800	INFO	logic/logic.go:45		{"service": "goM2M", "default": "加载完成1"}
 2019-02-25T17:40:24.998+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/markdown.md成功\n"}
 2019-02-25T17:40:24.998+0800	INFO	logic/logic.go:83		{"service": "goM2M", "default": "加载完成2"}
+2019-02-25T17:41:33.643+0800	INFO	logic/logic.go:45		{"service": "goM2M", "default": "加载完成1"}
+2019-02-25T17:41:33.695+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/markdown.md成功\n"}
+2019-02-25T17:41:33.695+0800	INFO	logic/logic.go:83		{"service": "goM2M", "default": "加载完成2"}
