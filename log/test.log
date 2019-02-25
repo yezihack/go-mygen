@@ -1,0 +1,90 @@
+2019-02-25T15:06:31.043+0800	FATAL	mysql/mysql_init.go:29	[getConf err ini文件不存在]
+github.com/ThreeKing2018/goutil/golog/plugins/zaplog.(*Log).Fatal
+	/Users/wangzl/go-work/src/github.com/ThreeKing2018/goutil/golog/plugins/zaplog/zaplog.go:136
+github.com/ThreeKing2018/goutil/golog.Fatal
+	/Users/wangzl/go-work/src/github.com/ThreeKing2018/goutil/golog/init.go:52
+github.com/yezihack/m2m/mysql.init.0
+	/Users/wangzl/go-work/src/github.com/yezihack/m2m/mysql/mysql_init.go:29
+runtime.main
+	/usr/local/go/src/runtime/proc.go:186
+2019-02-25T15:08:16.069+0800	FATAL	mysql/mysql_init.go:29	[getConf err ini文件不存在]
+github.com/ThreeKing2018/goutil/golog/plugins/zaplog.(*Log).Fatal
+	/Users/wangzl/go-work/src/github.com/ThreeKing2018/goutil/golog/plugins/zaplog/zaplog.go:136
+github.com/ThreeKing2018/goutil/golog.Fatal
+	/Users/wangzl/go-work/src/github.com/ThreeKing2018/goutil/golog/init.go:52
+github.com/yezihack/m2m/mysql.init.0
+	/Users/wangzl/go-work/src/github.com/yezihack/m2m/mysql/mysql_init.go:29
+runtime.main
+	/usr/local/go/src/runtime/proc.go:186
+2019-02-25T15:10:45.663+0800	FATAL	mysql/mysql_init.go:29	[getConf err ini文件不存在]
+github.com/ThreeKing2018/goutil/golog/plugins/zaplog.(*Log).Fatal
+	/Users/wangzl/go-work/src/github.com/ThreeKing2018/goutil/golog/plugins/zaplog/zaplog.go:136
+github.com/ThreeKing2018/goutil/golog.Fatal
+	/Users/wangzl/go-work/src/github.com/ThreeKing2018/goutil/golog/init.go:52
+github.com/yezihack/m2m/mysql.init.0
+	/Users/wangzl/go-work/src/github.com/yezihack/m2m/mysql/mysql_init.go:29
+runtime.main
+	/usr/local/go/src/runtime/proc.go:186
+2019-02-25T15:11:41.679+0800	FATAL	mysql/mysql_init.go:30	[getConf err ini文件不存在]
+github.com/ThreeKing2018/goutil/golog/plugins/zaplog.(*Log).Fatal
+	/Users/wangzl/go-work/src/github.com/ThreeKing2018/goutil/golog/plugins/zaplog/zaplog.go:136
+github.com/ThreeKing2018/goutil/golog.Fatal
+	/Users/wangzl/go-work/src/github.com/ThreeKing2018/goutil/golog/init.go:52
+github.com/yezihack/m2m/mysql.init.0
+	/Users/wangzl/go-work/src/github.com/yezihack/m2m/mysql/mysql_init.go:30
+runtime.main
+	/usr/local/go/src/runtime/proc.go:186
+2019-02-25T15:15:12.040+0800	FATAL	mysql/mysql_init.go:29	[getConf err option not found: host]
+github.com/ThreeKing2018/goutil/golog/plugins/zaplog.(*Log).Fatal
+	/Users/wangzl/go-work/src/github.com/ThreeKing2018/goutil/golog/plugins/zaplog/zaplog.go:136
+github.com/ThreeKing2018/goutil/golog.Fatal
+	/Users/wangzl/go-work/src/github.com/ThreeKing2018/goutil/golog/init.go:52
+github.com/yezihack/m2m/mysql.init.0
+	/Users/wangzl/go-work/src/github.com/yezihack/m2m/mysql/mysql_init.go:29
+runtime.main
+	/usr/local/go/src/runtime/proc.go:186
+2019-02-25T15:15:49.593+0800	PANIC	mysql/mysql_init.go:29	[getConf err option not found: host]
+github.com/ThreeKing2018/goutil/golog/plugins/zaplog.(*Log).Panic
+	/Users/wangzl/go-work/src/github.com/ThreeKing2018/goutil/golog/plugins/zaplog/zaplog.go:133
+github.com/ThreeKing2018/goutil/golog.Panic
+	/Users/wangzl/go-work/src/github.com/ThreeKing2018/goutil/golog/init.go:49
+github.com/yezihack/m2m/mysql.init.0
+	/Users/wangzl/go-work/src/github.com/yezihack/m2m/mysql/mysql_init.go:29
+runtime.main
+	/usr/local/go/src/runtime/proc.go:186
+2019-02-25T15:28:43.685+0800	PANIC	mysql/mysql_init.go:35	[Mysql连接失败,请检查数据库配置ini文件 Error 1045: Access denied for user ''@'localhost' (using password: NO)]
+github.com/ThreeKing2018/goutil/golog/plugins/zaplog.(*Log).Panic
+	/Users/wangzl/go-work/src/github.com/ThreeKing2018/goutil/golog/plugins/zaplog/zaplog.go:133
+github.com/ThreeKing2018/goutil/golog.Panic
+	/Users/wangzl/go-work/src/github.com/ThreeKing2018/goutil/golog/init.go:49
+github.com/yezihack/m2m/mysql.init.0
+	/Users/wangzl/go-work/src/github.com/yezihack/m2m/mysql/mysql_init.go:35
+runtime.main
+	/usr/local/go/src/runtime/proc.go:186
+2019-02-25T17:27:24.680+0800	PANIC	mysql/mysql_init.go:35	[Mysql连接失败,请检查数据库配置ini文件 Error 1045: Access denied for user ''@'localhost' (using password: NO)]
+github.com/ThreeKing2018/goutil/golog/plugins/zaplog.(*Log).Panic
+	/Users/wangzl/go-work/src/github.com/ThreeKing2018/goutil/golog/plugins/zaplog/zaplog.go:133
+github.com/ThreeKing2018/goutil/golog.Panic
+	/Users/wangzl/go-work/src/github.com/ThreeKing2018/goutil/golog/init.go:49
+github.com/yezihack/m2m/mysql.init.0
+	/Users/wangzl/go-work/src/github.com/yezihack/m2m/mysql/mysql_init.go:35
+runtime.main
+	/usr/local/go/src/runtime/proc.go:186
+2019-02-25T17:28:47.115+0800	PANIC	mysql/mysql_init.go:35	[Mysql连接失败,请检查数据库配置ini文件 Error 1045: Access denied for user ''@'172.23.0.1' (using password: NO)]
+github.com/ThreeKing2018/goutil/golog/plugins/zaplog.(*Log).Panic
+	/Users/wangzl/go-work/src/github.com/ThreeKing2018/goutil/golog/plugins/zaplog/zaplog.go:133
+github.com/ThreeKing2018/goutil/golog.Panic
+	/Users/wangzl/go-work/src/github.com/ThreeKing2018/goutil/golog/init.go:49
+github.com/yezihack/m2m/mysql.init.0
+	/Users/wangzl/go-work/src/github.com/yezihack/m2m/mysql/mysql_init.go:35
+runtime.main
+	/usr/local/go/src/runtime/proc.go:186
+2019-02-25T17:31:50.160+0800	PANIC	mysql/mysql_init.go:36	[Mysql连接失败,请检查数据库配置ini文件 Error 1049: Unknown database 'kindle']
+github.com/ThreeKing2018/goutil/golog/plugins/zaplog.(*Log).Panic
+	/Users/wangzl/go-work/src/github.com/ThreeKing2018/goutil/golog/plugins/zaplog/zaplog.go:133
+github.com/ThreeKing2018/goutil/golog.Panic
+	/Users/wangzl/go-work/src/github.com/ThreeKing2018/goutil/golog/init.go:49
+github.com/yezihack/m2m/mysql.init.0
+	/Users/wangzl/go-work/src/github.com/yezihack/m2m/mysql/mysql_init.go:36
+runtime.main
+	/usr/local/go/src/runtime/proc.go:186

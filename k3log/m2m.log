@@ -1,0 +1,620 @@
+2019-02-25T11:35:08.716+0800	INFO	logic/logic.go:24		{"service": "goM2M", "ini配置文件生成成功": "path", "default": "/Users/wangzl/go-work/src/github.com/yezihack/m2m/output/default.ini"}
+2019-02-25T11:36:46.420+0800	INFO	logic/logic.go:24		{"service": "goM2M", "ini配置文件生成成功": "path", "default": "/Users/wangzl/go-work/src/github.com/yezihack/m2m/output/default.ini"}
+2019-02-25T11:37:33.189+0800	INFO	logic/logic.go:24		{"service": "goM2M", "ini配置文件生成成功": "path", "default": "/Users/wangzl/go-work/src/github.com/yezihack/m2m/output/default.ini"}
+2019-02-25T14:04:37.731+0800	INFO	logic/logic.go:24		{"service": "goM2M", "ini配置文件生成成功": "path", "default": "/Users/wangzl/go-work/src/github.com/yezihack/m2m/output/default.ini"}
+2019-02-25T15:17:18.156+0800	ERROR	m2m/main.go:24		{"service": "goM2M", "default": "runtime error: invalid memory address or nil pointer dereference"}
+2019-02-25T15:33:32.655+0800	ERROR	m2m/main.go:25		{"service": "goM2M", "default": "runtime error: invalid memory address or nil pointer dereference"}
+2019-02-25T15:37:46.088+0800	INFO	logic/common.go:20		{"service": "goM2M", "创建目录:%s成功\n": "/Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/"}
+2019-02-25T15:40:21.529+0800	INFO	logic/common.go:39		{"service": "goM2M", "创建并追加写文件: %s成功\n": "/Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go"}
+2019-02-25T15:40:21.531+0800	INFO	logic/common.go:39		{"service": "goM2M", "创建并追加写文件: %s成功\n": "/Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_inventory.go"}
+2019-02-25T15:40:21.555+0800	INFO	logic/common.go:39		{"service": "goM2M", "创建并追加写文件: %s成功\n": "/Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go"}
+2019-02-25T15:40:21.556+0800	INFO	logic/common.go:39		{"service": "goM2M", "创建并追加写文件: %s成功\n": "/Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_item_color.go"}
+2019-02-25T15:40:21.589+0800	INFO	logic/common.go:39		{"service": "goM2M", "创建并追加写文件: %s成功\n": "/Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go"}
+2019-02-25T15:40:21.591+0800	INFO	logic/common.go:39		{"service": "goM2M", "创建并追加写文件: %s成功\n": "/Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/threshold_template.go"}
+2019-02-25T15:40:21.630+0800	INFO	logic/common.go:39		{"service": "goM2M", "创建并追加写文件: %s成功\n": "/Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go"}
+2019-02-25T15:40:21.631+0800	INFO	logic/common.go:39		{"service": "goM2M", "创建并追加写文件: %s成功\n": "/Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/user_love_coin.go"}
+2019-02-25T15:40:21.677+0800	INFO	logic/common.go:39		{"service": "goM2M", "创建并追加写文件: %s成功\n": "/Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go"}
+2019-02-25T15:40:21.678+0800	INFO	logic/common.go:39		{"service": "goM2M", "创建并追加写文件: %s成功\n": "/Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/love_ticket_template.go"}
+2019-02-25T15:40:21.712+0800	INFO	logic/common.go:39		{"service": "goM2M", "创建并追加写文件: %s成功\n": "/Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go"}
+2019-02-25T15:40:21.714+0800	INFO	logic/common.go:39		{"service": "goM2M", "创建并追加写文件: %s成功\n": "/Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_carts.go"}
+2019-02-25T15:40:21.740+0800	INFO	logic/common.go:39		{"service": "goM2M", "创建并追加写文件: %s成功\n": "/Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go"}
+2019-02-25T15:40:21.741+0800	INFO	logic/common.go:39		{"service": "goM2M", "创建并追加写文件: %s成功\n": "/Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/business_love_ticket_log.go"}
+2019-02-25T15:40:21.769+0800	INFO	logic/common.go:39		{"service": "goM2M", "创建并追加写文件: %s成功\n": "/Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go"}
+2019-02-25T15:40:21.770+0800	INFO	logic/common.go:39		{"service": "goM2M", "创建并追加写文件: %s成功\n": "/Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_inventory_update_type.go"}
+2019-02-25T15:40:21.807+0800	INFO	logic/common.go:39		{"service": "goM2M", "创建并追加写文件: %s成功\n": "/Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go"}
+2019-02-25T15:40:21.808+0800	INFO	logic/common.go:39		{"service": "goM2M", "创建并追加写文件: %s成功\n": "/Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_item_classify.go"}
+2019-02-25T15:40:21.836+0800	INFO	logic/common.go:39		{"service": "goM2M", "创建并追加写文件: %s成功\n": "/Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go"}
+2019-02-25T15:40:21.839+0800	INFO	logic/common.go:39		{"service": "goM2M", "创建并追加写文件: %s成功\n": "/Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_order.go"}
+2019-02-25T15:40:21.869+0800	INFO	logic/common.go:39		{"service": "goM2M", "创建并追加写文件: %s成功\n": "/Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go"}
+2019-02-25T15:40:21.870+0800	INFO	logic/common.go:39		{"service": "goM2M", "创建并追加写文件: %s成功\n": "/Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/user_items_used.go"}
+2019-02-25T15:40:21.902+0800	INFO	logic/common.go:39		{"service": "goM2M", "创建并追加写文件: %s成功\n": "/Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go"}
+2019-02-25T15:40:21.903+0800	INFO	logic/common.go:39		{"service": "goM2M", "创建并追加写文件: %s成功\n": "/Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/user_love_coin_project.go"}
+2019-02-25T15:40:21.934+0800	INFO	logic/common.go:39		{"service": "goM2M", "创建并追加写文件: %s成功\n": "/Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go"}
+2019-02-25T15:40:21.935+0800	INFO	logic/common.go:39		{"service": "goM2M", "创建并追加写文件: %s成功\n": "/Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/business_love_coin_log.go"}
+2019-02-25T15:40:21.969+0800	INFO	logic/common.go:39		{"service": "goM2M", "创建并追加写文件: %s成功\n": "/Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go"}
+2019-02-25T15:40:21.971+0800	INFO	logic/common.go:39		{"service": "goM2M", "创建并追加写文件: %s成功\n": "/Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/business_love_ticket.go"}
+2019-02-25T15:40:21.999+0800	INFO	logic/common.go:39		{"service": "goM2M", "创建并追加写文件: %s成功\n": "/Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go"}
+2019-02-25T15:40:22.001+0800	INFO	logic/common.go:39		{"service": "goM2M", "创建并追加写文件: %s成功\n": "/Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/order_mix_order.go"}
+2019-02-25T15:40:22.039+0800	INFO	logic/common.go:39		{"service": "goM2M", "创建并追加写文件: %s成功\n": "/Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go"}
+2019-02-25T15:40:22.040+0800	INFO	logic/common.go:39		{"service": "goM2M", "创建并追加写文件: %s成功\n": "/Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_merchants.go"}
+2019-02-25T15:40:22.066+0800	INFO	logic/common.go:39		{"service": "goM2M", "创建并追加写文件: %s成功\n": "/Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go"}
+2019-02-25T15:40:22.067+0800	INFO	logic/common.go:39		{"service": "goM2M", "创建并追加写文件: %s成功\n": "/Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_sku.go"}
+2019-02-25T15:40:22.106+0800	INFO	logic/common.go:39		{"service": "goM2M", "创建并追加写文件: %s成功\n": "/Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go"}
+2019-02-25T15:40:22.107+0800	INFO	logic/common.go:39		{"service": "goM2M", "创建并追加写文件: %s成功\n": "/Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/sku_threshold.go"}
+2019-02-25T15:40:22.136+0800	INFO	logic/common.go:39		{"service": "goM2M", "创建并追加写文件: %s成功\n": "/Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go"}
+2019-02-25T15:40:22.138+0800	INFO	logic/common.go:39		{"service": "goM2M", "创建并追加写文件: %s成功\n": "/Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/user_statistic.go"}
+2019-02-25T15:40:22.170+0800	INFO	logic/common.go:39		{"service": "goM2M", "创建并追加写文件: %s成功\n": "/Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go"}
+2019-02-25T15:40:22.171+0800	INFO	logic/common.go:39		{"service": "goM2M", "创建并追加写文件: %s成功\n": "/Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/love_ticket_template_history.go"}
+2019-02-25T15:40:22.206+0800	INFO	logic/common.go:39		{"service": "goM2M", "创建并追加写文件: %s成功\n": "/Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go"}
+2019-02-25T15:40:22.208+0800	INFO	logic/common.go:39		{"service": "goM2M", "创建并追加写文件: %s成功\n": "/Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/love_ticket_user_ticket.go"}
+2019-02-25T15:40:22.241+0800	INFO	logic/common.go:39		{"service": "goM2M", "创建并追加写文件: %s成功\n": "/Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go"}
+2019-02-25T15:40:22.243+0800	INFO	logic/common.go:39		{"service": "goM2M", "创建并追加写文件: %s成功\n": "/Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/user_items.go"}
+2019-02-25T15:40:22.287+0800	INFO	logic/common.go:39		{"service": "goM2M", "创建并追加写文件: %s成功\n": "/Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go"}
+2019-02-25T15:40:22.289+0800	INFO	logic/common.go:39		{"service": "goM2M", "创建并追加写文件: %s成功\n": "/Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/user_love_coin_into_account.go"}
+2019-02-25T15:40:22.312+0800	INFO	logic/common.go:39		{"service": "goM2M", "创建并追加写文件: %s成功\n": "/Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go"}
+2019-02-25T15:40:22.313+0800	INFO	logic/common.go:39		{"service": "goM2M", "创建并追加写文件: %s成功\n": "/Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_item.go"}
+2019-02-25T15:40:22.348+0800	INFO	logic/common.go:39		{"service": "goM2M", "创建并追加写文件: %s成功\n": "/Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go"}
+2019-02-25T15:40:22.349+0800	INFO	logic/common.go:39		{"service": "goM2M", "创建并追加写文件: %s成功\n": "/Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_item_size.go"}
+2019-02-25T15:40:22.349+0800	PANIC	logic/logic.go:43		{"service": "goM2M", "生成所有表的文件": "open /Users/wangzl/go-work/src/github.com/yezihack/m2m/tpl/tables.tpl: no such file or directory"}
+github.com/ThreeKing2018/k3log/plugins/zaplog.(*Log).Panic
+	/Users/wangzl/go-work/src/github.com/ThreeKing2018/k3log/plugins/zaplog/zaplog.go:142
+github.com/ThreeKing2018/k3log.Panic
+	/Users/wangzl/go-work/src/github.com/ThreeKing2018/k3log/init.go:58
+github.com/yezihack/m2m/logic.(*Logic).CreateCRUD
+	/Users/wangzl/go-work/src/github.com/yezihack/m2m/logic/logic.go:43
+main.main
+	/Users/wangzl/go-work/src/github.com/yezihack/m2m/main.go:22
+runtime.main
+	/usr/local/go/src/runtime/proc.go:198
+2019-02-25T15:41:39.164+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_merchants.go成功\n"}
+2019-02-25T15:41:39.181+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/user_love_coin.go成功\n"}
+2019-02-25T15:41:39.204+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/user_statistic.go成功\n"}
+2019-02-25T15:41:39.231+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/business_love_ticket_log.go成功\n"}
+2019-02-25T15:41:39.259+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_carts.go成功\n"}
+2019-02-25T15:41:39.293+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_item_classify.go成功\n"}
+2019-02-25T15:41:39.325+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_item_size.go成功\n"}
+2019-02-25T15:41:39.357+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/user_items_used.go成功\n"}
+2019-02-25T15:41:39.388+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/user_love_coin_into_account.go成功\n"}
+2019-02-25T15:41:39.414+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/business_love_ticket.go成功\n"}
+2019-02-25T15:41:39.443+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/love_ticket_template.go成功\n"}
+2019-02-25T15:41:39.477+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_inventory_update_type.go成功\n"}
+2019-02-25T15:41:39.509+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_item.go成功\n"}
+2019-02-25T15:41:39.543+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_order.go成功\n"}
+2019-02-25T15:41:39.566+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_sku.go成功\n"}
+2019-02-25T15:41:39.594+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/sku_threshold.go成功\n"}
+2019-02-25T15:41:39.623+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/user_love_coin_project.go成功\n"}
+2019-02-25T15:41:39.647+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/love_ticket_template_history.go成功\n"}
+2019-02-25T15:41:39.675+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/love_ticket_user_ticket.go成功\n"}
+2019-02-25T15:41:39.711+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_inventory.go成功\n"}
+2019-02-25T15:41:39.733+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_item_color.go成功\n"}
+2019-02-25T15:41:39.766+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/business_love_coin_log.go成功\n"}
+2019-02-25T15:41:39.789+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/order_mix_order.go成功\n"}
+2019-02-25T15:41:39.816+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/threshold_template.go成功\n"}
+2019-02-25T15:41:39.841+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/user_items.go成功\n"}
+2019-02-25T15:41:39.842+0800	PANIC	logic/logic.go:43		{"service": "goM2M", "生成所有表的文件": "open /Users/wangzl/go-work/src/github.com/yezihack/m2m/tpl/tables.tpl: no such file or directory"}
+github.com/ThreeKing2018/k3log/plugins/zaplog.(*Log).Panic
+	/Users/wangzl/go-work/src/github.com/ThreeKing2018/k3log/plugins/zaplog/zaplog.go:142
+github.com/ThreeKing2018/k3log.Panic
+	/Users/wangzl/go-work/src/github.com/ThreeKing2018/k3log/init.go:58
+github.com/yezihack/m2m/logic.(*Logic).CreateCRUD
+	/Users/wangzl/go-work/src/github.com/yezihack/m2m/logic/logic.go:43
+main.main
+	/Users/wangzl/go-work/src/github.com/yezihack/m2m/main.go:22
+runtime.main
+	/usr/local/go/src/runtime/proc.go:198
+2019-02-25T15:42:26.747+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/threshold_template.go成功\n"}
+2019-02-25T15:42:26.771+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/love_ticket_template_history.go成功\n"}
+2019-02-25T15:42:26.799+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/love_ticket_user_ticket.go成功\n"}
+2019-02-25T15:42:26.824+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_merchants.go成功\n"}
+2019-02-25T15:42:26.848+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_order.go成功\n"}
+2019-02-25T15:42:26.875+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_sku.go成功\n"}
+2019-02-25T15:42:26.901+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/user_items_used.go成功\n"}
+2019-02-25T15:42:26.933+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/user_love_coin.go成功\n"}
+2019-02-25T15:42:26.961+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/user_love_coin_into_account.go成功\n"}
+2019-02-25T15:42:26.986+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/order_mix_order.go成功\n"}
+2019-02-25T15:42:27.015+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_carts.go成功\n"}
+2019-02-25T15:42:27.064+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_item_classify.go成功\n"}
+2019-02-25T15:42:27.101+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/user_love_coin_project.go成功\n"}
+2019-02-25T15:42:27.138+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_inventory.go成功\n"}
+2019-02-25T15:42:27.170+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_item.go成功\n"}
+2019-02-25T15:42:27.198+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_item_color.go成功\n"}
+2019-02-25T15:42:27.227+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/sku_threshold.go成功\n"}
+2019-02-25T15:42:27.252+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/user_items.go成功\n"}
+2019-02-25T15:42:27.278+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/business_love_ticket.go成功\n"}
+2019-02-25T15:42:27.306+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/business_love_ticket_log.go成功\n"}
+2019-02-25T15:42:27.328+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/love_ticket_template.go成功\n"}
+2019-02-25T15:42:27.355+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/user_statistic.go成功\n"}
+2019-02-25T15:42:27.374+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/business_love_coin_log.go成功\n"}
+2019-02-25T15:42:27.400+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_inventory_update_type.go成功\n"}
+2019-02-25T15:42:27.424+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_item_size.go成功\n"}
+2019-02-25T15:42:27.425+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/table_list.go成功\n"}
+2019-02-25T15:42:27.425+0800	INFO	logic/logic.go:45		{"service": "goM2M", "default": "加载完成"}
+2019-02-25T15:44:04.300+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/business_love_ticket_log.go成功\n"}
+2019-02-25T15:44:04.321+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/love_ticket_template_history.go成功\n"}
+2019-02-25T15:44:04.347+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_carts.go成功\n"}
+2019-02-25T15:44:04.374+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_inventory.go成功\n"}
+2019-02-25T15:44:04.400+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_item.go成功\n"}
+2019-02-25T15:44:04.426+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/business_love_ticket.go成功\n"}
+2019-02-25T15:44:04.452+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_item_size.go成功\n"}
+2019-02-25T15:44:04.479+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_merchants.go成功\n"}
+2019-02-25T15:44:04.506+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_order.go成功\n"}
+2019-02-25T15:44:04.531+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_sku.go成功\n"}
+2019-02-25T15:44:04.559+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/user_items.go成功\n"}
+2019-02-25T15:44:04.581+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/user_items_used.go成功\n"}
+2019-02-25T15:44:04.617+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/user_love_coin_project.go成功\n"}
+2019-02-25T15:44:04.650+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/love_ticket_user_ticket.go成功\n"}
+2019-02-25T15:44:04.683+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/user_statistic.go成功\n"}
+2019-02-25T15:44:04.708+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/love_ticket_template.go成功\n"}
+2019-02-25T15:44:04.749+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/order_mix_order.go成功\n"}
+2019-02-25T15:44:04.811+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_inventory_update_type.go成功\n"}
+2019-02-25T15:44:04.863+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_item_classify.go成功\n"}
+2019-02-25T15:44:04.903+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/sku_threshold.go成功\n"}
+2019-02-25T15:44:04.929+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/user_love_coin.go成功\n"}
+2019-02-25T15:44:04.954+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/business_love_coin_log.go成功\n"}
+2019-02-25T15:44:04.975+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/threshold_template.go成功\n"}
+2019-02-25T15:44:05.001+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/user_love_coin_into_account.go成功\n"}
+2019-02-25T15:44:05.027+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_item_color.go成功\n"}
+2019-02-25T15:44:05.028+0800	INFO	logic/logic.go:45		{"service": "goM2M", "default": "加载完成"}
+2019-02-25T15:52:40.047+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/business_love_coin_log.go成功\n"}
+2019-02-25T15:52:40.070+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/business_love_ticket_log.go成功\n"}
+2019-02-25T15:52:40.116+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_item_classify.go成功\n"}
+2019-02-25T15:52:40.164+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_item_size.go成功\n"}
+2019-02-25T15:52:40.207+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/user_love_coin.go成功\n"}
+2019-02-25T15:52:40.246+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/user_love_coin_into_account.go成功\n"}
+2019-02-25T15:52:40.303+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_inventory.go成功\n"}
+2019-02-25T15:52:40.336+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_item_color.go成功\n"}
+2019-02-25T15:52:40.373+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/threshold_template.go成功\n"}
+2019-02-25T15:52:40.412+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/user_items.go成功\n"}
+2019-02-25T15:52:40.448+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/user_statistic.go成功\n"}
+2019-02-25T15:52:40.483+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/business_love_ticket.go成功\n"}
+2019-02-25T15:52:40.534+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/love_ticket_template_history.go成功\n"}
+2019-02-25T15:52:40.573+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/love_ticket_user_ticket.go成功\n"}
+2019-02-25T15:52:40.605+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/order_mix_order.go成功\n"}
+2019-02-25T15:52:40.642+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_carts.go成功\n"}
+2019-02-25T15:52:40.678+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_merchants.go成功\n"}
+2019-02-25T15:52:40.719+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/user_items_used.go成功\n"}
+2019-02-25T15:52:40.756+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/user_love_coin_project.go成功\n"}
+2019-02-25T15:52:40.791+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/love_ticket_template.go成功\n"}
+2019-02-25T15:52:40.841+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_inventory_update_type.go成功\n"}
+2019-02-25T15:52:40.871+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_item.go成功\n"}
+2019-02-25T15:52:40.912+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_order.go成功\n"}
+2019-02-25T15:52:40.962+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_sku.go成功\n"}
+2019-02-25T15:52:40.994+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/sku_threshold.go成功\n"}
+2019-02-25T15:52:40.995+0800	INFO	logic/logic.go:45		{"service": "goM2M", "default": "加载完成"}
+2019-02-25T15:53:30.409+0800	INFO	logic/common.go:20		{"service": "goM2M", "default": "创建目录:/Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/成功\n"}
+2019-02-25T15:53:30.415+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T15:53:30.416+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/sku_threshold.go成功\n"}
+2019-02-25T15:53:30.444+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T15:53:30.446+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/threshold_template.go成功\n"}
+2019-02-25T15:53:30.473+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T15:53:30.474+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/user_love_coin_into_account.go成功\n"}
+2019-02-25T15:53:30.527+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T15:53:30.528+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/user_items.go成功\n"}
+2019-02-25T15:53:30.559+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T15:53:30.561+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/user_love_coin_project.go成功\n"}
+2019-02-25T15:53:30.598+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T15:53:30.600+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/business_love_ticket_log.go成功\n"}
+2019-02-25T15:53:30.640+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T15:53:30.642+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_carts.go成功\n"}
+2019-02-25T15:53:30.670+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T15:53:30.672+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_inventory.go成功\n"}
+2019-02-25T15:53:30.702+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T15:53:30.703+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_inventory_update_type.go成功\n"}
+2019-02-25T15:53:30.736+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T15:53:30.738+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_merchants.go成功\n"}
+2019-02-25T15:53:30.772+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T15:53:30.774+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_sku.go成功\n"}
+2019-02-25T15:53:30.804+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T15:53:30.807+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/user_statistic.go成功\n"}
+2019-02-25T15:53:30.836+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T15:53:30.840+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_order.go成功\n"}
+2019-02-25T15:53:30.876+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T15:53:30.878+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/user_love_coin.go成功\n"}
+2019-02-25T15:53:30.924+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T15:53:30.925+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/business_love_coin_log.go成功\n"}
+2019-02-25T15:53:30.957+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T15:53:30.960+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/love_ticket_template_history.go成功\n"}
+2019-02-25T15:53:30.998+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T15:53:30.999+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/order_mix_order.go成功\n"}
+2019-02-25T15:53:31.031+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T15:53:31.033+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_item.go成功\n"}
+2019-02-25T15:53:31.067+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T15:53:31.068+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_item_classify.go成功\n"}
+2019-02-25T15:53:31.102+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T15:53:31.103+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_item_size.go成功\n"}
+2019-02-25T15:53:31.140+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T15:53:31.142+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/business_love_ticket.go成功\n"}
+2019-02-25T15:53:31.181+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T15:53:31.182+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/love_ticket_template.go成功\n"}
+2019-02-25T15:53:31.215+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T15:53:31.217+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/love_ticket_user_ticket.go成功\n"}
+2019-02-25T15:53:31.245+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T15:53:31.246+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_item_color.go成功\n"}
+2019-02-25T15:53:31.270+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T15:53:31.272+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/user_items_used.go成功\n"}
+2019-02-25T15:53:31.272+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/table_list.go成功\n"}
+2019-02-25T15:53:31.272+0800	INFO	logic/logic.go:45		{"service": "goM2M", "default": "加载完成"}
+2019-02-25T15:53:35.281+0800	INFO	logic/logic.go:45		{"service": "goM2M", "default": "加载完成"}
+2019-02-25T15:58:03.465+0800	INFO	logic/common.go:20		{"service": "goM2M", "default": "创建目录:/Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/成功\n"}
+2019-02-25T15:58:03.472+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T15:58:03.474+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_sku.go成功\n"}
+2019-02-25T15:58:03.504+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T15:58:03.505+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/user_items.go成功\n"}
+2019-02-25T15:58:03.539+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T15:58:03.540+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/user_love_coin.go成功\n"}
+2019-02-25T15:58:03.571+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T15:58:03.572+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/user_love_coin_project.go成功\n"}
+2019-02-25T15:58:03.608+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T15:58:03.610+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/love_ticket_template.go成功\n"}
+2019-02-25T15:58:03.674+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T15:58:03.675+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_item_classify.go成功\n"}
+2019-02-25T15:58:03.705+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T15:58:03.714+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_item.go成功\n"}
+2019-02-25T15:58:03.748+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T15:58:03.749+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_item_size.go成功\n"}
+2019-02-25T15:58:03.764+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T15:58:03.765+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_merchants.go成功\n"}
+2019-02-25T15:58:03.924+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T15:58:03.925+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/business_love_coin_log.go成功\n"}
+2019-02-25T15:58:03.944+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T15:58:03.945+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_inventory_update_type.go成功\n"}
+2019-02-25T15:58:03.966+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T15:58:03.968+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_order.go成功\n"}
+2019-02-25T15:58:03.983+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T15:58:03.984+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/sku_threshold.go成功\n"}
+2019-02-25T15:58:04.005+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T15:58:04.007+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/threshold_template.go成功\n"}
+2019-02-25T15:58:04.022+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T15:58:04.023+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/user_items_used.go成功\n"}
+2019-02-25T15:58:04.048+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T15:58:04.049+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/user_love_coin_into_account.go成功\n"}
+2019-02-25T15:58:04.068+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T15:58:04.070+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/business_love_ticket.go成功\n"}
+2019-02-25T15:58:04.103+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T15:58:04.106+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/business_love_ticket_log.go成功\n"}
+2019-02-25T15:58:04.156+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T15:58:04.161+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/order_mix_order.go成功\n"}
+2019-02-25T15:58:04.198+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T15:58:04.199+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_carts.go成功\n"}
+2019-02-25T15:58:04.225+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T15:58:04.226+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_inventory.go成功\n"}
+2019-02-25T15:58:04.259+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T15:58:04.260+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_item_color.go成功\n"}
+2019-02-25T15:58:04.287+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T15:58:04.288+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/user_statistic.go成功\n"}
+2019-02-25T15:58:04.310+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T15:58:04.311+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/love_ticket_template_history.go成功\n"}
+2019-02-25T15:58:04.338+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T15:58:04.339+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/love_ticket_user_ticket.go成功\n"}
+2019-02-25T15:58:04.340+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/table_list.go成功\n"}
+2019-02-25T15:58:04.340+0800	INFO	logic/logic.go:45		{"service": "goM2M", "default": "加载完成"}
+2019-02-25T16:05:26.852+0800	INFO	logic/common.go:20		{"service": "goM2M", "default": "创建目录:/Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/成功\n"}
+2019-02-25T16:05:26.859+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T16:05:26.860+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/business_love_coin_log.go成功\n"}
+2019-02-25T16:05:26.878+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T16:05:26.879+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_item_size.go成功\n"}
+2019-02-25T16:05:26.894+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T16:05:26.896+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/threshold_template.go成功\n"}
+2019-02-25T16:05:26.919+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T16:05:26.920+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/love_ticket_template_history.go成功\n"}
+2019-02-25T16:05:26.943+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T16:05:26.944+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/love_ticket_user_ticket.go成功\n"}
+2019-02-25T16:05:26.972+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T16:05:26.973+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_item_classify.go成功\n"}
+2019-02-25T16:05:26.989+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T16:05:26.990+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_sku.go成功\n"}
+2019-02-25T16:05:27.008+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T16:05:27.009+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/user_items_used.go成功\n"}
+2019-02-25T16:05:27.023+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T16:05:27.024+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/user_love_coin_project.go成功\n"}
+2019-02-25T16:05:27.035+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T16:05:27.036+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/user_statistic.go成功\n"}
+2019-02-25T16:05:27.054+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T16:05:27.055+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/love_ticket_template.go成功\n"}
+2019-02-25T16:05:27.072+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T16:05:27.073+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_inventory.go成功\n"}
+2019-02-25T16:05:27.093+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T16:05:27.095+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_item.go成功\n"}
+2019-02-25T16:05:27.110+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T16:05:27.112+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/sku_threshold.go成功\n"}
+2019-02-25T16:05:27.132+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T16:05:27.134+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_order.go成功\n"}
+2019-02-25T16:05:27.150+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T16:05:27.152+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/business_love_ticket.go成功\n"}
+2019-02-25T16:05:27.180+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T16:05:27.181+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/business_love_ticket_log.go成功\n"}
+2019-02-25T16:05:27.212+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T16:05:27.213+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/order_mix_order.go成功\n"}
+2019-02-25T16:05:27.248+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T16:05:27.250+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_carts.go成功\n"}
+2019-02-25T16:05:27.280+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T16:05:27.281+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_inventory_update_type.go成功\n"}
+2019-02-25T16:05:27.320+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T16:05:27.322+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_item_color.go成功\n"}
+2019-02-25T16:05:27.354+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T16:05:27.355+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/shop_merchants.go成功\n"}
+2019-02-25T16:05:27.388+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T16:05:27.389+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/user_items.go成功\n"}
+2019-02-25T16:05:27.425+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T16:05:27.426+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/user_love_coin.go成功\n"}
+2019-02-25T16:05:27.465+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T16:05:27.467+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/user_love_coin_into_account.go成功\n"}
+2019-02-25T16:05:27.469+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/table_list.go成功\n"}
+2019-02-25T16:05:27.469+0800	INFO	logic/logic.go:45		{"service": "goM2M", "default": "加载完成"}
+2019-02-25T16:51:03.942+0800	PANIC	logic/logic.go:74		{"service": "goM2M", "生成MARKDOWN文件": "template: markdown.tpl:12: unexpected bad character U+0024 '$' in range"}
+github.com/ThreeKing2018/k3log/plugins/zaplog.(*Log).Panic
+	/Users/wangzl/go-work/src/github.com/ThreeKing2018/k3log/plugins/zaplog/zaplog.go:142
+github.com/ThreeKing2018/k3log.Panic
+	/Users/wangzl/go-work/src/github.com/ThreeKing2018/k3log/init.go:58
+github.com/yezihack/m2m/logic.(*Logic).CreateMarkdown
+	/Users/wangzl/go-work/src/github.com/yezihack/m2m/logic/logic.go:74
+main.main
+	/Users/wangzl/go-work/src/github.com/yezihack/m2m/main.go:26
+runtime.main
+	/usr/local/go/src/runtime/proc.go:198
+2019-02-25T16:53:06.710+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/markdown.md成功\n"}
+2019-02-25T16:53:06.715+0800	INFO	logic/logic.go:76		{"service": "goM2M", "default": "加载完成2"}
+2019-02-25T17:04:43.461+0800	PANIC	logic/logic.go:80		{"service": "goM2M", "生成MARKDOWN文件": "template: markdown.tpl:8:23: executing \"markdown.tpl\" at <.DescList>: range can't iterate over {25 threshold_template 门槛模板 [[0xc4201c4000 0xc4201c40b0 0xc4201c4160 0xc4201c4210 0xc4201c42c0 0xc4201c4370 0xc4201c4420 0xc4201c44d0 0xc4201c4580 0xc4201c4630 0xc4201c46e0] [0xc4201c4790 0xc4201c4840 0xc4201c48f0 0xc4201c49a0 0xc4201c4a50 0xc4201c4b00 0xc4201c4bb0 0xc4201c4c60] [0xc4201c4d10 0xc4201c4dc0 0xc4201c4e70 0xc4201c4f20 0xc4201c4fd0 0xc4201c5080 0xc4201c5130 0xc4201c51e0 0xc4201c5290 0xc4201c5340 0xc4201c53f0] [0xc4201c54a0 0xc4201c5550 0xc4201c5600 0xc4201c56b0 0xc4201c5760 0xc4201c5810 0xc4201c58c0 0xc4201c5970 0xc4201c5a20 0xc4201c5ad0 0xc4201c5b80 0xc4201c5c30 0xc4201c5ce0 0xc4201c5d90 0xc4201c5e40] [0xc4201c5ef0 0xc4201d6000 0xc4201d60b0 0xc4201d6160 0xc4201d6210 0xc4201d62c0 0xc4201d6370] [0xc4201d6420 0xc4201d64d0 0xc4201d6580 0xc4201d6630 0xc4201d66e0 0xc4201d6790 0xc4201d6840 0xc4201d68f0 0xc4201d69a0 0xc4201d6a50 0xc4201d6b00 0xc4201d6bb0 0xc4201d6c60 0xc4201d6d10 0xc4201d6dc0] [0xc4201d6e70 0xc4201d6f20 0xc4201d6fd0 0xc4201d7080 0xc4201d7130 0xc4201d71e0 0xc4201d7290 0xc4201d7340 0xc4201d73f0 0xc4201d74a0] [0xc4201d7550 0xc4201d7600 0xc4201d76b0 0xc4201d7760 0xc4201d7810 0xc4201d78c0 0xc4201d7970 0xc4201d7a20] [0xc4201d7ad0 0xc4201d7b80 0xc4201d7c30 0xc4201d7ce0 0xc4201d7d90 0xc4201d7e40 0xc4201d7ef0 0xc4201ea000 0xc4201ea0b0 0xc4201ea160 0xc4201ea210 0xc4201ea2c0 0xc4201ea370 0xc4201ea420 0xc4201ea4d0 0xc4201ea580] [0xc4201ea630 0xc4201ea6e0 0xc4201ea790 0xc4201ea840 0xc4201ea8f0 0xc4201ea9a0 0xc4201eaa50 0xc4201eab00 0xc4201eabb0 0xc4201eac60 0xc4201ead10 0xc4201eadc0 0xc4201eae70 0xc4201eaf20] [0xc4201eafd0 0xc4201eb080 0xc4201eb130 0xc4201eb1e0 0xc4201eb290 0xc4201eb340 0xc4201eb3f0 0xc4201eb4a0 0xc4201eb550 0xc4201eb600 0xc4201eb6b0] [0xc4200d82c0 0xc4200d8370 0xc4200d8420 0xc4200d84d0 0xc4200d8580 0xc4200d8630 0xc4200d86e0 0xc4200d8790 0xc4200d8840 0xc4200d88f0] [0xc4200d89a0 0xc4200d8a50 0xc4200d8b00 0xc4200d8bb0 0xc4200d8c60 0xc4200d8d10 0xc4200d8dc0 0xc4200d8e70 0xc4200d8f20 0xc4200d8fd0] [0xc4200d9080 0xc4200d9130 0xc4200d91e0 0xc4200d9290 0xc4200d9340 0xc4200d93f0 0xc4200d94a0 0xc4200d9550 0xc4200d9600 0xc4200d96b0] [0xc4200d9760 0xc4200d9810 0xc4200d98c0 0xc4200d9970 0xc4200d9a20 0xc4200d9ad0 0xc4200d9b80 0xc4200d9c30] [0xc4200d9ce0 0xc4200d9d90 0xc4200d9e40 0xc4200d9ef0 0xc420208000 0xc4202080b0 0xc420208160] [0xc420208210 0xc4202082c0 0xc420208370 0xc420208420 0xc4202084d0 0xc420208580 0xc420208630 0xc4202086e0] [0xc420208790 0xc420208840 0xc4202088f0 0xc4202089a0 0xc420208a50 0xc420208b00 0xc420208bb0 0xc420208c60 0xc420208d10 0xc420208dc0 0xc420208e70 0xc420208f20 0xc420208fd0 0xc420209080] [0xc420209130 0xc4202091e0 0xc420209290 0xc420209340 0xc4202093f0 0xc4202094a0 0xc420209550 0xc420209600 0xc4202096b0 0xc420209760 0xc420209810 0xc4202098c0 0xc420209970] [0xc420209a20 0xc420209ad0 0xc420209b80 0xc420209c30 0xc420209ce0 0xc420209d90 0xc420209e40 0xc420209ef0 0xc42021c000 0xc42021c0b0 0xc42021c160 0xc42021c210 0xc42021c2c0] [0xc42021c370 0xc42021c420 0xc42021c4d0 0xc42021c580 0xc42021c630 0xc42021c6e0 0xc42021c790 0xc42021c840 0xc42021c8f0 0xc42021c9a0] [0xc42021ca50 0xc42021cb00 0xc42021cbb0 0xc42021cc60 0xc42021cd10 0xc42021cdc0 0xc42021ce70 0xc42021cf20 0xc42021cfd0 0xc42021d080 0xc42021d130 0xc42021d1e0] [0xc42021d290 0xc42021d340 0xc42021d3f0 0xc42021d4a0 0xc42021d550 0xc42021d600 0xc42021d6b0 0xc42021d760 0xc42021d810] [0xc42021d8c0 0xc42021d970 0xc42021da20 0xc42021dad0 0xc42021db80 0xc42021dc30 0xc42021dce0 0xc42021dd90 0xc42021de40 0xc42021def0 0xc420230000 0xc4202300b0 0xc420230160 0xc420230210 0xc4202302c0 0xc420230370 0xc420230420 0xc4202304d0 0xc420230580] [0xc420230630 0xc4202306e0 0xc420230790 0xc420230840 0xc4202308f0 0xc4202309a0 0xc420230a50 0xc420230b00]]}"}
+github.com/ThreeKing2018/k3log/plugins/zaplog.(*Log).Panic
+	/Users/wangzl/go-work/src/github.com/ThreeKing2018/k3log/plugins/zaplog/zaplog.go:142
+github.com/ThreeKing2018/k3log.Panic
+	/Users/wangzl/go-work/src/github.com/ThreeKing2018/k3log/init.go:58
+github.com/yezihack/m2m/logic.(*Logic).CreateMarkdown
+	/Users/wangzl/go-work/src/github.com/yezihack/m2m/logic/logic.go:80
+main.main
+	/Users/wangzl/go-work/src/github.com/yezihack/m2m/main.go:26
+runtime.main
+	/usr/local/go/src/runtime/proc.go:198
+2019-02-25T17:06:36.075+0800	PANIC	logic/logic.go:80		{"service": "goM2M", "生成MARKDOWN文件": "template: markdown.tpl:8:23: executing \"markdown.tpl\" at <.DescList>: range can't iterate over {25 shop_item_size 商品码值表 [[0xc4201c6000 0xc4201c60b0 0xc4201c6160 0xc4201c6210 0xc4201c62c0 0xc4201c6370 0xc4201c6420] [0xc4201c64d0 0xc4201c6580 0xc4201c6630 0xc4201c66e0 0xc4201c6790 0xc4201c6840 0xc4201c68f0 0xc4201c69a0 0xc4201c6a50 0xc4201c6b00 0xc4201c6bb0 0xc4201c6c60 0xc4201c6d10 0xc4201c6dc0 0xc4201c6e70] [0xc4201c6f20 0xc4201c6fd0 0xc4201c7080 0xc4201c7130 0xc4201c71e0 0xc4201c7290 0xc4201c7340 0xc4201c73f0] [0xc4201c74a0 0xc4201c7550 0xc4201c7600 0xc4201c76b0 0xc4201c7760 0xc4201c7810 0xc4201c78c0 0xc4201c7970 0xc4201c7a20 0xc4201c7ad0 0xc4201c7b80] [0xc4201c7c30 0xc4201c7ce0 0xc4201c7d90 0xc4201c7e40 0xc4201c7ef0 0xc4201da000 0xc4201da0b0 0xc4201da160 0xc4201da210 0xc4201da2c0 0xc4201da370] [0xc4201da420 0xc4201da4d0 0xc4201da580 0xc4201da630 0xc4201da6e0 0xc4201da790 0xc4201da840 0xc4201da8f0 0xc4201da9a0 0xc4201daa50 0xc4201dab00 0xc4201dabb0] [0xc4201dac60 0xc4201dad10 0xc4201dadc0 0xc4201dae70 0xc4201daf20 0xc4201dafd0 0xc4201db080 0xc4201db130 0xc4201db1e0 0xc4201db290 0xc4201db340 0xc4201db3f0 0xc4201db4a0 0xc4201db550 0xc4201db600] [0xc4201db6b0 0xc4201db760 0xc4201db810 0xc4201db8c0 0xc4201db970 0xc4201dba20 0xc4201dbad0 0xc4201dbb80 0xc4201dbc30 0xc4201dbce0] [0xc4201dbd90 0xc4201dbe40 0xc4201dbef0 0xc4201e6000 0xc4201e60b0 0xc4201e6160 0xc4201e6210] [0xc4201e62c0 0xc4201e6370 0xc4201e6420 0xc4201e64d0 0xc4201e6580 0xc4201e6630 0xc4201e66e0 0xc4201e6790] [0xc4201e6840 0xc4201e68f0 0xc4201e69a0 0xc4201e6a50 0xc4201e6b00 0xc4201e6bb0 0xc4201e6c60 0xc4201e6d10] [0xc4201e6dc0 0xc4201e6e70 0xc4201e6f20 0xc4201e6fd0 0xc4201e7080 0xc4201e7130 0xc4201e71e0 0xc4201e7290 0xc4201e7340 0xc4201e73f0 0xc4201e74a0 0xc4201e7550 0xc4201e7600 0xc4201e76b0 0xc4201e7760 0xc4201e7810 0xc4201e78c0 0xc4201e7970 0xc4201e7a20] [0xc4201e7ad0 0xc4201e7b80 0xc4201e7c30 0xc4201e7ce0 0xc4201e7d90 0xc4201e7e40 0xc4201e7ef0 0xc4201fe000 0xc4201fe0b0 0xc4201fe160 0xc4201fe210 0xc4201fe2c0 0xc4201fe370 0xc4201fe420] [0xc4201fe4d0 0xc4201fe580 0xc4201fe630 0xc4201fe6e0 0xc4201fe790 0xc4201fe840 0xc4201fe8f0 0xc4201fe9a0 0xc4201fea50 0xc4201feb00 0xc4201febb0] [0xc4201fec60 0xc4201fed10 0xc4201fedc0 0xc4201fee70 0xc4201fef20 0xc4201fefd0 0xc4201ff080 0xc4201ff130 0xc4201ff1e0 0xc4201ff290 0xc4201ff340 0xc4201ff3f0 0xc4201ff4a0] [0xc4201ff550 0xc4201ff600 0xc4201ff6b0 0xc4201ff760 0xc4201ff810 0xc4201ff8c0 0xc4201ff970 0xc4201ffa20 0xc4201ffad0 0xc4201ffb80 0xc4201ffc30 0xc4201ffce0 0xc4201ffd90] [0xc4201ffe40 0xc4201ffef0 0xc420216000 0xc4202160b0 0xc420216160 0xc420216210 0xc4202162c0 0xc420216370 0xc420216420 0xc4202164d0] [0xc420216580 0xc420216630 0xc4202166e0 0xc420216790 0xc420216840 0xc4202168f0 0xc4202169a0 0xc420216a50 0xc420216b00 0xc420216bb0] [0xc420216c60 0xc420216d10 0xc420216dc0 0xc420216e70 0xc420216f20 0xc420216fd0 0xc420217080 0xc420217130 0xc4202171e0 0xc420217290 0xc420217340 0xc4202173f0 0xc4202174a0 0xc420217550 0xc420217600 0xc4202176b0] [0xc420217760 0xc420217810 0xc4202178c0 0xc420217970 0xc420217a20 0xc420217ad0 0xc420217b80 0xc420217c30] [0xc420217ce0 0xc420217d90 0xc420217e40 0xc420217ef0 0xc420224000 0xc4202240b0 0xc420224160 0xc420224210 0xc4202242c0 0xc420224370 0xc420224420 0xc4202244d0 0xc420224580 0xc420224630] [0xc4202246e0 0xc420224790 0xc420224840 0xc4202248f0 0xc4202249a0 0xc420224a50 0xc420224b00 0xc420224bb0] [0xc4200e62c0 0xc4200e6370 0xc4200e6420 0xc4200e64d0 0xc4200e6580 0xc4200e6630 0xc4200e66e0 0xc4200e6790 0xc4200e6840 0xc4200e68f0] [0xc4200e69a0 0xc4200e6a50 0xc4200e6b00 0xc4200e6bb0 0xc4200e6c60 0xc4200e6d10 0xc4200e6dc0 0xc4200e6e70 0xc4200e6f20] [0xc4200e6fd0 0xc4200e7080 0xc4200e7130 0xc4200e71e0 0xc4200e7290 0xc4200e7340 0xc4200e73f0 0xc4200e74a0 0xc4200e7550 0xc4200e7600]]}"}
+github.com/ThreeKing2018/k3log/plugins/zaplog.(*Log).Panic
+	/Users/wangzl/go-work/src/github.com/ThreeKing2018/k3log/plugins/zaplog/zaplog.go:142
+github.com/ThreeKing2018/k3log.Panic
+	/Users/wangzl/go-work/src/github.com/ThreeKing2018/k3log/init.go:58
+github.com/yezihack/m2m/logic.(*Logic).CreateMarkdown
+	/Users/wangzl/go-work/src/github.com/yezihack/m2m/logic/logic.go:80
+main.main
+	/Users/wangzl/go-work/src/github.com/yezihack/m2m/main.go:26
+runtime.main
+	/usr/local/go/src/runtime/proc.go:198
+2019-02-25T17:07:14.271+0800	PANIC	logic/logic.go:80		{"service": "goM2M", "生成MARKDOWN文件": "template: markdown.tpl:8:23: executing \"markdown.tpl\" at <.DescList>: range can't iterate over {25 shop_merchants 商户 [[0xc4201ce000 0xc4201ce0b0 0xc4201ce160 0xc4201ce210 0xc4201ce2c0 0xc4201ce370 0xc4201ce420 0xc4201ce4d0 0xc4201ce580 0xc4201ce630 0xc4201ce6e0 0xc4201ce790 0xc4201ce840 0xc4201ce8f0 0xc4201ce9a0 0xc4201cea50] [0xc4201ceb00 0xc4201cebb0 0xc4201cec60 0xc4201ced10 0xc4201cedc0 0xc4201cee70 0xc4201cef20 0xc4201cefd0 0xc4201cf080 0xc4201cf130 0xc4201cf1e0 0xc4201cf290 0xc4201cf340 0xc4201cf3f0] [0xc4201cf4a0 0xc4201cf550 0xc4201cf600 0xc4201cf6b0 0xc4201cf760 0xc4201cf810 0xc4201cf8c0 0xc4201cf970 0xc4201cfa20 0xc4201cfad0 0xc4201cfb80] [0xc4201cfc30 0xc4201cfce0 0xc4201cfd90 0xc4201cfe40 0xc4201cfef0 0xc4201de000 0xc4201de0b0 0xc4201de160 0xc4201de210 0xc4201de2c0 0xc4201de370] [0xc4201de420 0xc4201de4d0 0xc4201de580 0xc4201de630 0xc4201de6e0 0xc4201de790 0xc4201de840 0xc4201de8f0 0xc4201de9a0 0xc4201dea50 0xc4201deb00 0xc4201debb0] [0xc4201dec60 0xc4201ded10 0xc4201dedc0 0xc4201dee70 0xc4201def20 0xc4201defd0 0xc4201df080 0xc4201df130 0xc4201df1e0 0xc4201df290] [0xc4201df340 0xc4201df3f0 0xc4201df4a0 0xc4201df550 0xc4201df600 0xc4201df6b0 0xc4201df760 0xc4201df810] [0xc4201df8c0 0xc4201df970 0xc4201dfa20 0xc4201dfad0 0xc4201dfb80 0xc4201dfc30 0xc4201dfce0 0xc4201dfd90 0xc4201dfe40 0xc4201dfef0 0xc4201f2000 0xc4201f20b0 0xc4201f2160 0xc4201f2210 0xc4201f22c0 0xc4201f2370 0xc4201f2420 0xc4201f24d0 0xc4201f2580] [0xc4201f2630 0xc4201f26e0 0xc4201f2790 0xc4201f2840 0xc4201f28f0 0xc4201f29a0 0xc4201f2a50] [0xc4201f2b00 0xc4201f2bb0 0xc4201f2c60 0xc4201f2d10 0xc4201f2dc0 0xc4201f2e70 0xc4201f2f20 0xc4201f2fd0 0xc4201f3080 0xc4201f3130 0xc4201f31e0 0xc4201f3290 0xc4201f3340 0xc4201f33f0] [0xc4201f34a0 0xc4201f3550 0xc4201f3600 0xc4201f36b0 0xc4201f3760 0xc4201f3810 0xc4201f38c0 0xc4201f3970] [0xc4201f3a20 0xc4201f3ad0 0xc4201f3b80 0xc4201f3c30 0xc4201f3ce0 0xc4201f3d90 0xc4201f3e40 0xc4201f3ef0] [0xc420202000 0xc4202020b0 0xc420202160 0xc420202210 0xc4202022c0 0xc420202370 0xc420202420 0xc4202024d0 0xc420202580 0xc420202630] [0xc4202026e0 0xc420202790 0xc420202840 0xc4202028f0 0xc4202029a0 0xc420202a50 0xc420202b00] [0xc420202bb0 0xc420202c60 0xc420202d10 0xc420202dc0 0xc420202e70 0xc420202f20 0xc420202fd0 0xc420203080 0xc420203130 0xc4202031e0] [0xc420203290 0xc420203340 0xc4202033f0 0xc4202034a0 0xc420203550 0xc420203600 0xc4202036b0 0xc420203760 0xc420203810 0xc4202038c0 0xc420203970 0xc420203a20 0xc420203ad0] [0xc420203b80 0xc420203c30 0xc420203ce0 0xc420203d90 0xc420203e40 0xc420203ef0 0xc420210000 0xc4202100b0 0xc420210160 0xc420210210] [0xc4202102c0 0xc420210370 0xc420210420 0xc4202104d0 0xc420210580 0xc420210630 0xc4202106e0 0xc420210790 0xc420210840 0xc4202108f0 0xc4202109a0 0xc420210a50 0xc420210b00 0xc420210bb0 0xc420210c60] [0xc420210d10 0xc420210dc0 0xc420210e70 0xc420210f20 0xc420210fd0 0xc420211080 0xc420211130 0xc4202111e0] [0xc420211290 0xc420211340 0xc4202113f0 0xc4202114a0 0xc420211550 0xc420211600 0xc4202116b0 0xc420211760 0xc420211810 0xc4202118c0 0xc420211970 0xc420211a20 0xc420211ad0] [0xc420211b80 0xc420211c30 0xc420211ce0 0xc420211d90 0xc420211e40 0xc420211ef0 0xc42022e000 0xc42022e0b0 0xc42022e160 0xc42022e210 0xc42022e2c0] [0xc42022e370 0xc42022e420 0xc42022e4d0 0xc42022e580 0xc42022e630 0xc42022e6e0 0xc42022e790 0xc42022e840 0xc42022e8f0 0xc42022e9a0 0xc42022ea50 0xc42022eb00 0xc42022ebb0 0xc42022ec60 0xc42022ed10] [0xc42022edc0 0xc42022ee70 0xc42022ef20 0xc42022efd0 0xc42022f080 0xc42022f130 0xc42022f1e0 0xc42022f290 0xc42022f340] [0xc42022f3f0 0xc42022f4a0 0xc42022f550 0xc42022f600 0xc42022f6b0 0xc42022f760 0xc42022f810 0xc42022f8c0 0xc42022f970 0xc42022fa20] [0xc42022fad0 0xc42022fb80 0xc42022fc30 0xc42022fce0 0xc42022fd90 0xc42022fe40 0xc42022fef0 0xc420244000]]}"}
+github.com/ThreeKing2018/k3log/plugins/zaplog.(*Log).Panic
+	/Users/wangzl/go-work/src/github.com/ThreeKing2018/k3log/plugins/zaplog/zaplog.go:142
+github.com/ThreeKing2018/k3log.Panic
+	/Users/wangzl/go-work/src/github.com/ThreeKing2018/k3log/init.go:58
+github.com/yezihack/m2m/logic.(*Logic).CreateMarkdown
+	/Users/wangzl/go-work/src/github.com/yezihack/m2m/logic/logic.go:80
+main.main
+	/Users/wangzl/go-work/src/github.com/yezihack/m2m/main.go:26
+runtime.main
+	/usr/local/go/src/runtime/proc.go:198
+2019-02-25T17:10:32.473+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/markdown.md成功\n"}
+2019-02-25T17:10:32.473+0800	INFO	logic/logic.go:82		{"service": "goM2M", "default": "加载完成2"}
+2019-02-25T17:16:26.018+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/markdown.md成功\n"}
+2019-02-25T17:16:26.018+0800	INFO	logic/logic.go:83		{"service": "goM2M", "default": "加载完成2"}
+2019-02-25T17:16:51.320+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/markdown.md成功\n"}
+2019-02-25T17:16:51.320+0800	INFO	logic/logic.go:83		{"service": "goM2M", "default": "加载完成2"}
+2019-02-25T17:18:45.916+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/markdown.md成功\n"}
+2019-02-25T17:18:45.916+0800	INFO	logic/logic.go:83		{"service": "goM2M", "default": "加载完成2"}
+2019-02-25T17:21:31.783+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/markdown.md成功\n"}
+2019-02-25T17:21:31.783+0800	INFO	logic/logic.go:83		{"service": "goM2M", "default": "加载完成2"}
+2019-02-25T17:25:11.752+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/markdown.md成功\n"}
+2019-02-25T17:25:11.753+0800	INFO	logic/logic.go:83		{"service": "goM2M", "default": "加载完成2"}
+2019-02-25T17:29:08.850+0800	INFO	logic/common.go:20		{"service": "goM2M", "default": "创建目录:/Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/成功\n"}
+2019-02-25T17:29:08.857+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:08.858+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/version.go成功\n"}
+2019-02-25T17:29:08.871+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:08.872+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/x$schema_index_statistics.go成功\n"}
+2019-02-25T17:29:08.884+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:08.885+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/x$user_summary_by_stages.go成功\n"}
+2019-02-25T17:29:08.906+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:08.908+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/io_global_by_file_by_bytes.go成功\n"}
+2019-02-25T17:29:08.925+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:08.927+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/user_summary.go成功\n"}
+2019-02-25T17:29:08.947+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:08.948+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/x$memory_by_thread_by_current_bytes.go成功\n"}
+2019-02-25T17:29:08.966+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:08.968+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/x$memory_global_by_current_bytes.go成功\n"}
+2019-02-25T17:29:08.988+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:08.989+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/x$user_summary_by_file_io.go成功\n"}
+2019-02-25T17:29:09.007+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:09.008+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/host_summary_by_stages.go成功\n"}
+2019-02-25T17:29:09.027+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:09.028+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/schema_unused_indexes.go成功\n"}
+2019-02-25T17:29:09.055+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:09.057+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/statements_with_errors_or_warnings.go成功\n"}
+2019-02-25T17:29:09.081+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:09.082+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/waits_by_host_by_latency.go成功\n"}
+2019-02-25T17:29:09.109+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:09.111+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/x$host_summary.go成功\n"}
+2019-02-25T17:29:09.132+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:09.134+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/x$host_summary_by_statement_latency.go成功\n"}
+2019-02-25T17:29:09.158+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:09.160+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/x$innodb_buffer_stats_by_table.go成功\n"}
+2019-02-25T17:29:09.186+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:09.187+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/x$memory_global_total.go成功\n"}
+2019-02-25T17:29:09.212+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:09.213+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/memory_by_thread_by_current_bytes.go成功\n"}
+2019-02-25T17:29:09.238+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:09.241+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/session.go成功\n"}
+2019-02-25T17:29:09.262+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:09.263+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/x$statements_with_errors_or_warnings.go成功\n"}
+2019-02-25T17:29:09.287+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:09.288+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/user_summary_by_statement_type.go成功\n"}
+2019-02-25T17:29:09.314+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:09.315+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/x$io_global_by_wait_by_latency.go成功\n"}
+2019-02-25T17:29:09.339+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:09.340+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/x$schema_tables_with_full_table_scans.go成功\n"}
+2019-02-25T17:29:09.362+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:09.364+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/io_global_by_wait_by_latency.go成功\n"}
+2019-02-25T17:29:09.383+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:09.384+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/user_summary_by_stages.go成功\n"}
+2019-02-25T17:29:09.409+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:09.410+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/schema_table_statistics_with_buffer.go成功\n"}
+2019-02-25T17:29:09.432+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:09.434+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/statement_analysis.go成功\n"}
+2019-02-25T17:29:09.455+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:09.458+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/statements_with_full_table_scans.go成功\n"}
+2019-02-25T17:29:09.479+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:09.480+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/waits_by_user_by_latency.go成功\n"}
+2019-02-25T17:29:09.504+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:09.505+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/x$wait_classes_global_by_avg_latency.go成功\n"}
+2019-02-25T17:29:09.528+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:09.529+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/x$waits_by_host_by_latency.go成功\n"}
+2019-02-25T17:29:09.554+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:09.555+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/host_summary_by_file_io.go成功\n"}
+2019-02-25T17:29:09.575+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:09.576+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/memory_by_user_by_current_bytes.go成功\n"}
+2019-02-25T17:29:09.600+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:09.601+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/x$waits_global_by_latency.go成功\n"}
+2019-02-25T17:29:09.626+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:09.627+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/schema_index_statistics.go成功\n"}
+2019-02-25T17:29:09.652+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:09.653+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/user_summary_by_file_io.go成功\n"}
+2019-02-25T17:29:09.675+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:09.677+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/x$ps_digest_95th_percentile_by_avg_us.go成功\n"}
+2019-02-25T17:29:09.702+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:09.703+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/x$ps_digest_avg_latency_distribution.go成功\n"}
+2019-02-25T17:29:09.725+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:09.727+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/host_summary.go成功\n"}
+2019-02-25T17:29:09.798+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:09.800+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/host_summary_by_statement_type.go成功\n"}
+2019-02-25T17:29:09.818+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:09.819+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/processlist.go成功\n"}
+2019-02-25T17:29:09.842+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:09.912+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/schema_auto_increment_columns.go成功\n"}
+2019-02-25T17:29:09.959+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:09.960+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/x$io_global_by_file_by_latency.go成功\n"}
+2019-02-25T17:29:10.008+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:10.010+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/x$user_summary_by_statement_type.go成功\n"}
+2019-02-25T17:29:10.047+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:10.048+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/host_summary_by_statement_latency.go成功\n"}
+2019-02-25T17:29:10.102+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:10.103+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/innodb_buffer_stats_by_table.go成功\n"}
+2019-02-25T17:29:10.138+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:10.139+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/schema_object_overview.go成功\n"}
+2019-02-25T17:29:10.168+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:10.169+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/wait_classes_global_by_latency.go成功\n"}
+2019-02-25T17:29:10.216+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:10.218+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/x$innodb_buffer_stats_by_schema.go成功\n"}
+2019-02-25T17:29:10.256+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:10.258+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/x$innodb_lock_waits.go成功\n"}
+2019-02-25T17:29:10.289+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:10.290+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/x$wait_classes_global_by_latency.go成功\n"}
+2019-02-25T17:29:10.350+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:10.352+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/host_summary_by_file_io_type.go成功\n"}
+2019-02-25T17:29:10.404+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:10.406+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/innodb_lock_waits.go成功\n"}
+2019-02-25T17:29:10.429+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:10.431+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/x$host_summary_by_stages.go成功\n"}
+2019-02-25T17:29:10.457+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:10.458+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/x$latest_file_io.go成功\n"}
+2019-02-25T17:29:10.480+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:10.482+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/x$memory_by_host_by_current_bytes.go成功\n"}
+2019-02-25T17:29:10.510+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:10.512+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/x$ps_schema_table_statistics_io.go成功\n"}
+2019-02-25T17:29:10.537+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:10.541+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/x$statement_analysis.go成功\n"}
+2019-02-25T17:29:10.563+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:10.565+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/session_ssl_status.go成功\n"}
+2019-02-25T17:29:10.594+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:10.596+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/statements_with_runtimes_in_95th_percentile.go成功\n"}
+2019-02-25T17:29:10.620+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:10.622+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/x$io_by_thread_by_latency.go成功\n"}
+2019-02-25T17:29:10.655+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:10.658+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/x$schema_table_lock_waits.go成功\n"}
+2019-02-25T17:29:10.693+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:10.695+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/x$schema_table_statistics.go成功\n"}
+2019-02-25T17:29:10.728+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:10.729+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/x$statements_with_temp_tables.go成功\n"}
+2019-02-25T17:29:10.756+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:10.758+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/metrics.go成功\n"}
+2019-02-25T17:29:10.784+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:10.786+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/user_summary_by_file_io_type.go成功\n"}
+2019-02-25T17:29:10.813+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:10.814+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/schema_redundant_indexes.go成功\n"}
+2019-02-25T17:29:10.848+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:10.850+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/x$memory_by_user_by_current_bytes.go成功\n"}
+2019-02-25T17:29:10.874+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:10.875+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/io_by_thread_by_latency.go成功\n"}
+2019-02-25T17:29:10.904+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:10.905+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/memory_by_host_by_current_bytes.go成功\n"}
+2019-02-25T17:29:10.934+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:10.935+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/x$waits_by_user_by_latency.go成功\n"}
+2019-02-25T17:29:10.959+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:10.961+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/x$statements_with_full_table_scans.go成功\n"}
+2019-02-25T17:29:10.989+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:10.990+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/x$statements_with_sorting.go成功\n"}
+2019-02-25T17:29:11.014+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:11.015+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/x$host_summary_by_file_io.go成功\n"}
+2019-02-25T17:29:11.045+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:11.046+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/x$host_summary_by_statement_type.go成功\n"}
+2019-02-25T17:29:11.071+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:11.072+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/x$schema_flattened_keys.go成功\n"}
+2019-02-25T17:29:11.101+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:11.102+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/x$schema_table_statistics_with_buffer.go成功\n"}
+2019-02-25T17:29:11.124+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:11.125+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/innodb_buffer_stats_by_schema.go成功\n"}
+2019-02-25T17:29:11.152+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:11.153+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/statements_with_temp_tables.go成功\n"}
+2019-02-25T17:29:11.174+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:11.175+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/memory_global_total.go成功\n"}
+2019-02-25T17:29:11.199+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:11.201+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/user_summary_by_statement_latency.go成功\n"}
+2019-02-25T17:29:11.223+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:11.224+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/wait_classes_global_by_avg_latency.go成功\n"}
+2019-02-25T17:29:11.255+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:11.256+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/x$io_global_by_wait_by_bytes.go成功\n"}
+2019-02-25T17:29:11.280+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:11.282+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/x$processlist.go成功\n"}
+2019-02-25T17:29:11.311+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:11.312+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/io_global_by_file_by_latency.go成功\n"}
+2019-02-25T17:29:11.335+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:11.336+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/memory_global_by_current_bytes.go成功\n"}
+2019-02-25T17:29:11.366+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:11.367+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/x$host_summary_by_file_io_type.go成功\n"}
+2019-02-25T17:29:11.391+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:11.392+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/x$io_global_by_file_by_bytes.go成功\n"}
+2019-02-25T17:29:11.428+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:12.889+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/x$statements_with_runtimes_in_95th_percentile.go成功\n"}
+2019-02-25T17:29:12.928+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:12.929+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/x$user_summary_by_file_io_type.go成功\n"}
+2019-02-25T17:29:12.972+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:12.973+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/latest_file_io.go成功\n"}
+2019-02-25T17:29:13.001+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:13.003+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/schema_table_statistics.go成功\n"}
+2019-02-25T17:29:13.023+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:13.024+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/ps_check_lost_instrumentation.go成功\n"}
+2019-02-25T17:29:13.050+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:13.052+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/schema_table_lock_waits.go成功\n"}
+2019-02-25T17:29:13.072+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:13.073+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/schema_tables_with_full_table_scans.go成功\n"}
+2019-02-25T17:29:13.103+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:13.104+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/statements_with_sorting.go成功\n"}
+2019-02-25T17:29:13.129+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:13.130+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/sys_config.go成功\n"}
+2019-02-25T17:29:13.153+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:13.154+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/waits_global_by_latency.go成功\n"}
+2019-02-25T17:29:13.175+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:13.176+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/cron_update_flag.go成功\n"}
+2019-02-25T17:29:13.207+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:13.209+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/io_global_by_wait_by_bytes.go成功\n"}
+2019-02-25T17:29:13.234+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:13.235+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/x$user_summary_by_statement_latency.go成功\n"}
+2019-02-25T17:29:13.261+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:13.264+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/x$session.go成功\n"}
+2019-02-25T17:29:13.290+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:29:13.291+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/x$user_summary.go成功\n"}
+2019-02-25T17:29:13.293+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/table_list.go成功\n"}
+2019-02-25T17:29:13.293+0800	INFO	logic/logic.go:45		{"service": "goM2M", "default": "加载完成1"}
+2019-02-25T17:29:19.146+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/markdown.md成功\n"}
+2019-02-25T17:29:19.146+0800	INFO	logic/logic.go:83		{"service": "goM2M", "default": "加载完成2"}
+2019-02-25T17:32:03.575+0800	INFO	logic/common.go:20		{"service": "goM2M", "default": "创建目录:/Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/成功\n"}
+2019-02-25T17:32:03.578+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/db_structure.go成功\n"}
+2019-02-25T17:32:03.581+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/book.go成功\n"}
+2019-02-25T17:32:03.582+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/mysql/table_list.go成功\n"}
+2019-02-25T17:32:03.582+0800	INFO	logic/logic.go:45		{"service": "goM2M", "default": "加载完成1"}
+2019-02-25T17:32:03.631+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/markdown.md成功\n"}
+2019-02-25T17:32:03.631+0800	INFO	logic/logic.go:83		{"service": "goM2M", "default": "加载完成2"}
+2019-02-25T17:33:14.301+0800	INFO	logic/logic.go:45		{"service": "goM2M", "default": "加载完成1"}
+2019-02-25T17:33:14.355+0800	INFO	logic/common.go:39		{"service": "goM2M", "default": "创建并追加写文件: /Users/wangzl/go-work/src/github.com/yezihack/m2m/output/markdown.md成功\n"}
+2019-02-25T17:33:14.355+0800	INFO	logic/logic.go:83		{"service": "goM2M", "default": "加载完成2"}
