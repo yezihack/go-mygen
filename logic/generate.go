@@ -6,9 +6,9 @@ import (
 
 	"github.com/ThreeKing2018/k3log"
 	"github.com/alecthomas/template"
-	"github.com/yezihack/m2m/common"
-	"github.com/yezihack/m2m/conf"
-	"github.com/yezihack/m2m/mysql"
+	"github.com/yezihack/gm2m/common"
+	"github.com/yezihack/gm2m/conf"
+	"github.com/yezihack/gm2m/mysql"
 )
 
 type Logic struct {

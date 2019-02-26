@@ -7,6 +7,9 @@ const (
 	DS                 = string(os.PathSeparator) //通用/
 	DbNullPrefix       = "null"                   //处理数据为空时结构的前缀定义
 )
+const (
+	TMP_ENV_INI_FILE = "GM2M_ENV_INI_FILE" //临时的环境变量
+)
 
 const (
 	TPL_CONFIG    = "tpl/conf.tpl"      //配置模板

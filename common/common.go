@@ -9,7 +9,7 @@ import (
 
 	"github.com/ThreeKing2018/k3log"
 	"github.com/robfig/config"
-	"github.com/yezihack/m2m/conf"
+	"github.com/yezihack/gm2m/conf"
 )
 
 // GetRootDir 获取执行路径
@@ -66,14 +66,8 @@ func CreateIniFile() bool {
 }
 
 //读取配置文件
-func ReadDbConfig() (result *conf.DBConfig, err error) {
+func ReadDbConfig(iniFile string) (result *conf.DBConfig, err error) {
 	result = new(conf.DBConfig)
-	iniFile := GetRootDir() + conf.DefaultIniFileName
-	t := new(Tools)
-	if t.IsDirOrFileExist(iniFile) == false {
-		CreateIniFile() //生成配置
-		fmt.Println("aaa")
-	}
 	cfg, err := config.ReadDefault(iniFile)
 	if err != nil {
 		return

@@ -3,7 +3,7 @@ package mysql
 import (
 	"strings"
 
-	"github.com/yezihack/m2m/conf"
+	"github.com/yezihack/gm2m/conf"
 )
 
 //获取表名的列表

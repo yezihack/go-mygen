@@ -2,16 +2,16 @@ package logic
 
 import (
 	"github.com/ThreeKing2018/k3log"
-	"github.com/yezihack/m2m/mysql"
+	"github.com/yezihack/gm2m/mysql"
 )
 
 //生成原生的crud查询数据库
-func (l *Logic) CreateCRUD() {
+func (l *Logic) CreateCRUD() error {
 	//读取所有表列表
 	dbTools := new(mysql.DbTools)
 	tableList, err := dbTools.GetTableList()
 	if err != nil {
-		panic(err)
+		return err
 	}
 	tableNameList := make([]*mysql.TableList, 0)
 	//将表结构写入文件
@@ -24,34 +24,35 @@ func (l *Logic) CreateCRUD() {
 		//查询表结构信息
 		tableDesc, err := l.db.GetTableDesc(tableName)
 		if err != nil {
-			panic(err)
+			return err
 		}
 		//生成基础信息
 		err = l.GenerateDBStructure(tableName, tableComment, tableDesc)
 		if err != nil {
-			panic(err)
+			return err
 		}
 		//生成增,删,改,查文件
 		err = l.GenerateCURDFile(tableName, tableDesc)
 		if err != nil {
-			panic(err)
+			return err
 		}
 	}
 	//生成所有表的文件
 	err = l.GenerateTableList(tableNameList)
 	if err != nil {
-		k3log.Panic("生成所有表的文件", err)
+		return err
 	}
 	k3log.Info("加载完成1")
+	return nil
 }
 
 //生成mysql markdown文档
-func (l *Logic) CreateMarkdown() {
+func (l *Logic) CreateMarkdown() error {
 	//读取所有表列表
 	dbTools := new(mysql.DbTools)
 	tableList, err := dbTools.GetTableList()
 	if err != nil {
-		k3log.Panic("获取表列表", tableList)
+		return err
 	}
 	data := new(mysql.MarkDownData)
 	//将表结构写入文件
@@ -67,7 +68,7 @@ func (l *Logic) CreateMarkdown() {
 		desc := new(mysql.MarkDownDataChild)
 		desc.List, err = l.db.GetTableDesc(tableName)
 		if err != nil {
-			k3log.Panic("获取表详情", err)
+			return err
 		}
 		desc.Index = i
 		desc.TableName = tableName
@@ -78,7 +79,8 @@ func (l *Logic) CreateMarkdown() {
 	//生成所有表的文件
 	err = l.GenerateMarkdown(data)
 	if err != nil {
-		k3log.Panic("生成MARKDOWN文件", err)
+		return err
 	}
 	k3log.Info("加载完成2")
+	return nil
 }

@@ -5,7 +5,7 @@ import (
 	"fmt"
 
 	"github.com/ThreeKing2018/k3log"
-	"github.com/yezihack/m2m/common"
+	"github.com/yezihack/gm2m/common"
 )
 
 //创建目录

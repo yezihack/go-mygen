@@ -13,11 +13,11 @@ fmt-output:
 	goimports -l -w ./output/
 
 build:
-	go build -o output/m2m ./
+	go build -o output/gm2m ./
 
 run:
-	output/m2m
+	output/gm2m
 
 clean:
-	rm -rf output/m2m
+	rm -rf output/gm2m
 	rm -rf output/markdown.md
