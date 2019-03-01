@@ -13,66 +13,61 @@ import (
 )
 
 func init() {
-	defer func() {
-		if err := recover(); err != nil {
-			fmt.Println(err)
-		}
-	}()
+
 	//初使日志
-	k3log.SetLogger(kconf.WithFilename(common.GetRootDir()+"log/m2m.log"),
+	k3log.SetLogger(kconf.WithFilename(common.GetExeRootDir()+"log/m2m.log"),
 		kconf.WithIsStdOut(true),
-		kconf.WithProjectName("gm2m"),
-		kconf.WithLogType(kconf.LogNormalType))
+		kconf.WithProjectName("gm2m"))
 	defer k3log.Sync()
 }
 
 func main() {
+	defer func() {
+		if err := recover(); err != nil {
+			k3log.Error("err", err)
+		}
+	}()
 	Start()
-	//lg := new(logic.Logic)
-	//lg.CreateCRUD()
-	//lg.CreateMarkdown()
-	//test()
 }
 
-var lang string
-
 func test() {
+	//os.Args = []string{"say", "hi", "english", "--name", "Jeremy"}
 	app := cli.NewApp()
-
-	app.Flags = []cli.Flag{
-		cli.StringFlag{
-			Name:        "lang",
-			Value:       "english",
-			Usage:       "language for the greeting`FILE`",
-			Destination: &lang,
+	app.Name = "say"
+	app.Commands = []cli.Command{
+		{
+			Name:        "hello",
+			Aliases:     []string{"hi"},
+			Usage:       "use it to see a description",
+			Description: "This is how we describe hello the function",
+			Subcommands: []cli.Command{
+				{
+					Name:        "english",
+					Aliases:     []string{"en"},
+					Usage:       "sends a greeting in english",
+					Description: "greets someone in english",
+					Flags: []cli.Flag{
+						cli.StringFlag{
+							Name:  "name",
+							Value: "Bob",
+							Usage: "Name of the person to greet",
+						},
+					},
+					Action: func(c *cli.Context) error {
+						fmt.Println("Hello,", c.String("name"))
+						return nil
+					},
+				},
+			},
 		},
 	}
-
-	app.Action = func(c *cli.Context) error {
-		name := "Nefertiti"
-		fmt.Println("count", c.NArg(), "fist", c.Args().First())
-		if c.NArg() > 0 {
-			name = c.Args().Get(1)
-		}
-		if c.String("lang") == "spanish" {
-			fmt.Println("Hola", name)
-		} else {
-			fmt.Println("Hello", name)
-		}
-		fmt.Println("lang", lang)
-		return nil
-	}
-
-	err := app.Run(os.Args)
-	if err != nil {
-		k3log.Error(err)
-	}
+	app.Run(os.Args)
 }
 
 func Start() {
 	app := cli.NewApp()
 	app.Name = "gm2m"                        //项目名称
-	app.Author = "百里"                        //作者名称
+	app.Author = "百里 github.com/yezihack"    //作者名称
 	app.Version = "1.0"                      //版本号
 	app.Copyright = "@Copyright~2019"        //版权保护
 	app.Usage = "是生成数据库表结构和markdown表结构的命令工具" //说明
@@ -99,10 +94,10 @@ func Start() {
 			Aliases: []string{"c"},
 			Usage:   "生成配置文件",
 			Action: func(c *cli.Context) error {
-				if common.CreateIniFile() {
-					k3log.Info("生成配置文件完毕!")
+				if file, err := common.CreateIniFile(); err == nil {
+					k3log.Info("msg", "生成配置文件 完毕!", "path", file)
 				} else {
-					k3log.Info("生成配置文件失败!")
+					k3log.Info("msg", "生成配置文件 失败!")
 				}
 				return nil
 			},
@@ -112,12 +107,15 @@ func Start() {
 			Aliases: []string{"s"},
 			Usage:   "生成golang数据结构数据",
 			Action: func(c *cli.Context) error {
-				err := new(logic.Logic).CreateCRUD()
+				err := new(logic.Logic).CreateStructure()
 				if err != nil {
-					k3log.Error("生成golang数据结构数据", err)
+					k3log.Error("msg", "生成golang数据结构数据", "err", err)
 					return nil
 				}
-				fmt.Println("生成golang数据结构数据完毕")
+				k3log.Info("msg", "生成结构体文件 完成")
+				if !common.Gofmt(common.GetExeRootDir()) {
+					k3log.Warn("goimports 命令未安装(go install golang.org/x/tools/cmd/goimports),无法格式代码")
+				}
 				return nil
 			},
 		},
@@ -128,10 +126,35 @@ func Start() {
 			Action: func(c *cli.Context) error {
 				err := new(logic.Logic).CreateMarkdown()
 				if err != nil {
-					k3log.Error("生成表结构的markdown文档", err)
+					k3log.Error("msg", "生成表结构的markdown文档", "err", err)
 					return nil
 				}
-				fmt.Println("生成表结构的markdown文档完毕")
+				k3log.Info("msg", "生成表结构文档 完成")
+				return nil
+			},
+		},
+		{
+			Name:  "curd",
+			Usage: "生成golang基本的CURD文件",
+			Action: func(c *cli.Context) error {
+				err := new(logic.Logic).CreateCRUD()
+				if err != nil {
+					k3log.Error("msg", "生成golang数据结构数据", "err", err)
+					return nil
+				}
+				if !common.Gofmt(common.GetExeRootDir()) {
+					k3log.Warn("goimports 命令未安装(go install golang.org/x/tools/cmd/goimports),无法格式代码")
+				}
+				return nil
+			},
+		},
+		{
+			Name:  "test",
+			Usage: "test",
+			Action: func(c *cli.Context) error {
+				structPath := common.GetExeRootDir() + "structure/" + conf.GOFILE_STRUCTURE
+				path := common.GetRootPath(structPath)
+				fmt.Printf(path)
 				return nil
 			},
 		},
@@ -172,11 +195,11 @@ func StudyCli() {
 			Aliases: []string{"c"},
 			Usage:   "生成配置文件",
 			Action: func(c *cli.Context) error {
-				if common.CreateIniFile() {
-					k3log.Info("生成配置文件完毕!")
-				} else {
-					k3log.Info("生成配置文件失败!")
-				}
+				//if common.CreateIniFile() {
+				//	k3log.Info("生成配置文件完毕!")
+				//} else {
+				//	k3log.Info("生成配置文件失败!")
+				//}
 				return nil
 			},
 			After: func(c *cli.Context) error {

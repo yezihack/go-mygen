@@ -8,7 +8,7 @@ import (
 
 //获取表名的列表
 func (d *DbTools) GetTableList() (tableResult map[string]string, err error) {
-	result, err := DB.Query("show tables")
+	result, err := GetMasterDB().Query("show tables")
 	if err != nil {
 		return
 	}
@@ -20,7 +20,7 @@ func (d *DbTools) GetTableList() (tableResult map[string]string, err error) {
 	}
 	tableResult = make(map[string]string)
 	for _, table := range tableList {
-		tableInfo, _ := DB.Query("select table_comment from information_schema.tables where table_name = ?", table)
+		tableInfo, _ := GetMasterDB().Query("select table_comment from information_schema.tables where table_name = ?", table)
 		if err != nil {
 			return
 		}
@@ -31,7 +31,7 @@ func (d *DbTools) GetTableList() (tableResult map[string]string, err error) {
 
 //获取表结构详情
 func (d *DbTools) GetTableDesc(tableName string) (reply []*TableDesc, err error) {
-	result, err := DB.Query("select column_name,data_type, column_key, is_nullable,column_default,column_type, column_comment from information_schema.columns where table_name = ?", tableName)
+	result, err := GetMasterDB().Query("select column_name,data_type, column_key, is_nullable,column_default,column_type, column_comment from information_schema.columns where table_name = ?", tableName)
 	if err != nil {
 		return
 	}

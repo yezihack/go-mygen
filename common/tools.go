@@ -80,7 +80,7 @@ func (t *Tools) CreateFile(path string) bool {
 //创建目录
 func (t *Tools) CreateDir(path string) bool {
 	if t.IsDirOrFileExist(path) == false {
-		err := os.Mkdir(path, 0777)
+		err := os.MkdirAll(path, os.ModePerm)
 		if err != nil {
 			return false
 		}

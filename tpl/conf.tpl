@@ -9,9 +9,6 @@ port:3306
 #数据库名称
 db_name:
 
-#前缀
-prefix:
-
 #连接名称
 username:
 
@@ -19,7 +16,7 @@ username:
 password:
 
 #数据库编码
-charset:utf8
+charset:utf8mb4
 
 [tables]
 # 为空则默认所有表. 逗号隔开,如 表1,表2,表3

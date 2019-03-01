@@ -38,7 +38,6 @@ func WriteAppendFile(path, data string) (err error) {
 	if _, err := new(common.Tools).WriteFileAppend(path, data); err == nil {
 		k3log.Info(fmt.Sprintf("创建并追加写文件: %s成功\n", path))
 	} else {
-		k3log.Info(fmt.Sprintf("创建并追加写文件: %s失败, err: %v\n", path, err))
 		return errors.New(fmt.Sprintf("创建并追加写文件:%s失败", path))
 	}
 	return nil

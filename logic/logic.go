@@ -1,9 +1,51 @@
 package logic
 
 import (
+	"errors"
+
 	"github.com/ThreeKing2018/k3log"
+	"github.com/yezihack/gm2m/common"
+	"github.com/yezihack/gm2m/conf"
 	"github.com/yezihack/gm2m/mysql"
 )
+
+//生成结构体文件
+func (l *Logic) CreateStructure() error {
+	//读取所有表列表
+	dbTools := new(mysql.DbTools)
+	tableList, err := dbTools.GetTableList()
+	if err != nil {
+		return err
+	}
+	//表结构文件路径
+	path := common.GetExeRootDir() + "structure/"
+	if l.T.IsDirOrFileExist(path) == false {
+		if !l.T.CreateDir(path) {
+			return errors.New("创建目录失败, path: " + path)
+		}
+	}
+	path += conf.GOFILE_STRUCTURE
+	if l.T.IsDirOrFileExist(path) == false {
+		if !l.T.CreateFile(path) {
+			err = errors.New("创建文件失败, path: " + path)
+			return err
+		}
+	}
+	//将表结构写入文件
+	for tableName, tableComment := range tableList {
+		//查询表结构信息
+		tableDesc, err := l.db.GetTableDesc(tableName)
+		if err != nil {
+			return err
+		}
+		//生成基础信息
+		err = l.GenerateDBStructure(tableName, tableComment, path, tableDesc)
+		if err != nil {
+			return err
+		}
+	}
+	return nil
+}
 
 //生成原生的crud查询数据库
 func (l *Logic) CreateCRUD() error {
@@ -14,6 +56,8 @@ func (l *Logic) CreateCRUD() error {
 		return err
 	}
 	tableNameList := make([]*mysql.TableList, 0)
+	//表结构文件路径
+	structPath := l.GetMysqlDir() + conf.GOFILE_STRUCTURE
 	//将表结构写入文件
 	for tableName, tableComment := range tableList {
 		tableNameList = append(tableNameList, &mysql.TableList{
@@ -27,7 +71,7 @@ func (l *Logic) CreateCRUD() error {
 			return err
 		}
 		//生成基础信息
-		err = l.GenerateDBStructure(tableName, tableComment, tableDesc)
+		err = l.GenerateDBStructure(tableName, tableComment, structPath, tableDesc)
 		if err != nil {
 			return err
 		}
@@ -42,7 +86,7 @@ func (l *Logic) CreateCRUD() error {
 	if err != nil {
 		return err
 	}
-	k3log.Info("加载完成1")
+	k3log.Info("生成CRUD文件 完成")
 	return nil
 }
 
@@ -81,6 +125,5 @@ func (l *Logic) CreateMarkdown() error {
 	if err != nil {
 		return err
 	}
-	k3log.Info("加载完成2")
 	return nil
 }

@@ -7,13 +7,15 @@ import (
 	"path/filepath"
 	"strings"
 
+	"os/exec"
+
 	"github.com/ThreeKing2018/k3log"
 	"github.com/robfig/config"
 	"github.com/yezihack/gm2m/conf"
 )
 
-// GetRootDir 获取执行路径
-func GetRootDir() string {
+//GetRootDir 获取执行路径
+func GetExeRootDir() string {
 	// 文件不存在获取执行路径
 	file, err := filepath.Abs(filepath.Dir(os.Args[0]))
 	if err != nil {
@@ -29,11 +31,11 @@ func GetRootPath(path string) string {
 	if path[len(path)-1:] == string(os.PathSeparator) {
 		path = path[:len(path)-1]
 	}
-	return Substr(path, 0, strings.LastIndex(path, string(os.PathSeparator)))
+	return SubStr(path, 0, strings.LastIndex(path, string(os.PathSeparator)))
 }
 
 //截取字符串
-func Substr(s string, pos, length int) string {
+func SubStr(s string, pos, length int) string {
 	runes := []rune(s)
 	l := pos + length
 	if l > len(runes) {
@@ -43,26 +45,25 @@ func Substr(s string, pos, length int) string {
 }
 
 //生成配置文件
-func CreateIniFile() bool {
-	iniFile := GetRootDir() + conf.DefaultIniFileName
+func CreateIniFile() (path string, err error) {
+	path = GetExeRootDir() + conf.DefaultIniFileName
 	t := new(Tools)
-	if t.IsDirOrFileExist(iniFile) {
-		return true
+	if t.IsDirOrFileExist(path) {
+		return
 	}
-	root := GetRootPath(GetRootDir())
-	iniPath := root + conf.DS + conf.TPL_CONFIG
-	data := t.ReadFile(iniPath)
+	root := GetRootPath(GetExeRootDir())
+	pathTpl := root + conf.DS + conf.TPL_CONFIG
+	data := t.ReadFile(pathTpl)
 	if data == "" {
-		k3log.Error("config内容为空", "null", "file", iniPath)
-		return false
+		k3log.Error("config内容为空", "null", "file", path)
+		return
 	}
-	_, err := t.WriteFile(iniFile, data)
+	_, err = t.WriteFile(path, data)
 	if err != nil {
 		k3log.Error("CheckIniConfig", err)
-		return false
+		return
 	}
-	k3log.Info("ini配置文件生成成功", iniFile)
-	return true
+	return
 }
 
 //读取配置文件
@@ -76,8 +77,8 @@ func ReadDbConfig(iniFile string) (result *conf.DBConfig, err error) {
 	if err != nil {
 		return
 	}
-	result.Host = host
-	port, err := cfg.Int("mysql", "port")
+	result.Host = strings.TrimSpace(host)
+	port, err := cfg.String("mysql", "port")
 	if err != nil {
 		return
 	}
@@ -86,33 +87,29 @@ func ReadDbConfig(iniFile string) (result *conf.DBConfig, err error) {
 	if err != nil {
 		return
 	}
-	result.DbName = dbName
-	prefix, err := cfg.String("mysql", "prefix")
-	if err != nil {
-		return
-	}
-	result.Prefix = prefix
+	result.DbName = strings.TrimSpace(dbName)
+
 	username, err := cfg.String("mysql", "username")
 	if err != nil {
 		return
 	}
-	result.UserName = username
+	result.UserName = strings.TrimSpace(username)
 	password, err := cfg.String("mysql", "password")
 	if err != nil {
 		return
 	}
-	result.Password = password
+	result.Password = strings.TrimSpace(password)
 	charset, err := cfg.String("mysql", "charset")
 	if err != nil {
 		return
 	}
-	result.Charset = charset
+	result.Charset = strings.TrimSpace(charset)
 	return
 }
 
 //获取表列表
 func GetConfTables() (result []string, err error) {
-	iniFile := GetRootDir() + conf.DefaultIniFileName
+	iniFile := GetExeRootDir() + conf.DefaultIniFileName
 	t := new(Tools)
 	if t.IsDirOrFileExist(iniFile) == false {
 		err = errors.New("ini文件不存在")
@@ -130,6 +127,26 @@ func GetConfTables() (result []string, err error) {
 	if lists == "" {
 		return
 	}
-	result = strings.Split(lists, ",")
+	result = strings.Split(strings.TrimSpace(lists), ",")
 	return
+}
+func ErrMsg(msg string, err error) interface{} {
+	m := make(map[string]interface{}, 2)
+	m["msg"] = msg
+	m["err"] = err
+	return m
+}
+
+//FMT 格式代码
+func Gofmt(path string) bool {
+	if new(Tools).IsDirOrFileExist(path) {
+		cmd := exec.Command("goimports", "-l", "-w", path)
+		_, err := cmd.Output()
+		if err != nil {
+			panic(err)
+			return false
+		}
+		return true
+	}
+	return false
 }

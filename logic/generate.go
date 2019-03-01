@@ -18,31 +18,31 @@ type Logic struct {
 
 //创建和获取MYSQL目录
 func (l *Logic) GetMysqlDir() string {
-	return CreateDir(common.GetRootDir() + "mysql/")
+	return CreateDir(common.GetExeRootDir() + "mysql/")
 }
 
 //获取根目录地址
 func (l *Logic) GetRoot() string {
-	return common.GetRootPath(common.GetRootDir()) + conf.DS
+	return common.GetRootPath(common.GetExeRootDir()) + conf.DS
 }
 
 //创建结构体
-func (l *Logic) GenerateDBStructure(tableName, tableComment string, tableDesc []*mysql.TableDesc) (err error) {
-	//表结构文件路径
-	tableInfoFile := l.GetMysqlDir() + conf.GOFILE_STRUCTURE
+func (l *Logic) GenerateDBStructure(tableName, tableComment, path string, tableDesc []*mysql.TableDesc) (err error) {
 	//表结构模板文件路径
 	tplFile := l.GetRoot() + conf.TPL_STRUCTURE
 	//加入package mysql
 	packageStr := `//数据库表内结构体信息
 package mysql
 ` //判断package是否加载过
-	if l.T.CheckFileContainsChar(tableInfoFile, packageStr) == false {
-		l.T.WriteFile(tableInfoFile, packageStr)
+	//判断文件是否存在.
+
+	if l.T.CheckFileContainsChar(path, packageStr) == false {
+		l.T.WriteFile(path, packageStr)
 	}
 	//判断import是否加载过
 	importStr := `import "database/sql"`
-	if l.T.CheckFileContainsChar(tableInfoFile, importStr) == false {
-		l.T.WriteFileAppend(tableInfoFile, importStr)
+	if l.T.CheckFileContainsChar(path, importStr) == false {
+		l.T.WriteFileAppend(path, importStr)
 	}
 	//声明表结构变量
 	TableData := new(mysql.TableInfo)
@@ -50,7 +50,7 @@ package mysql
 	TableData.NullTable = conf.DbNullPrefix + TableData.Table
 	TableData.TableComment = tableComment
 	//判断表结构是否加载过
-	if l.T.CheckFileContainsChar(tableInfoFile, "type "+TableData.Table+" struct") == true {
+	if l.T.CheckFileContainsChar(path, "type "+TableData.Table+" struct") == true {
 		return
 	}
 	//加载模板文件
@@ -72,7 +72,7 @@ package mysql
 	content := bytes.NewBuffer([]byte{})
 	tpl.Execute(content, TableData)
 	//表信息写入文件
-	err = WriteAppendFile(tableInfoFile, content.String())
+	err = WriteAppendFile(path, content.String())
 	if err != nil {
 		return
 	}
@@ -211,7 +211,7 @@ func (l *Logic) GenerateSQL(info *mysql.SqlInfo) (err error) {
 //生成表列表
 func (l *Logic) GenerateMarkdown(data *mysql.MarkDownData) (err error) {
 	//写入markdown
-	file := common.GetRootDir() + "markdown.md"
+	file := common.GetExeRootDir() + "markdown.md"
 	tplFile := l.GetRoot() + conf.TPL_MARKDOWN
 
 	tpl, err := template.ParseFiles(tplFile)

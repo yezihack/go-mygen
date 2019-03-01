@@ -101,7 +101,7 @@ result = list[0]
 return
 }
 //查询多条数据,传入id,id2,id3
-func (t *{{.StructTableName}}) Find(db *sql.DB, ids []{{.PrimaryType}}) (resultList []*{{.StructTableName}}, err error) {
+func (t *{{.StructTableName}}) Find(db *sql.DB, ids ...{{.PrimaryType}}) (resultList []*{{.StructTableName}}, err error) {
 resultList = make([]*{{.StructTableName}}, 0)
 sqlText := "SELECT" + t.selectColumn() + "FROM " + {{.UpperTableName}} + " WHERE {{.PrimaryKey}} in ("+strings.TrimRight(strings.Repeat("?,", len(ids)), ",")+")"
 var args []interface{}

@@ -19,6 +19,9 @@ gm2m s
 gm2m m
 ```
 
+## 生成CRUD简单查询
+
+
 ## 环境变量 GM2M_CONFIG 设置
 > 设置mysql数据库的连接信息
 - username 登陆用户名
