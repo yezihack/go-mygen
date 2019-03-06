@@ -13,7 +13,6 @@ import (
 )
 
 func init() {
-
 	//初使日志
 	k3log.SetLogger(kconf.WithFilename(common.GetExeRootDir()+"log/m2m.log"),
 		kconf.WithIsStdOut(true),
@@ -28,40 +27,6 @@ func main() {
 		}
 	}()
 	Start()
-}
-
-func test() {
-	//os.Args = []string{"say", "hi", "english", "--name", "Jeremy"}
-	app := cli.NewApp()
-	app.Name = "say"
-	app.Commands = []cli.Command{
-		{
-			Name:        "hello",
-			Aliases:     []string{"hi"},
-			Usage:       "use it to see a description",
-			Description: "This is how we describe hello the function",
-			Subcommands: []cli.Command{
-				{
-					Name:        "english",
-					Aliases:     []string{"en"},
-					Usage:       "sends a greeting in english",
-					Description: "greets someone in english",
-					Flags: []cli.Flag{
-						cli.StringFlag{
-							Name:  "name",
-							Value: "Bob",
-							Usage: "Name of the person to greet",
-						},
-					},
-					Action: func(c *cli.Context) error {
-						fmt.Println("Hello,", c.String("name"))
-						return nil
-					},
-				},
-			},
-		},
-	}
-	app.Run(os.Args)
 }
 
 func Start() {
@@ -114,7 +79,7 @@ func Start() {
 				}
 				k3log.Info("msg", "生成结构体文件 完成")
 				if !common.Gofmt(common.GetExeRootDir()) {
-					k3log.Warn("goimports 命令未安装(go install golang.org/x/tools/cmd/goimports),无法格式代码")
+					k3log.Warn("goimports 命令未安装(go install golang.org/x/tools/cmd/goimports 或 go install fmt,无法格式代码")
 				}
 				return nil
 			},
@@ -148,18 +113,7 @@ func Start() {
 				return nil
 			},
 		},
-		{
-			Name:  "test",
-			Usage: "test",
-			Action: func(c *cli.Context) error {
-				structPath := common.GetExeRootDir() + "structure/" + conf.GOFILE_STRUCTURE
-				path := common.GetRootPath(structPath)
-				fmt.Printf(path)
-				return nil
-			},
-		},
 	}
-
 	app.Action = func(c *cli.Context) error {
 		if c.NumFlags() == 0 {
 			cli.ShowAppHelp(c)
@@ -240,6 +194,70 @@ func StudyCli() {
 			Action: func(c *cli.Context) error {
 				cli.ShowAppHelp(c)
 				return nil
+			},
+		},
+		{
+			Name:  "mysql",
+			Usage: "直连数据库",
+			Action: func(c *cli.Context) error {
+				structPath := common.GetExeRootDir() + "structure/" + conf.GOFILE_STRUCTURE
+				path := common.GetRootPath(structPath)
+				fmt.Printf(path)
+				return nil
+			},
+			Subcommands: []cli.Command{ //命令参数
+				{
+					Name:    "localhost",
+					Aliases: []string{"h"},
+					Usage:   "连接地址",
+					Action: func(c *cli.Context) error {
+						if file, err := common.CreateIniFile(); err == nil {
+							k3log.Info("msg", "生成配置文件 完毕!", "path", file)
+						} else {
+							k3log.Info("msg", "生成配置文件 失败!")
+						}
+						return nil
+					},
+				},
+				{
+					Name:    "dbname",
+					Aliases: []string{"db"},
+					Usage:   "连接地址",
+					Action: func(c *cli.Context) error {
+						if file, err := common.CreateIniFile(); err == nil {
+							k3log.Info("msg", "生成配置文件 完毕!", "path", file)
+						} else {
+							k3log.Info("msg", "生成配置文件 失败!")
+						}
+						return nil
+					},
+				},
+				{
+					Name:    "user",
+					Aliases: []string{"u"},
+					Usage:   "连接地址",
+					Action: func(c *cli.Context) error {
+						if file, err := common.CreateIniFile(); err == nil {
+							k3log.Info("msg", "生成配置文件 完毕!", "path", file)
+						} else {
+							k3log.Info("msg", "生成配置文件 失败!")
+						}
+						return nil
+					},
+				},
+				{
+					Name:    "password",
+					Aliases: []string{"p"},
+					Usage:   "连接地址",
+					Action: func(c *cli.Context) error {
+						if file, err := common.CreateIniFile(); err == nil {
+							k3log.Info("msg", "生成配置文件 完毕!", "path", file)
+						} else {
+							k3log.Info("msg", "生成配置文件 失败!")
+						}
+						return nil
+					},
+				},
 			},
 		},
 	}

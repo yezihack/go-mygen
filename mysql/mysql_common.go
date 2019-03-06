@@ -3,6 +3,9 @@ package mysql
 import (
 	"strings"
 
+	"fmt"
+
+	"github.com/yezihack/gm2m/common"
 	"github.com/yezihack/gm2m/conf"
 )
 
@@ -13,9 +16,26 @@ func (d *DbTools) GetTableList() (tableResult map[string]string, err error) {
 		return
 	}
 	tableList := make([]string, 0)
+	//获取配置文件里的table_list设定
+	var ConfTableList []string
+	ConfTableList, err = common.GetConfTables()
 	for _, mapVal := range result {
 		for _, tableName := range mapVal {
-			tableList = append(tableList, strings.TrimSpace(tableName.(string)))
+			if len(ConfTableList) > 0 {
+				var okTable bool
+				for k := range ConfTableList {
+					if ConfTableList[k] == tableName {
+						okTable = true
+						break
+					}
+				}
+				if okTable {
+					tableList = append(tableList, strings.TrimSpace(tableName.(string)))
+				} else {
+					fmt.Println("过滤的表:", tableName)
+				}
+			}
+
 		}
 	}
 	tableResult = make(map[string]string)

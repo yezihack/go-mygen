@@ -59,14 +59,26 @@ package mysql
 		k3log.Error("ParseFiles", err)
 		return
 	}
-	//装载表信息
+	//装载表字段信息
+	fts, err := common.GetConfFormat()
+	if err != nil {
+		k3log.Error("GetConfFormat", err)
+		return
+	}
+	//判断是否含json
+	if !common.InArrayString("json", fts) {
+		index0 := fts[0]
+		fts[0] = "json"
+		fts = append(fts, index0)
+	}
 	for _, val := range tableDesc {
 		TableData.Fields = append(TableData.Fields, &mysql.FieldsInfo{
-			Name:     l.T.Capitalize(val.ColumnName),
-			Type:     val.GolangType,
-			NullType: val.MysqlNullType,
-			DbName:   val.ColumnName,
-			Remark:   val.ColumnComment,
+			Name:         l.T.Capitalize(val.ColumnName),
+			Type:         val.GolangType,
+			NullType:     val.MysqlNullType,
+			DbOriField:   val.ColumnName,
+			FormatFields: common.FormatField(val.ColumnName, fts),
+			Remark:       val.ColumnComment,
 		})
 	}
 	content := bytes.NewBuffer([]byte{})

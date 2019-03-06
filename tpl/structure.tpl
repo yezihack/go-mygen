@@ -1,6 +1,7 @@
+
 //{{.TableComment}}
 type {{.Table}} struct {
-{{range $j, $item := .Fields}}{{$item.Name}}       {{$item.Type}}    `json:"{{$item.DbName}}"`           //{{$item.Remark}}
+{{range $j, $item := .Fields}}{{$item.Name}}       {{$item.Type}}    `{{$item.FormatFields}}`           //{{$item.Remark}}
 {{end}}
 }
 type {{.NullTable}} struct {

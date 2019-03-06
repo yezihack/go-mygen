@@ -13,7 +13,7 @@ fmt-output:
 	goimports -l -w ./output/
 
 build:
-	go build -o output/gm2m ./
+	go build -v -o output/gm2m ./
 
 run:
 	output/gm2m

@@ -1,0 +1,178 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"checksumSHA1": "Pc2ORQp+VY3Un/dkh4QwLC7R6lE=",
+			"path": "github.com/BurntSushi/toml",
+			"revision": "3012a1dbe2e4bd1391d42b32f0577cb7bbc7f005",
+			"revisionTime": "2018-08-15T10:47:33Z"
+		},
+		{
+			"checksumSHA1": "YqWJ5QH/ncEx2C2+DUoF6B3/QOI=",
+			"path": "github.com/ThreeKing2018/k3log",
+			"revision": "181ec791d4d5cec03755d9f3fb5448f93b7af308",
+			"revisionTime": "2019-02-18T07:04:05Z"
+		},
+		{
+			"checksumSHA1": "phIkhqHZyBIx/1+BhevlyWU//bo=",
+			"path": "github.com/ThreeKing2018/k3log/conf",
+			"revision": "181ec791d4d5cec03755d9f3fb5448f93b7af308",
+			"revisionTime": "2019-02-18T07:04:05Z"
+		},
+		{
+			"checksumSHA1": "os1pbmnf5jR8txr+BwDoY+pLPGw=",
+			"path": "github.com/ThreeKing2018/k3log/plugins/zaplog",
+			"revision": "181ec791d4d5cec03755d9f3fb5448f93b7af308",
+			"revisionTime": "2019-02-18T07:04:05Z"
+		},
+		{
+			"checksumSHA1": "KmjnydoAbofMieIWm+it5OWERaM=",
+			"path": "github.com/alecthomas/template",
+			"revision": "a0175ee3bccc567396460bf5acd36800cb10c49c",
+			"revisionTime": "2016-04-05T07:15:01Z"
+		},
+		{
+			"checksumSHA1": "3wt0pTXXeS+S93unwhGoLIyGX/Q=",
+			"path": "github.com/alecthomas/template/parse",
+			"revision": "a0175ee3bccc567396460bf5acd36800cb10c49c",
+			"revisionTime": "2016-04-05T07:15:01Z"
+		},
+		{
+			"checksumSHA1": "CSPbwbyzqA6sfORicn4HFtIhF/c=",
+			"path": "github.com/davecgh/go-spew/spew",
+			"revision": "d8f796af33cc11cb798c1aaeb27a4ebc5099927d",
+			"revisionTime": "2018-08-30T19:11:22Z"
+		},
+		{
+			"checksumSHA1": "wmiJbuFVCxg22zwXIeLsVCudyeY=",
+			"path": "github.com/go-sql-driver/mysql",
+			"revision": "c45f530f8e7fe40f4687eaa50d0c8c5f1b66f9e0",
+			"revisionTime": "2018-12-18T12:36:37Z"
+		},
+		{
+			"checksumSHA1": "w71oiN5CVKfeXB0ygXfee7TCP0s=",
+			"path": "github.com/gohouse/converter",
+			"revision": "6100392fa75acb8b1d1c79c5a23c7b2485e3edd3",
+			"revisionTime": "2018-11-22T03:04:19Z"
+		},
+		{
+			"checksumSHA1": "UlrQz0zMX3yqtHJHHbCkyg4UVyA=",
+			"path": "github.com/gohouse/gorose",
+			"revision": "44bb7f6c8f48e8eb0457b506bc755107d55aa013",
+			"revisionTime": "2018-12-21T07:55:39Z"
+		},
+		{
+			"checksumSHA1": "57YG7a88g7G5nfzhj2dhTuf5ZyI=",
+			"path": "github.com/gohouse/gorose/across",
+			"revision": "44bb7f6c8f48e8eb0457b506bc755107d55aa013",
+			"revisionTime": "2018-12-21T07:55:39Z"
+		},
+		{
+			"checksumSHA1": "DnNRHISDjkGBFkaWKw1HHDkySew=",
+			"path": "github.com/gohouse/gorose/builder",
+			"revision": "44bb7f6c8f48e8eb0457b506bc755107d55aa013",
+			"revisionTime": "2018-12-21T07:55:39Z"
+		},
+		{
+			"checksumSHA1": "jDmRieC19o+T7dLOs2Si2F/K9U0=",
+			"path": "github.com/gohouse/gorose/cors",
+			"revision": "44bb7f6c8f48e8eb0457b506bc755107d55aa013",
+			"revisionTime": "2018-12-21T07:55:39Z"
+		},
+		{
+			"checksumSHA1": "py5DqZaykBFPV5KeX2MKgri5B6c=",
+			"path": "github.com/gohouse/gorose/driver/mysql",
+			"revision": "44bb7f6c8f48e8eb0457b506bc755107d55aa013",
+			"revisionTime": "2018-12-21T07:55:39Z"
+		},
+		{
+			"checksumSHA1": "zmDKlNOHnIP09HdHv8sOZWSx8Ts=",
+			"path": "github.com/gohouse/gorose/parser",
+			"revision": "44bb7f6c8f48e8eb0457b506bc755107d55aa013",
+			"revisionTime": "2018-12-21T07:55:39Z"
+		},
+		{
+			"checksumSHA1": "3Z3VfR0HXLIRTZieTWCb6/OZ3Sc=",
+			"path": "github.com/gohouse/gorose/utils",
+			"revision": "44bb7f6c8f48e8eb0457b506bc755107d55aa013",
+			"revisionTime": "2018-12-21T07:55:39Z"
+		},
+		{
+			"checksumSHA1": "UpD3DOBV4ke+MSUYOotu4qciG7A=",
+			"path": "github.com/robfig/config",
+			"revision": "0f78529c8c7e3e9a25f15876532ecbc07c7d99e6",
+			"revisionTime": "2014-12-07T22:47:36Z"
+		},
+		{
+			"checksumSHA1": "y3LxXLPe3WyMzQ+QvrkqGBQJ49I=",
+			"path": "github.com/urfave/cli",
+			"revision": "b67dcf995b6a7b7f14fad5fcb7cc5441b05e814b",
+			"revisionTime": "2018-10-29T21:32:00Z"
+		},
+		{
+			"checksumSHA1": "byl77NJm2QiR5tfeBzAf2QpeQUc=",
+			"origin": "github.com/ThreeKing2018/k3log/vendor/go.uber.org/atomic",
+			"path": "go.uber.org/atomic",
+			"revision": "181ec791d4d5cec03755d9f3fb5448f93b7af308",
+			"revisionTime": "2019-02-18T07:04:05Z"
+		},
+		{
+			"checksumSHA1": "HephvKOmm5xmOrCzhKEtcw7lqE8=",
+			"origin": "github.com/ThreeKing2018/k3log/vendor/go.uber.org/multierr",
+			"path": "go.uber.org/multierr",
+			"revision": "181ec791d4d5cec03755d9f3fb5448f93b7af308",
+			"revisionTime": "2019-02-18T07:04:05Z"
+		},
+		{
+			"checksumSHA1": "bs4Qet93Z8f2eB8MVdM2hXXTyso=",
+			"origin": "github.com/ThreeKing2018/k3log/vendor/go.uber.org/zap",
+			"path": "go.uber.org/zap",
+			"revision": "181ec791d4d5cec03755d9f3fb5448f93b7af308",
+			"revisionTime": "2019-02-18T07:04:05Z"
+		},
+		{
+			"checksumSHA1": "eC/XVln77aRfE/VocbN0NWdlRdg=",
+			"origin": "github.com/ThreeKing2018/k3log/vendor/go.uber.org/zap/buffer",
+			"path": "go.uber.org/zap/buffer",
+			"revision": "181ec791d4d5cec03755d9f3fb5448f93b7af308",
+			"revisionTime": "2019-02-18T07:04:05Z"
+		},
+		{
+			"checksumSHA1": "MuxOAtZEsJitlWBzhmpm2vGiHok=",
+			"origin": "github.com/ThreeKing2018/k3log/vendor/go.uber.org/zap/internal/bufferpool",
+			"path": "go.uber.org/zap/internal/bufferpool",
+			"revision": "181ec791d4d5cec03755d9f3fb5448f93b7af308",
+			"revisionTime": "2019-02-18T07:04:05Z"
+		},
+		{
+			"checksumSHA1": "uC0L9eCSAYcCWNC8udJk/t1vvIU=",
+			"origin": "github.com/ThreeKing2018/k3log/vendor/go.uber.org/zap/internal/color",
+			"path": "go.uber.org/zap/internal/color",
+			"revision": "181ec791d4d5cec03755d9f3fb5448f93b7af308",
+			"revisionTime": "2019-02-18T07:04:05Z"
+		},
+		{
+			"checksumSHA1": "b80CJExrVpXu3SA1iCQ6uLqTn2c=",
+			"origin": "github.com/ThreeKing2018/k3log/vendor/go.uber.org/zap/internal/exit",
+			"path": "go.uber.org/zap/internal/exit",
+			"revision": "181ec791d4d5cec03755d9f3fb5448f93b7af308",
+			"revisionTime": "2019-02-18T07:04:05Z"
+		},
+		{
+			"checksumSHA1": "iH3qg/pvsxQ9XW5t8FTc6veuYhY=",
+			"origin": "github.com/ThreeKing2018/k3log/vendor/go.uber.org/zap/zapcore",
+			"path": "go.uber.org/zap/zapcore",
+			"revision": "181ec791d4d5cec03755d9f3fb5448f93b7af308",
+			"revisionTime": "2019-02-18T07:04:05Z"
+		},
+		{
+			"checksumSHA1": "TM3Neoy1xRAKyZYMGzKc41sDFW4=",
+			"origin": "github.com/ThreeKing2018/k3log/vendor/gopkg.in/natefinch/lumberjack.v2",
+			"path": "gopkg.in/natefinch/lumberjack.v2",
+			"revision": "181ec791d4d5cec03755d9f3fb5448f93b7af308",
+			"revisionTime": "2019-02-18T07:04:05Z"
+		}
+	],
+	"rootPath": "github.com/yezihack/gm2m"
+}

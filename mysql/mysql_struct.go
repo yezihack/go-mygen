@@ -30,11 +30,13 @@ type MarkDownDataChild struct {
 
 //表字段信息
 type FieldsInfo struct {
-	Name     string
-	Type     string
-	NullType string
-	DbName   string
-	Remark   string
+	Name         string
+	Type         string
+	NullType     string
+	DbName       string
+	DbOriField   string //数据库的原生字段名称
+	FormatFields string
+	Remark       string
 }
 
 //表信息结构
