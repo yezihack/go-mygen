@@ -46,7 +46,7 @@ func InitMysql() {
 	} else if ini := os.Getenv(conf.TMP_ENV_INI_FILE); ini != "" {
 		setDbConnByIniFile(ini)
 	} else {
-		k3log.Error("请检查数据库配置default.ini文件或环境变量:GM2M_CONFIG")
+		k3log.Error("请先生成配置文件或检查文件 gm2m c")
 	}
 }
 func setDbConnByIniFile(iniFile string) {
