@@ -4,16 +4,18 @@ import (
 	"bytes"
 	"strings"
 
+	"html/template"
+
 	"github.com/ThreeKing2018/k3log"
-	"github.com/alecthomas/template"
 	"github.com/yezihack/gm2m/common"
 	"github.com/yezihack/gm2m/conf"
 	"github.com/yezihack/gm2m/mysql"
+	tpldata "github.com/yezihack/gm2m/tpl"
 )
 
 type Logic struct {
 	T  *common.Tools
-	db mysql.DbTools
+	DB *mysql.ModelS
 }
 
 //创建和获取MYSQL目录
@@ -28,8 +30,6 @@ func (l *Logic) GetRoot() string {
 
 //创建结构体
 func (l *Logic) GenerateDBStructure(tableName, tableComment, path string, tableDesc []*mysql.TableDesc) (err error) {
-	//表结构模板文件路径
-	tplFile := l.GetRoot() + conf.TPL_STRUCTURE
 	//加入package mysql
 	packageStr := `//数据库表内结构体信息
 package mysql
@@ -54,7 +54,11 @@ package mysql
 		return
 	}
 	//加载模板文件
-	tpl, err := template.ParseFiles(tplFile)
+	tplByte, err := tpldata.Asset(conf.TPL_STRUCTURE)
+	if err != nil {
+		return
+	}
+	tpl, err := template.New("structure").Parse(string(tplByte))
 	if err != nil {
 		k3log.Error("ParseFiles", err)
 		return
@@ -159,8 +163,6 @@ func (l *Logic) GenerateCURDFile(tableName string, tableDesc []*mysql.TableDesc)
 func (l *Logic) GenerateTableList(list []*mysql.TableList) (err error) {
 	//写入表名
 	tableListFile := l.GetMysqlDir() + "table_list.go"
-	tplFile := l.GetRoot() + conf.TPL_TABLES
-
 	//判断package是否加载过
 	checkStr := "package mysql"
 	if l.T.CheckFileContainsChar(tableListFile, checkStr) == false {
@@ -170,7 +172,12 @@ func (l *Logic) GenerateTableList(list []*mysql.TableList) (err error) {
 	if l.T.CheckFileContainsChar(tableListFile, checkStr) {
 		return
 	}
-	tpl, err := template.ParseFiles(tplFile)
+
+	tplByte, err := tpldata.Asset(conf.TPL_TABLES)
+	if err != nil {
+		return
+	}
+	tpl, err := template.New("table_list").Parse(string(tplByte))
 	if err != nil {
 		return
 	}
@@ -192,7 +199,6 @@ func (l *Logic) GenerateTableList(list []*mysql.TableList) (err error) {
 func (l *Logic) GenerateSQL(info *mysql.SqlInfo) (err error) {
 	//写入表名
 	goFile := l.GetMysqlDir() + info.TableName + ".go"
-	tplFile := l.GetRoot() + conf.TPL_CRUD
 	//判断package是否加载过
 	checkStr := "package mysql"
 	if l.T.CheckFileContainsChar(goFile, checkStr) == false {
@@ -200,7 +206,11 @@ func (l *Logic) GenerateSQL(info *mysql.SqlInfo) (err error) {
 	}
 
 	//解析模板
-	tpl, err := template.ParseFiles(tplFile)
+	tplByte, err := tpldata.Asset(conf.TPL_CRUD)
+	if err != nil {
+		return
+	}
+	tpl, err := template.New("CURD").Parse(string(tplByte))
 	if err != nil {
 		return
 	}
@@ -224,14 +234,13 @@ func (l *Logic) GenerateSQL(info *mysql.SqlInfo) (err error) {
 func (l *Logic) GenerateMarkdown(data *mysql.MarkDownData) (err error) {
 	//写入markdown
 	file := common.GetExeRootDir() + "markdown.md"
-	tplFile := l.GetRoot() + conf.TPL_MARKDOWN
-
-	tpl, err := template.ParseFiles(tplFile)
+	tplByte, err := tpldata.Asset(conf.TPL_MARKDOWN)
 	if err != nil {
 		return
 	}
 	//解析
 	content := bytes.NewBuffer([]byte{})
+	tpl, err := template.New("markdown").Parse(string(tplByte))
 	err = tpl.Execute(content, data)
 	if err != nil {
 		return

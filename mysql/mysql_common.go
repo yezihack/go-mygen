@@ -3,55 +3,46 @@ package mysql
 import (
 	"strings"
 
-	"fmt"
-
 	"github.com/yezihack/gm2m/conf"
-	"database/sql"
 )
 
 //获取表名的列表
-func (d *DbTools) GetTableList(db *sql.DB) (tableResult map[string]string, err error) {
-	query, err := db.Query("show tables")
+func (d *ModelS) GetTableList(onTable ...string) (tableResult map[string]string, err error) {
+	result, err := d.Find("show tables")
 	if err != nil {
 		return
 	}
-	defer query.Close()
 	tableList := make([]string, 0)
-	var tbList []string
 	//获取配置文件里的table_list设定
 	for _, mapVal := range result {
 		for _, tableName := range mapVal {
-			if len(tbList) > 0 {
-				var okTable bool
-				for k := range tbList {
-					if tbList[k] == tableName {
-						okTable = true
+			tb := strings.TrimSpace(tableName.(string))
+			if len(onTable) > 0 {
+				for k := range onTable {
+					if onTable[k] == tableName {
+						tableList = append(tableList, tb)
 						break
 					}
 				}
-				if okTable {
-					tableList = append(tableList, strings.TrimSpace(tableName.(string)))
-				} else {
-					fmt.Println("过滤的表:", tableName)
-				}
+			} else {
+				tableList = append(tableList, tb)
 			}
-
 		}
 	}
 	tableResult = make(map[string]string)
 	for _, table := range tableList {
-		tableInfo, _ := GetMasterDB().Query("select table_comment from information_schema.tables where table_name = ?", table)
+		tableInfo, _ := d.Pluck("select table_comment from information_schema.tables where table_name = ?", "table_comment", table)
 		if err != nil {
 			return
 		}
-		tableResult[table] = tableInfo[0]["table_comment"].(string)
+		tableResult[table] = tableInfo[0].(string)
 	}
 	return
 }
 
 //获取表结构详情
-func (d *DbTools) GetTableDesc(tableName string) (reply []*TableDesc, err error) {
-	result, err := GetMasterDB().Query("select column_name,data_type, column_key, is_nullable,column_default,column_type, column_comment from information_schema.columns where table_name = ?", tableName)
+func (d *ModelS) GetTableDesc(tableName string) (reply []*TableDesc, err error) {
+	result, err := d.Find("select column_name,data_type, column_key, is_nullable,column_default,column_type, column_comment from information_schema.columns where table_name = ?", tableName)
 	if err != nil {
 		return
 	}

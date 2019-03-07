@@ -53,8 +53,8 @@ func ErrMsg(msg string, err error) interface{} {
 func Gofmt(path string) bool {
 	if new(Tools).IsDirOrFileExist(path) {
 		if !ExecCommand("goimports", "-l", "-w", path) {
-			if !ExecCommand("go", "fmt", path) {
-				return ExecCommand("gofmt", "-l", "-w", path)
+			if !ExecCommand("gofmt", "-l", "-w", path) {
+				return ExecCommand("go", "fmt", path)
 			}
 		}
 		return true

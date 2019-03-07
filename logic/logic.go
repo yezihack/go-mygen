@@ -12,8 +12,7 @@ import (
 //生成结构体文件
 func (l *Logic) CreateStructure() error {
 	//读取所有表列表
-	dbTools := new(mysql.DbTools)
-	tableList, err := dbTools.GetTableList()
+	tableList, err := l.DB.GetTableList()
 	if err != nil {
 		return err
 	}
@@ -34,7 +33,7 @@ func (l *Logic) CreateStructure() error {
 	//将表结构写入文件
 	for tableName, tableComment := range tableList {
 		//查询表结构信息
-		tableDesc, err := l.db.GetTableDesc(tableName)
+		tableDesc, err := l.DB.GetTableDesc(tableName)
 		if err != nil {
 			return err
 		}
@@ -50,8 +49,7 @@ func (l *Logic) CreateStructure() error {
 //生成原生的crud查询数据库
 func (l *Logic) CreateCRUD() error {
 	//读取所有表列表
-	dbTools := new(mysql.DbTools)
-	tableList, err := dbTools.GetTableList()
+	tableList, err := l.DB.GetTableList()
 	if err != nil {
 		return err
 	}
@@ -66,7 +64,7 @@ func (l *Logic) CreateCRUD() error {
 			Comment:        tableComment,
 		})
 		//查询表结构信息
-		tableDesc, err := l.db.GetTableDesc(tableName)
+		tableDesc, err := l.DB.GetTableDesc(tableName)
 		if err != nil {
 			return err
 		}
@@ -93,8 +91,7 @@ func (l *Logic) CreateCRUD() error {
 //生成mysql markdown文档
 func (l *Logic) CreateMarkdown() error {
 	//读取所有表列表
-	dbTools := new(mysql.DbTools)
-	tableList, err := dbTools.GetTableList()
+	tableList, err := l.DB.GetTableList()
 	if err != nil {
 		return err
 	}
@@ -110,7 +107,7 @@ func (l *Logic) CreateMarkdown() error {
 		})
 		//查询表结构信息
 		desc := new(mysql.MarkDownDataChild)
-		desc.List, err = l.db.GetTableDesc(tableName)
+		desc.List, err = l.DB.GetTableDesc(tableName)
 		if err != nil {
 			return err
 		}

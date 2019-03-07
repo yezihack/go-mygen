@@ -9,3 +9,8 @@ type DBConfig struct {
 	Password string //用户密码
 	Charset  string //编码
 }
+
+type CmdS struct {
+	No  string
+	Msg string
+}

@@ -3,24 +3,43 @@ package mysql
 import (
 	"fmt"
 
-	_ "github.com/gohouse/gorose/driver/mysql"
-	"github.com/pkg/errors"
-	"github.com/yezihack/gm2m/common"
-	"github.com/yezihack/gm2m/conf"
 	"database/sql"
+
+	_ "github.com/gohouse/gorose/driver/mysql"
+	"github.com/yezihack/gm2m/common"
 )
 
-type DbTools struct {
-	T *common.Tools
+// model结构
+type ModelS struct {
+	DB *sql.DB
+	T  *common.Tools
 }
-//conf.DBConfig
-func SetDbConn(dbConf conf.DBConfig) (db *sql.DB, err error) {
 
-	dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=%s", dbConf.UserName, dbConf.Password, dbConf.Host, dbConf.Port, dbConf.DbName, dbConf.Charset)
+//数据库配置结构
+type DBConfig struct {
+	Host    string //地址
+	Port    int    //端口
+	Name    string //名称
+	Pass    string //密码
+	DBName  string //库名
+	Charset string //编码
+}
+
+//连接数据库
+func InitDB(cfg DBConfig) (*sql.DB, error) {
+	dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=%s", cfg.Name, cfg.Pass, cfg.Host, cfg.Port, cfg.DBName, cfg.Charset)
 	connection, err := sql.Open("mysql", dsn)
 	if err != nil {
-		return nil, errors.New("数据库连接失败, err" + err.Error())
+		return nil, err
 	}
-	db = connection
-	return db, nil
+	return connection, nil
+}
+
+//实例一个数据库对象
+func NewDB(db *sql.DB) *ModelS {
+	db.SetMaxIdleConns(5)
+	db.SetMaxOpenConns(10)
+	return &ModelS{
+		DB: db,
+	}
 }
