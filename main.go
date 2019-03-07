@@ -1,35 +1,31 @@
 package main
 
 import (
-	"fmt"
 	"os"
 
+	"strings"
+
 	"github.com/ThreeKing2018/k3log"
-	kconf "github.com/ThreeKing2018/k3log/conf"
 	"github.com/urfave/cli"
-	"github.com/yezihack/gm2m/common"
 	"github.com/yezihack/gm2m/conf"
-	"github.com/yezihack/gm2m/logic"
+	"github.com/yezihack/gm2m/log"
+	"github.com/yezihack/gm2m/mysql"
 )
 
-func init() {
-	//初使日志
-	k3log.SetLogger(kconf.WithFilename(common.GetExeRootDir()+"log/m2m.log"),
-		kconf.WithIsStdOut(true),
-		kconf.WithProjectName("gm2m"))
-	defer k3log.Sync()
-}
-
 func main() {
-	defer func() {
-		if err := recover(); err != nil {
-			k3log.Error("err", err)
-		}
-	}()
-	Start()
+	Conn()
 }
 
-func Start() {
+type DbConnS struct {
+	Host    string
+	Port    int
+	User    string
+	Pass    string
+	DbName  string
+	Charset string
+}
+
+func Conn() {
 	app := cli.NewApp()
 	app.Name = "gm2m"                        //项目名称
 	app.Author = "百里 github.com/yezihack"    //作者名称
@@ -37,241 +33,76 @@ func Start() {
 	app.Copyright = "@Copyright~2019"        //版权保护
 	app.Usage = "是生成数据库表结构和markdown表结构的命令工具" //说明
 	cli.HelpFlag = cli.BoolFlag{             //修改系统默认
-		Name:  "help, h",
+		Name:  "help",
 		Usage: "显示命令帮助",
 	}
 	cli.VersionFlag = cli.BoolFlag{ //修改系统默认
 		Name:  "version, v",
 		Usage: "显示版本号",
 	}
-	app.Flags = []cli.Flag{ //标识参数切片,可填写多个标识参数.例: gm2m -config g.ini
-		cli.StringFlag{ //如何获取? 添加一个Destination, 或者 cli.Action, c.String("config"
-			Name:   "config, c",                  //名称,逗号隔开,相当于别名
-			Value:  "default.ini",                //默认值
-			Hidden: false,                        //是否显示这命令
-			EnvVar: "GM2M_CONFIG",                //环境变量
-			Usage:  "配置文件,默认当前目录下,否则全路径 `FILE` ", //说明
-		},
+	app.Flags = []cli.Flag{
+		cli.StringFlag{Name: "h", Value: "localhost", Usage: "数据库地址"},
+		cli.IntFlag{Name: "P", Value: 3306, Usage: "端口号"},
+		cli.StringFlag{Name: "u", Value: "root", Usage: "数据库用户名称"},
+		cli.StringFlag{Name: "p", Value: "123456", Usage: "数据库密码"},
+		cli.StringFlag{Name: "c", Value: "utf8mb4", Usage: "编码格式"},
+		cli.StringFlag{Name: "d", Value: "", Usage: "*数据库名称"},
 	}
-	app.Commands = []cli.Command{ //命令参数
-		{
-			Name:    "config",
-			Aliases: []string{"c"},
-			Usage:   "生成配置文件",
-			Action: func(c *cli.Context) error {
-				if file, err := common.CreateIniFile(); err == nil {
-					k3log.Info("msg", "生成配置文件 完毕!", "path", file)
-				} else {
-					k3log.Info("msg", "生成配置文件 失败!")
-				}
-				return nil
-			},
-		},
-		{
-			Name:    "structure",
-			Aliases: []string{"s"},
-			Usage:   "生成golang数据结构数据",
-			Action: func(c *cli.Context) error {
-				err := new(logic.Logic).CreateStructure()
-				if err != nil {
-					k3log.Error("msg", "生成golang数据结构数据", "err", err)
-					return nil
-				}
-				k3log.Info("msg", "生成结构体文件 完成")
-				if !common.Gofmt(common.GetExeRootDir()) {
-					k3log.Warn("goimports 命令未安装(go install golang.org/x/tools/cmd/goimports 或 go install fmt,无法格式代码")
-				}
-				return nil
-			},
-		},
-		{
-			Name:    "markdown",
-			Aliases: []string{"m"},
-			Usage:   "生成表结构的markdown文档",
-			Action: func(c *cli.Context) error {
-				err := new(logic.Logic).CreateMarkdown()
-				if err != nil {
-					k3log.Error("msg", "生成表结构的markdown文档", "err", err)
-					return nil
-				}
-				k3log.Info("msg", "生成表结构文档 完成")
-				return nil
-			},
-		},
-		{
-			Name:  "curd",
-			Usage: "生成golang基本的CURD文件",
-			Action: func(c *cli.Context) error {
-				err := new(logic.Logic).CreateCRUD()
-				if err != nil {
-					k3log.Error("msg", "生成golang数据结构数据", "err", err)
-					return nil
-				}
-				if !common.Gofmt(common.GetExeRootDir()) {
-					k3log.Warn("goimports 命令未安装(go install golang.org/x/tools/cmd/goimports),无法格式代码")
-				}
-				return nil
-			},
-		},
-	}
+	var DbConn conf.DBConfig
 	app.Action = func(c *cli.Context) error {
 		if c.NumFlags() == 0 {
 			cli.ShowAppHelp(c)
 			return nil
 		}
-		os.Setenv(conf.TMP_ENV_INI_FILE, c.String("config"))
+		//数据库地址
+		host := c.String("h")
+		if strings.EqualFold(host, "") {
+			host = "localhost"
+		}
+		DbConn.Host = host
+		//端口号
+		port := c.Int("P")
+		if port == 0 {
+			port = 3306
+		}
+		DbConn.Port = port
+		//数据库用户名称
+		user := c.String("u")
+		if user == "" {
+			user = "root"
+		}
+		DbConn.UserName = user
+		//数据库密码
+		pass := c.String("p")
+		if pass == "" {
+			pass = "123456"
+		}
+		DbConn.Password = pass
+		//编码格式
+		charset := c.String("c")
+		if charset == "" {
+			charset = "utf8mb4"
+		}
+		DbConn.Charset = charset
+		//数据库名称
+		dbname := c.String("d")
+		if dbname == "" {
+			return cli.NewExitError("数据库名称为空, 请使用 -d dbname", 9)
+		}
+		DbConn.DbName = dbname
 		return nil
 	}
-	err := app.Run(os.Args)
+	var err error
+	err = app.Run(os.Args)
 	if err != nil {
 		k3log.Error(err)
 	}
-}
-
-func StudyCli() {
-	app := cli.NewApp()
-	app.Name = "gm2m"                        //项目名称
-	app.Author = "百里"                        //作者名称
-	app.Version = "1.0"                      //版本号
-	app.Copyright = "@Copyright~2019"        //版权保护
-	app.Usage = "是生成数据库表结构和markdown表结构的命令工具" //说明
-	app.Flags = []cli.Flag{                  //标识参数切片,可填写多个标识参数.例: gm2m -config g.ini
-		cli.StringFlag{
-			Name:   "config, c",          //名称,逗号隔开,相当于别名
-			Value:  "default.ini",        //默认值
-			EnvVar: "GM2M_CONFIG",        //环境变量
-			Usage:  "配置文件,默认当前目录下,否则全路径", //说明
-		},
-	}
-	app.Commands = []cli.Command{ //命令参数
-		{
-			Name:    "config",
-			Aliases: []string{"c"},
-			Usage:   "生成配置文件",
-			Action: func(c *cli.Context) error {
-				//if common.CreateIniFile() {
-				//	k3log.Info("生成配置文件完毕!")
-				//} else {
-				//	k3log.Info("生成配置文件失败!")
-				//}
-				return nil
-			},
-			After: func(c *cli.Context) error {
-				fmt.Println("after")
-				return nil
-			},
-			Before: func(c *cli.Context) error {
-				fmt.Println("first", c.Args().First())
-				fmt.Println("Before")
-				if !c.Bool("ginger-crouton") {
-					return cli.NewExitError("正确使用命令", 100) //会提示命令如何使用
-				}
-				return nil
-			},
-		},
-		{
-			Name:    "structure",
-			Aliases: []string{"s"},
-			Usage:   "生成golang数据结构数据",
-			Action: func(c *cli.Context) error {
-				fmt.Println("生成golang数据结构数据")
-				return nil
-			},
-		},
-		{
-			Name:    "markdown",
-			Aliases: []string{"m"},
-			Usage:   "生成表结构的markdown文档",
-			Action: func(c *cli.Context) error {
-				fmt.Println("生成表结构的markdown文档")
-				return nil
-			},
-		},
-		{
-			Name:    "help",
-			Aliases: []string{"h"},
-			Usage:   "显示命令帮助",
-			Action: func(c *cli.Context) error {
-				cli.ShowAppHelp(c)
-				return nil
-			},
-		},
-		{
-			Name:  "mysql",
-			Usage: "直连数据库",
-			Action: func(c *cli.Context) error {
-				structPath := common.GetExeRootDir() + "structure/" + conf.GOFILE_STRUCTURE
-				path := common.GetRootPath(structPath)
-				fmt.Printf(path)
-				return nil
-			},
-			Subcommands: []cli.Command{ //命令参数
-				{
-					Name:    "localhost",
-					Aliases: []string{"h"},
-					Usage:   "连接地址",
-					Action: func(c *cli.Context) error {
-						if file, err := common.CreateIniFile(); err == nil {
-							k3log.Info("msg", "生成配置文件 完毕!", "path", file)
-						} else {
-							k3log.Info("msg", "生成配置文件 失败!")
-						}
-						return nil
-					},
-				},
-				{
-					Name:    "dbname",
-					Aliases: []string{"db"},
-					Usage:   "连接地址",
-					Action: func(c *cli.Context) error {
-						if file, err := common.CreateIniFile(); err == nil {
-							k3log.Info("msg", "生成配置文件 完毕!", "path", file)
-						} else {
-							k3log.Info("msg", "生成配置文件 失败!")
-						}
-						return nil
-					},
-				},
-				{
-					Name:    "user",
-					Aliases: []string{"u"},
-					Usage:   "连接地址",
-					Action: func(c *cli.Context) error {
-						if file, err := common.CreateIniFile(); err == nil {
-							k3log.Info("msg", "生成配置文件 完毕!", "path", file)
-						} else {
-							k3log.Info("msg", "生成配置文件 失败!")
-						}
-						return nil
-					},
-				},
-				{
-					Name:    "password",
-					Aliases: []string{"p"},
-					Usage:   "连接地址",
-					Action: func(c *cli.Context) error {
-						if file, err := common.CreateIniFile(); err == nil {
-							k3log.Info("msg", "生成配置文件 完毕!", "path", file)
-						} else {
-							k3log.Info("msg", "生成配置文件 失败!")
-						}
-						return nil
-					},
-				},
-			},
-		},
-	}
-	app.Action = func(c *cli.Context) error {
-		if c.NArg() > 0 {
-			configPath := c.Args().Get(0)
-			fmt.Println("configPath", configPath)
-		} else {
-			cli.ShowAppHelp(c)
+	if DbConn.DbName != "" {
+		err = mysql.SetDbConn(DbConn)
+		if err != nil {
+			log.Error(err)
+			return
 		}
-		return nil
-	}
-	err := app.Run(os.Args)
-	if err != nil {
-		k3log.Panic(err)
+
 	}
 }

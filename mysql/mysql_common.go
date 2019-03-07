@@ -5,26 +5,26 @@ import (
 
 	"fmt"
 
-	"github.com/yezihack/gm2m/common"
 	"github.com/yezihack/gm2m/conf"
+	"database/sql"
 )
 
 //获取表名的列表
-func (d *DbTools) GetTableList() (tableResult map[string]string, err error) {
-	result, err := GetMasterDB().Query("show tables")
+func (d *DbTools) GetTableList(db *sql.DB) (tableResult map[string]string, err error) {
+	query, err := db.Query("show tables")
 	if err != nil {
 		return
 	}
+	defer query.Close()
 	tableList := make([]string, 0)
+	var tbList []string
 	//获取配置文件里的table_list设定
-	var ConfTableList []string
-	ConfTableList, err = common.GetConfTables()
 	for _, mapVal := range result {
 		for _, tableName := range mapVal {
-			if len(ConfTableList) > 0 {
+			if len(tbList) > 0 {
 				var okTable bool
-				for k := range ConfTableList {
-					if ConfTableList[k] == tableName {
+				for k := range tbList {
+					if tbList[k] == tableName {
 						okTable = true
 						break
 					}

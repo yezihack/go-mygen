@@ -1,74 +1,26 @@
 package mysql
 
 import (
-	"os"
-
 	"fmt"
 
-	"github.com/ThreeKing2018/k3log"
-	"github.com/gohouse/gorose"
 	_ "github.com/gohouse/gorose/driver/mysql"
+	"github.com/pkg/errors"
 	"github.com/yezihack/gm2m/common"
 	"github.com/yezihack/gm2m/conf"
+	"database/sql"
 )
 
 type DbTools struct {
 	T *common.Tools
 }
+//conf.DBConfig
+func SetDbConn(dbConf conf.DBConfig) (db *sql.DB, err error) {
 
-var Config1 = &gorose.DbConfigSingle{
-	Driver:          "mysql",
-	EnableQueryLog:  true,
-	SetMaxOpenConns: 0,
-	SetMaxIdleConns: 0,
-	Prefix:          "",
-	Dsn:             "%s:%s@tcp(%s:%s)/%s?charset=%s", // username:password@tcp(localhost:3306)/dbname?charset=utf8mb4
-}
-var __DB *gorose.Session
-
-func init() {
-	InitMysql()
-}
-
-func GetMasterDB() *gorose.Session {
-	if __DB == nil {
-		panic("数据库未连接,请检查配置文件(default.ini) 或 环境变量(GM2M_CONFIG)")
-	}
-	return __DB
-}
-
-func InitMysql() {
-	iniFile := common.GetExeRootDir() + conf.DefaultIniFileName
-	if new(common.Tools).IsDirOrFileExist(iniFile) {
-		setDbConnByIniFile(iniFile)
-	} else if dsn := os.Getenv("GM2M_CONFIG"); dsn != "" {
-		setDbConnByDsnString(dsn)
-	} else if ini := os.Getenv(conf.TMP_ENV_INI_FILE); ini != "" {
-		setDbConnByIniFile(ini)
-	} else {
-		k3log.Error("请先生成配置文件或检查文件 gm2m c")
-	}
-}
-func setDbConnByIniFile(iniFile string) {
-	dbConf, err := common.ReadDbConfig(iniFile) //获取数据库配置
+	dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=%s", dbConf.UserName, dbConf.Password, dbConf.Host, dbConf.Port, dbConf.DbName, dbConf.Charset)
+	connection, err := sql.Open("mysql", dsn)
 	if err != nil {
-		panic(err)
-		return
+		return nil, errors.New("数据库连接失败, err" + err.Error())
 	}
-	Config1.Dsn = fmt.Sprintf(Config1.Dsn, dbConf.UserName, dbConf.Password, dbConf.Host, dbConf.Port, dbConf.DbName, dbConf.Charset)
-	connection, err := gorose.Open(Config1)
-	if err != nil {
-		panic(err)
-		return
-	}
-	__DB = connection.NewSession()
-}
-
-func setDbConnByDsnString(dsn string) {
-	connection, err := gorose.Open(dsn)
-	if err != nil {
-		k3log.Error("Mysql连接失败,请检查环境变量: GM2M_CONFIG", err)
-		return
-	}
-	__DB = connection.NewSession()
+	db = connection
+	return db, nil
 }

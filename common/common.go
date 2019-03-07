@@ -1,7 +1,6 @@
 package common
 
 import (
-	"errors"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -11,10 +10,6 @@ import (
 	"os/exec"
 
 	"regexp"
-
-	"github.com/ThreeKing2018/k3log"
-	"github.com/robfig/config"
-	"github.com/yezihack/gm2m/conf"
 )
 
 //GetRootDir 获取执行路径
@@ -45,117 +40,6 @@ func SubStr(s string, pos, length int) string {
 		l = len(runes)
 	}
 	return string(runes[pos:l])
-}
-
-//生成配置文件
-func CreateIniFile() (path string, err error) {
-	path = GetExeRootDir() + conf.DefaultIniFileName
-	t := new(Tools)
-	if t.IsDirOrFileExist(path) {
-		return
-	}
-	root := GetRootPath(GetExeRootDir())
-	pathTpl := root + conf.DS + conf.TPL_CONFIG
-	data := t.ReadFile(pathTpl)
-	if data == "" {
-		k3log.Error("config内容为空", "null", "file", path)
-		return
-	}
-	_, err = t.WriteFile(path, data)
-	if err != nil {
-		k3log.Error("CheckIniConfig", err)
-		return
-	}
-	return
-}
-
-//读取配置文件
-func ReadDbConfig(iniFile string) (result *conf.DBConfig, err error) {
-	result = new(conf.DBConfig)
-	cfg, err := config.ReadDefault(iniFile)
-	if err != nil {
-		return
-	}
-	host, err := cfg.String("mysql", "host")
-	if err != nil {
-		return
-	}
-	result.Host = strings.TrimSpace(host)
-	port, err := cfg.String("mysql", "port")
-	if err != nil {
-		return
-	}
-	result.Port = port
-	dbName, err := cfg.String("mysql", "db_name")
-	if err != nil {
-		return
-	}
-	result.DbName = strings.TrimSpace(dbName)
-
-	username, err := cfg.String("mysql", "username")
-	if err != nil {
-		return
-	}
-	result.UserName = strings.TrimSpace(username)
-	password, err := cfg.String("mysql", "password")
-	if err != nil {
-		return
-	}
-	result.Password = strings.TrimSpace(password)
-	charset, err := cfg.String("mysql", "charset")
-	if err != nil {
-		return
-	}
-	result.Charset = strings.TrimSpace(charset)
-	return
-}
-
-//获取表列表
-func GetConfTables() (result []string, err error) {
-	iniFile := GetExeRootDir() + conf.DefaultIniFileName
-	t := new(Tools)
-	if t.IsDirOrFileExist(iniFile) == false {
-		err = errors.New("ini文件不存在")
-		return
-	}
-	cfg, err := config.ReadDefault(iniFile)
-	if err != nil {
-		return
-	}
-	var s string
-	s, err = cfg.String("extra", "table_list")
-	if err != nil {
-		return
-	}
-	if s == "" {
-		return
-	}
-	result = CheckCharDoSpecialArr(s, ',', `[\w\,]`)
-	return
-}
-
-//获取结构需要格式的样式
-func GetConfFormat() (result []string, err error) {
-	iniFile := GetExeRootDir() + conf.DefaultIniFileName
-	t := new(Tools)
-	if t.IsDirOrFileExist(iniFile) == false {
-		err = errors.New("ini文件不存在")
-		return
-	}
-	cfg, err := config.ReadDefault(iniFile)
-	if err != nil {
-		return
-	}
-	var s string
-	s, err = cfg.String("extra", "struct_format")
-	if err != nil {
-		return
-	}
-	if s == "" {
-		return
-	}
-	result = CheckCharDoSpecialArr(s, ',', `[\w\,]`)
-	return
 }
 
 func ErrMsg(msg string, err error) interface{} {

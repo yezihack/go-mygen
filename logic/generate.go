@@ -60,7 +60,7 @@ package mysql
 		return
 	}
 	//装载表字段信息
-	fts, err := common.GetConfFormat()
+	fts := []string{"json"}
 	if err != nil {
 		k3log.Error("GetConfFormat", err)
 		return
