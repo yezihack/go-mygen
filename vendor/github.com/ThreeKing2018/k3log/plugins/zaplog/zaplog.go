@@ -2,19 +2,18 @@ package zaplog
 
 import (
 	"os"
-	"strings"
-
 	"github.com/ThreeKing2018/k3log/conf"
-	"github.com/davecgh/go-spew/spew"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 	"gopkg.in/natefinch/lumberjack.v2"
+	"github.com/davecgh/go-spew/spew"
+	"strings"
 )
 
 type Log struct {
-	logger  *zap.SugaredLogger
-	atom    zap.AtomicLevel
-	options *conf.Options
+	logger *zap.SugaredLogger
+	atom   zap.AtomicLevel
+	options	*conf.Options
 }
 
 func parseLevel(level conf.Level) zapcore.Level {
@@ -48,7 +47,7 @@ var encoderConfig = zapcore.EncoderConfig{
 	EncodeLevel:    zapcore.CapitalLevelEncoder,
 	EncodeTime:     zapcore.ISO8601TimeEncoder,
 	EncodeDuration: zapcore.SecondsDurationEncoder,
-	EncodeCaller:   zapcore.ShortCallerEncoder,
+	EncodeCaller: zapcore.ShortCallerEncoder,
 }
 
 func New(opts ...conf.Option) *Log {
@@ -63,6 +62,7 @@ func New(opts ...conf.Option) *Log {
 		LogType: conf.LogNormalType,
 	}
 
+
 	for _, opt := range opts {
 		opt(o)
 	}
@@ -74,11 +74,12 @@ func New(opts ...conf.Option) *Log {
 		MaxBackups: 3,
 		MaxAge:     o.MaxAge, // days
 		LocalTime:  true,
-		Compress:   false,
+		Compress:false,
 	})
 	if o.IsStdOut {
 		writers = append(writers, os.Stdout)
 	}
+
 	writers = append(writers, osfileout)
 	w := zapcore.NewMultiWriteSyncer(writers...)
 
@@ -107,7 +108,7 @@ func New(opts ...conf.Option) *Log {
 		logger = logger.With(zap.String(conf.ProjectKey, o.ProjectName))
 	}
 	loggerSugar := logger.Sugar()
-	return &Log{logger: loggerSugar, atom: atom, options: o}
+	return &Log{logger: loggerSugar, atom: atom, options:o}
 
 }
 
@@ -148,7 +149,7 @@ func (l *Log) Fatal(keysAndValues ...interface{}) {
 func (l *Log) Dump(keysAndValues ...interface{}) {
 	arr := CoupArray(keysAndValues)
 	for k, v := range arr {
-		if k%2 == 0 {
+		if k % 2 == 0 {
 			arr[k] = v
 		} else {
 			arr[k] = strings.Replace(spew.Sdump(v), "\n", "", -1)

@@ -9,7 +9,6 @@ import (
 
 	"bufio"
 
-	"github.com/ThreeKing2018/k3log"
 	"github.com/urfave/cli"
 	"github.com/yezihack/gm2m/common"
 	"github.com/yezihack/gm2m/conf"
@@ -101,7 +100,7 @@ func Conn() {
 	var err error
 	err = app.Run(os.Args)
 	if err != nil {
-		k3log.Error(err)
+		log.Error(err)
 	}
 	if DbConn.DBName != "" {
 		db, err := mysql.InitDB(DbConn)

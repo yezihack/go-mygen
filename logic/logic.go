@@ -3,10 +3,10 @@ package logic
 import (
 	"errors"
 
-	"github.com/ThreeKing2018/k3log"
 	"github.com/yezihack/gm2m/common"
 	"github.com/yezihack/gm2m/conf"
 	"github.com/yezihack/gm2m/mysql"
+	"github.com/yezihack/gm2m/log"
 )
 
 //生成结构体文件
@@ -84,7 +84,7 @@ func (l *Logic) CreateCRUD() error {
 	if err != nil {
 		return err
 	}
-	k3log.Info("生成CRUD文件 完成")
+	log.Info("生成CRUD文件 完成")
 	return nil
 }
 

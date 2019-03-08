@@ -12,7 +12,6 @@ var l Loger = zaplog.New()
 func SetLogger(opts ...conf.Option) {
 	l = zaplog.New(opts...)
 }
-
 //快捷使用,开发使用
 func NewDevelopment(projectName, filePath string) {
 	SetLogger(conf.WithProjectName(projectName),
@@ -20,7 +19,6 @@ func NewDevelopment(projectName, filePath string) {
 		conf.WithLogType(conf.LogJsontype),
 		conf.WithIsStdOut(true))
 }
-
 //快捷使用,生产使用
 func NewProduction(projectName, filePath string) {
 	SetLogger(conf.WithProjectName(projectName),

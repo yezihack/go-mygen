@@ -4,8 +4,8 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/ThreeKing2018/k3log"
 	"github.com/yezihack/gm2m/common"
+	"github.com/yezihack/gm2m/log"
 )
 
 //创建目录
@@ -14,10 +14,10 @@ func CreateDir(path string) string {
 	if t.IsDirOrFileExist(path) == false {
 		b := t.CreateDir(path)
 		if !b {
-			k3log.Info(fmt.Sprintf("创建目录:%s失败\n", path))
+			log.Errorf("创建目录:%s失败\n", path)
 			return ""
 		}
-		k3log.Info(fmt.Sprintf("创建目录:%s成功\n", path))
+		log.Infof("创建目录:%s成功\n", path)
 	}
 	return path
 }
@@ -25,9 +25,9 @@ func CreateDir(path string) string {
 //写文件
 func WriteFile(path, data string) (err error) {
 	if _, err := new(common.Tools).WriteFile(path, data); err == nil {
-		k3log.Info(fmt.Sprintf("创建并写文件: %s成功\n", path))
+		log.Infof("创建并写文件: %s成功\n", path)
 	} else {
-		k3log.Info("创建并写文件: %s失败, err: %v\n", path, err)
+		log.Errorf("创建并写文件: %s失败, err: %v\n", path, err)
 		return errors.New(fmt.Sprintf("创建文件:%s失败", path))
 	}
 	return nil
@@ -36,7 +36,7 @@ func WriteFile(path, data string) (err error) {
 //追加写文件
 func WriteAppendFile(path, data string) (err error) {
 	if _, err := new(common.Tools).WriteFileAppend(path, data); err == nil {
-		k3log.Info(fmt.Sprintf("创建并追加写文件: %s成功\n", path))
+		log.Infof("创建并追加写文件: %s成功\n", path)
 	} else {
 		return errors.New(fmt.Sprintf("创建并追加写文件:%s失败", path))
 	}

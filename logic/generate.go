@@ -3,14 +3,12 @@ package logic
 import (
 	"bytes"
 	"strings"
-
 	"html/template"
-
-	"github.com/ThreeKing2018/k3log"
 	"github.com/yezihack/gm2m/common"
 	"github.com/yezihack/gm2m/conf"
 	"github.com/yezihack/gm2m/mysql"
 	tpldata "github.com/yezihack/gm2m/tpl"
+	"github.com/yezihack/gm2m/log"
 )
 
 type Logic struct {
@@ -60,13 +58,13 @@ package mysql
 	}
 	tpl, err := template.New("structure").Parse(string(tplByte))
 	if err != nil {
-		k3log.Error("ParseFiles", err)
+		log.Error("ParseFiles", err)
 		return
 	}
 	//装载表字段信息
 	fts := []string{"json"}
 	if err != nil {
-		k3log.Error("GetConfFormat", err)
+		log.Error("GetConfFormat", err)
 		return
 	}
 	//判断是否含json

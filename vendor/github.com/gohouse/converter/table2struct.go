@@ -7,7 +7,6 @@ import (
 	"os"
 	"os/exec"
 	"strings"
-
 	_ "github.com/go-sql-driver/mysql"
 )
 
@@ -250,7 +249,7 @@ func (t *Table2Struct) getColumns(table ...string) (tableColumns map[string][]co
 		WHERE table_schema = DATABASE()`
 	// 是否指定了具体的table
 	if t.table != "" {
-		sqlStr += fmt.Sprintf(" AND TABLE_NAME = '%s'", t.prefix+t.table)
+		sqlStr += fmt.Sprintf(" AND TABLE_NAME = '%s'", t.prefix + t.table)
 	}
 	// sql排序
 	sqlStr += " order by TABLE_NAME asc, ORDINAL_POSITION asc"
