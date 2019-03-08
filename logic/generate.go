@@ -2,13 +2,14 @@ package logic
 
 import (
 	"bytes"
-	"strings"
 	"html/template"
+	"strings"
+
 	"github.com/yezihack/gm2m/common"
 	"github.com/yezihack/gm2m/conf"
+	"github.com/yezihack/gm2m/log"
 	"github.com/yezihack/gm2m/mysql"
 	tpldata "github.com/yezihack/gm2m/tpl"
-	"github.com/yezihack/gm2m/log"
 )
 
 type Logic struct {

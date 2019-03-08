@@ -17,6 +17,10 @@ build:
 
 run:
 	output/gm2m
+ge:
+	govendor add +e
+gu:
+	govendor remove +u
 
 clean:
 	rm -rf output/gm2m

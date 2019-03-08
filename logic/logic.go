@@ -5,8 +5,8 @@ import (
 
 	"github.com/yezihack/gm2m/common"
 	"github.com/yezihack/gm2m/conf"
-	"github.com/yezihack/gm2m/mysql"
 	"github.com/yezihack/gm2m/log"
+	"github.com/yezihack/gm2m/mysql"
 )
 
 //生成结构体文件

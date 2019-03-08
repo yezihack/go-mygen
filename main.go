@@ -161,4 +161,3 @@ func Conn() {
 
 //output/gm2m -h localhost -P 3308 -u root -p 123456 -d kindled
 //v2 输出指定位置
-
