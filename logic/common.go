@@ -4,8 +4,10 @@ import (
 	"errors"
 	"fmt"
 
+	"github.com/ThreeKing2018/gocolor"
+	"github.com/yezihack/colorlog"
 	"github.com/yezihack/gm2m/common"
-	"github.com/yezihack/gm2m/log"
+	"github.com/yezihack/gm2m/conf"
 )
 
 //创建目录
@@ -14,10 +16,10 @@ func CreateDir(path string) string {
 	if t.IsDirOrFileExist(path) == false {
 		b := t.CreateDir(path)
 		if !b {
-			log.Errorf("创建目录:%s失败\n", path)
+			colorlog.Error("创建目录:%s失败", path)
 			return ""
 		}
-		log.Infof("创建目录:%s成功\n", path)
+		colorlog.Info("创建目录:%s成功", path)
 	}
 	return path
 }
@@ -25,20 +27,28 @@ func CreateDir(path string) string {
 //写文件
 func WriteFile(path, data string) (err error) {
 	if _, err := new(common.Tools).WriteFile(path, data); err == nil {
-		log.Infof("创建并写文件: %s成功\n", path)
+		colorlog.Info("创建并写文件: %s成功", path)
+		return nil
 	} else {
-		log.Errorf("创建并写文件: %s失败, err: %v\n", path, err)
+		colorlog.Error("创建并写文件: %s失败, err: %v", path, err)
 		return errors.New(fmt.Sprintf("创建文件:%s失败", path))
 	}
-	return nil
 }
 
 //追加写文件
 func WriteAppendFile(path, data string) (err error) {
 	if _, err := new(common.Tools).WriteFileAppend(path, data); err == nil {
-		log.Infof("创建并追加写文件: %s成功\n", path)
+		colorlog.Info("创建并追加写文件: %s成功", path)
+		return nil
 	} else {
 		return errors.New(fmt.Sprintf("创建并追加写文件:%s失败", path))
 	}
-	return nil
+}
+
+//显示帮助
+func ShowCmdHelp() {
+	for _, row := range conf.CmdHelp {
+		s := fmt.Sprintf("%s %s\n", gocolor.SYellow("序号:"+row.No), gocolor.SBlue(row.Msg))
+		fmt.Print(s)
+	}
 }

@@ -2,12 +2,12 @@ package logic
 
 import (
 	"bytes"
-	"html/template"
 	"strings"
+	"text/template"
 
+	"github.com/yezihack/colorlog"
 	"github.com/yezihack/gm2m/common"
 	"github.com/yezihack/gm2m/conf"
-	"github.com/yezihack/gm2m/log"
 	"github.com/yezihack/gm2m/mysql"
 	tpldata "github.com/yezihack/gm2m/tpl"
 )
@@ -59,13 +59,13 @@ package mysql
 	}
 	tpl, err := template.New("structure").Parse(string(tplByte))
 	if err != nil {
-		log.Error("ParseFiles", err)
+		colorlog.Error("ParseFiles", err)
 		return
 	}
 	//装载表字段信息
 	fts := []string{"json"}
 	if err != nil {
-		log.Error("GetConfFormat", err)
+		colorlog.Error("GetConfFormat", err)
 		return
 	}
 	//判断是否含json
@@ -87,6 +87,7 @@ package mysql
 	content := bytes.NewBuffer([]byte{})
 	tpl.Execute(content, TableData)
 	//表信息写入文件
+
 	err = WriteAppendFile(path, content.String())
 	if err != nil {
 		return

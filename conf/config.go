@@ -20,8 +20,25 @@ const (
 )
 
 const (
+	Unknow = iota
+	Darwin
+	Window
+	Linux
+)
+
+const (
 	GOFILE_STRUCTURE = "db_structure.go" //生成的结构体 go文件名称
 )
+
+//帮助文档
+var CmdHelp = []CmdS{
+	{"1", "生成表markdown文档"},
+	{"2", "生成表结构数据"},
+	{"3", "生成CURD增删改查"},
+	{"7, c, clear", "清屏"},
+	{"8, h", "查看帮助"},
+	{"9, e, exit", "退出"},
+}
 
 //mysql类型 <=> golang类型
 var MysqlTypeToGoType = map[string]string{

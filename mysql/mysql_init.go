@@ -32,6 +32,9 @@ func InitDB(cfg DBConfig) (*sql.DB, error) {
 	if err != nil {
 		return nil, err
 	}
+	if err = connection.Ping(); err != nil {
+		return nil, err
+	}
 	return connection, nil
 }
 

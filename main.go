@@ -5,14 +5,12 @@ import (
 
 	"strings"
 
-	"fmt"
-
 	"bufio"
 
+	"github.com/ThreeKing2018/gocolor"
 	"github.com/urfave/cli"
+	"github.com/yezihack/colorlog"
 	"github.com/yezihack/gm2m/common"
-	"github.com/yezihack/gm2m/conf"
-	"github.com/yezihack/gm2m/log"
 	"github.com/yezihack/gm2m/logic"
 	"github.com/yezihack/gm2m/mysql"
 )
@@ -20,16 +18,6 @@ import (
 func main() {
 	Conn()
 }
-
-type DbConnS struct {
-	Host    string
-	Port    int
-	User    string
-	Pass    string
-	DbName  string
-	Charset string
-}
-
 func Conn() {
 	app := cli.NewApp()
 	app.Name = "gm2m"                        //项目名称
@@ -95,68 +83,62 @@ func Conn() {
 			return cli.NewExitError("数据库名称为空, 请使用 -d dbname", 9)
 		}
 		DbConn.DBName = dbname
+		err := Commands(DbConn)
+		if err != nil {
+			return cli.NewExitError(err, 9)
+		}
 		return nil
 	}
 	var err error
 	err = app.Run(os.Args)
 	if err != nil {
-		log.Error(err)
+		colorlog.Error(err)
 	}
-	if DbConn.DBName != "" {
-		db, err := mysql.InitDB(DbConn)
-		if err != nil {
-			log.Error(err)
-			return
-		}
-		masterDB := mysql.NewDB(db)
-		cmdLine := []conf.CmdS{
-			{"1", "生成表markdown文档"},
-			{"2", "生成表结构数据"},
-			{"3", "生成CURD增删改查"},
-			{"h", "查看帮助"},
-			{"e,exit", "退出"},
-		}
-		var showCmd = func() {
-			for _, row := range cmdLine {
-				fmt.Printf("序列号:%s, %s\n", row.No, row.Msg)
-			}
-		}
-		logicModel := logic.Logic{
-			DB: masterDB,
-		}
-		var number byte
-		for {
-			showCmd()
-			var err error
-			fmt.Print("请输入以上命令序号:")
-			r := bufio.NewReader(os.Stdin)
-			number, err = r.ReadByte()
-			if err != nil {
-				os.Exit(9)
-			}
-			switch string(number) {
-			case "1":
-				err = logicModel.CreateMarkdown()
-				//gofmt.GoFmt()
-			case "2":
-				err = logicModel.CreateStructure()
-				common.Gofmt(common.GetExeRootDir())
-			case "3":
-				err = logicModel.CreateCRUD()
-				common.Gofmt(common.GetExeRootDir())
-			case "h":
-				showCmd()
-			case "e", "exit":
-				os.Exit(9)
-			default:
-				log.Warn("命令输入有错误!!!")
-			}
+}
 
-			if err != nil {
-				fmt.Println(err)
-			}
+func Commands(DbConn mysql.DBConfig) error {
+	db, err := mysql.InitDB(DbConn)
+	if db == nil || err != nil {
+		return err
+	}
+	colorlog.Info("数据库连接成功")
+	masterDB := mysql.NewDB(db)
+	logicModel := logic.Logic{
+		DB: masterDB,
+	}
+	var number byte
+	logic.ShowCmdHelp() //显示帮助
+	for {
+		var err error
+		gocolor.Cyan("请输入以上命令序号:")
+		r := bufio.NewReader(os.Stdin)
+		number, err = r.ReadByte()
+		if err != nil {
+			os.Exit(9)
+		}
+		switch string(number) {
+		case "1":
+			err = logicModel.CreateMarkdown()
+		case "2":
+			err = logicModel.CreateStructure()
+			common.Gofmt(common.GetExeRootDir())
+		case "3":
+			err = logicModel.CreateCRUD()
+			common.Gofmt(common.GetExeRootDir())
+		case "7", "h", "\n":
+			logic.ShowCmdHelp() //显示帮助
+		case "8", "c", "clear": //清屏
+			common.Clean()
+		case "9", "e", "exit":
+			os.Exit(9)
+		default:
+			colorlog.Warn("命令输入有错误!!!")
+		}
+		if err != nil {
+			return err
 		}
 	}
+	return nil
 }
 
 //output/gm2m -h localhost -P 3308 -u root -p 123456 -d kindled

@@ -3,9 +3,9 @@ package logic
 import (
 	"errors"
 
+	"github.com/yezihack/colorlog"
 	"github.com/yezihack/gm2m/common"
 	"github.com/yezihack/gm2m/conf"
-	"github.com/yezihack/gm2m/log"
 	"github.com/yezihack/gm2m/mysql"
 )
 
@@ -84,7 +84,7 @@ func (l *Logic) CreateCRUD() error {
 	if err != nil {
 		return err
 	}
-	log.Info("生成CRUD文件 完成")
+	colorlog.Warn("生成CRUD文件 完成")
 	return nil
 }
 

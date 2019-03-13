@@ -10,6 +10,9 @@ import (
 	"os/exec"
 
 	"regexp"
+	"runtime"
+
+	"github.com/yezihack/gm2m/conf"
 )
 
 //GetRootDir 获取执行路径
@@ -61,6 +64,36 @@ func Gofmt(path string) bool {
 	}
 	return false
 }
+
+//清屏
+func Clean() {
+	cmd := GetOs()
+	fmt.Println(cmd)
+	switch GetOs() {
+	case conf.Darwin, conf.Linux:
+		cmd := exec.Command("clear")
+		cmd.Stdout = os.Stdout
+		cmd.Run()
+	case conf.Window:
+		cmd := exec.Command("cmd", "/c", "cls")
+		cmd.Stdout = os.Stdout
+		cmd.Run()
+	}
+}
+
+func GetOs() int {
+	switch runtime.GOOS {
+	case "darwin":
+		return conf.Darwin
+	case "windows":
+		return conf.Window
+	case "linux":
+		return conf.Linux
+	default:
+		return conf.Unknow
+	}
+}
+
 func ExecCommand(name string, args ...string) bool {
 	cmd := exec.Command(name, args...)
 	_, err := cmd.Output()
@@ -79,7 +112,7 @@ func FormatField(field string, formats []string) string {
 	for key := range formats {
 		buf.WriteString(fmt.Sprintf(`%s:"%s" `, formats[key], field))
 	}
-	return strings.TrimRight(buf.String(), " ")
+	return strings.TrimRight(string(buf.String()), " ")
 }
 
 //判断是否包存在某字符
