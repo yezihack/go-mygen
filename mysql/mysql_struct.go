@@ -1,5 +1,15 @@
 package mysql
 
+//生成实体的请求结构
+type EntityReq struct {
+	TableName    string //表名称
+	TableComment string //表注释
+	Path         string //文件路径
+	Pkg          string //命名空间名称
+	FormatList   []string
+	TableDesc    []*TableDesc //表详情
+}
+
 //表结构详情
 type TableDesc struct {
 	Index            int
@@ -79,6 +89,7 @@ type SqlFieldInfo struct {
 	Comment  string //字段注释
 }
 type NullSqlFieldInfo struct {
+	GoType       string //golang类型
 	HumpName     string //驼峰字段名称
 	OriFieldType string //原数据库类型
 	Comment      string //字段注释

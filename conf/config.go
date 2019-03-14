@@ -5,7 +5,8 @@ import "os"
 const (
 	DefaultIniFileName = "default.ini"            //默认文件配置名称
 	DS                 = string(os.PathSeparator) //通用/
-	DbNullPrefix       = "null"                   //处理数据为空时结构的前缀定义
+	DbNullPrefix       = "Null"                   //处理数据为空时结构的前缀定义
+
 )
 const (
 	TMP_ENV_INI_FILE = "GM2M_ENV_INI_FILE" //临时的环境变量
@@ -14,7 +15,9 @@ const (
 const (
 	TPL_CONFIG    = "tpl/conf.tpl"      //配置模板
 	TPL_CRUD      = "tpl/crud.tpl"      //生成CRUD模板
+	TPL_CURD      = "tpl/curd.tpl"      //生成CRUD2模板
 	TPL_STRUCTURE = "tpl/structure.tpl" //结构体模板
+	TPL_ENTITY    = "tpl/entity.tpl"    //结构实体模板
 	TPL_TABLES    = "tpl/tables.tpl"    //表结构模板
 	TPL_MARKDOWN  = "tpl/markdown.tpl"  //markdown模板
 )
@@ -27,7 +30,16 @@ const (
 )
 
 const (
+	GODIR_MODELS     = "db_models"
 	GOFILE_STRUCTURE = "db_structure.go" //生成的结构体 go文件名称
+	GOFILE_ENTITY    = "db_entity.go"    //生成的结构体实体 go文件名称
+	GoFile_TableList = "table_list.go"   //表文件
+
+)
+
+const (
+	PkgDbModels = "models" //db_models命名空间
+	PkgEntity   = "entity" // entity实体命名空间
 )
 
 //帮助文档
@@ -42,11 +54,11 @@ var CmdHelp = []CmdS{
 
 //mysql类型 <=> golang类型
 var MysqlTypeToGoType = map[string]string{
-	"tinyint":    "int",
-	"smallint":   "int",
-	"mediumint":  "int",
-	"int":        "int",
-	"integer":    "int",
+	"tinyint":    "int64",
+	"smallint":   "int64",
+	"mediumint":  "int64",
+	"int":        "int64",
+	"integer":    "int64",
 	"bigint":     "int64",
 	"float":      "float64",
 	"double":     "float64",
@@ -54,8 +66,8 @@ var MysqlTypeToGoType = map[string]string{
 	"date":       "string",
 	"time":       "string",
 	"year":       "string",
-	"datetime":   "string",
-	"timestamp":  "string",
+	"datetime":   "time.Time",
+	"timestamp":  "time.Time",
 	"char":       "string",
 	"varchar":    "string",
 	"tinyblob":   "string",
@@ -82,8 +94,8 @@ var MysqlTypeToGoNullType = map[string]string{
 	"date":       "sql.NullString",
 	"time":       "sql.NullString",
 	"year":       "sql.NullString",
-	"datetime":   "sql.NullString",
-	"timestamp":  "sql.NullString",
+	"datetime":   "mysql.NullTime",
+	"timestamp":  "mysql.NullTime",
 	"char":       "sql.NullString",
 	"varchar":    "sql.NullString",
 	"tinyblob":   "sql.NullString",

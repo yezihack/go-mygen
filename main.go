@@ -16,7 +16,8 @@ import (
 )
 
 func main() {
-	Conn()
+	//Conn()
+	Test()
 }
 func Conn() {
 	app := cli.NewApp()
@@ -92,7 +93,7 @@ func Conn() {
 	var err error
 	err = app.Run(os.Args)
 	if err != nil {
-		colorlog.Error(err)
+		colorlog.Error("Err", err)
 	}
 }
 
@@ -139,6 +140,30 @@ func Commands(DbConn mysql.DBConfig) error {
 		}
 	}
 	return nil
+}
+
+func Test() {
+	DbConn := mysql.DBConfig{
+		Host:    "localhost",
+		Port:    3308,
+		Name:    "root",
+		Pass:    "123456",
+		DBName:  "love",
+		Charset: "utf8mb4",
+	}
+	db, err := mysql.InitDB(DbConn)
+	if db == nil || err != nil {
+		panic(err)
+	}
+	colorlog.Info("数据库连接成功")
+	masterDB := mysql.NewDB(db)
+	logicModel := logic.Logic{
+		DB: masterDB,
+	}
+	formatList := []string{"gorm", "db"}
+	//logicModel.CreateEntity(formatList)
+	logicModel.CreateCURD(formatList)
+	common.Gofmt(common.GetExeRootDir())
 }
 
 //output/gm2m -h localhost -P 3308 -u root -p 123456 -d kindled

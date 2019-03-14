@@ -1,27 +1,27 @@
 #!/usr/bin/env bash
 
-test:fmt clean build
+test:clean fmt build
 
-dev:fmt clean build run fmt-output
+dev:clean fmt bindata build run
 
-all:fmt build run fmt-output
+all:clean fmt bindata build run
 
 fmt:
-	goimports -l -w ./
-
-fmt-output:
-	goimports -l -w ./output/
+	gofmt -l -w ./
 
 build:
 	go build -v -o output/gm2m ./
 
 run:
 	output/gm2m
-ge:
+vendor:
 	govendor add +e
-gu:
 	govendor remove +u
 
+bindata:
+	go-bindata -debug -pkg tpl -o tpl/tpl.go tpl/...
 clean:
 	rm -rf output/gm2m
 	rm -rf output/markdown.md
+	rm -rf output/db_entity/
+	rm -rf output/db_models/

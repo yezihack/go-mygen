@@ -2,9 +2,12 @@
 // sources:
 // tpl/conf.tpl
 // tpl/crud.tpl
+// tpl/curd.tpl
+// tpl/entity.tpl
 // tpl/markdown.tpl
 // tpl/structure.tpl
 // tpl/tables.tpl
+// tpl/tpl.go
 package tpl
 
 import (
@@ -51,6 +54,42 @@ func tplConfTpl() (*asset, error) {
 func tplCrudTpl() (*asset, error) {
 	path := "/Users/wangzl/go-work/src/github.com/yezihack/gm2m/tpl/crud.tpl"
 	name := "tpl/crud.tpl"
+	bytes, err := bindataRead(path, name)
+	if err != nil {
+		return nil, err
+	}
+
+	fi, err := os.Stat(path)
+	if err != nil {
+		err = fmt.Errorf("Error reading asset info %s at %s: %v", name, path, err)
+	}
+
+	a := &asset{bytes: bytes, info: fi}
+	return a, err
+}
+
+// tplCurdTpl reads file data from disk. It returns an error on failure.
+func tplCurdTpl() (*asset, error) {
+	path := "/Users/wangzl/go-work/src/github.com/yezihack/gm2m/tpl/curd.tpl"
+	name := "tpl/curd.tpl"
+	bytes, err := bindataRead(path, name)
+	if err != nil {
+		return nil, err
+	}
+
+	fi, err := os.Stat(path)
+	if err != nil {
+		err = fmt.Errorf("Error reading asset info %s at %s: %v", name, path, err)
+	}
+
+	a := &asset{bytes: bytes, info: fi}
+	return a, err
+}
+
+// tplEntityTpl reads file data from disk. It returns an error on failure.
+func tplEntityTpl() (*asset, error) {
+	path := "/Users/wangzl/go-work/src/github.com/yezihack/gm2m/tpl/entity.tpl"
+	name := "tpl/entity.tpl"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
 		return nil, err
@@ -119,6 +158,24 @@ func tplTablesTpl() (*asset, error) {
 	return a, err
 }
 
+// tplTplGo reads file data from disk. It returns an error on failure.
+func tplTplGo() (*asset, error) {
+	path := "/Users/wangzl/go-work/src/github.com/yezihack/gm2m/tpl/tpl.go"
+	name := "tpl/tpl.go"
+	bytes, err := bindataRead(path, name)
+	if err != nil {
+		return nil, err
+	}
+
+	fi, err := os.Stat(path)
+	if err != nil {
+		err = fmt.Errorf("Error reading asset info %s at %s: %v", name, path, err)
+	}
+
+	a := &asset{bytes: bytes, info: fi}
+	return a, err
+}
+
 // Asset loads and returns the asset for the given name.
 // It returns an error if the asset could not be found or
 // could not be loaded.
@@ -173,9 +230,12 @@ func AssetNames() []string {
 var _bindata = map[string]func() (*asset, error){
 	"tpl/conf.tpl":      tplConfTpl,
 	"tpl/crud.tpl":      tplCrudTpl,
+	"tpl/curd.tpl":      tplCurdTpl,
+	"tpl/entity.tpl":    tplEntityTpl,
 	"tpl/markdown.tpl":  tplMarkdownTpl,
 	"tpl/structure.tpl": tplStructureTpl,
 	"tpl/tables.tpl":    tplTablesTpl,
+	"tpl/tpl.go":        tplTplGo,
 }
 
 // AssetDir returns the file names below a certain
@@ -222,9 +282,12 @@ var _bintree = &bintree{nil, map[string]*bintree{
 	"tpl": &bintree{nil, map[string]*bintree{
 		"conf.tpl":      &bintree{tplConfTpl, map[string]*bintree{}},
 		"crud.tpl":      &bintree{tplCrudTpl, map[string]*bintree{}},
+		"curd.tpl":      &bintree{tplCurdTpl, map[string]*bintree{}},
+		"entity.tpl":    &bintree{tplEntityTpl, map[string]*bintree{}},
 		"markdown.tpl":  &bintree{tplMarkdownTpl, map[string]*bintree{}},
 		"structure.tpl": &bintree{tplStructureTpl, map[string]*bintree{}},
 		"tables.tpl":    &bintree{tplTablesTpl, map[string]*bintree{}},
+		"tpl.go":        &bintree{tplTplGo, map[string]*bintree{}},
 	}},
 }}
 
