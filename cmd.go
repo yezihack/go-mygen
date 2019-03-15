@@ -1,4 +1,4 @@
-package gm2m
+package gomygen
 
 import (
 	"bufio"
@@ -11,8 +11,9 @@ import (
 
 //命令行实现
 func Cmd() {
+
 	app := cli.NewApp()
-	app.Name = "gm2m"                        //项目名称
+	app.Name = "gomygen"                     //项目名称
 	app.Author = "百里 github.com/yezihack"    //作者名称
 	app.Version = "1.0"                      //版本号
 	app.Copyright = "@Copyright~2019"        //版权保护
@@ -81,6 +82,11 @@ func Cmd() {
 		}
 		return nil
 	}
+	defer func() {
+		if err := recover(); err != nil {
+			colorlog.Error("%v", err)
+		}
+	}()
 	var err error
 	err = app.Run(os.Args)
 	if err != nil {

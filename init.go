@@ -1,4 +1,4 @@
-package gm2m
+package gomygen
 
 import (
 	"database/sql"
@@ -38,7 +38,6 @@ func InitDB(cfg DBConfig) (*sql.DB, error) {
 
 //实例一个数据库对象
 func NewDB(db *sql.DB) *ModelS {
-
 	return &ModelS{
 		DB: db,
 	}

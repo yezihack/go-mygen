@@ -1,4 +1,4 @@
-package gm2m
+package gomygen
 
 //查询数据库
 func (m *ModelS) Find(sql string, args ...interface{}) ([]map[string]interface{}, error) {

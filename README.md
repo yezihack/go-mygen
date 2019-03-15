@@ -4,7 +4,7 @@ golang操作mysql的便捷工具, 快速生成表结束,快捷生成增删改查
 
 ## 安装
 ```
-go install github.com/yezihack/gm2m
+go install github.com/yezihack/gomygen
 ```
 
 ## 参数说明
@@ -21,7 +21,7 @@ go install github.com/yezihack/gm2m
 
 ## 使用说明
 ```
-gm2m -h localhost -P 3306 -u root -p 123456 -d default
+gomygen -h localhost -P 3306 -u root -p 123456 -d default
 ```
 
 ## todo

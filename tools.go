@@ -1,4 +1,4 @@
-package gm2m
+package gomygen
 
 import (
 	"encoding/json"
