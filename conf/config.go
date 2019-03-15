@@ -6,7 +6,7 @@ const (
 	DefaultIniFileName = "default.ini"            //默认文件配置名称
 	DS                 = string(os.PathSeparator) //通用/
 	DbNullPrefix       = "Null"                   //处理数据为空时结构的前缀定义
-
+	TablePrefix        = "TABLE_"                 //表前缀
 )
 const (
 	TMP_ENV_INI_FILE = "GM2M_ENV_INI_FILE" //临时的环境变量
@@ -29,12 +29,12 @@ const (
 	Linux
 )
 
+//生成的go文件
 const (
 	GODIR_MODELS     = "db_models"
 	GOFILE_STRUCTURE = "db_structure.go" //生成的结构体 go文件名称
 	GOFILE_ENTITY    = "db_entity.go"    //生成的结构体实体 go文件名称
 	GoFile_TableList = "table_list.go"   //表文件
-
 )
 
 const (
@@ -47,6 +47,7 @@ var CmdHelp = []CmdS{
 	{"1", "生成表markdown文档"},
 	{"2", "生成表结构数据"},
 	{"3", "生成CURD增删改查"},
+	{"4", "设置结构体的映射名称"},
 	{"7, c, clear", "清屏"},
 	{"8, h", "查看帮助"},
 	{"9, e, exit", "退出"},

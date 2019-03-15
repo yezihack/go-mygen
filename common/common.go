@@ -147,6 +147,8 @@ func CheckCharDoSpecial(s string, char byte, regs string) string {
 	}
 	return strings.Join(result, string(char))
 }
+
+//数据分隔
 func CheckCharDoSpecialArr(s string, char byte, reg string) []string {
 	s = CheckCharDoSpecial(s, char, reg)
 	return strings.Split(s, string(char))

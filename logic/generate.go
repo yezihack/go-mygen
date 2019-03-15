@@ -29,74 +29,6 @@ func (l *Logic) GetRoot() string {
 	return common.GetRootPath(common.GetExeRootDir()) + conf.DS
 }
 
-//创建结构体
-func (l *Logic) GenerateDBStructure(tableName, tableComment, path string, tableDesc []*mysql.TableDesc) (err error) {
-	//加入package mysql
-	packageStr := `//数据库表内结构体信息
-package mysql
-` //判断package是否加载过
-	//判断文件是否存在.
-
-	if l.T.CheckFileContainsChar(path, packageStr) == false {
-		l.T.WriteFile(path, packageStr)
-	}
-	//判断import是否加载过
-	importStr := `import "database/sql"`
-	if l.T.CheckFileContainsChar(path, importStr) == false {
-		l.T.WriteFileAppend(path, importStr)
-	}
-	//声明表结构变量
-	TableData := new(mysql.TableInfo)
-	TableData.Table = l.T.Capitalize(tableName)
-	TableData.NullTable = conf.DbNullPrefix + TableData.Table
-	TableData.TableComment = tableComment
-	//判断表结构是否加载过
-	if l.T.CheckFileContainsChar(path, "type "+TableData.Table+" struct") == true {
-		return
-	}
-	//加载模板文件
-	tplByte, err := tpldata.Asset(conf.TPL_STRUCTURE)
-	if err != nil {
-		return
-	}
-	tpl, err := template.New("structure").Parse(string(tplByte))
-	if err != nil {
-		colorlog.Error("ParseFiles", err)
-		return
-	}
-	//装载表字段信息
-	fts := []string{"json"}
-	if err != nil {
-		colorlog.Error("GetConfFormat", err)
-		return
-	}
-	//判断是否含json
-	if !common.InArrayString("json", fts) {
-		index0 := fts[0]
-		fts[0] = "json"
-		fts = append(fts, index0)
-	}
-	for _, val := range tableDesc {
-		TableData.Fields = append(TableData.Fields, &mysql.FieldsInfo{
-			Name:         l.T.Capitalize(val.ColumnName),
-			Type:         val.GolangType,
-			NullType:     val.MysqlNullType,
-			DbOriField:   val.ColumnName,
-			FormatFields: common.FormatField(val.ColumnName, fts),
-			Remark:       val.ColumnComment,
-		})
-	}
-	content := bytes.NewBuffer([]byte{})
-	tpl.Execute(content, TableData)
-	//表信息写入文件
-
-	err = WriteAppendFile(path, content.String())
-	if err != nil {
-		return
-	}
-	return
-}
-
 //创建结构实体
 func (l *Logic) GenerateDBEntity(req *mysql.EntityReq) (err error) {
 	var s string
@@ -175,7 +107,9 @@ func (l *Logic) GenerateCURDFile(tableName, tableComment string, tableDesc []*my
 				updateList = append(updateList, item.ColumnName+"="+item.ColumnName+"+1")
 			} else {
 				updateList = append(updateList, item.ColumnName+"=?")
-				updateListField = append(updateListField, "value."+l.T.Capitalize(item.ColumnName))
+				if item.PrimaryKey == false {
+					updateListField = append(updateListField, "value."+l.T.Capitalize(item.ColumnName))
+				}
 			}
 		}
 		if item.PrimaryKey {
@@ -193,6 +127,10 @@ func (l *Logic) GenerateCURDFile(tableName, tableComment string, tableDesc []*my
 			Comment:      item.ColumnComment,
 		})
 	}
+	//主键ID,用于更新
+	if PrimaryKey != "" {
+		updateListField = append(updateListField, "value."+l.T.Capitalize(PrimaryKey))
+	}
 	//拼出SQL所需要结构数据
 	InsertMark := strings.Repeat("?,", len(insertFields))
 	sqlInfo := &mysql.SqlInfo{
@@ -201,7 +139,7 @@ func (l *Logic) GenerateCURDFile(tableName, tableComment string, tableDesc []*my
 		PrimaryType:         primaryType,
 		StructTableName:     l.T.Capitalize(tableName),
 		NullStructTableName: l.T.Capitalize(tableName) + conf.DbNullPrefix,
-		UpperTableName:      l.T.ToUpper(tableName),
+		UpperTableName:      conf.TablePrefix + l.T.ToUpper(tableName),
 		AllFieldList:        strings.Join(allFields, ","),
 		InsertFieldList:     strings.Join(insertFields, ","),
 		InsertMark:          InsertMark[:len(InsertMark)-1],
@@ -231,7 +169,6 @@ func (l *Logic) GenerateTableList(list []*mysql.TableList) (err error) {
 	if l.T.CheckFileContainsChar(tableListFile, checkStr) {
 		return
 	}
-
 	tplByte, err := tpldata.Asset(conf.TPL_TABLES)
 	if err != nil {
 		return

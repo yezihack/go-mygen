@@ -21,5 +21,16 @@ go install github.com/yezihack/gm2m
 
 ## 使用说明
 ```
-output/gm2m -h localhost -P 3306 -u root -p 123456 -d default
+gm2m -h localhost -P 3306 -u root -p 123456 -d default
+```
+
+## 实例
+```
+序号:1 生成表markdown文档
+序号:2 生成表结构数据
+序号:3 生成CURD增删改查
+序号:4 设置结构体的映射名称
+序号:7, c, clear 清屏
+序号:8, h 查看帮助
+序号:9, e, exit 退出
 ```

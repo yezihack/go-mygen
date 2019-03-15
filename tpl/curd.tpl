@@ -61,6 +61,26 @@ rowResult = &{{.StructTableName}}{
 return
 }
 
+//_更新数据
+func (m *{{.StructTableName}}Model) Save(sqlTxt string, value ...interface{}) (b bool, err error) {
+stmt, err := m.DB.Prepare(sqlTxt)
+if err != nil {
+return
+}
+defer stmt.Close()
+result, err := stmt.Exec(value...)
+if err != nil {
+return
+}
+var affectCount int64
+affectCount, err = result.RowsAffected()
+if err != nil {
+return
+}
+b = affectCount > 0
+return
+}
+
 //新增信息
 func (m *{{.StructTableName}}Model) Create(value *{{.StructTableName}}) (lastId int64, err error) {
 sqlText := "INSERT INTO " + {{.UpperTableName}} + " ({{.InsertFieldList}}) VALUES ({{.InsertMark}})"
@@ -82,33 +102,13 @@ return
 return
 }
 
-//_更新数据
-func (m *{{.StructTableName}}Model) saveBody(sqlTxt string, params []interface{}) (b bool, err error) {
-stmt, err := m.DB.Prepare(sqlTxt)
-if err != nil {
-return
-}
-defer stmt.Close()
-result, err := stmt.Exec(params...)
-if err != nil {
-return
-}
-var affectCount int64
-affectCount, err = result.RowsAffected()
-if err != nil {
-return
-}
-b = affectCount > 0
-return
-}
-
 //更新数据
 func (m *{{.StructTableName}}Model) Update(value *{{.StructTableName}}) (b bool, err error) {
 sqlText := "UPDATE " + {{.UpperTableName}} + " SET {{.UpdateFieldList}} WHERE {{.PrimaryKey}} = ?"
 params := make([]interface{}, 0)
 {{range $i, $val := .UpdateListField}}params = append(params, {{$val}})
 {{end}}
-return m.saveBody(sqlText, params)
+return m.Save(sqlText, params...)
 }
 
 //查询多行数据

@@ -16,8 +16,7 @@ import (
 )
 
 func main() {
-	//Conn()
-	Test()
+	Conn()
 }
 func Conn() {
 	app := cli.NewApp()
@@ -107,30 +106,39 @@ func Commands(DbConn mysql.DBConfig) error {
 	logicModel := logic.Logic{
 		DB: masterDB,
 	}
-	var number byte
+	var input []byte
 	logic.ShowCmdHelp() //显示帮助
+	formatList := make([]string, 0)
 	for {
 		var err error
 		gocolor.Cyan("请输入以上命令序号:")
-		r := bufio.NewReader(os.Stdin)
-		number, err = r.ReadByte()
+		input, _, err = bufio.NewReader(os.Stdin).ReadLine()
 		if err != nil {
 			os.Exit(9)
 		}
-		switch string(number) {
-		case "1":
+		switch string(input) {
+		case "1": //生成表markdown文档
 			err = logicModel.CreateMarkdown()
-		case "2":
-			err = logicModel.CreateStructure()
+		case "2": //生成表结构数据
+			err = logicModel.CreateEntity(formatList)
 			common.Gofmt(common.GetExeRootDir())
-		case "3":
-			err = logicModel.CreateCRUD()
+		case "3": //生成CURD增删改查
+			err = logicModel.CreateCURD(formatList)
 			common.Gofmt(common.GetExeRootDir())
-		case "7", "h", "\n":
-			logic.ShowCmdHelp() //显示帮助
+		case "4": //设置结构体的映射名称,支持多个,以逗号隔开
+			gocolor.Blue("请输入结构体的映射名称(例:json):")
+			input, _, err = bufio.NewReader(os.Stdin).ReadLine()
+			if string(input) != "" {
+				formatList = common.CheckCharDoSpecialArr(string(input), ',', `[\w\,\-]+`)
+				if len(formatList) > 0 {
+					colorlog.Info("设置值: %v, 设置成功!!!", formatList)
+				}
+			}
+		case "7", "h", "": //显示帮助
+			logic.ShowCmdHelp()
 		case "8", "c", "clear": //清屏
 			common.Clean()
-		case "9", "e", "exit":
+		case "9", "e", "exit": //退出
 			os.Exit(9)
 		default:
 			colorlog.Warn("命令输入有错误!!!")
@@ -141,30 +149,5 @@ func Commands(DbConn mysql.DBConfig) error {
 	}
 	return nil
 }
-
-func Test() {
-	DbConn := mysql.DBConfig{
-		Host:    "localhost",
-		Port:    3308,
-		Name:    "root",
-		Pass:    "123456",
-		DBName:  "love",
-		Charset: "utf8mb4",
-	}
-	db, err := mysql.InitDB(DbConn)
-	if db == nil || err != nil {
-		panic(err)
-	}
-	colorlog.Info("数据库连接成功")
-	masterDB := mysql.NewDB(db)
-	logicModel := logic.Logic{
-		DB: masterDB,
-	}
-	formatList := []string{"gorm", "db"}
-	//logicModel.CreateEntity(formatList)
-	logicModel.CreateCURD(formatList)
-	common.Gofmt(common.GetExeRootDir())
-}
-
 //output/gm2m -h localhost -P 3308 -u root -p 123456 -d kindled
 //v2 输出指定位置
