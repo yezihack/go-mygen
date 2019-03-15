@@ -2,11 +2,11 @@ package gm2m
 
 import (
 	"bytes"
+	"errors"
 	"fmt"
 	"github.com/yezihack/colorlog"
 	"strings"
 	"text/template"
-	"errors"
 )
 
 type Logic struct {

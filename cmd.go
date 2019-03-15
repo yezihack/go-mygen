@@ -1,13 +1,12 @@
 package gm2m
 
 import (
-	"strings"
-	"os"
-	"github.com/yezihack/colorlog"
-	"github.com/ThreeKing2018/gocolor"
 	"bufio"
-
+	"github.com/ThreeKing2018/gocolor"
 	"github.com/urfave/cli"
+	"github.com/yezihack/colorlog"
+	"os"
+	"strings"
 )
 
 //命令行实现
@@ -120,7 +119,7 @@ func Commands(DbConn DBConfig) error {
 			err = lg.CreateCURD(formatList)
 			Gofmt(GetExeRootDir())
 		case "4": //设置结构体的映射名称,支持多个,以逗号隔开
-			gocolor.Blue("请输入结构体的映射名称(例:json):")
+			gocolor.Blue("请输入结构体的映射名称,支持多个,以逗号隔开(例:json,gorm):")
 			input, _, err = bufio.NewReader(os.Stdin).ReadLine()
 			if string(input) != "" {
 				formatList = CheckCharDoSpecialArr(string(input), ',', `[\w\,\-]+`)
@@ -143,5 +142,3 @@ func Commands(DbConn DBConfig) error {
 	}
 	return nil
 }
-//output/gm2m -h localhost -P 3308 -u root -p 123456 -d kindled
-//v2 输出指定位置

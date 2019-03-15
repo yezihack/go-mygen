@@ -21,5 +21,8 @@ go install github.com/yezihack/gm2m
 
 ## 使用说明
 ```
-output/gm2m -h localhost -P 3306 -u root -p 123456 -d default
+gm2m -h localhost -P 3306 -u root -p 123456 -d default
 ```
+
+## todo
+- 设置输出路径

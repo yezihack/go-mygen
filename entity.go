@@ -15,13 +15,15 @@ type ModelS struct {
 
 //数据库配置结构
 type DBConfig struct {
-	Host     string //地址
-	Port     int    //端口
-	Name     string //名称
-	Pass     string //密码
-	DBName   string //库名
-	Charset  string //编码
-	Timezone string //时区
+	Host         string //地址
+	Port         int    //端口
+	Name         string //名称
+	Pass         string //密码
+	DBName       string //库名
+	Charset      string //编码
+	Timezone     string //时区
+	MaxIdleConn int    //最大空间连接
+	MaxOpenConn int    //最大连接数
 }
 
 //生成实体的请求结构
