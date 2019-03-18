@@ -6,10 +6,10 @@ fmt:
 	gofmt -l -w ./
 
 build:
-	go build -v -o gomygen/output/go-mygen ./gomygen/
+	go build -v -o main/output/go-mygen ./main/
 
 run:
-	gomygen/output/go-mygen
+	main/output/go-mygen
 
 vendor:
 	govendor add +e
@@ -18,10 +18,10 @@ vendor:
 bindata:
 	go-bindata -debug -pkg gomygen -o ./bindata.go tpl/...
 clean:
-	rm -rf gomygen/output/go-mygen
-	rm -rf gomygen/output/markdown.md
-	rm -rf gomygen/output/db_entity/
-	rm -rf gomygen/output/db_models/
+	rm -rf main/output/go-mygen
+	rm -rf main/output/markdown.md
+	rm -rf main/output/db_entity/
+	rm -rf main/output/db_models/
 
 con:
-	gomygen/output/go-mygen -h localhost -P 3308 -u root -p 123456 -d kindled
+	main/output/go-mygen -h localhost -P 3308 -u root -p 123456 -d kindled

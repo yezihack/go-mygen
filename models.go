@@ -4,6 +4,9 @@ package gomygen
 func (m *ModelS) Find(sql string, args ...interface{}) ([]map[string]interface{}, error) {
 	stmt, err := m.DB.Prepare(sql)
 	defer stmt.Close()
+	if err != nil {
+		return nil, err
+	}
 	rows, err := stmt.Query(args...)
 	defer rows.Close()
 	if err != nil {

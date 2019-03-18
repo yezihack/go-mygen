@@ -6,12 +6,15 @@ import (
 	"fmt"
 	"github.com/yezihack/colorlog"
 	"strings"
+	"sync"
 	"text/template"
 )
 
 type Logic struct {
-	T  *Tools
-	DB *ModelS
+	T    *Tools
+	DB   *ModelS
+	Path string
+	Once sync.Once
 }
 
 //生成结构实体文件
@@ -22,7 +25,7 @@ func (l *Logic) CreateEntity(formatList []string) error {
 		return err
 	}
 	//表结构文件路径
-	path := GetExeRootDir() + "db_entity/"
+	path := l.Path + "db_entity/"
 	if l.T.IsDirOrFileExist(path) == false {
 		if !l.T.CreateDir(path) {
 			return errors.New("创建目录失败, path: " + path)
@@ -98,6 +101,7 @@ func (l *Logic) CreateCURD(formatList []string) error {
 			return err
 		}
 	}
+
 	//生成所有表的文件
 	err = l.GenerateTableList(tableNameList)
 	if err != nil {
@@ -146,12 +150,12 @@ func (l *Logic) CreateMarkdown() error {
 
 //创建和获取MYSQL目录
 func (l *Logic) GetMysqlDir() string {
-	return CreateDir(GetExeRootDir() + GODIR_MODELS + DS)
+	return CreateDir(l.Path + GODIR_MODELS + DS)
 }
 
 //获取根目录地址
 func (l *Logic) GetRoot() string {
-	return GetRootPath(GetExeRootDir()) + DS
+	return GetRootPath(l.Path) + DS
 }
 
 //创建结构体
@@ -244,6 +248,7 @@ import (
 	TableData.TableComment = req.TableComment
 	//判断表结构是否加载过
 	if l.T.CheckFileContainsChar(req.Path, "type "+TableData.Table+" struct") == true {
+		colorlog.Warn(req.Path + "已经存在,请删除后再重新生成")
 		return
 	}
 	//加载模板文件
@@ -347,6 +352,44 @@ func (l *Logic) GenerateCURDFile(tableName, tableComment string, tableDesc []*Ta
 		InsertInfo:          InsertInfo,
 	}
 	err = l.GenerateSQL(sqlInfo, tableComment)
+	//添加一个实例
+	l.Once.Do(func() {
+		l.GenerateExample(sqlInfo.StructTableName)
+	})
+	if err != nil {
+		return
+	}
+	return
+}
+
+//生成一个实例文件
+func (l *Logic) GenerateExample(name string) {
+	//写入表名
+	file := l.GetMysqlDir() + GoFile_Example
+
+	//解析模板
+	tplByte, err := Asset(TPL_EXAMPLE)
+	if err != nil {
+		return
+	}
+	tpl, err := template.New("example").Parse(string(tplByte))
+	if err != nil {
+		return
+	}
+	type s struct {
+		Name string
+	}
+	ss := s{
+		Name: name,
+	}
+	//解析
+	content := bytes.NewBuffer([]byte{})
+	err = tpl.Execute(content, ss)
+	if err != nil {
+		return
+	}
+	//表信息写入文件
+	err = WriteFile(file, content.String())
 	if err != nil {
 		return
 	}
@@ -356,14 +399,15 @@ func (l *Logic) GenerateCURDFile(tableName, tableComment string, tableDesc []*Ta
 //生成表列表
 func (l *Logic) GenerateTableList(list []*TableList) (err error) {
 	//写入表名
-	tableListFile := l.GetMysqlDir() + GoFile_TableList
+	file := l.GetMysqlDir() + GoFile_TableList
 	//判断package是否加载过
 	checkStr := "package " + PkgDbModels
-	if l.T.CheckFileContainsChar(tableListFile, checkStr) == false {
-		l.T.WriteFile(tableListFile, checkStr+"\n")
+	if l.T.CheckFileContainsChar(file, checkStr) == false {
+		l.T.WriteFile(file, checkStr+"\n")
 	}
 	checkStr = "const"
-	if l.T.CheckFileContainsChar(tableListFile, checkStr) {
+	if l.T.CheckFileContainsChar(file, checkStr) {
+		colorlog.Warn(file + "已经存在,请删除后再重新生成")
 		return
 	}
 	tplByte, err := Asset(TPL_TABLES)
@@ -381,7 +425,7 @@ func (l *Logic) GenerateTableList(list []*TableList) (err error) {
 		return
 	}
 	//表信息写入文件
-	err = WriteAppendFile(tableListFile, content.String())
+	err = WriteAppendFile(file, content.String())
 	if err != nil {
 		return
 	}
@@ -432,7 +476,7 @@ import(
 //生成表列表
 func (l *Logic) GenerateMarkdown(data *MarkDownData) (err error) {
 	//写入markdown
-	file := GetExeRootDir() + "markdown.md"
+	file := l.Path + "markdown.md"
 	tplByte, err := Asset(TPL_MARKDOWN)
 	if err != nil {
 		return

@@ -2,6 +2,7 @@
 // sources:
 // tpl/curd.tpl
 // tpl/entity.tpl
+// tpl/example.tpl
 // tpl/markdown.tpl
 // tpl/tables.tpl
 package gomygen
@@ -50,6 +51,24 @@ func tplCurdTpl() (*asset, error) {
 func tplEntityTpl() (*asset, error) {
 	path := "/Users/wangzl/go-work/src/github.com/yezihack/go-mygen/tpl/entity.tpl"
 	name := "tpl/entity.tpl"
+	bytes, err := bindataRead(path, name)
+	if err != nil {
+		return nil, err
+	}
+
+	fi, err := os.Stat(path)
+	if err != nil {
+		err = fmt.Errorf("Error reading asset info %s at %s: %v", name, path, err)
+	}
+
+	a := &asset{bytes: bytes, info: fi}
+	return a, err
+}
+
+// tplExampleTpl reads file data from disk. It returns an error on failure.
+func tplExampleTpl() (*asset, error) {
+	path := "/Users/wangzl/go-work/src/github.com/yezihack/go-mygen/tpl/example.tpl"
+	name := "tpl/example.tpl"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
 		return nil, err
@@ -154,6 +173,7 @@ func AssetNames() []string {
 var _bindata = map[string]func() (*asset, error){
 	"tpl/curd.tpl":     tplCurdTpl,
 	"tpl/entity.tpl":   tplEntityTpl,
+	"tpl/example.tpl":  tplExampleTpl,
 	"tpl/markdown.tpl": tplMarkdownTpl,
 	"tpl/tables.tpl":   tplTablesTpl,
 }
@@ -202,6 +222,7 @@ var _bintree = &bintree{nil, map[string]*bintree{
 	"tpl": &bintree{nil, map[string]*bintree{
 		"curd.tpl":     &bintree{tplCurdTpl, map[string]*bintree{}},
 		"entity.tpl":   &bintree{tplEntityTpl, map[string]*bintree{}},
+		"example.tpl":  &bintree{tplExampleTpl, map[string]*bintree{}},
 		"markdown.tpl": &bintree{tplMarkdownTpl, map[string]*bintree{}},
 		"tables.tpl":   &bintree{tplTablesTpl, map[string]*bintree{}},
 	}},

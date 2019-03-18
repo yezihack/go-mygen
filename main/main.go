@@ -3,7 +3,7 @@ package main
 import "github.com/yezihack/go-mygen"
 
 func main() {
-	// go-gen
+	// go-mygen
 	gomygen.Cmd()
 }
 
