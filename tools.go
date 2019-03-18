@@ -2,7 +2,7 @@ package gomygen
 
 import (
 	"encoding/json"
-	"github.com/pkg/errors"
+	"errors"
 	"io"
 	"io/ioutil"
 	"os"
