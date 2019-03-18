@@ -9,7 +9,7 @@ build:
 	go build -v -o gomygen/output/go-mygen ./gomygen/
 
 run:
-	gomygen/output/gomygen
+	gomygen/output/go-mygen
 
 vendor:
 	govendor add +e
