@@ -1,10 +1,10 @@
-# golang 操作mysql的命令行
+# go-mygen
 > 这个是一个命令行工具,
-golang操作mysql的便捷工具, 快速生成表结束,快捷生成增删改查
+golang操作mysql的便捷工具, 快速生成golang结构语句,快捷生成增删改查等等
 
 ## 安装
 ```
-go install github.com/yezihack/gomygen
+go install github.com/yezihack/go-mygen
 ```
 
 ## 参数说明
@@ -24,5 +24,15 @@ go install github.com/yezihack/gomygen
 gomygen -h localhost -P 3306 -u root -p 123456 -d default
 ```
 
+## Makefile 使用
+```
+git clone github.com/yezihack/go-mygen # 下载项目
+cd go-mygen # 进入项目
+make dev  #进行自动编辑生成可执行文件
+gomygen/output/go-mygen # 回车运行,并查看帮助
+gomygen/output/go-mygen -h localhost -P 3306 -u root -p 123456 -d default #连接数据库
+
+```
+
 ## todo
-- 设置输出路径
+- 设置输出路径 (后期补充)

@@ -1,6 +1,6 @@
 package main
 
-import "github.com/yezihack/gomygen"
+import "github.com/yezihack/go-mygen"
 
 func main() {
 	// go-gen
