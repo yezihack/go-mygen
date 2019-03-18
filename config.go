@@ -3,23 +3,18 @@ package gomygen
 import "os"
 
 const (
-	DefaultIniFileName = "default.ini"            //默认文件配置名称
-	DS                 = string(os.PathSeparator) //通用/
-	DbNullPrefix       = "Null"                   //处理数据为空时结构的前缀定义
-	TablePrefix        = "TABLE_"                 //表前缀
-)
-const (
-	TMP_ENV_INI_FILE = "GM2M_ENV_INI_FILE" //临时的环境变量
+	DS           = string(os.PathSeparator) //通用/
+	DbNullPrefix = "Null"                   //处理数据为空时结构的前缀定义
+	TablePrefix  = "TABLE_"                 //表前缀
 )
 
 const (
-	TPL_CONFIG    = "tpl/conf.tpl"      //配置模板
-	TPL_CRUD      = "tpl/crud.tpl"      //生成CRUD模板
 	TPL_CURD      = "tpl/curd.tpl"      //生成CRUD2模板
 	TPL_STRUCTURE = "tpl/structure.tpl" //结构体模板
 	TPL_ENTITY    = "tpl/entity.tpl"    //结构实体模板
 	TPL_TABLES    = "tpl/tables.tpl"    //表结构模板
 	TPL_MARKDOWN  = "tpl/markdown.tpl"  //markdown模板
+	TPL_EXAMPLE   = "tpl/example.tpl"   //example模板
 )
 
 const (
@@ -31,10 +26,10 @@ const (
 
 //生成的go文件
 const (
-	GODIR_MODELS     = "db_models"
-	GOFILE_STRUCTURE = "db_structure.go" //生成的结构体 go文件名称
+	GODIR_MODELS     = "db_models"       //生成的结构体 go文件名称
 	GOFILE_ENTITY    = "db_entity.go"    //生成的结构体实体 go文件名称
 	GoFile_TableList = "table_list.go"   //表文件
+	GoFile_Example   = "example_test.go" //表文件
 )
 
 const (
@@ -44,6 +39,7 @@ const (
 
 //帮助文档
 var CmdHelp = []CmdEntity{
+	{"0", "设置生成目录"},
 	{"1", "生成表markdown文档"},
 	{"2", "生成表结构实体"},
 	{"3", "生成CURD增删改查"},

@@ -2,6 +2,7 @@ package gomygen
 
 import (
 	"encoding/json"
+	"github.com/pkg/errors"
 	"io"
 	"io/ioutil"
 	"os"
@@ -88,10 +89,53 @@ func (t *Tools) CreateDir(path string) bool {
 	return true
 }
 
+//生成目录,不存在则创建,存在则加/
+func (t *Tools) GenerateDir(path string) (string, error) {
+	if len(path) == 0 {
+		return "", errors.New("目录为空")
+	}
+	last := path[len(path)-1:]
+	if !strings.EqualFold(last, string(os.PathSeparator)) {
+		path = path + string(os.PathSeparator)
+	}
+	if !t.IsDir(path) {
+		if t.CreateDir(path) {
+			return path, nil
+		}
+		return "", errors.New(path + "创建失败或权限不足")
+	}
+	return path, nil
+}
+
 //判断文件 或 目录是否存在
 func (t *Tools) IsDirOrFileExist(path string) bool {
 	_, err := os.Stat(path)
 	return err == nil || os.IsExist(err)
+}
+
+// 判断给定文件名是否是一个目录
+// 如果文件名存在并且为目录则返回 true。如果 filename 是一个相对路径，则按照当前工作目录检查其相对路径。
+func (t *Tools) IsDir(filename string) bool {
+	return t.isFileOrDir(filename, true)
+}
+
+// 判断给定文件名是否为一个正常的文件
+// 如果文件存在且为正常的文件则返回 true
+func (t *Tools) IsFile(filename string) bool {
+	return t.isFileOrDir(filename, false)
+}
+
+// 判断是文件还是目录，根据decideDir为true表示判断是否为目录；否则判断是否为文件
+func (t *Tools) isFileOrDir(filename string, decideDir bool) bool {
+	fileInfo, err := os.Stat(filename)
+	if err != nil {
+		return false
+	}
+	isDir := fileInfo.IsDir()
+	if decideDir {
+		return isDir
+	}
+	return !isDir
 }
 
 //将字符串转换成驼峰格式

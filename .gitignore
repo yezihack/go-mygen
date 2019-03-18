@@ -1,3 +1,4 @@
 log/*
-output/*
+main/output/*
 .DS_Store
+.idea/*

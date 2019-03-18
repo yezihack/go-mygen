@@ -24,7 +24,6 @@ func InitDB(cfg DBConfig) (*sql.DB, error) {
 	)
 
 	connection, err := sql.Open("mysql", dsn)
-	defer connection.Close()
 	if err != nil {
 		return nil, err
 	}

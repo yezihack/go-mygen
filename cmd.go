@@ -96,14 +96,18 @@ func Cmd() {
 
 //实现命令功能
 func Commands(DbConn DBConfig) error {
+	DbConn.MaxIdleConn = 5
+	DbConn.MaxOpenConn = 10
 	db, err := InitDB(DbConn)
+	defer db.Close()
 	if db == nil || err != nil {
 		return err
 	}
 	colorlog.Info("数据库连接成功")
 	masterDB := NewDB(db)
 	lg := Logic{
-		DB: masterDB,
+		DB:   masterDB,
+		Path: GetExeRootDir(), //默认当前命令所在目录
 	}
 	var input []byte
 	ShowCmdHelp() //显示帮助
@@ -116,29 +120,39 @@ func Commands(DbConn DBConfig) error {
 			os.Exit(9)
 		}
 		switch string(input) {
+		case "0": //生成表markdown文档
+			gocolor.Blue("请指定生成目录:")
+			input, _, err = bufio.NewReader(os.Stdin).ReadLine()
+			if string(input) != "" {
+				path, err := lg.T.GenerateDir(string(input))
+				if err == nil {
+					lg.Path = path
+					colorlog.Info("目录设置成功:%s", path)
+				} else {
+					colorlog.Warn("设置目录失败,原因:%v", err)
+				}
+			}
 		case "1": //生成表markdown文档
 			err = lg.CreateMarkdown()
 		case "2": //生成表结构数据
+			gocolor.Blue("需要设置结构的格式字符串吗?(是:yes,否:no):")
+			input, _, err = bufio.NewReader(os.Stdin).ReadLine()
+			if strings.EqualFold(string(input), "yes") {
+				formatList = setFormat()
+			}
 			err = lg.CreateEntity(formatList)
 			Gofmt(GetExeRootDir())
 		case "3": //生成CURD增删改查
 			err = lg.CreateCURD(formatList)
 			Gofmt(GetExeRootDir())
 		case "4": //设置结构体的映射名称,支持多个,以逗号隔开
-			gocolor.Blue("请输入结构体的映射名称,支持多个,以逗号隔开(例:json,gorm):")
-			input, _, err = bufio.NewReader(os.Stdin).ReadLine()
-			if string(input) != "" {
-				formatList = CheckCharDoSpecialArr(string(input), ',', `[\w\,\-]+`)
-				if len(formatList) > 0 {
-					colorlog.Info("设置值: %v, 设置成功!!!", formatList)
-				}
-			}
+			formatList = setFormat()
 		case "7", "h", "": //显示帮助
 			ShowCmdHelp()
 		case "8", "c", "clear": //清屏
 			Clean()
 		case "9", "e", "exit": //退出
-			os.Exit(9)
+			os.Exit(1)
 		default:
 			colorlog.Warn("命令输入有错误!!!")
 		}
@@ -146,5 +160,23 @@ func Commands(DbConn DBConfig) error {
 			return err
 		}
 	}
+	return nil
+}
+
+func setFormat() []string {
+	gocolor.Blue("请输入结构体的映射名称,支持多个,以逗号隔开(例:json,gorm):")
+	input, _, err := bufio.NewReader(os.Stdin).ReadLine()
+	if err != nil {
+		colorlog.Warn("%v", err)
+		return nil
+	}
+	if string(input) != "" {
+		formatList := CheckCharDoSpecialArr(string(input), ',', `[\w\,\-]+`)
+		if len(formatList) > 0 {
+			colorlog.Info("设置值: %v, 设置成功!!!", formatList)
+			return formatList
+		}
+	}
+	colorlog.Warn("设置失败")
 	return nil
 }

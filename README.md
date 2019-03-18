@@ -2,6 +2,15 @@
 > 这个是一个命令行工具,
 golang操作mysql的便捷工具, 快速生成golang结构语句,快捷生成增删改查等等
 
+
+- 生成数据库表的markdown文档
+- 生成golang表对应的结构实体
+- 还可以自定义结构体解析实体,如json,gorm,xml
+- 生成golang操作mysql的增删改查语句
+- 可以自定义生成目录
+- 清屏,退出等功能
+
+
 ## 安装
 ```
 go install github.com/yezihack/go-mygen
@@ -20,19 +29,17 @@ go install github.com/yezihack/go-mygen
 ```
 
 ## 使用说明
-```
-gomygen -h localhost -P 3306 -u root -p 123456 -d default
-```
-
-## Makefile 使用
-```
-git clone github.com/yezihack/go-mygen # 下载项目
-cd go-mygen # 进入项目
-make dev  #进行自动编辑生成可执行文件
-gomygen/output/go-mygen # 回车运行,并查看帮助
-gomygen/output/go-mygen -h localhost -P 3306 -u root -p 123456 -d default #连接数据库
+- 首先必须先连接数据库
+- 进行操作提示页面
+- 输入界面上不同的命令进行操作即可
 
 ```
+go-mygen -h localhost -P 3306 -u root -p 123456 -d default
+```
+![](pic/gen.jpg)
 
-## todo
-- 设置输出路径 (后期补充)
+
+## 生成的样例
+![](pic/gen2.jpg)
+![](pic/gen3.jpg)
+![](pic/gen4.jpg)
