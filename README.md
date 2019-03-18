@@ -3,12 +3,12 @@
 golang操作mysql的便捷工具, 快速生成golang结构语句,快捷生成增删改查等等
 
 
-- 生成数据库表的markdown文档
-- 生成golang表对应的结构实体
-- 还可以自定义结构体解析实体,如json,gorm,xml
-- 生成golang操作mysql的增删改查语句
-- 可以自定义生成目录
-- 清屏,退出等功能
+- 1.生成数据库表的markdown文档
+- 2.生成golang表对应的结构实体
+- 3.还可以自定义结构体解析实体,如json,gorm,xml
+- 4.生成golang操作mysql的增删改查语句
+- 5.可以自定义生成目录
+- 6.清屏,退出等功能
 
 
 ## 安装
@@ -43,3 +43,4 @@ go-mygen -h localhost -P 3306 -u root -p 123456 -d default
 ![](pic/gen2.jpg)
 ![](pic/gen3.jpg)
 ![](pic/gen4.jpg)
+
