@@ -30,7 +30,7 @@ type asset struct {
 
 // tplCurdTpl reads file data from disk. It returns an error on failure.
 func tplCurdTpl() (*asset, error) {
-	path := "/Users/wangzl/go-work/src/github.com/yezihack/gomygen/tpl/curd.tpl"
+	path := "/Users/wangzl/go-work/src/github.com/yezihack/go-mygen/tpl/curd.tpl"
 	name := "tpl/curd.tpl"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -48,7 +48,7 @@ func tplCurdTpl() (*asset, error) {
 
 // tplEntityTpl reads file data from disk. It returns an error on failure.
 func tplEntityTpl() (*asset, error) {
-	path := "/Users/wangzl/go-work/src/github.com/yezihack/gomygen/tpl/entity.tpl"
+	path := "/Users/wangzl/go-work/src/github.com/yezihack/go-mygen/tpl/entity.tpl"
 	name := "tpl/entity.tpl"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -66,7 +66,7 @@ func tplEntityTpl() (*asset, error) {
 
 // tplMarkdownTpl reads file data from disk. It returns an error on failure.
 func tplMarkdownTpl() (*asset, error) {
-	path := "/Users/wangzl/go-work/src/github.com/yezihack/gomygen/tpl/markdown.tpl"
+	path := "/Users/wangzl/go-work/src/github.com/yezihack/go-mygen/tpl/markdown.tpl"
 	name := "tpl/markdown.tpl"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -84,7 +84,7 @@ func tplMarkdownTpl() (*asset, error) {
 
 // tplTablesTpl reads file data from disk. It returns an error on failure.
 func tplTablesTpl() (*asset, error) {
-	path := "/Users/wangzl/go-work/src/github.com/yezihack/gomygen/tpl/tables.tpl"
+	path := "/Users/wangzl/go-work/src/github.com/yezihack/go-mygen/tpl/tables.tpl"
 	name := "tpl/tables.tpl"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
