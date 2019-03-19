@@ -1,4 +1,4 @@
 log/*
-main/output/*
+go-mygen/output/*
 .DS_Store
 .idea/*
