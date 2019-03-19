@@ -12,7 +12,7 @@
 - 表字段说明
 
 |字段 | 类型 | 是否为空| 默认值 | 是否是主键 | 说明 | 备注|
-|:---- |:---- |:----|:---- |:--- |:---- |
+|:----|:---|:----|:----|:---|:----|:---|
 {{range $item.List}}|{{.ColumnName}}  | {{.ColumnTypeNumber}} | {{.IsNull}}| {{.DefaultValue}} | {{.PrimaryKey}} | {{.ColumnComment}}| |
 {{end}}
 [TOP](#表总榄)

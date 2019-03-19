@@ -13,8 +13,9 @@ golang操作mysql的便捷工具, 快速生成golang结构语句,快捷生成增
 
 ## 安装
 ```
-go install github.com/yezihack/go-mygen
+go get -u -v github.com/yezihack/go-mygen/...
 ```
+
 
 ## 参数说明
 ```
