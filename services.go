@@ -1,6 +1,9 @@
 package gomygen
 
 import (
+	"bytes"
+	"fmt"
+	"github.com/yezihack/colorlog"
 	"strings"
 )
 
@@ -18,22 +21,32 @@ func (m *ModelS) GetTableList(onTable ...string) (tableResult map[string]string,
 			if len(onTable) > 0 {
 				for k := range onTable {
 					if onTable[k] == tableName {
-						tableList = append(tableList, tb)
+						tableList = append(tableList, fmt.Sprintf("'%s'", tb))
 						break
 					}
 				}
 			} else {
-				tableList = append(tableList, tb)
+				tableList = append(tableList, fmt.Sprintf("'%s'", tb))
 			}
 		}
 	}
 	tableResult = make(map[string]string)
-	for _, table := range tableList {
-		tableInfo, _ := m.Pluck("select table_comment from information_schema.tables where table_name = ?", "table_comment", table)
+	var sqlBuff bytes.Buffer
+	sqlBuff.WriteString("select distinct table_name, table_comment from information_schema.tables")
+	//子查询
+	sqlBuff.WriteString(fmt.Sprintf(" WHERE table_name in (%s)", strings.Join(tableList, ",")))
+	//查找
+	result, err = m.Find(sqlBuff.String())
+	if err != nil {
+		colorlog.Warn("查找表时,出错了, %v", err)
+	}
+	for _, info := range result {
 		if err != nil {
 			return
 		}
-		tableResult[table] = tableInfo[0].(string)
+		table_name := info["table_name"].(string)
+		table_comment := info["table_comment"].(string)
+		tableResult[table_name] = table_comment
 	}
 	return
 }

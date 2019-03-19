@@ -2,6 +2,8 @@
 
 dev:clean fmt bindata build run
 
+all: dev con
+
 fmt:
 	gofmt -l -w ./
 
@@ -25,3 +27,6 @@ clean:
 
 con:
 	go-mygen/output/go-mygen -h localhost -P 3308 -u root -p 123456 -d kindled
+
+bench:
+	go test -test.bench=".*"  -benchmem
