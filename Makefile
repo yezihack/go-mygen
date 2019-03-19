@@ -6,7 +6,7 @@ fmt:
 	gofmt -l -w ./
 
 build:
-	go build -v -o go-mygen/output/go-mygen ./main/
+	go build -v -o go-mygen/output/go-mygen ./go-mygen/
 
 run:
 	go-mygen/output/go-mygen
