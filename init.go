@@ -13,6 +13,9 @@ func InitDB(cfg DBConfig) (*sql.DB, error) {
 	if strings.EqualFold(cfg.Timezone, "") {
 		cfg.Timezone = "'Asia/Shanghai'"
 	}
+	if strings.EqualFold(cfg.Charset, "") {
+		cfg.Charset = "utf8mb4"
+	}
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=%s&loc=Local&time_zone=%s",
 		cfg.Name,
 		cfg.Pass,
