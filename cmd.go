@@ -2,6 +2,7 @@ package gomygen
 
 import (
 	"bufio"
+	"fmt"
 	"github.com/ThreeKing2018/gocolor"
 	"github.com/urfave/cli"
 	"github.com/yezihack/colorlog"
@@ -30,7 +31,7 @@ func Cmd() {
 		cli.StringFlag{Name: "h", Value: "localhost", Usage: "数据库地址"},
 		cli.IntFlag{Name: "P", Value: 3306, Usage: "端口号"},
 		cli.StringFlag{Name: "u", Value: "root", Usage: "数据库用户名称"},
-		cli.StringFlag{Name: "p", Value: "123456", Usage: "数据库密码"},
+		cli.StringFlag{Name: "p", Value: "", Usage: "数据库密码"},
 		cli.StringFlag{Name: "c", Value: "utf8mb4", Usage: "编码格式"},
 		cli.StringFlag{Name: "d", Value: "", Usage: "*数据库名称"},
 	}
@@ -61,7 +62,14 @@ func Cmd() {
 		//数据库密码
 		pass := c.String("p")
 		if pass == "" {
-			pass = "123456"
+			gocolor.Blue("输入密码:")
+			line, _, err := bufio.NewReader(os.Stdin).ReadLine()
+			fmt.Println(string(line))
+			if err == nil {
+				pass = string(line)
+				//清屏
+				Clean()
+			}
 		}
 		DbConn.Pass = pass
 		//编码格式
@@ -90,7 +98,7 @@ func Cmd() {
 	var err error
 	err = app.Run(os.Args)
 	if err != nil {
-		colorlog.Error("Err", err)
+		colorlog.Error("%v", err)
 	}
 }
 
@@ -99,10 +107,11 @@ func Commands(DbConn DBConfig) error {
 	DbConn.MaxIdleConn = 5
 	DbConn.MaxOpenConn = 10
 	db, err := InitDB(DbConn)
-	defer db.Close()
 	if db == nil || err != nil {
+		colorlog.Error("数据库连接失败")
 		return err
 	}
+	defer db.Close()
 	colorlog.Info("数据库连接成功")
 	masterDB := NewDB(db)
 	lg := Logic{
@@ -137,7 +146,8 @@ func Commands(DbConn DBConfig) error {
 		case "2": //生成表结构数据
 			gocolor.Blue("需要设置结构的格式字符串吗?(是:yes,否:no):")
 			input, _, err = bufio.NewReader(os.Stdin).ReadLine()
-			if strings.EqualFold(string(input), "yes") {
+			switch string(input) {
+			case "yes", "y":
 				formatList = setFormat()
 			}
 			err = lg.CreateEntity(formatList)

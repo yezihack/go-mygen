@@ -34,9 +34,22 @@ go get -u -v github.com/yezihack/go-mygen/...
 - 进行操作提示页面
 - 输入界面上不同的命令进行操作即可
 
+## 显示带密码操作
 ```
 go-mygen -h localhost -P 3306 -u root -p 123456 -d default
 ```
+
+## 保护密码操作
+```
+go-mygen -h localhost -P 3306 -u root -d dbname
+```
+
+## 简洁操作
+> 前提使用默认值
+```
+go-mygen -d dbname
+```
+
 ![](pic/gen.jpg)
 
 

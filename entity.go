@@ -77,10 +77,11 @@ type FieldsInfo struct {
 
 //表信息结构
 type TableInfo struct {
-	Table        string        //表名
-	NullTable    string        //空表名称
-	TableComment string        //表注释
-	Fields       []*FieldsInfo //表字段
+	Table            string        //表名
+	NullTable        string        //空表名称
+	TableComment     string        //表注释
+	TableCommentNull string        //表注释
+	Fields           []*FieldsInfo //表字段
 }
 
 //表名和表注释

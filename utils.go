@@ -109,8 +109,6 @@ func Gofmt(path string) bool {
 
 //清屏
 func Clean() {
-	cmd := GetOs()
-	fmt.Println(cmd)
 	switch GetOs() {
 	case Darwin, Linux:
 		cmd := exec.Command("clear")
@@ -154,7 +152,15 @@ func FormatField(field string, formats []string) string {
 	for key := range formats {
 		buf.WriteString(fmt.Sprintf(`%s:"%s" `, formats[key], field))
 	}
-	return strings.TrimRight(string(buf.String()), " ")
+	return "`" + strings.TrimRight(string(buf.String()), " ") + "`"
+}
+
+//添加注释 //
+func AddToComment(s string, suff string) string {
+	if strings.EqualFold(s, "") {
+		return ""
+	}
+	return "//" + s + suff
 }
 
 //判断是否包存在某字符
