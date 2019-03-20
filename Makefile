@@ -26,7 +26,7 @@ clean:
 	rm -rf go-mygen/output/db_models/
 
 con:
-	go-mygen/output/go-mygen -h localhost -P 3308 -u root -p 123456 -d kindled
+	go-mygen/output/go-mygen -h localhost -P 3308 -u root -d kindled
 
 bench:
 	go test -test.bench=".*"  -benchmem

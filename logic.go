@@ -245,7 +245,8 @@ import (
 	TableData := new(TableInfo)
 	TableData.Table = l.T.Capitalize(req.TableName)
 	TableData.NullTable = TableData.Table + DbNullPrefix
-	TableData.TableComment = req.TableComment
+	TableData.TableComment = AddToComment(req.TableComment, "")
+	TableData.TableCommentNull = AddToComment(req.TableComment, " Null Entity")
 	//判断表结构是否加载过
 	if l.T.CheckFileContainsChar(req.Path, "type "+TableData.Table+" struct") == true {
 		colorlog.Warn(req.Path + "已经存在,请删除后再重新生成")
@@ -269,7 +270,7 @@ import (
 			NullType:     val.MysqlNullType,
 			DbOriField:   val.ColumnName,
 			FormatFields: FormatField(val.ColumnName, req.FormatList),
-			Remark:       val.ColumnComment,
+			Remark:       AddToComment(val.ColumnComment, ""),
 		})
 	}
 	content := bytes.NewBuffer([]byte{})
