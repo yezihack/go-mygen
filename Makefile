@@ -18,7 +18,7 @@ vendor:
 	govendor remove +u
 
 bindata:
-	go-bindata -debug -pkg gomygen -o ./bindata.go tpl/...
+	go-bindata -pkg gomygen -o ./bindata.go tpl/
 clean:
 	rm -rf go-mygen/output/go-mygen
 	rm -rf go-mygen/output/markdown.md
