@@ -3,6 +3,7 @@ package gomygen
 import (
 	"database/sql"
 	"fmt"
+	"github.com/ThreeKing2018/k3log"
 	_ "github.com/go-sql-driver/mysql"
 	"net/url"
 	"strings"
@@ -31,6 +32,7 @@ func InitDB(cfg DBConfig) (*sql.DB, error) {
 		return nil, err
 	}
 	if err = connection.Ping(); err != nil {
+		k3log.Panic("InitDB", err)
 		return nil, err
 	}
 	connection.SetMaxIdleConns(cfg.MaxIdleConn)
@@ -39,8 +41,9 @@ func InitDB(cfg DBConfig) (*sql.DB, error) {
 }
 
 //实例一个数据库对象
-func NewDB(db *sql.DB) *ModelS {
-	return &ModelS{
-		DB: db,
-	}
+func NewDB() *ModelS {
+	return new(ModelS)
+}
+func (m *ModelS) Using(db *sql.DB) {
+	m.DB = db
 }
