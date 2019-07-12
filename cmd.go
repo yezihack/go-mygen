@@ -7,19 +7,23 @@ import (
 	"github.com/urfave/cli"
 	"github.com/yezihack/colorlog"
 	"os"
+	"strconv"
 	"strings"
+)
+
+const (
+	Version = "1.1"
 )
 
 //命令行实现
 func Cmd() {
-
 	app := cli.NewApp()
-	app.Name = "gomygen"                     //项目名称
-	app.Author = "百里 github.com/yezihack"    //作者名称
-	app.Version = "1.0"                      //版本号
-	app.Copyright = "@Copyright~2019"        //版权保护
-	app.Usage = "是生成数据库表结构和markdown表结构的命令工具" //说明
-	cli.HelpFlag = cli.BoolFlag{             //修改系统默认
+	app.Name = "gomygen"                                    //项目名称
+	app.Author = "百里 github.com/yezihack"                   //作者名称
+	app.Version = Version                                   //版本号
+	app.Copyright = "@Copyright~2019 UpdatedAT: 2019.07.12" //版权保护
+	app.Usage = "是生成数据库表结构和markdown表结构的命令工具"                //说明
+	cli.HelpFlag = cli.BoolFlag{                            //修改系统默认
 		Name:  "help",
 		Usage: "显示命令帮助",
 	}
@@ -113,11 +117,18 @@ func Commands(DbConn DBConfig) error {
 	}
 	defer db.Close()
 	colorlog.Info("数据库连接成功")
-	masterDB := NewDB(db)
+	masterDB := NewDB()
+	masterDB.Using(db)
+	masterDB.DBName = DbConn.DBName
 	lg := Logic{
 		DB:   masterDB,
 		Path: GetExeRootDir(), //默认当前命令所在目录
 	}
+	err = lg.DB.GetTableNameAndComment()
+	if err != nil {
+		return err
+	}
+
 	var input []byte
 	ShowCmdHelp() //显示帮助
 	formatList := make([]string, 0)
@@ -129,7 +140,7 @@ func Commands(DbConn DBConfig) error {
 			os.Exit(9)
 		}
 		switch string(input) {
-		case "0": //生成表markdown文档
+		case "0": //设置指定生成目录
 			gocolor.Blue("请指定生成目录:")
 			input, _, err = bufio.NewReader(os.Stdin).ReadLine()
 			if string(input) != "" {
@@ -142,9 +153,10 @@ func Commands(DbConn DBConfig) error {
 				}
 			}
 		case "1": //生成表markdown文档
+			fmt.Println("正在生成markdown文档...")
 			err = lg.CreateMarkdown()
 		case "2": //生成表结构数据
-			gocolor.Blue("需要设置结构的格式字符串吗?(是:yes,否:no):")
+			gocolor.Blue("需要设置结构的格式字符串吗?(是:y,否:n):")
 			input, _, err = bufio.NewReader(os.Stdin).ReadLine()
 			switch string(input) {
 			case "yes", "y":
@@ -157,11 +169,18 @@ func Commands(DbConn DBConfig) error {
 			Gofmt(GetExeRootDir())
 		case "4": //设置结构体的映射名称,支持多个,以逗号隔开
 			formatList = setFormat()
+		case "5": //列出所有的表名
+			ShowTableList(lg.DB.Tables)
+			gocolor.Blue("选择你需要的表序列号?(默认全部,逗号隔开,all代表全部):")
+			input, _, err = bufio.NewReader(os.Stdin).ReadLine()
+			if !strings.EqualFold(string(input), "") {
+				lg.DB.DoTables = filterTables(string(input), lg.DB.Tables)
+			}
 		case "7", "h", "": //显示帮助
 			ShowCmdHelp()
 		case "8", "c", "clear": //清屏
 			Clean()
-		case "9", "e", "exit": //退出
+		case "9", "e", "q", "exit": //退出
 			os.Exit(1)
 		default:
 			colorlog.Warn("命令输入有错误!!!")
@@ -171,6 +190,38 @@ func Commands(DbConn DBConfig) error {
 		}
 	}
 	return nil
+}
+
+//过滤表名
+func filterTables(ids string, tables []TableNameAndComment) []TableNameAndComment {
+	lst := strings.Split(ids, ",")
+	result := make([]TableNameAndComment, 0)
+	if strings.ToLower(ids) == "all" {
+		return tables
+	}
+	for _, id := range lst {
+		id = strings.TrimSpace(id)
+		for _, t := range tables {
+			if strconv.Itoa(t.Index) == id || id == t.Name {
+				result = append(result, t)
+			}
+		}
+	}
+	return result
+}
+
+//显示所有名视图
+func ShowTableList(NameAndComment []TableNameAndComment) {
+	for idx, table := range NameAndComment {
+		idx++
+		info := fmt.Sprintf("%s:%s", gocolor.SBlueBG(strconv.Itoa(idx)), gocolor.SGreen(table.Name))
+		if table.Comment != "" {
+			info += fmt.Sprintf("(%s)", table.Comment)
+		}
+		gocolor.Blue(info)
+		fmt.Println()
+	}
+	gocolor.Green("共" + strconv.Itoa(len(NameAndComment)) + "张表\n")
 }
 
 func setFormat() []string {

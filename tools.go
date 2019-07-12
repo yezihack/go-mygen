@@ -7,9 +7,11 @@ import (
 	"io/ioutil"
 	"os"
 	"strings"
+	"sync"
 )
 
 type Tools struct {
+	l sync.Mutex
 }
 
 //检查某字符是否存在文件里

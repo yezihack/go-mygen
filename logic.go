@@ -4,10 +4,12 @@ import (
 	"bytes"
 	"errors"
 	"fmt"
+	"github.com/ThreeKing2018/k3log"
 	"github.com/yezihack/colorlog"
 	"strings"
 	"sync"
 	"text/template"
+	"time"
 )
 
 type Logic struct {
@@ -15,15 +17,11 @@ type Logic struct {
 	DB   *ModelS
 	Path string
 	Once sync.Once
+	l    sync.Mutex
 }
 
 //生成结构实体文件
-func (l *Logic) CreateEntity(formatList []string) error {
-	//读取所有表列表
-	tableList, err := l.DB.GetTableList()
-	if err != nil {
-		return err
-	}
+func (l *Logic) CreateEntity(formatList []string) (err error) {
 	//表结构文件路径
 	path := l.Path + "db_entity/"
 	if l.T.IsDirOrFileExist(path) == false {
@@ -35,57 +33,56 @@ func (l *Logic) CreateEntity(formatList []string) error {
 	if l.T.IsDirOrFileExist(path) == false {
 		if !l.T.CreateFile(path) {
 			err = errors.New("创建文件失败, path: " + path)
-			return err
+			return
 		}
 	}
 	//将表结构写入文件
-	for tableName, tableComment := range tableList {
+	for idx, table := range l.DB.DoTables {
+		idx++
 		//查询表结构信息
-		tableDesc, err := l.DB.GetTableDesc(tableName)
+		tableDesc, err := l.DB.GetTableDesc(table.Name)
 		if err != nil {
-			return err
+			k3log.Error(err)
+			continue
 		}
 		req := new(EntityReq)
+		req.Index = idx
 		req.Path = path
-		req.TableName = tableName
-		req.TableComment = tableComment
+		req.TableName = table.Name
+		req.TableComment = table.Comment
 		req.TableDesc = tableDesc
 		req.FormatList = formatList
 		req.Pkg = PkgEntity
 		//生成基础信息
 		err = l.GenerateDBEntity(req)
 		if err != nil {
-			return err
+			k3log.Error(err)
+			continue
 		}
 	}
-	return nil
+	return
 }
 
 //生成原生的crud查询数据库
-func (l *Logic) CreateCURD(formatList []string) error {
-	//读取所有表列表
-	tableList, err := l.DB.GetTableList()
-	if err != nil {
-		return err
-	}
+func (l *Logic) CreateCURD(formatList []string) (err error) {
 	tableNameList := make([]*TableList, 0)
 	//表结构文件路径
 	structPath := l.GetMysqlDir() + GOFILE_ENTITY
 	//将表结构写入文件
-	for tableName, tableComment := range tableList {
+	for _, table := range l.DB.DoTables {
 		tableNameList = append(tableNameList, &TableList{
-			UpperTableName: TablePrefix + l.T.ToUpper(tableName),
-			TableName:      tableName,
-			Comment:        tableComment,
+			UpperTableName: TablePrefix + l.T.ToUpper(table.Name),
+			TableName:      table.Name,
+			Comment:        table.Comment,
 		})
 		//查询表结构信息
-		tableDesc, err := l.DB.GetTableDesc(tableName)
+		tableDesc, err := l.DB.GetTableDesc(table.Name)
 		if err != nil {
 			return err
 		}
 		req := new(EntityReq)
-		req.TableName = tableName
-		req.TableComment = tableComment
+		req.TableName = table.Name
+		req.TableComment = table.Comment
 		req.TableDesc = tableDesc
 		req.Path = structPath
 		req.FormatList = formatList
@@ -96,7 +93,7 @@ func (l *Logic) CreateCURD(formatList []string) error {
 			return err
 		}
 		//生成增,删,改,查文件
-		err = l.GenerateCURDFile(tableName, tableComment, tableDesc)
+		err = l.GenerateCURDFile(table.Name, table.Comment, tableDesc)
 		if err != nil {
 			return err
 		}
@@ -112,40 +109,37 @@ func (l *Logic) CreateCURD(formatList []string) error {
 }
 
 //生成mysql markdown文档
-func (l *Logic) CreateMarkdown() error {
-	//读取所有表列表
-	tableList, err := l.DB.GetTableList()
-	if err != nil {
-		return err
-	}
+func (l *Logic) CreateMarkdown() (err error) {
 	data := new(MarkDownData)
 	//将表结构写入文件
 	i := 1
-	for tableName, tableComment := range tableList {
+	for _, table := range l.DB.DoTables {
+		fmt.Println("正在处理表:" + table.Name)
 		data.TableList = append(data.TableList, &TableList{
 			Index:          i,
-			UpperTableName: l.T.ToUpper(tableName),
-			TableName:      tableName,
-			Comment:        tableComment,
+			UpperTableName: l.T.ToUpper(table.Name),
+			TableName:      table.Name,
+			Comment:        table.Comment,
 		})
 		//查询表结构信息
 		desc := new(MarkDownDataChild)
-		desc.List, err = l.DB.GetTableDesc(tableName)
+		desc.List, err = l.DB.GetTableDesc(table.Name)
 		if err != nil {
-			return err
+			k3log.Error("CreateMarkdown", err)
+			continue
 		}
 		desc.Index = i
-		desc.TableName = tableName
-		desc.Comment = tableComment
+		desc.TableName = table.Name
+		desc.Comment = table.Comment
 		data.DescList = append(data.DescList, desc)
 		i++
 	}
 	//生成所有表的文件
 	err = l.GenerateMarkdown(data)
 	if err != nil {
-		return err
+		return
 	}
-	return nil
+	return
 }
 
 //创建和获取MYSQL目录
@@ -228,6 +222,8 @@ package mysql
 
 //创建结构实体
 func (l *Logic) GenerateDBEntity(req *EntityReq) (err error) {
+	l.l.Lock()
+	defer l.l.Unlock()
 	var s string
 	s = fmt.Sprintf(`//判断package是否加载过
 package %s
@@ -255,6 +251,7 @@ import (
 	//加载模板文件
 	tplByte, err := Asset(TPL_ENTITY)
 	if err != nil {
+		k3log.Error("GenerateDBEntity", err)
 		return
 	}
 	tpl, err := template.New("entity").Parse(string(tplByte))
@@ -477,7 +474,7 @@ import(
 //生成表列表
 func (l *Logic) GenerateMarkdown(data *MarkDownData) (err error) {
 	//写入markdown
-	file := l.Path + "markdown.md"
+	file := l.Path + fmt.Sprintf("markdown%s.md", time.Now().Format("2006-01-02_150405"))
 	tplByte, err := Asset(TPL_MARKDOWN)
 	if err != nil {
 		return
