@@ -121,6 +121,7 @@ func Clean() {
 	}
 }
 
+//获取操作系统
 func GetOs() int {
 	switch runtime.GOOS {
 	case "darwin":
@@ -130,7 +131,7 @@ func GetOs() int {
 	case "linux":
 		return Linux
 	default:
-		return Unknow
+		return Unknown
 	}
 }
 

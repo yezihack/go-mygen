@@ -18,7 +18,7 @@ const (
 )
 
 const (
-	Unknow = iota
+	Unknown = iota
 	Darwin
 	Window
 	Linux
@@ -44,7 +44,8 @@ var CmdHelp = []CmdEntity{
 	{"2", "生成表结构实体"},
 	{"3", "生成CURD增删改查"},
 	{"4", "设置结构体映射名称"},
-	{"5", "列出所有的表名"},
+	{"5", "查找或设置表名"},
+	{"6", "查找或设置库名-开发中.."},
 	{"7, c, clear", "清屏"},
 	{"8, h", "查看帮助"},
 	{"9, e, q, exit", "退出"},

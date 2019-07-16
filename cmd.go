@@ -17,6 +17,11 @@ const (
 
 //命令行实现
 func Cmd() {
+	defer func() {
+		if err := recover(); err != nil {
+			colorlog.Error("%v", err)
+		}
+	}()
 	app := cli.NewApp()
 	app.Name = "gomygen"                                    //项目名称
 	app.Author = "百里 github.com/yezihack"                   //作者名称
@@ -94,11 +99,7 @@ func Cmd() {
 		}
 		return nil
 	}
-	defer func() {
-		if err := recover(); err != nil {
-			colorlog.Error("%v", err)
-		}
-	}()
+
 	var err error
 	err = app.Run(os.Args)
 	if err != nil {
@@ -170,6 +171,10 @@ func Commands(DbConn DBConfig) error {
 		case "4": //设置结构体的映射名称,支持多个,以逗号隔开
 			formatList = setFormat()
 		case "5": //列出所有的表名
+			if len(lg.DB.Tables) == 0 {
+				gocolor.Green("%s\n", "呜呜,一个表也没有!!!")
+				continue
+			}
 			ShowTableList(lg.DB.Tables)
 			gocolor.Blue("选择你需要的表序列号?(默认全部,逗号隔开,all代表全部):")
 			input, _, err = bufio.NewReader(os.Stdin).ReadLine()

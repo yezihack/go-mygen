@@ -32,7 +32,7 @@ func InitDB(cfg DBConfig) (*sql.DB, error) {
 		return nil, err
 	}
 	if err = connection.Ping(); err != nil {
-		k3log.Panic("InitDB", err)
+		k3log.Error("InitDB", err)
 		return nil, err
 	}
 	connection.SetMaxIdleConns(cfg.MaxIdleConn)
