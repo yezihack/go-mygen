@@ -26,7 +26,6 @@ func InitDB(cfg DBConfig) (*sql.DB, error) {
 		cfg.Charset,
 		//url.QueryEscape(cfg.Timezone),
 	)
-	k3log.Info(dsn)
 	connection, err := sql.Open("mysql", dsn)
 	if err != nil {
 		return nil, err
