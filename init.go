@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"github.com/ThreeKing2018/k3log"
 	_ "github.com/go-sql-driver/mysql"
-	"net/url"
 	"strings"
 )
 
@@ -17,16 +16,17 @@ func InitDB(cfg DBConfig) (*sql.DB, error) {
 	if strings.EqualFold(cfg.Charset, "") {
 		cfg.Charset = "utf8mb4"
 	}
-	dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=%s&loc=Local&time_zone=%s",
+	//dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=%s&loc=Local&time_zone=%s",
+	dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=%s&loc=Local",
 		cfg.Name,
 		cfg.Pass,
 		cfg.Host,
 		cfg.Port,
 		cfg.DBName,
 		cfg.Charset,
-		url.QueryEscape(cfg.Timezone),
+		//url.QueryEscape(cfg.Timezone),
 	)
-
+	k3log.Info(dsn)
 	connection, err := sql.Open("mysql", dsn)
 	if err != nil {
 		return nil, err
