@@ -12,8 +12,8 @@ import (
 )
 
 const (
-	Version   = "1.1.1"
-	UpdatedAt = "at:2019.07.24"
+	Version   = "v1.1.1"
+	UpdatedAt = "  2019.07.24"
 )
 
 //命令行实现
@@ -26,7 +26,7 @@ func Cmd() {
 	app := cli.NewApp()
 	app.Name = "gomygen"                     //项目名称
 	app.Author = "百里 github.com/yezihack"    //作者名称
-	app.Version = Version + "" + UpdatedAt   //版本号
+	app.Version = Version + UpdatedAt        //版本号
 	app.Copyright = "@Copyright 2019"        //版权保护
 	app.Usage = "是生成数据库表结构和markdown表结构的命令工具" //说明
 	cli.HelpFlag = cli.BoolFlag{             //修改系统默认
