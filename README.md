@@ -11,6 +11,9 @@ golang操作mysql的便捷工具, 快速生成golang结构语句,快捷生成增
 - 6.清屏,退出等功能
 
 
+## 更新(2019.07.24)
+- 去掉对字段的排序, 保持表字段原始序列
+
 ## 安装
 ```
 go get -u -v github.com/yezihack/go-mygen/...
