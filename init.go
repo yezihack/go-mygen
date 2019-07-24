@@ -3,9 +3,10 @@ package gomygen
 import (
 	"database/sql"
 	"fmt"
+	"strings"
+
 	"github.com/ThreeKing2018/k3log"
 	_ "github.com/go-sql-driver/mysql"
-	"strings"
 )
 
 //连接数据库

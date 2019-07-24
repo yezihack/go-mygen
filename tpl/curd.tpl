@@ -17,7 +17,7 @@ return " {{.AllFieldList}} "
 func (m *{{.StructTableName}}Model) getRows(sqlTxt string, params ...interface{}) (rowsResult []*{{.StructTableName}}, err error) {
 query, err := m.DB.Query(sqlTxt, params...)
 defer query.Close()
-if err != nil {
+if err != nil && err != sql.ErrNoRows {
 return
 }
 for query.Next() {
@@ -25,7 +25,7 @@ row := {{.NullStructTableName}}{}
 err = query.Scan(
 {{range .NullFieldsInfo}}&row.{{.HumpName}},//{{.Comment}}
 {{end}})
-if nil != err {
+if nil != err && err != sql.ErrNoRows {
 continue
 }
 rowsResult = append(rowsResult, &{{.StructTableName}}{
@@ -39,16 +39,13 @@ return
 }
 
 //获取单行数据
-func (m *{{.StructTableName}}Model) getRow(sql string, params ...interface{}) (rowResult *{{.StructTableName}}, err error) {
-query := m.DB.QueryRow(sql, params...)
-if err != nil {
-return
-}
+func (m *{{.StructTableName}}Model) getRow(sqlTxt string, params ...interface{}) (rowResult *{{.StructTableName}}, err error) {
+query := m.DB.QueryRow(sqlTxt, params...)
 row := {{.NullStructTableName}}{}
 err = query.Scan(
 {{range .NullFieldsInfo}}&row.{{.HumpName}},//{{.Comment}}
 {{end}})
-if nil != err {
+if nil != err && err != sql.ErrNoRows {
 return
 }
 rowResult = &{{.StructTableName}}{

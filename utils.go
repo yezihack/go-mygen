@@ -4,14 +4,15 @@ import (
 	"bytes"
 	"errors"
 	"fmt"
-	"github.com/ThreeKing2018/gocolor"
-	"github.com/yezihack/colorlog"
 	"os"
 	"os/exec"
 	"path/filepath"
 	"regexp"
 	"runtime"
 	"strings"
+
+	"github.com/ThreeKing2018/gocolor"
+	"github.com/yezihack/colorlog"
 )
 
 //创建目录

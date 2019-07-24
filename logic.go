@@ -4,12 +4,13 @@ import (
 	"bytes"
 	"errors"
 	"fmt"
-	"github.com/ThreeKing2018/k3log"
-	"github.com/yezihack/colorlog"
 	"strings"
 	"sync"
 	"text/template"
 	"time"
+
+	"github.com/ThreeKing2018/k3log"
+	"github.com/yezihack/colorlog"
 )
 
 type Logic struct {
