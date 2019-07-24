@@ -28,5 +28,7 @@ clean:
 con:
 	go-mygen/output/go-mygen -h localhost -P 3308 -u root -d kindled
 
+
+
 bench:
 	go test -test.bench=".*"  -benchmem
