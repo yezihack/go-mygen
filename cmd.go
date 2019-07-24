@@ -3,16 +3,17 @@ package gomygen
 import (
 	"bufio"
 	"fmt"
-	"github.com/ThreeKing2018/gocolor"
-	"github.com/urfave/cli"
-	"github.com/yezihack/colorlog"
 	"os"
 	"strconv"
 	"strings"
+
+	"github.com/ThreeKing2018/gocolor"
+	"github.com/urfave/cli"
+	"github.com/yezihack/colorlog"
 )
 
 const (
-	Version   = "v1.1.1"
+	Version   = "v1.1.2"
 	UpdatedAt = "  2019.07.24"
 )
 
@@ -23,6 +24,7 @@ func Cmd() {
 			colorlog.Error("%v", err)
 		}
 	}()
+
 	app := cli.NewApp()
 	app.Name = "gomygen"                     //项目名称
 	app.Author = "百里 github.com/yezihack"    //作者名称
