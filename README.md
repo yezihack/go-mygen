@@ -19,6 +19,9 @@ golang操作mysql的便捷工具, 快速生成golang结构语句,快捷生成增
 go get -u -v github.com/yezihack/go-mygen/...
 ```
 
+## 文档
+- [DOC](https://godoc.org/github.com/yezihack/go-mygen)
+
 ## 升级
 - 修复生成markdown,entity出现表,字段重复情况
 
