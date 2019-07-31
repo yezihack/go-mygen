@@ -6,24 +6,30 @@ golang操作mysql的便捷工具, 快速生成golang结构语句,快捷生成增
 - 1.生成数据库表的markdown文档
 - 2.生成golang表对应的结构实体
 - 3.还可以自定义结构体解析实体,如json,gorm,xml
-- 4.生成golang操作mysql的增删改查语句
+- 4.生成golang操作mysql的CRUD增删改查语句
 - 5.可以自定义生成目录
 - 6.清屏,退出等功能
+- 7.带有实例操作手DEMO
 
 
-## 更新(2019.07.24)
-- 去掉对字段的排序, 保持表字段原始序列
+## [更新(2019.07.31)](CHANGELOG.md)
 
 ## 安装
 ```
 go get -u -v github.com/yezihack/go-mygen/...
 ```
 
+
 ## 文档
 - [DOC](https://godoc.org/github.com/yezihack/go-mygen)
 
-## 升级
-- 修复生成markdown,entity出现表,字段重复情况
+
+## 生成的实例
+- [结构体](example/db_entity.go)
+- [常量表](example/table_list.go)
+- [CRUD](example/users.go)
+- [demo实例使用说明](example/example_test.go)
+- [表结构markdonw说明](example/table_info.md)
 
 ## 参数说明
 ```
@@ -57,6 +63,10 @@ go-mygen -h localhost -P 3306 -u root -d dbname
 ```
 go-mygen -d dbname
 ```
+
+
+
+
 
 ![](pic/gen.jpg)
 

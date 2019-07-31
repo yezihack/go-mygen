@@ -334,6 +334,9 @@ func (l *Logic) GenerateCURDFile(tableName, tableComment string, tableDesc []*Ta
 	}
 	//拼出SQL所需要结构数据
 	InsertMark := strings.Repeat("?,", len(insertFields))
+	if len(InsertMark) > 0 {
+		InsertMark = InsertMark[:len(InsertMark)-1]
+	}
 	sqlInfo := &SqlInfo{
 		TableName:           tableName,
 		PrimaryKey:          PrimaryKey,
@@ -343,7 +346,7 @@ func (l *Logic) GenerateCURDFile(tableName, tableComment string, tableDesc []*Ta
 		UpperTableName:      TablePrefix + l.T.ToUpper(tableName),
 		AllFieldList:        strings.Join(allFields, ","),
 		InsertFieldList:     strings.Join(insertFields, ","),
-		InsertMark:          InsertMark[:len(InsertMark)-1],
+		InsertMark:          InsertMark,
 		UpdateFieldList:     strings.Join(updateList, ","),
 		UpdateListField:     updateListField,
 		FieldsInfo:          fieldsList,

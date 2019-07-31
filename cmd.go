@@ -8,20 +8,25 @@ import (
 	"strings"
 
 	"github.com/ThreeKing2018/gocolor"
+	"github.com/ThreeKing2018/k3log"
 	"github.com/urfave/cli"
 	"github.com/yezihack/colorlog"
+	"runtime/debug"
 )
 
 const (
-	Version   = "v1.1.2"
-	UpdatedAt = "  2019.07.24"
+	Version   = "v1.1.3"
+	UpdatedAt = "  2019.07.31"
 )
 
 //命令行实现
 func Cmd() {
+	logfile := GetExeRootDir() + "gomygen.log"
+	k3log.NewProduction("go-mygen", logfile)
 	defer func() {
 		if err := recover(); err != nil {
-			colorlog.Error("%v", err)
+			k3log.Error("err", err, "stack", string(debug.Stack()))
+			colorlog.Error("查看错误日志:"+logfile+", %v", err)
 		}
 	}()
 
@@ -189,7 +194,7 @@ func Commands(DbConn DBConfig) error {
 		case "8", "c", "clear": //清屏
 			Clean()
 		case "9", "e", "q", "exit": //退出
-			os.Exit(1)
+			os.Exit(0)
 		default:
 			colorlog.Warn("命令输入有错误!!!")
 		}
