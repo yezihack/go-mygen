@@ -44,9 +44,8 @@ connection.SetMaxIdleConns(cfg.MaxIdle)
 return connection
 }
 var DB *sql.DB
-var {{.Name}}Db *{{.Name}}Model
 
-func initConnection() {
+func init() {
 cfg := DBConfigEntity{
 Host:"localhost",
 Port:3308,
@@ -58,58 +57,179 @@ MaxOpen:10,
 MaxIdle: 5,
 }
 DB = InitDB(cfg)
-{{.Name}}Db = New{{.Name}}(DB)
 }
 
-//查询所有的数据
-func Test{{.Name}}FindWhere(t *testing.T) {
-initConnection()
-book := {{.Name}}{
+//查询单行数据
+func TestFirst(t *testing.T) {
+value := {{.Name}}{
 //todo
 }
-result, err := {{.Name}}Db.Find(&book) //函数里需要拼接一下sql
+result, err := New{{.Name}}(DB).First(&value) //调用查询单行数据的First
 if err != nil {
 t.Error(err)
 }
-fmt.Println(result[0])
+fmt.Println(result)
 }
+
+//查询多行数据
+func TestFind(t *testing.T) {
+value := {{.Name}}{
+//todo
+}
+result, err := New{{.Name}}(DB).Find(&value) //函数里需要拼接一下sql
+if err != nil {
+t.Error(err)
+}
+fmt.Println(result)
+}
+
+// 使用IN查找数据
+func TestFindIn(t *testing.T) {
+ids := []int{1, 2, 3, 4}
+result, err :=  New{{.Name}}(DB).FindIn(ids)
+if err != nil {
+t.Error(err)
+}
+fmt.Println(result)
+}
+
 //获取最后一条数据
-func Test{{.Name}}Last(t *testing.T) {
-initConnection()
-result, err := {{.Name}}Db.First(nil)
+func TestLast(t *testing.T) {
+result, err := New{{.Name}}(DB).Last(nil)
 if err != nil {
 t.Error(err)
 }
 fmt.Println(result)
 }
+
 //获取总数量
-func Test{{.Name}}Count(t *testing.T) {
-initConnection()
-result, err := {{.Name}}Db.First(nil)
+func TestCount(t *testing.T) {
+result, err := New{{.Name}}(DB).Count()
 if err != nil {
 t.Error(err)
 }
 fmt.Println(result)
 }
+
 //创建数据
-func Test{{.Name}}Create(t *testing.T) {
-initConnection()
-dd := {{.Name}}{
+func TestCreate(t *testing.T) {
+value := {{.Name}}{
 //todo
 }
-result, err := {{.Name}}Db.Create(&dd)
+result, err := New{{.Name}}(DB).Create(&value)
 if err != nil {
 t.Error(err)
 }
 fmt.Println(result)
 }
-//创建数据
-func TestExampleUpdate(t *testing.T) {
-initConnection()
-dd := {{.Name}}{
+
+//创建数据 支持事务
+func TestCreateTx(t *testing.T) {
+value := {{.Name}}{
 //todo
 }
-result, err := {{.Name}}Db.Update(&dd)
+//开启一个事务对象
+tx, err := DB.Begin()
+if err != nil {
+t.Error(err)
+}
+//使用defer 自动回滚或提交
+defer func() {
+var errTx error
+if err != nil {
+errTx = tx.Rollback()
+} else {
+errTx = tx.Commit()
+}
+if errTx != nil {
+return
+}
+return
+}()
+result, err := New{{.Name}}Tx(tx).CreateTx(&value)
+if err != nil {
+t.Error(err)
+}
+fmt.Println(result)
+}
+
+//更新数据
+func TestUpdate(t *testing.T) {
+value := {{.Name}}{
+//todo
+}
+result, err := New{{.Name}}(DB).Update(&value)
+if err != nil {
+t.Error(err)
+}
+fmt.Println(result)
+}
+
+//更新数据 支持事务操作
+func TestUpdateTx(t *testing.T) {
+value := {{.Name}}{
+//todo
+}
+//开启一个事务对象
+tx, err := DB.Begin()
+if err != nil {
+t.Error(err)
+}
+//使用defer 自动回滚或提交
+defer func() {
+var errTx error
+if err != nil {
+errTx = tx.Rollback()
+} else {
+errTx = tx.Commit()
+}
+if errTx != nil {
+return
+}
+return
+}()
+//实例事务的结构对象,传递一个事务句柄
+result, err := New{{.Name}}Tx(tx).UpdateTx(&value)
+if err != nil {
+t.Error(err)
+}
+fmt.Println(result)
+}
+
+
+//创建数据 by SQL
+func TestSave(t *testing.T) {
+sqlTxt := "insert into tables values (?, ?, ?)"
+result, err := New{{.Name}}(DB).Save(sqlTxt, 1, 2, 3)
+if err != nil {
+t.Error(err)
+}
+fmt.Println(result)
+}
+
+//更新数据 支持事务操作
+func TestSaveTx(t *testing.T) {
+sqlTxt := "insert into tables values (?, ?, ?)"
+//开启一个事务对象
+tx, err := DB.Begin()
+if err != nil {
+t.Error(err)
+}
+//使用defer 自动回滚或提交
+defer func() {
+var errTx error
+if err != nil {
+errTx = tx.Rollback()
+} else {
+errTx = tx.Commit()
+}
+if errTx != nil {
+return
+}
+return
+}()
+//实例事务的结构对象,传递一个事务句柄
+result, err := New{{.Name}}Tx(tx).SaveTx(sqlTxt)
 if err != nil {
 t.Error(err)
 }
