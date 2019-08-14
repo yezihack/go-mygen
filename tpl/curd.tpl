@@ -94,7 +94,7 @@ return
 
 //新增信息
 func (m *{{.StructTableName}}Model) Create(value *{{.StructTableName}}) (lastId int64, err error) {
-sqlText := "INSERT INTO " + {{.UpperTableName}} + " ({{.InsertFieldList}}) VALUES ({{.InsertMark}})"
+const sqlText = "INSERT INTO " + {{.UpperTableName}} + " ({{.InsertFieldList}}) VALUES ({{.InsertMark}})"
 stmt, err := m.DB.Prepare(sqlText)
 if err != nil {
 return
@@ -115,7 +115,7 @@ return
 
 //更新数据
 func (m *{{.StructTableName}}Model) Update(value *{{.StructTableName}}) (b bool, err error) {
-sqlText := "UPDATE " + {{.UpperTableName}} + " SET {{.UpdateFieldList}} WHERE {{.PrimaryKey}} = ?"
+const sqlText = "UPDATE " + {{.UpperTableName}} + " SET {{.UpdateFieldList}} WHERE {{.PrimaryKey}} = ?"
 params := make([]interface{}, 0)
 {{range $i, $val := .UpdateListField}}params = append(params, {{$val}})
 {{end}}
@@ -146,7 +146,7 @@ return
 
 //新增信息 支持事务
 func (m *{{.StructTableName}}Model) CreateTx(value *{{.StructTableName}}) (lastId int64, err error) {
-sqlText := "INSERT INTO " + {{.UpperTableName}} + " ({{.InsertFieldList}}) VALUES ({{.InsertMark}})"
+const sqlText = "INSERT INTO " + {{.UpperTableName}} + " ({{.InsertFieldList}}) VALUES ({{.InsertMark}})"
 stmt, err := m.Tx.Prepare(sqlText)
 if err != nil {
 return
@@ -167,7 +167,7 @@ return
 
 //更新数据 支持事务
 func (m *{{.StructTableName}}Model) UpdateTx(value *{{.StructTableName}}) (b bool, err error) {
-sqlText := "UPDATE " + {{.UpperTableName}} + " SET {{.UpdateFieldList}} WHERE {{.PrimaryKey}} = ?"
+const sqlText = "UPDATE " + {{.UpperTableName}} + " SET {{.UpdateFieldList}} WHERE {{.PrimaryKey}} = ?"
 params := make([]interface{}, 0)
 {{range $i, $val := .UpdateListField}}params = append(params, {{$val}})
 {{end}}
@@ -176,14 +176,14 @@ return m.SaveTx(sqlText, params...)
 
 //查询多行数据
 func (m *{{.StructTableName}}Model) Find(value *{{.StructTableName}}) (resList []*{{.StructTableName}}, err error) {
-sqlText := "SELECT" + m.getColumns() + "FROM " + {{.UpperTableName}}
+const sqlText = "SELECT" + m.getColumns() + "FROM " + {{.UpperTableName}}
 resList, err = m.getRows(sqlText)
 return
 }
 
 //In 查询多行数据
 func (m *{{.StructTableName}}Model) FindIn(ids []int) (resList []*{{.StructTableName}}, err error) {
-sqlText := "SELECT" + m.getColumns() + "FROM " + {{.UpperTableName}} + " WHERE id in (" + strings.TrimRight(strings.Repeat("?,", len(ids)), ",") + ")"
+const sqlText = "SELECT" + m.getColumns() + "FROM " + {{.UpperTableName}} + " WHERE id in (" + strings.TrimRight(strings.Repeat("?,", len(ids)), ",") + ")"
 param := make([]interface{}, 0)
 for _, id := range ids {
 param = append(param, id)
@@ -194,7 +194,7 @@ return
 
 //获取单行数据
 func (m *{{.StructTableName}}Model) First(value *{{.StructTableName}}) (result *{{.StructTableName}}, err error) {
-sqlText := "SELECT" + m.getColumns() + "FROM " + {{.UpperTableName}} + " LIMIT 1"
+const sqlText = "SELECT" + m.getColumns() + "FROM " + {{.UpperTableName}} + " LIMIT 1"
 result, err = m.getRow(sqlText)
 if err != nil {
 return
@@ -204,7 +204,7 @@ return
 
 //获取单行数据
 func (m *{{.StructTableName}}Model) Last(value *{{.StructTableName}}) (result *{{.StructTableName}}, err error) {
-sqlText := "SELECT" + m.getColumns() + "FROM " + {{.UpperTableName}} + " ORDER BY ID DESC LIMIT 1"
+const sqlText = "SELECT" + m.getColumns() + "FROM " + {{.UpperTableName}} + " ORDER BY ID DESC LIMIT 1"
 result, err = m.getRow(sqlText)
 if err != nil {
 return
@@ -214,7 +214,7 @@ return
 
 //获取行数
 func (m *{{.StructTableName}}Model) Count() (count int64, err error) {
-sqlText := "SELECT COUNT(*) FROM " + {{.UpperTableName}}
+const sqlText = "SELECT COUNT(*) FROM " + {{.UpperTableName}}
 query := m.DB.QueryRow(sqlText)
 if err != nil {
 return
