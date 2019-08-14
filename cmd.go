@@ -2,6 +2,7 @@ package gomygen
 
 import (
 	"bufio"
+	"errors"
 	"fmt"
 	"os"
 	"strconv"
@@ -9,7 +10,6 @@ import (
 
 	"github.com/ThreeKing2018/gocolor"
 	"github.com/ThreeKing2018/k3log"
-	"github.com/pkg/errors"
 	"github.com/urfave/cli"
 	"github.com/yezihack/colorlog"
 	"runtime/debug"
