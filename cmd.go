@@ -9,34 +9,38 @@ import (
 
 	"github.com/ThreeKing2018/gocolor"
 	"github.com/ThreeKing2018/k3log"
+	"github.com/pkg/errors"
 	"github.com/urfave/cli"
 	"github.com/yezihack/colorlog"
 	"runtime/debug"
 )
 
 const (
-	Version   = "v1.1.3"
-	UpdatedAt = "  2019.07.31"
+	Version   = "v1.1.4"
+	UpdatedAt = "  2019.08.14"
+	LogFile   = "/tmp/gomygen.log"
 )
 
 //命令行实现
 func Cmd() {
-	logfile := GetExeRootDir() + "gomygen.log"
-	k3log.NewProduction("go-mygen", logfile)
+	k3log.NewProduction("go-mygen", LogFile)
 	defer func() {
 		if err := recover(); err != nil {
 			k3log.Error("err", err, "stack", string(debug.Stack()))
-			colorlog.Error("查看错误日志:"+logfile+", %v", err)
+			colorlog.Error("查看错误日志:"+LogFile+", %v", err)
 		}
 	}()
-
+	err1 := WriteFile(LogFile, "")
+	if err1 != nil {
+		os.Exit(0)
+	}
 	app := cli.NewApp()
-	app.Name = "gomygen"                     //项目名称
-	app.Author = "百里 github.com/yezihack"    //作者名称
-	app.Version = Version + UpdatedAt        //版本号
-	app.Copyright = "@Copyright 2019"        //版权保护
-	app.Usage = "是生成数据库表结构和markdown表结构的命令工具" //说明
-	cli.HelpFlag = cli.BoolFlag{             //修改系统默认
+	app.Name = "go-mygen"               //项目名称
+	app.Author = "百里"                   //作者名称
+	app.Version = Version + UpdatedAt   //版本号
+	app.Copyright = "@Copyright 2019"   //版权保护
+	app.Usage = "快速生成操作MYSQL的CURD和文档等等" //说明
+	cli.HelpFlag = cli.BoolFlag{        //修改系统默认
 		Name:  "help",
 		Usage: "显示命令帮助",
 	}
@@ -189,7 +193,7 @@ func Commands(DbConn DBConfig) error {
 			if !strings.EqualFold(string(input), "") {
 				lg.DB.DoTables = filterTables(string(input), lg.DB.Tables)
 			}
-		case "7", "h", "": //显示帮助
+		case "7", "h", "", "ll": //显示帮助
 			ShowCmdHelp()
 		case "8", "c", "clear": //清屏
 			Clean()
@@ -199,7 +203,7 @@ func Commands(DbConn DBConfig) error {
 			colorlog.Warn("命令输入有错误!!!")
 		}
 		if err != nil {
-			return err
+			colorlog.Error("出错了, 参考:", errors.Cause(err))
 		}
 	}
 	return nil
