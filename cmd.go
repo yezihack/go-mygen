@@ -2,7 +2,6 @@ package gomygen
 
 import (
 	"bufio"
-	"errors"
 	"fmt"
 	"os"
 	"strconv"
@@ -203,7 +202,7 @@ func Commands(DbConn DBConfig) error {
 			colorlog.Warn("命令输入有错误!!!")
 		}
 		if err != nil {
-			colorlog.Error("出错了, 参考:", errors.Cause(err))
+			colorlog.Error("出错了, 参考:", error.Error(err))
 		}
 	}
 	return nil
