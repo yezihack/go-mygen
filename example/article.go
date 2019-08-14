@@ -119,7 +119,7 @@ func (m *ArticleModel) Save(sqlTxt string, value ...interface{}) (b bool, err er
 
 //新增信息
 func (m *ArticleModel) Create(value *Article) (lastId int64, err error) {
-	sqlText := "INSERT INTO " + TABLE_ARTICLE + " (title,content,read_count,state) VALUES (?,?,?,?)"
+	const sqlText = "INSERT INTO " + TABLE_ARTICLE + " (title,content,read_count,state) VALUES (?,?,?,?)"
 	stmt, err := m.DB.Prepare(sqlText)
 	if err != nil {
 		return
