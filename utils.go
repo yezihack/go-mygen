@@ -53,7 +53,7 @@ func WriteAppendFile(path, data string) (err error) {
 //显示帮助
 func ShowCmdHelp() {
 	for _, row := range CmdHelp {
-		s := fmt.Sprintf("%s %s\n", gocolor.SYellow("序号:"+row.No), gocolor.SBlue(row.Msg))
+		s := fmt.Sprintf("%s %s\n", gocolor.SYellow("序号:"+row.No), gocolor.SGreen(row.Msg))
 		fmt.Print(s)
 	}
 }

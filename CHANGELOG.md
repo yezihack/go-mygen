@@ -1,5 +1,8 @@
 # CHANGE LOG
 
+## 2019.08.19
+- 格式化代码使用goroutine
+
 ## 2019.07.31
 - 添加操作where in 支持
 - 添加支持事务的操作,update, insert
