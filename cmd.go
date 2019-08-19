@@ -15,8 +15,8 @@ import (
 )
 
 const (
-	Version   = "v1.1.4"
-	UpdatedAt = "  2019.08.14"
+	Version   = "v1.1.5"
+	UpdatedAt = "  2019.08.19"
 	LogFile   = "/tmp/gomygen.log"
 )
 
@@ -175,10 +175,10 @@ func Commands(DbConn DBConfig) error {
 				formatList = setFormat()
 			}
 			err = lg.CreateEntity(formatList)
-			Gofmt(GetExeRootDir())
+			go Gofmt(GetExeRootDir())
 		case "3": //生成CURD增删改查
 			err = lg.CreateCURD(formatList)
-			Gofmt(GetExeRootDir())
+			go Gofmt(GetExeRootDir())
 		case "4": //设置结构体的映射名称,支持多个,以逗号隔开
 			formatList = setFormat()
 		case "5": //列出所有的表名
