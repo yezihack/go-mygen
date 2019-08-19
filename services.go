@@ -85,9 +85,5 @@ func (m *ModelS) GetTableDesc(tableName string) (reply []*TableDesc, err error) 
 		})
 		i++
 	}
-	//对切片进行排序
-	//sort.Slice(reply, func(i, j int) bool {
-	//	return reply[i].ColumnName < reply[j].ColumnName
-	//})
 	return
 }
