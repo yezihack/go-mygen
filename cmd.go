@@ -23,16 +23,14 @@ const (
 //命令行实现
 func Cmd() {
 	k3log.NewProduction("go-mygen", LogFile)
+	defer k3log.Sync()
 	defer func() {
 		if err := recover(); err != nil {
 			k3log.Error("err", err, "stack", string(debug.Stack()))
 			colorlog.Error("查看错误日志:"+LogFile+", %v", err)
 		}
 	}()
-	err1 := WriteFile(LogFile, "")
-	if err1 != nil {
-		os.Exit(0)
-	}
+	new(Tools).WriteFile(LogFile, "")
 	app := cli.NewApp()
 	app.Name = "go-mygen"               //项目名称
 	app.Author = "百里"                   //作者名称
