@@ -50,11 +50,11 @@ go-mygen -h localhost -P 3306 -u root -d dbname
 go-mygen -d dbname
 ```
 
-![](pic/gen.jpg)
+![](assets/demos/gen.jpg)
 
 
 ## 生成的样例
-![](pic/gen2.jpg)
-![](pic/gen3.jpg)
-![](pic/gen4.jpg)
+![](assets/demos/gen2.jpg)
+![](assets/demos/gen3.jpg)
+![](assets/demos/gen4.jpg)
 

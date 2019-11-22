@@ -1,6 +1,11 @@
-package gomygen
+package main
 
 import "os"
+
+const (
+	Version   = "v3.0.0"
+	UpdatedAt = " 2019.11.22"
+)
 
 const (
 	DS           = string(os.PathSeparator) //通用/
@@ -18,7 +23,7 @@ const (
 )
 
 const (
-	Unknow = iota
+	Unknown = iota
 	Darwin
 	Window
 	Linux
@@ -44,9 +49,11 @@ var CmdHelp = []CmdEntity{
 	{"2", "生成表结构实体"},
 	{"3", "生成CURD增删改查"},
 	{"4", "设置结构体映射名称"},
+	{"5", "查找或设置表名"},
+	{"6", "查找或设置库名-开发中.."},
 	{"7, c, clear", "清屏"},
 	{"8, h", "查看帮助"},
-	{"9, e, exit", "退出"},
+	{"9, e, q, exit", "退出"},
 }
 
 //mysql类型 <=> golang类型
@@ -104,3 +111,4 @@ var MysqlTypeToGoNullType = map[string]string{
 	"longblob":   "sql.NullString",
 	"longtext":   "sql.NullString",
 }
+
