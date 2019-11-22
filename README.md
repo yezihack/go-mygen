@@ -10,7 +10,7 @@
 go install github.com/yezihack/go-mygen
 ```
 ## 下载
-> release
+> [release](https://github.com/yezihack/go-mygen/releases/tag/3.0.0beta)
 
 ## 功能介绍
 - 1.生成数据库表的markdown文档
