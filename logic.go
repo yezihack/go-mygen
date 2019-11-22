@@ -25,13 +25,13 @@ func (l *Logic) CreateEntity(formatList []string) (err error) {
 	path := l.Path + "db_entity/"
 	if l.T.IsDirOrFileExist(path) == false {
 		if !l.T.CreateDir(path) {
-			return errors.New("创建目录失败, path>>" + path)
+			return errors.New("Build directory failed, path>>" + path)
 		}
 	}
 	path += GOFILE_ENTITY
 	if l.T.IsDirOrFileExist(path) == false {
 		if !l.T.CreateFile(path) {
-			err = errors.New("创建文件失败, path>>" + path)
+			err = errors.New("Create file fails, path>>" + path)
 			return
 		}
 	}
@@ -113,7 +113,7 @@ func (l *Logic) CreateMarkdown() (err error) {
 	//将表结构写入文件
 	i := 1
 	for _, table := range l.DB.DoTables {
-		fmt.Println("正在处理表:" + table.Name)
+		fmt.Println("Doing table:" + table.Name)
 		data.TableList = append(data.TableList, &TableList{
 			Index:          i,
 			UpperTableName: l.T.ToUpper(table.Name),
@@ -124,7 +124,7 @@ func (l *Logic) CreateMarkdown() (err error) {
 		desc := new(MarkDownDataChild)
 		desc.List, err = l.DB.GetTableDesc(table.Name)
 		if err != nil {
-			log.Fatal("markdown", err)
+			log.Fatal("markdown>>", err)
 			continue
 		}
 		desc.Index = i
@@ -242,7 +242,7 @@ import (
 	TableData.TableCommentNull = AddToComment(req.TableComment, " Null Entity")
 	//判断表结构是否加载过
 	if l.T.CheckFileContainsChar(req.Path, "type "+TableData.Table+" struct") == true {
-		log.Println(req.Path + "已经存在,请删除后再重新生成")
+		log.Println(req.Path + "It already exists. Please delete it and regenerate it")
 		return
 	}
 	//加载模板文件
@@ -403,7 +403,7 @@ func (l *Logic) GenerateTableList(list []*TableList) (err error) {
 	}
 	checkStr = "const"
 	if l.T.CheckFileContainsChar(file, checkStr) {
-		log.Println(file + "已经存在,请删除后再重新生成")
+		log.Println(file + "It already exists. Please delete it and regenerate it")
 		return
 	}
 	tplByte, err := Asset(TPL_TABLES)

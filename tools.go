@@ -101,7 +101,7 @@ func (t *Tools) CreateDir(path string) bool {
 //生成目录,不存在则创建,存在则加/
 func (t *Tools) GenerateDir(path string) (string, error) {
 	if len(path) == 0 {
-		return "", errors.New("目录为空")
+		return "", errors.New("directory is null")
 	}
 	last := path[len(path)-1:]
 	if !strings.EqualFold(last, string(os.PathSeparator)) {
@@ -111,7 +111,7 @@ func (t *Tools) GenerateDir(path string) (string, error) {
 		if t.CreateDir(path) {
 			return path, nil
 		}
-		return "", errors.New(path + "创建失败或权限不足")
+		return "", errors.New(path + "Failed to create or insufficient permissions")
 	}
 	return path, nil
 }
@@ -202,7 +202,7 @@ func WriteFile(path, data string) (err error) {
 		fmt.Printf("Ganerate success: %s\n", path)
 		return nil
 	} else {
-		return errors.New(fmt.Sprintf("创建文件:%s失败", path))
+		return errors.New(fmt.Sprintf("Create file failed>>%s", path))
 	}
 }
 

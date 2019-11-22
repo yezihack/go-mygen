@@ -3,7 +3,7 @@ package main
 import "os"
 
 const (
-	Version   = "v3.0.0"
+	Version   = "v3.1.0"
 	UpdatedAt = " 2019.11.22"
 )
 
@@ -45,15 +45,15 @@ const (
 
 //帮助文档
 var CmdHelp = []CmdEntity{
-	{"0", "设置生成目录"},
-	{"1", "生成表markdown文档"},
-	{"2", "生成表结构实体"},
-	{"3", "生成CURD增删改查"},
-	{"4", "设置结构体映射名称"},
-	{"5", "查找或设置表名"},
-	{"7, c, clear", "清屏"},
-	{"8, h, help", "查看帮助"},
-	{"9, q, quit", "退出"},
+	{"0", "Set build directory"},
+	{"1", "Generate the table markdown document"},
+	{"2", "Generate table structure entities"},
+	{"3", "Generate CURD insert, delete, update and select"},
+	{"4", "Sets the struct mapping name"},
+	{"5", "Find or set the table name"},
+	{"7, c, clear", "Clear the screen"},
+	{"8, h, help", "Show help list"},
+	{"9, q, quit", "Quit"},
 }
 
 //mysql类型 <=> golang类型
