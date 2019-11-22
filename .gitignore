@@ -1,3 +1,5 @@
 output/*
 .DS_Store
 .idea/*
+go-mygen.exe
+go-mygen

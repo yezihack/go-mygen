@@ -26,60 +26,37 @@ func start() {
 	DbConn.MaxIdleConn = 5
 	DbConn.MaxOpenConn = 10
 	app.Action = func(c *cli.Context) error {
-		if c.NumFlags() == 0 {
-			cli.ShowAppHelp(c)
-			return nil
-		}
-		//数据库地址
-		host := c.String("h")
-		fmt.Println("host", host)
-		DbConn.Host = host
-		//端口号
-		port := c.Int("P")
-		if port == 0 {
-			port = 3306
-		}
-		DbConn.Port = port
-		//数据库用户名称
-		user := c.String("u")
-		if user == "" {
-			user = "root"
-		}
-		DbConn.Name = user
-		//数据库密码
-		pass := c.String("p")
-		if pass == "" {
-			fmt.Print("输入密码>")
-			line, _, err := bufio.NewReader(os.Stdin).ReadLine()
-			fmt.Println(string(line))
-			if err == nil {
-				pass = string(line)
-				//清屏
-				Clean()
+		DbConn.Host = c.String("h")//数据库地址
+		DbConn.Name =  c.String("u")//数据库用户名称
+		DbConn.Port = c.Int("P")	//端口号
+		DbConn.Pass = c.String("p")//密码
+		DbConn.Charset =  c.String("c")//编码格式
+		if c.NArg() > 0 {
+			dbName := c.String("d")//数据库名称
+			if dbName == "" {
+				return cli.NewExitError("数据库名称为空, 请使用 -d dbname", 9)
 			}
-		}
-		DbConn.Pass = pass
-		//编码格式
-		charset := c.String("c")
-		if charset == "" {
-			charset = "utf8mb4"
-		}
-		DbConn.Charset = charset
-		//数据库名称
-		dbName := c.String("d")
-		if dbName == "" {
-			return cli.NewExitError("数据库名称为空, 请使用 -d dbname", 9)
-		}
-		DbConn.DBName = dbName
-		err := Commands()
-		if err != nil {
-			return cli.NewExitError(err, 9)
+			DbConn.DBName = dbName
+			if DbConn.Pass == "" {
+				fmt.Print("输入密码>")
+				line, _, err := bufio.NewReader(os.Stdin).ReadLine()
+				fmt.Println(string(line))
+				if err == nil {
+					DbConn.Pass = string(line)
+					Clean()//清屏
+				}
+			}
+			if err := Commands(); err != nil {
+				return cli.NewExitError(err, 1)
+			}
+		} else {
+			fmt.Println(cli.VersionFlag)
+			fmt.Println(cli.HelpFlag)
 		}
 		return nil
 	}
-	var err error
-	err = app.Run(os.Args)
-	if err != nil {
+	// cli start run
+	if err := app.Run(os.Args); err != nil {
 		log.Fatal(err)
 	}
 }
@@ -93,8 +70,9 @@ func close() {
 
 func usage() {
 	app.Name = "go-mygen" //项目名称
-	app.Author = "百里"
-	app.Email = "sgfoot2020@gmail.com"
+	app.Authors = []*cli.Author{
+		{"百里", "sgfoot2020@gmail.com"},
+	}
 	app.Version = Version               //版本号
 	app.Copyright = "@Copyright 2019"   //版权保护
 	app.Usage = "快速生成操作MYSQL的CURD和文档等等" //说明

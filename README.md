@@ -3,7 +3,7 @@
 ![](https://img.shields.io/github/stars/yezihack/go-mygen)
 ![](https://img.shields.io/github/issues/yezihack/go-mygen)
 ![](https://img.shields.io/github/forks/yezihack/go-mygen)
-![](https://img.shields.io/badge/download-4M-green)
+![](https://img.shields.io/badge/download-4M-green?style=plastic&logo=appveyor)
 ![](https://img.shields.io/github/license/yezihack/go-mygen)
 
 # go-mygen
