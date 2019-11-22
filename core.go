@@ -34,11 +34,11 @@ func start() {
 		if c.NArg() > 0 {
 			dbName := c.String("d")//数据库名称
 			if dbName == "" {
-				return cli.NewExitError("数据库名称为空, 请使用 -d dbname", 9)
+				return cli.NewExitError("database is null, please use -d params", 9)
 			}
 			DbConn.DBName = dbName
 			if DbConn.Pass == "" {
-				fmt.Print("输入密码>")
+				fmt.Print("input password>")
 				line, _, err := bufio.NewReader(os.Stdin).ReadLine()
 				fmt.Println(string(line))
 				if err == nil {
@@ -71,26 +71,26 @@ func close() {
 func usage() {
 	app.Name = "go-mygen" //项目名称
 	app.Authors = []*cli.Author{
-		{"百里", "sgfoot2020@gmail.com"},
+		{"sgfoot", "sgfoot2020@gmail.com"},
 	}
 	app.Version = Version               //版本号
 	app.Copyright = "@Copyright 2019"   //版权保护
-	app.Usage = "快速生成操作MYSQL的CURD和文档等等" //说明
+	app.Usage = "Quickly generate CURD and documentation for operating MYSQL.etc" //说明
 	cli.HelpFlag = &cli.BoolFlag{       //修改系统默认
 		Name:  "help, h",
-		Usage: "显示命令帮助",
+		Usage: "show commands help",
 	}
 	cli.VersionFlag = &cli.BoolFlag{ //修改系统默认
 		Name:  "version, v",
-		Usage: "显示版本号",
+		Usage: "show version",
 	}
 	app.Flags = []cli.Flag{
-		&cli.StringFlag{Name: "h", Value: "localhost", Usage: "数据库地址"},
-		&cli.IntFlag{Name: "P", Value: 3306, Usage: "端口号"},
-		&cli.StringFlag{Name: "u", Value: "root", Usage: "数据库用户名称"},
-		&cli.StringFlag{Name: "p", Value: "root", Usage: "数据库密码"},
-		&cli.StringFlag{Name: "c", Value: "utf8mb4", Usage: "编码格式"},
-		&cli.StringFlag{Name: "d", Usage: "数据库名称"},
+		&cli.StringFlag{Name: "h", Value: "localhost", Usage: "Database address"},
+		&cli.IntFlag{Name: "P", Value: 3306, Usage: "port number"},
+		&cli.StringFlag{Name: "u", Value: "root", Usage: "database username"},
+		&cli.StringFlag{Name: "p", Value: "root", Usage: "database password"},
+		&cli.StringFlag{Name: "c", Value: "utf8mb4", Usage: "database format"},
+		&cli.StringFlag{Name: "d", Usage: "database name"},
 	}
 }
 
@@ -99,9 +99,9 @@ func Commands() error {
 	var err error
 	Conn, err = InitDB(DbConn)
 	if Conn == nil || err != nil {
-		return errors.New("数据库连接失败:" + err.Error())
+		return errors.New("database connect failed>>" + err.Error())
 	}
-	log.Println("数据库连接成功")
+	log.Println("database connected success")
 	//初使工作
 	DbModel := NewDB()
 	DbModel.Using(Conn)

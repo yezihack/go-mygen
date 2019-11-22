@@ -41,7 +41,7 @@ func (c *commands) Handlers() map[string]func(args []string) int {
 
 //生成数据库表的markdown文档
 func (c *commands) MarkDown(args []string) int {
-	fmt.Println("正在准备生成markdown文档...")
+	fmt.Println("Preparing to generate the markdown document...")
 	//检查目录是否存在
 	CreateDir(c.l.Path)
 	err := c.l.CreateMarkdown()
@@ -62,9 +62,9 @@ func (c *commands) Help(args []string) int {
 
 //生成golang表对应的结构实体
 func (c *commands) GenerateEntry(args []string) int {
-	fmt.Print("需要设置结构的格式字符串吗?(是:y,否:n)>")
+	fmt.Print("Do you need to set the format of the structure?(Yes|No)>")
 	line, _, _ := bufio.NewReader(os.Stdin).ReadLine()
-	switch string(line) {
+	switch strings.ToLower(string(line)) {
 	case "yes", "y":
 		formats = c._setFormat()
 	}
@@ -94,15 +94,15 @@ func (c *commands) GenerateCURD(args []string) int {
 
 //自定义生成目录
 func (c *commands) CustomDir(args []string) int {
-	fmt.Print("请指定生成目录>")
+	fmt.Print("Please set the build directory>")
 	line, _, _ := bufio.NewReader(os.Stdin).ReadLine()
 	if string(line) != "" {
 		path, err := c.l.T.GenerateDir(string(line))
 		if err == nil {
 			c.l.Path = path
-			fmt.Println("目录设置成功:", path)
+			fmt.Println("Directory success:", path)
 		} else {
-			log.Println("设置目录失败>>", err)
+			log.Println("Set directory failed>>", err)
 		}
 	}
 	return 0
@@ -111,11 +111,11 @@ func (c *commands) CustomDir(args []string) int {
 //显示所有的表名
 func (c *commands) ShowTableList(args []string) int {
 	if len(c.l.DB.Tables) == 0 {
-		fmt.Println("呜呜,一个表也没有!!!")
+		fmt.Println("Whoops, Nothing at all!!!")
 		return 0
 	}
 	c._showTableList(c.l.DB.Tables)
-	fmt.Print("选择你需要的表序列号?(默认全部,逗号隔开,all代表全部)>")
+	fmt.Print("Select the table sequence number you need?(By default all, comma separated,all represents all)>")
 	line, _, _ := bufio.NewReader(os.Stdin).ReadLine()
 	if !strings.EqualFold(string(line), "") {
 		c.l.DB.DoTables = c._filterTables(string(line), c.l.DB.Tables)
@@ -162,12 +162,12 @@ func (c *commands) _showTableList(NameAndComment []TableNameAndComment) {
 		}
 		fmt.Println(info)
 	}
-	fmt.Println("共" + strconv.Itoa(len(NameAndComment)) + "张表\n")
+	fmt.Println("Total " + strconv.Itoa(len(NameAndComment)) + " tables\n")
 }
 
 //set struct format
 func (c *commands) _setFormat() []string {
-	fmt.Print("设置结构体的映射名称,以逗号隔开(例:json,gorm)>")
+	fmt.Print("Set the mapping name of the structure, separated by a comma (example :json,gorm)>")
 	input, _, _ := bufio.NewReader(os.Stdin).ReadLine()
 	if string(input) != "" {
 		formatList := CheckCharDoSpecialArr(string(input), ',', `[\w\,\-]+`)
@@ -176,6 +176,6 @@ func (c *commands) _setFormat() []string {
 			return formatList
 		}
 	}
-	fmt.Println("设置失败")
+	fmt.Println("Set failed")
 	return nil
 }
