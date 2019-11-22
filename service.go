@@ -5,7 +5,6 @@ import (
 	"strings"
 )
 
-
 //将表名赋值给结构对象, 供其它方法使用
 func (m *ModelS) GetTableNameAndComment() (err error) {
 	//读取所有表列表
@@ -88,4 +87,3 @@ func (m *ModelS) GetTableDesc(tableName string) (reply []*TableDesc, err error) 
 	}
 	return
 }
-

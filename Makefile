@@ -8,25 +8,27 @@ fmt:
 	gofmt -l -w ./
 
 build:
-	go build -v -o go-mygen/output/go-mygen ./go-mygen/
+	go build -v -o go-mygen .
 
 run:
-	go-mygen/output/go-mygen
+	./go-mygen
 
 vendor:
 	govendor add +e
 	govendor remove +u
 
 bindata:
-	go-bindata -pkg widgets -o ./src/widgets/bindata.go assets/tpl
+	go-bindata -pkg main -o ./bindata.go assets/tpl
+
 clean:
-	rm -rf go-mygen/output/go-mygen
-	rm -rf go-mygen/output/markdown.md
-	rm -rf go-mygen/output/db_entity/
-	rm -rf go-mygen/output/db_models/
+	rm -rf go-mygen
+	rm -rf output/markdown*
+	rm -rf output/db_entity/
+	rm -rf output/db_models/
 
 con:
-	go-mygen/output/go-mygen -h localhost -P 3308 -u root -d kindled
+	./go-mygen -h localhost -P 3306 -u root -d mysql
+	#./go-mygen -h 192.168.31.142 -P 3306 -u root -d sgfoot -p root
 
 bench:
 	go test -test.bench=".*"  -benchmem

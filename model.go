@@ -3,6 +3,7 @@ package main
 import (
 	"database/sql"
 	"fmt"
+	_ "github.com/go-sql-driver/mysql"
 	"strings"
 )
 
@@ -36,7 +37,6 @@ func InitDB(cfg DBConfig) (*sql.DB, error) {
 	return connection, nil
 }
 
-
 //实例一个数据库对象
 func NewDB() *ModelS {
 	return new(ModelS)
@@ -44,6 +44,7 @@ func NewDB() *ModelS {
 func (m *ModelS) Using(db *sql.DB) {
 	m.DB = db
 }
+
 //查询数据库
 func (m *ModelS) Find(sql string, args ...interface{}) ([]map[string]interface{}, error) {
 	stmt, err := m.DB.Prepare(sql)
@@ -186,6 +187,7 @@ func (m *ModelS) Pluck(sql string, name string, args ...interface{}) ([]interfac
 	}
 	return result, nil
 }
+
 //更新
 func (m *ModelS) Update(sql string, args ...interface{}) (int64, error) {
 	stmt, err := m.DB.Prepare(sql)
@@ -239,4 +241,3 @@ func (m *ModelS) Insert(sql string, args ...interface{}) (int64, error) {
 	}
 	return lastId, nil
 }
-

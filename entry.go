@@ -1,7 +1,8 @@
 package main
+
 import (
-"database/sql"
-"sync"
+	"database/sql"
+	"sync"
 )
 
 type CmdEntity struct {
@@ -135,4 +136,3 @@ type TableNameAndComment struct {
 	Name    string
 	Comment string
 }
-

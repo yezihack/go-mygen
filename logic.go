@@ -25,13 +25,13 @@ func (l *Logic) CreateEntity(formatList []string) (err error) {
 	path := l.Path + "db_entity/"
 	if l.T.IsDirOrFileExist(path) == false {
 		if !l.T.CreateDir(path) {
-			return errors.New("创建目录失败, path: " + path)
+			return errors.New("创建目录失败, path>>" + path)
 		}
 	}
 	path += GOFILE_ENTITY
 	if l.T.IsDirOrFileExist(path) == false {
 		if !l.T.CreateFile(path) {
-			err = errors.New("创建文件失败, path: " + path)
+			err = errors.New("创建文件失败, path>>" + path)
 			return
 		}
 	}
@@ -41,7 +41,7 @@ func (l *Logic) CreateEntity(formatList []string) (err error) {
 		//查询表结构信息
 		tableDesc, err := l.DB.GetTableDesc(table.Name)
 		if err != nil {
-			log.Fatal("CreateEntityErr:", err)
+			log.Fatal("CreateEntityErr>>", err)
 			continue
 		}
 		req := new(EntityReq)
@@ -55,7 +55,7 @@ func (l *Logic) CreateEntity(formatList []string) (err error) {
 		//生成基础信息
 		err = l.GenerateDBEntity(req)
 		if err != nil {
-			log.Fatal("CreateEntityErr:", err)
+			log.Fatal("CreateEntityErr>>", err)
 			continue
 		}
 	}
@@ -103,7 +103,7 @@ func (l *Logic) CreateCURD(formatList []string) (err error) {
 	if err != nil {
 		return err
 	}
-	fmt.Println("生成CRUD文件 完成")
+	fmt.Println("`CURD` files created finish!")
 	return nil
 }
 
@@ -226,7 +226,7 @@ func (l *Logic) GenerateDBEntity(req *EntityReq) (err error) {
 package %s
 import (
 	"database/sql"
-	"github.com/go-sql-driver/mysql"
+	_ "github.com/go-sql-driver/mysql"
 )
 `, req.Pkg)
 	//判断import是否加载过
@@ -268,7 +268,8 @@ import (
 	content := bytes.NewBuffer([]byte{})
 	tpl.Execute(content, TableData)
 	//表信息写入文件
-	err = WriteAppendFile(req.Path, content.String())
+	con := strings.Replace(content.String(), "&#34;", `"`, -1)
+	err = WriteAppendFile(req.Path, con)
 	if err != nil {
 		return
 	}
@@ -436,6 +437,7 @@ func (l *Logic) GenerateSQL(info *SqlInfo, tableComment string) (err error) {
 package %s
 import(
 	"database/sql"
+	_ "github.com/go-sql-driver/mysql"
 )
 `, tableComment, PkgDbModels)
 	//判断package是否加载过
@@ -490,4 +492,3 @@ func (l *Logic) GenerateMarkdown(data *MarkDownData) (err error) {
 	}
 	return
 }
-

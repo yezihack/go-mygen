@@ -10,19 +10,18 @@ import (
 	"os"
 	"strings"
 )
+
 var (
-	Conn *sql.DB //连接对象
-	stop chan bool //关闭信号
-	app *cli.App //cli对象
-	DbConn DBConfig //db config
-	formats []string //format
+	Conn    *sql.DB   //连接对象
+	stop    chan bool //关闭信号
+	app     *cli.App  //cli对象
+	DbConn  DBConfig  //db config
+	formats []string  //format
 )
 
 //命令行实现
-func Start() {
-	app = cli.NewApp()
-	stop = make(chan bool)
-	Usage()
+func start() {
+	usage()
 	close()
 	DbConn.MaxIdleConn = 5
 	DbConn.MaxOpenConn = 10
@@ -33,9 +32,7 @@ func Start() {
 		}
 		//数据库地址
 		host := c.String("h")
-		if strings.EqualFold(host, "") {
-			host = "localhost"
-		}
+		fmt.Println("host", host)
 		DbConn.Host = host
 		//端口号
 		port := c.Int("P")
@@ -94,13 +91,13 @@ func close() {
 	}()
 }
 
-func Usage() {
-	app.Name = "go-mygen"               //项目名称
-	app.Authors = []*cli.Author{{Name:"百里", Email:"sgfoot2020@gmail.com"}}                  //作者名称
-	app.Version = Version   //版本号
-	app.Copyright = "@Copyright 2019"   //版权保护
-	app.Usage = "快速生成操作MYSQL的CURD和文档等等" //说明
-	cli.HelpFlag = &cli.BoolFlag{        //修改系统默认
+func usage() {
+	app.Name = "go-mygen"                                                    //项目名称
+	app.Authors = []*cli.Author{{Name: "百里", Email: "sgfoot2020@gmail.com"}} //作者名称
+	app.Version = Version                                                    //版本号
+	app.Copyright = "@Copyright 2019"                                        //版权保护
+	app.Usage = "快速生成操作MYSQL的CURD和文档等等"                                      //说明
+	cli.HelpFlag = &cli.BoolFlag{                                            //修改系统默认
 		Name:  "help, h",
 		Usage: "显示命令帮助",
 	}
@@ -112,11 +109,12 @@ func Usage() {
 		&cli.StringFlag{Name: "h", Value: "localhost", Usage: "数据库地址"},
 		&cli.IntFlag{Name: "P", Value: 3306, Usage: "端口号"},
 		&cli.StringFlag{Name: "u", Value: "root", Usage: "数据库用户名称"},
-		&cli.StringFlag{Name: "p", Value: "", Usage: "数据库密码"},
+		&cli.StringFlag{Name: "p", Value: "root", Usage: "数据库密码"},
 		&cli.StringFlag{Name: "c", Value: "utf8mb4", Usage: "编码格式"},
-		&cli.StringFlag{Name: "d", Value: "", Usage: "*数据库名称"},
+		&cli.StringFlag{Name: "d", Usage: "数据库名称"},
 	}
 }
+
 //实现命令功能
 func Commands() error {
 	var err error
@@ -125,25 +123,33 @@ func Commands() error {
 		return errors.New("数据库连接失败:" + err.Error())
 	}
 	log.Println("数据库连接成功")
-	masterDB := NewDB()
-	masterDB.Using(Conn)
-	masterDB.DBName = DbConn.DBName
-	lg := Logic{
-		DB:   masterDB,
-		Path: GetExeRootDir(), //默认当前命令所在目录
+	//初使工作
+	DbModel := NewDB()
+	DbModel.Using(Conn)
+	DbModel.DBName = DbConn.DBName
+
+	logic := &Logic{
+		DB:   DbModel,
+		Path: GetExeRootDir() + DefaultSavePath + DS, //默认当前命令所在目录
 	}
-	err = lg.DB.GetTableNameAndComment()
+	err = logic.DB.GetTableNameAndComment()
 	if err != nil {
 		return err
 	}
-	ShowCmdHelp() //显示帮助
+
+	commands := NewCommands(logic)
+	commands.Help(nil)
+	handlers := commands.Handlers()
+
 	br := bufio.NewReader(os.Stdin)
-	handlers := GetCommandHandlers()
 	for {
 		fmt.Print("input command>")
 		line, _, _ := br.ReadLine()
+		if len(line) == 0 {
+			continue
+		}
 		tokens := strings.Split(string(line), " ")
-		if handler, ok := handlers[tokens[0]]; ok {
+		if handler, ok := handlers[strings.ToLower(tokens[0])]; ok {
 			ret := handler(tokens)
 			if ret != 0 {
 				break
