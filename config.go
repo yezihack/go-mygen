@@ -3,7 +3,7 @@ package main
 import "os"
 
 const (
-	Version   = "v3.1.0"
+	Version   = "v3.1.0beta"
 	UpdatedAt = " 2019.11.22"
 )
 

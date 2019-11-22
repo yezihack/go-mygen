@@ -8,12 +8,15 @@
 ![](https://img.shields.io/github/license/yezihack/go-mygen)
 
 [英文](README.md)|[中文](README-CN.md)
+
 # go-mygen
 > 代码生成器,避免ORM带来的性能损耗.
 
 ## 版本
 1. 3.0.0beta版本,又一次重构
-1. 兼容linux,win,mac(本人没mac)
+1. 兼容linux,win,mac
+1. 3.0.0beta为中文版本
+1. 3.1.0beta为英文版本
 
 ## 安装
 ```
