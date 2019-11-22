@@ -49,8 +49,15 @@ go-mygen -h localhost -P 3306 -u root -d dbname
 ```
 
 ## 其它
+> 发现错误,欢迎issues
 ```
 xx>  表示输入状态
 xx:  信息提示
 xx>> 错误输出
+```
+
+1. go modules代理.
+```
+export GOPROXY=https://goproxy.io
+export GOPROXY=https://gocenter.io
 ```
