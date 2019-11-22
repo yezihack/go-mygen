@@ -8,18 +8,19 @@ const (
 )
 
 const (
-	DS           = string(os.PathSeparator) //通用/
-	DbNullPrefix = "Null"                   //处理数据为空时结构的前缀定义
-	TablePrefix  = "TABLE_"                 //表前缀
+	DS              = string(os.PathSeparator) //通用/
+	DbNullPrefix    = "Null"                   //处理数据为空时结构的前缀定义
+	TablePrefix     = "TABLE_"                 //表前缀
+	DefaultSavePath = "output"                 //默认生成目录名称
 )
 
 const (
-	TPL_CURD      = "tpl/curd.tpl"      //生成CRUD2模板
-	TPL_STRUCTURE = "tpl/structure.tpl" //结构体模板
-	TPL_ENTITY    = "tpl/entity.tpl"    //结构实体模板
-	TPL_TABLES    = "tpl/tables.tpl"    //表结构模板
-	TPL_MARKDOWN  = "tpl/markdown.tpl"  //markdown模板
-	TPL_EXAMPLE   = "tpl/example.tpl"   //example模板
+	TPL_CURD      = "assets/tpl/curd.tpl"      //生成CRUD2模板
+	TPL_STRUCTURE = "assets/tpl/structure.tpl" //结构体模板
+	TPL_ENTITY    = "assets/tpl/entity.tpl"    //结构实体模板
+	TPL_TABLES    = "assets/tpl/tables.tpl"    //表结构模板
+	TPL_MARKDOWN  = "assets/tpl/markdown.tpl"  //markdown模板
+	TPL_EXAMPLE   = "assets/tpl/example.tpl"   //example模板
 )
 
 const (
@@ -50,10 +51,9 @@ var CmdHelp = []CmdEntity{
 	{"3", "生成CURD增删改查"},
 	{"4", "设置结构体映射名称"},
 	{"5", "查找或设置表名"},
-	{"6", "查找或设置库名-开发中.."},
 	{"7, c, clear", "清屏"},
-	{"8, h", "查看帮助"},
-	{"9, e, q, exit", "退出"},
+	{"8, h, help", "查看帮助"},
+	{"9, q, quit", "退出"},
 }
 
 //mysql类型 <=> golang类型
@@ -111,4 +111,3 @@ var MysqlTypeToGoNullType = map[string]string{
 	"longblob":   "sql.NullString",
 	"longtext":   "sql.NullString",
 }
-

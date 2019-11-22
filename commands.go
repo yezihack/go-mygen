@@ -8,40 +8,60 @@ import (
 	"strconv"
 	"strings"
 )
+
 type commands struct {
-	l Logic
+	l *Logic
 }
 
-func GetCommandHandlers() map[string]func(args []string) int {
-	cmds := new(commands)
+func NewCommands(logic *Logic) *commands {
+	return &commands{
+		l: logic,
+	}
+}
+
+//映射相应的命令
+func (c *commands) Handlers() map[string]func(args []string) int {
 	return map[string]func(args []string) int{
-		"dir":cmds.CustomDir,
-		"d":cmds.CustomDir,
-		"mark":cmds.MarkDown,
-		"m":cmds.MarkDown,
-		"entry":cmds.GenerateEntry,
-		"e":cmds.GenerateEntry,
-		"format":cmds.CustomFormat,
-		"f":cmds.CustomFormat,
-		"curd":cmds.GenerateCURD,
-		"clear":cmds.Clean,
-		"c": cmds.Clean,
-		"quit":cmds.Quit,
-		"q":cmds.Quit,
+		"0":     c.CustomDir,
+		"1":     c.MarkDown,
+		"2":     c.GenerateEntry,
+		"3":     c.GenerateCURD,
+		"4":     c.CustomFormat,
+		"5":     c.ShowTableList,
+		"7":     c.Clean,
+		"clear": c.Clean,
+		"c":     c.Clean,
+		"8":     c.Help,
+		"h":     c.Help,
+		"help":  c.Help,
+		"quit":  c.Quit,
+		"q":     c.Quit,
 	}
 }
 
 //生成数据库表的markdown文档
 func (c *commands) MarkDown(args []string) int {
-	fmt.Println("正在生成markdown文档...")
+	fmt.Println("正在准备生成markdown文档...")
+	//检查目录是否存在
+	CreateDir(c.l.Path)
 	err := c.l.CreateMarkdown()
 	if err != nil {
-		log.Println("MarkDown>", err.Error())
+		log.Println("MarkDown>>", err)
 	}
 	return 0
 }
+
+//help list
+func (c *commands) Help(args []string) int {
+	for _, row := range CmdHelp {
+		s := fmt.Sprintf("%s %s\n", "NO:"+row.No, row.Msg)
+		fmt.Print(s)
+	}
+	return 0
+}
+
 //生成golang表对应的结构实体
-func  (c *commands) GenerateEntry(args []string) int {
+func (c *commands) GenerateEntry(args []string) int {
 	fmt.Print("需要设置结构的格式字符串吗?(是:y,否:n)>")
 	line, _, _ := bufio.NewReader(os.Stdin).ReadLine()
 	switch string(line) {
@@ -50,18 +70,20 @@ func  (c *commands) GenerateEntry(args []string) int {
 	}
 	err := c.l.CreateEntity(formats)
 	if err != nil {
-		log.Println("GenerateEntry>", err.Error())
+		log.Println("GenerateEntry>>", err.Error())
 	}
 	go Gofmt(GetExeRootDir())
 	return 0
 }
+
 //还可以自定义结构体解析实体,如json,gorm,xml
-func  (c *commands) CustomFormat(args []string) int {
+func (c *commands) CustomFormat(args []string) int {
 	formats = c._setFormat()
 	return 0
 }
+
 //生成golang操作mysql的CRUD增删改查语句
-func  (c *commands) GenerateCURD(args []string) int {
+func (c *commands) GenerateCURD(args []string) int {
 	err := c.l.CreateCURD(formats)
 	if err != nil {
 		log.Println("GenerateCURD>>", err.Error())
@@ -69,25 +91,27 @@ func  (c *commands) GenerateCURD(args []string) int {
 	go Gofmt(GetExeRootDir())
 	return 0
 }
+
 //自定义生成目录
-func  (c *commands) CustomDir(args []string) int {
+func (c *commands) CustomDir(args []string) int {
 	fmt.Print("请指定生成目录>")
 	line, _, _ := bufio.NewReader(os.Stdin).ReadLine()
 	if string(line) != "" {
 		path, err := c.l.T.GenerateDir(string(line))
 		if err == nil {
 			c.l.Path = path
-			fmt.Println("目录设置成功>", path)
+			fmt.Println("目录设置成功:", path)
 		} else {
 			log.Println("设置目录失败>>", err)
 		}
 	}
 	return 0
 }
+
 //显示所有的表名
 func (c *commands) ShowTableList(args []string) int {
 	if len(c.l.DB.Tables) == 0 {
-		fmt.Println( "呜呜,一个表也没有!!!")
+		fmt.Println("呜呜,一个表也没有!!!")
 		return 0
 	}
 	c._showTableList(c.l.DB.Tables)
@@ -98,13 +122,16 @@ func (c *commands) ShowTableList(args []string) int {
 	}
 	return 0
 }
+
 //清屏
-func  (c *commands) Clean(args []string) int {
+func (c *commands) Clean(args []string) int {
+	Clean()
 	return 0
 }
+
 //退出
-func  (c *commands) Quit(args []string) int {
-	return 0
+func (c *commands) Quit(args []string) int {
+	return 1
 }
 
 //过滤表名
@@ -140,15 +167,15 @@ func (c *commands) _showTableList(NameAndComment []TableNameAndComment) {
 
 //set struct format
 func (c *commands) _setFormat() []string {
-	fmt.Print("请输入结构体的映射名称,支持多个,以逗号隔开(例:json,gorm)>")
+	fmt.Print("设置结构体的映射名称,以逗号隔开(例:json,gorm)>")
 	input, _, _ := bufio.NewReader(os.Stdin).ReadLine()
 	if string(input) != "" {
 		formatList := CheckCharDoSpecialArr(string(input), ',', `[\w\,\-]+`)
 		if len(formatList) > 0 {
-			fmt.Printf("设置值: %v, 设置成功!!!", formatList)
+			fmt.Printf("Set format success: %v\n", formatList)
 			return formatList
 		}
 	}
-	fmt.Print("设置失败")
+	fmt.Println("设置失败")
 	return nil
 }

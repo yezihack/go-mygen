@@ -182,17 +182,16 @@ func (t *Tools) ToJson(s interface{}) string {
 	return string(js)
 }
 
-
 //创建目录
 func CreateDir(path string) string {
 	t := new(Tools)
 	if t.IsDirOrFileExist(path) == false {
 		b := t.CreateDir(path)
 		if !b {
-			log.Fatalf("创建目录:%s失败", path)
+			log.Fatalf("Directory created failed>>%s\n", path)
 			return ""
 		}
-		fmt.Println("创建目录:%s成功", path)
+		fmt.Printf("Directory created success:%s\n", path)
 	}
 	return path
 }
@@ -200,7 +199,7 @@ func CreateDir(path string) string {
 //写文件
 func WriteFile(path, data string) (err error) {
 	if _, err := new(Tools).WriteFile(path, data); err == nil {
-		fmt.Printf("创建并写文件: %s成功\n", path)
+		fmt.Printf("Ganerate success: %s\n", path)
 		return nil
 	} else {
 		return errors.New(fmt.Sprintf("创建文件:%s失败", path))
@@ -210,18 +209,10 @@ func WriteFile(path, data string) (err error) {
 //追加写文件
 func WriteAppendFile(path, data string) (err error) {
 	if _, err := new(Tools).WriteFileAppend(path, data); err == nil {
-		fmt.Printf("创建并追加写文件: %s成功", path)
+		fmt.Printf("Generate success:%s\n", path)
 		return nil
 	} else {
-		return errors.New(fmt.Sprintf("创建并追加写文件:%s失败", path))
-	}
-}
-
-//显示帮助
-func ShowCmdHelp() {
-	for _, row := range CmdHelp {
-		s := fmt.Sprintf("%s %s\n", "序号:"+row.No, row.Msg)
-		fmt.Print(s)
+		return err
 	}
 }
 
@@ -321,7 +312,7 @@ func FormatField(field string, formats []string) string {
 	for key := range formats {
 		buf.WriteString(fmt.Sprintf(`%s:"%s" `, formats[key], field))
 	}
-	return "`" + strings.TrimRight(string(buf.String()), " ") + "`"
+	return "`" + strings.TrimRight(buf.String(), " ") + "`"
 }
 
 //添加注释 //
@@ -368,4 +359,3 @@ func CheckCharDoSpecialArr(s string, char byte, reg string) []string {
 	s = CheckCharDoSpecial(s, char, reg)
 	return strings.Split(s, string(char))
 }
-
