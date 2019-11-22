@@ -93,9 +93,8 @@ func close() {
 
 func usage() {
 	app.Name = "go-mygen" //项目名称
-	//app.Authors = []*cli.Author{
-	//	&cli.Author{"xx", "xx"},
-	//}
+	app.Author = "百里"
+	app.Email = "sgfoot2020@gmail.com"
 	app.Version = Version               //版本号
 	app.Copyright = "@Copyright 2019"   //版权保护
 	app.Usage = "快速生成操作MYSQL的CURD和文档等等" //说明
@@ -160,5 +159,6 @@ func Commands() error {
 			fmt.Println("Unknown command>>", tokens[0])
 		}
 	}
+	stop <- true
 	return nil
 }

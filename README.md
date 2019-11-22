@@ -1,3 +1,11 @@
+![](https://img.shields.io/badge/go--mygen-tools-orange)
+![](https://img.shields.io/github/v/release/yezihack/go-mygen.svg)
+![](https://img.shields.io/github/stars/yezihack/go-mygen)
+![](https://img.shields.io/github/issues/yezihack/go-mygen)
+![](https://img.shields.io/github/forks/yezihack/go-mygen)
+![](https://img.shields.io/badge/download-4M-green)
+![](https://img.shields.io/github/license/yezihack/go-mygen)
+
 # go-mygen
 > 代码生成器,避免ORM带来的性能损耗.
 
