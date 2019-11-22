@@ -1,6 +1,8 @@
-package gomygen
-
-import "database/sql"
+package main
+import (
+"database/sql"
+"sync"
+)
 
 type CmdEntity struct {
 	No  string
@@ -9,8 +11,12 @@ type CmdEntity struct {
 
 // model结构
 type ModelS struct {
-	DB *sql.DB
-	T  *Tools
+	*sql.DB
+	T        *Tools
+	l        sync.Mutex            //锁
+	DBName   string                //库名
+	Tables   []TableNameAndComment //所有的表名数据
+	DoTables []TableNameAndComment //处理的表名列表
 }
 
 //数据库配置结构
@@ -28,6 +34,7 @@ type DBConfig struct {
 
 //生成实体的请求结构
 type EntityReq struct {
+	Index        int    //序列号
 	TableName    string //表名称
 	TableComment string //表注释
 	Path         string //文件路径
@@ -121,3 +128,11 @@ type NullSqlFieldInfo struct {
 	OriFieldType string //原数据库类型
 	Comment      string //字段注释
 }
+
+//表名与表注释
+type TableNameAndComment struct {
+	Index   int
+	Name    string
+	Comment string
+}
+

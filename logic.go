@@ -1,13 +1,14 @@
-package gomygen
+package main
 
 import (
 	"bytes"
 	"errors"
 	"fmt"
-	"github.com/yezihack/colorlog"
+	"html/template"
+	"log"
 	"strings"
 	"sync"
-	"text/template"
+	"time"
 )
 
 type Logic struct {
@@ -15,15 +16,11 @@ type Logic struct {
 	DB   *ModelS
 	Path string
 	Once sync.Once
+	l    sync.Mutex
 }
 
 //生成结构实体文件
-func (l *Logic) CreateEntity(formatList []string) error {
-	//读取所有表列表
-	tableList, err := l.DB.GetTableList()
-	if err != nil {
-		return err
-	}
+func (l *Logic) CreateEntity(formatList []string) (err error) {
 	//表结构文件路径
 	path := l.Path + "db_entity/"
 	if l.T.IsDirOrFileExist(path) == false {
@@ -35,57 +32,56 @@ func (l *Logic) CreateEntity(formatList []string) error {
 	if l.T.IsDirOrFileExist(path) == false {
 		if !l.T.CreateFile(path) {
 			err = errors.New("创建文件失败, path: " + path)
-			return err
+			return
 		}
 	}
 	//将表结构写入文件
-	for tableName, tableComment := range tableList {
+	for idx, table := range l.DB.DoTables {
+		idx++
 		//查询表结构信息
-		tableDesc, err := l.DB.GetTableDesc(tableName)
+		tableDesc, err := l.DB.GetTableDesc(table.Name)
 		if err != nil {
-			return err
+			log.Fatal("CreateEntityErr:", err)
+			continue
 		}
 		req := new(EntityReq)
+		req.Index = idx
 		req.Path = path
-		req.TableName = tableName
-		req.TableComment = tableComment
+		req.TableName = table.Name
+		req.TableComment = table.Comment
 		req.TableDesc = tableDesc
 		req.FormatList = formatList
 		req.Pkg = PkgEntity
 		//生成基础信息
 		err = l.GenerateDBEntity(req)
 		if err != nil {
-			return err
+			log.Fatal("CreateEntityErr:", err)
+			continue
 		}
 	}
-	return nil
+	return
 }
 
 //生成原生的crud查询数据库
-func (l *Logic) CreateCURD(formatList []string) error {
-	//读取所有表列表
-	tableList, err := l.DB.GetTableList()
-	if err != nil {
-		return err
-	}
+func (l *Logic) CreateCURD(formatList []string) (err error) {
 	tableNameList := make([]*TableList, 0)
 	//表结构文件路径
 	structPath := l.GetMysqlDir() + GOFILE_ENTITY
 	//将表结构写入文件
-	for tableName, tableComment := range tableList {
+	for _, table := range l.DB.DoTables {
 		tableNameList = append(tableNameList, &TableList{
-			UpperTableName: TablePrefix + l.T.ToUpper(tableName),
-			TableName:      tableName,
-			Comment:        tableComment,
+			UpperTableName: TablePrefix + l.T.ToUpper(table.Name),
+			TableName:      table.Name,
+			Comment:        table.Comment,
 		})
 		//查询表结构信息
-		tableDesc, err := l.DB.GetTableDesc(tableName)
+		tableDesc, err := l.DB.GetTableDesc(table.Name)
 		if err != nil {
 			return err
 		}
 		req := new(EntityReq)
-		req.TableName = tableName
-		req.TableComment = tableComment
+		req.TableName = table.Name
+		req.TableComment = table.Comment
 		req.TableDesc = tableDesc
 		req.Path = structPath
 		req.FormatList = formatList
@@ -96,7 +92,7 @@ func (l *Logic) CreateCURD(formatList []string) error {
 			return err
 		}
 		//生成增,删,改,查文件
-		err = l.GenerateCURDFile(tableName, tableComment, tableDesc)
+		err = l.GenerateCURDFile(table.Name, table.Comment, tableDesc)
 		if err != nil {
 			return err
 		}
@@ -107,45 +103,42 @@ func (l *Logic) CreateCURD(formatList []string) error {
 	if err != nil {
 		return err
 	}
-	colorlog.Warn("生成CRUD文件 完成")
+	fmt.Println("生成CRUD文件 完成")
 	return nil
 }
 
 //生成mysql markdown文档
-func (l *Logic) CreateMarkdown() error {
-	//读取所有表列表
-	tableList, err := l.DB.GetTableList()
-	if err != nil {
-		return err
-	}
+func (l *Logic) CreateMarkdown() (err error) {
 	data := new(MarkDownData)
 	//将表结构写入文件
 	i := 1
-	for tableName, tableComment := range tableList {
+	for _, table := range l.DB.DoTables {
+		fmt.Println("正在处理表:" + table.Name)
 		data.TableList = append(data.TableList, &TableList{
 			Index:          i,
-			UpperTableName: l.T.ToUpper(tableName),
-			TableName:      tableName,
-			Comment:        tableComment,
+			UpperTableName: l.T.ToUpper(table.Name),
+			TableName:      table.Name,
+			Comment:        table.Comment,
 		})
 		//查询表结构信息
 		desc := new(MarkDownDataChild)
-		desc.List, err = l.DB.GetTableDesc(tableName)
+		desc.List, err = l.DB.GetTableDesc(table.Name)
 		if err != nil {
-			return err
+			log.Fatal("markdown", err)
+			continue
 		}
 		desc.Index = i
-		desc.TableName = tableName
-		desc.Comment = tableComment
+		desc.TableName = table.Name
+		desc.Comment = table.Comment
 		data.DescList = append(data.DescList, desc)
 		i++
 	}
 	//生成所有表的文件
 	err = l.GenerateMarkdown(data)
 	if err != nil {
-		return err
+		return
 	}
-	return nil
+	return
 }
 
 //创建和获取MYSQL目录
@@ -190,13 +183,11 @@ package mysql
 	}
 	tpl, err := template.New("structure").Parse(string(tplByte))
 	if err != nil {
-		colorlog.Error("ParseFiles", err)
 		return
 	}
 	//装载表字段信息
 	fts := []string{"json"}
 	if err != nil {
-		colorlog.Error("GetConfFormat", err)
 		return
 	}
 	//判断是否含json
@@ -228,6 +219,8 @@ package mysql
 
 //创建结构实体
 func (l *Logic) GenerateDBEntity(req *EntityReq) (err error) {
+	l.l.Lock()
+	defer l.l.Unlock()
 	var s string
 	s = fmt.Sprintf(`//判断package是否加载过
 package %s
@@ -249,7 +242,7 @@ import (
 	TableData.TableCommentNull = AddToComment(req.TableComment, " Null Entity")
 	//判断表结构是否加载过
 	if l.T.CheckFileContainsChar(req.Path, "type "+TableData.Table+" struct") == true {
-		colorlog.Warn(req.Path + "已经存在,请删除后再重新生成")
+		log.Println(req.Path + "已经存在,请删除后再重新生成")
 		return
 	}
 	//加载模板文件
@@ -259,7 +252,6 @@ import (
 	}
 	tpl, err := template.New("entity").Parse(string(tplByte))
 	if err != nil {
-		colorlog.Error("ParseFiles", err)
 		return
 	}
 	//装载表字段信息
@@ -276,7 +268,6 @@ import (
 	content := bytes.NewBuffer([]byte{})
 	tpl.Execute(content, TableData)
 	//表信息写入文件
-
 	err = WriteAppendFile(req.Path, content.String())
 	if err != nil {
 		return
@@ -336,6 +327,9 @@ func (l *Logic) GenerateCURDFile(tableName, tableComment string, tableDesc []*Ta
 	}
 	//拼出SQL所需要结构数据
 	InsertMark := strings.Repeat("?,", len(insertFields))
+	if len(InsertMark) > 0 {
+		InsertMark = InsertMark[:len(InsertMark)-1]
+	}
 	sqlInfo := &SqlInfo{
 		TableName:           tableName,
 		PrimaryKey:          PrimaryKey,
@@ -345,7 +339,7 @@ func (l *Logic) GenerateCURDFile(tableName, tableComment string, tableDesc []*Ta
 		UpperTableName:      TablePrefix + l.T.ToUpper(tableName),
 		AllFieldList:        strings.Join(allFields, ","),
 		InsertFieldList:     strings.Join(insertFields, ","),
-		InsertMark:          InsertMark[:len(InsertMark)-1],
+		InsertMark:          InsertMark,
 		UpdateFieldList:     strings.Join(updateList, ","),
 		UpdateListField:     updateListField,
 		FieldsInfo:          fieldsList,
@@ -408,7 +402,7 @@ func (l *Logic) GenerateTableList(list []*TableList) (err error) {
 	}
 	checkStr = "const"
 	if l.T.CheckFileContainsChar(file, checkStr) {
-		colorlog.Warn(file + "已经存在,请删除后再重新生成")
+		log.Println(file + "已经存在,请删除后再重新生成")
 		return
 	}
 	tplByte, err := Asset(TPL_TABLES)
@@ -477,7 +471,7 @@ import(
 //生成表列表
 func (l *Logic) GenerateMarkdown(data *MarkDownData) (err error) {
 	//写入markdown
-	file := l.Path + "markdown.md"
+	file := l.Path + fmt.Sprintf("markdown%s.md", time.Now().Format("2006-01-02_150405"))
 	tplByte, err := Asset(TPL_MARKDOWN)
 	if err != nil {
 		return
@@ -496,3 +490,4 @@ func (l *Logic) GenerateMarkdown(data *MarkDownData) (err error) {
 	}
 	return
 }
+
