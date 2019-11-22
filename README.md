@@ -7,7 +7,7 @@
 
 ## 安装
 ```
-go get -u github.com/yezihack/go-mygen
+go install github.com/yezihack/go-mygen
 ```
 ## 下载
 > release
