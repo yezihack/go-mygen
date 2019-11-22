@@ -15,6 +15,8 @@
 ## version
 1. 3.0.0beta version
 1. Compatible with linux,win,mac
+1. 3.0.0beta is china version
+1. 3.1.0beta is english version
 
 ## Install
 ```
