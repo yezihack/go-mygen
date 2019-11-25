@@ -72,21 +72,35 @@ func usage() {
 	app.Version = Version               //版本号
 	app.Copyright = "@Copyright 2019"   //版权保护
 	app.Usage = "Quickly generate CURD and documentation for operating MYSQL.etc" //说明
-	cli.HelpFlag = &cli.BoolFlag{       //修改系统默认
-		Name:  "help",
-		Usage: "show help",
+	app.Commands = []*cli.Command{
+		{
+			Name:    "help",
+			Aliases: []string{"h", "?"},
+			Usage:   "show help",
+			Action: func(c *cli.Context) error {
+				_ = cli.ShowAppHelp(c)
+				return nil
+			},
+		},
+		{
+			Name:    "version",
+			Aliases: []string{"v"},
+			Usage:   "print the version",
+			Action: func(c *cli.Context) error {
+				cli.ShowVersion(c)
+				return nil
+			},
+		},
 	}
-	cli.VersionFlag = &cli.BoolFlag{ //修改系统默认
-		Name:  "version, v",
-		Usage: "print the version",
-	}
+	app.HideVersion = true
+	app.HideHelp = true
 	app.Flags = []cli.Flag{
 		&cli.StringFlag{Name: "h",Value:"127.0.0.1",Usage: "Database address", },
 		&cli.IntFlag{Name: "P", Value: 3306, Usage: "port number"},
 		&cli.StringFlag{Name: "u", Value: "root", Usage: "database username"},
 		&cli.StringFlag{Name: "p", Value: "root", Usage: "database password"},
 		&cli.StringFlag{Name: "c", Value: "utf8mb4", Usage: "database format"},
-		&cli.StringFlag{Name: "d", Value: "database name"},
+		&cli.StringFlag{Name: "d", Usage: "database name"},
 	}
 }
 
