@@ -1,7 +1,9 @@
-![](https://img.shields.io/badge/go--mygen-tools-orange?style=plastic&logo=appveyor)
-![](https://img.shields.io/badge/download-4M-green?style=plastic&logo=appveyor)
+![](https://img.shields.io/badge/go--mygen-tools-orange?style=flat-square&logo=appveyor)
+![](https://img.shields.io/badge/download-4M-green?style=flat-square&logo=appveyor)
+![](https://img.shields.io/badge/release-linux%2Cmac%2Cwin-blue?style=flat-square&logo=appveyor)
 <br/>
-![](https://img.shields.io/github/v/release/yezihack/go-mygen.svg)
+![](https://img.shields.io/badge/go--mygen--en-3.1.0beta-green)
+![](https://img.shields.io/badge/go--mygen--cn-3.0.0beta-green)
 ![](https://img.shields.io/github/stars/yezihack/go-mygen)
 ![](https://img.shields.io/github/issues/yezihack/go-mygen)
 ![](https://img.shields.io/github/forks/yezihack/go-mygen)
@@ -13,7 +15,6 @@
 > 代码生成器,避免ORM带来的性能损耗.
 
 ## 版本
-1. 3.0.0beta版本,又一次重构
 1. 兼容linux,win,mac
 1. 3.0.0beta为中文版本
 1. 3.1.0beta为英文版本

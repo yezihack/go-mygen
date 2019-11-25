@@ -1,8 +1,9 @@
-![](https://img.shields.io/badge/go--mygen-tools-orange?style=plastic&logo=appveyor)
-![](https://img.shields.io/badge/download-4M-green?style=plastic&logo=appveyor)
+![](https://img.shields.io/badge/go--mygen-tools-orange?style=flat-square&logo=appveyor)
+![](https://img.shields.io/badge/download-4M-green?style=flat-square&logo=appveyor)
+![](https://img.shields.io/badge/release-linux%2Cmac%2Cwin-blue?style=flat-square&logo=appveyor)
 <br/>
-![](https://img.shields.io/github/v/release/yezihack/go-mygen.svg)
-![](https://img.shields.io/badge/release-3.1.0beta-brightgreen)
+![](https://img.shields.io/badge/go--mygen--en-3.1.0beta-green)
+![](https://img.shields.io/badge/go--mygen--cn-3.0.0beta-green)
 ![](https://img.shields.io/github/stars/yezihack/go-mygen)
 ![](https://img.shields.io/github/issues/yezihack/go-mygen)
 ![](https://img.shields.io/github/forks/yezihack/go-mygen)
