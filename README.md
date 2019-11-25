@@ -2,6 +2,7 @@
 ![](https://img.shields.io/badge/download-4M-green?style=plastic&logo=appveyor)
 <br/>
 ![](https://img.shields.io/github/v/release/yezihack/go-mygen.svg)
+![](https://img.shields.io/badge/release-3.1.0beta-brightgreen)
 ![](https://img.shields.io/github/stars/yezihack/go-mygen)
 ![](https://img.shields.io/github/issues/yezihack/go-mygen)
 ![](https://img.shields.io/github/forks/yezihack/go-mygen)
@@ -20,7 +21,7 @@
 
 ## Install
 ```
-go install github.com/yezihack/go-mygen
+go get github.com/yezihack/go-mygen
 ```
 ## Using v3 releases
 > [release](https://github.com/yezihack/go-mygen/releases/tag/3.0.0beta)

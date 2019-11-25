@@ -77,12 +77,13 @@ func usage() {
 	app.Copyright = "@Copyright 2019"   //版权保护
 	app.Usage = "Quickly generate CURD and documentation for operating MYSQL.etc" //说明
 	cli.HelpFlag = &cli.BoolFlag{       //修改系统默认
-		Name:  "help, h",
-		Usage: "show commands help",
+		Name:  "help",
+		Aliases:[]string{"hh"},
+		Usage: "show help",
 	}
 	cli.VersionFlag = &cli.BoolFlag{ //修改系统默认
 		Name:  "version, v",
-		Usage: "show version",
+		Usage: "print the version",
 	}
 	app.Flags = []cli.Flag{
 		&cli.StringFlag{Name: "h", Value: "localhost", Usage: "Database address"},
