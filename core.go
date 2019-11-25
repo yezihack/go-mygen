@@ -31,7 +31,7 @@ func start() {
 		DbConn.Port = c.Int("P")	//端口号
 		DbConn.Pass = c.String("p")//密码
 		DbConn.Charset =  c.String("c")//编码格式
-		if c.NArg() > 0 {
+		if c.NumFlags() > 0 {
 			dbName := c.String("d")//数据库名称
 			if dbName == "" {
 				return cli.NewExitError("database is null, please use -d params", 9)
@@ -40,7 +40,6 @@ func start() {
 			if DbConn.Pass == "" {
 				fmt.Print("input password>")
 				line, _, err := bufio.NewReader(os.Stdin).ReadLine()
-				fmt.Println(string(line))
 				if err == nil {
 					DbConn.Pass = string(line)
 					Clean()//清屏
@@ -49,15 +48,12 @@ func start() {
 			if err := Commands(); err != nil {
 				return cli.NewExitError(err, 1)
 			}
-		} else {
-			fmt.Println(cli.VersionFlag)
-			fmt.Println(cli.HelpFlag)
 		}
 		return nil
 	}
 	// cli start run
 	if err := app.Run(os.Args); err != nil {
-		log.Fatal(err)
+		log.Fatal("RUN>>", err)
 	}
 }
 
@@ -78,7 +74,6 @@ func usage() {
 	app.Usage = "Quickly generate CURD and documentation for operating MYSQL.etc" //说明
 	cli.HelpFlag = &cli.BoolFlag{       //修改系统默认
 		Name:  "help",
-		Aliases:[]string{"hh"},
 		Usage: "show help",
 	}
 	cli.VersionFlag = &cli.BoolFlag{ //修改系统默认
@@ -86,12 +81,12 @@ func usage() {
 		Usage: "print the version",
 	}
 	app.Flags = []cli.Flag{
-		&cli.StringFlag{Name: "h", Value: "localhost", Usage: "Database address"},
+		&cli.StringFlag{Name: "h",Value:"127.0.0.1",Usage: "Database address", },
 		&cli.IntFlag{Name: "P", Value: 3306, Usage: "port number"},
 		&cli.StringFlag{Name: "u", Value: "root", Usage: "database username"},
 		&cli.StringFlag{Name: "p", Value: "root", Usage: "database password"},
 		&cli.StringFlag{Name: "c", Value: "utf8mb4", Usage: "database format"},
-		&cli.StringFlag{Name: "d", Usage: "database name"},
+		&cli.StringFlag{Name: "d", Value: "database name"},
 	}
 }
 
@@ -102,7 +97,7 @@ func Commands() error {
 	if Conn == nil || err != nil {
 		return errors.New("database connect failed>>" + err.Error())
 	}
-	log.Println("database connected success")
+	log.Println("Database connected success")
 	//初使工作
 	DbModel := NewDB()
 	DbModel.Using(Conn)
