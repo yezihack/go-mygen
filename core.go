@@ -26,13 +26,13 @@ func start() {
 	DbConn.MaxIdleConn = 5
 	DbConn.MaxOpenConn = 10
 	app.Action = func(c *cli.Context) error {
-		DbConn.Host = c.String("h")//数据库地址
-		DbConn.Name =  c.String("u")//数据库用户名称
-		DbConn.Port = c.Int("P")	//端口号
-		DbConn.Pass = c.String("p")//密码
-		DbConn.Charset =  c.String("c")//编码格式
+		DbConn.Host = c.String("h")    //数据库地址
+		DbConn.Name = c.String("u")    //数据库用户名称
+		DbConn.Port = c.Int("P")       //端口号
+		DbConn.Pass = c.String("p")    //密码
+		DbConn.Charset = c.String("c") //编码格式
 		if c.NumFlags() > 0 {
-			dbName := c.String("d")//数据库名称
+			dbName := c.String("d") //数据库名称
 			if dbName == "" {
 				return cli.NewExitError("database is null, please use -d params", 9)
 			}
@@ -42,7 +42,7 @@ func start() {
 				line, _, err := bufio.NewReader(os.Stdin).ReadLine()
 				if err == nil {
 					DbConn.Pass = string(line)
-					Clean()//清屏
+					Clean() //清屏
 				}
 			}
 			if err := Commands(); err != nil {
@@ -66,13 +66,13 @@ func close() {
 
 func usage() {
 	app.Name = "go-mygen" //项目名称
-	app.Authors = []*cli.Author{
+	app.Authors = []cli.Author{
 		{"sgfoot", "sgfoot2020@gmail.com"},
 	}
-	app.Version = Version               //版本号
-	app.Copyright = "@Copyright 2019"   //版权保护
+	app.Version = Version                                                         //版本号
+	app.Copyright = "@Copyright 2019"                                             //版权保护
 	app.Usage = "Quickly generate CURD and documentation for operating MYSQL.etc" //说明
-	app.Commands = []*cli.Command{
+	app.Commands = []cli.Command{
 		{
 			Name:    "help",
 			Aliases: []string{"h", "?"},
@@ -95,7 +95,7 @@ func usage() {
 	app.HideVersion = true
 	app.HideHelp = true
 	app.Flags = []cli.Flag{
-		&cli.StringFlag{Name: "h",Value:"127.0.0.1",Usage: "Database address", },
+		&cli.StringFlag{Name: "h", Value: "127.0.0.1", Usage: "Database address"},
 		&cli.IntFlag{Name: "P", Value: 3306, Usage: "port number"},
 		&cli.StringFlag{Name: "u", Value: "root", Usage: "database username"},
 		&cli.StringFlag{Name: "p", Value: "root", Usage: "database password"},
