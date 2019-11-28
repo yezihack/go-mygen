@@ -20,6 +20,7 @@
 1. 3.1.0beta为英文版本
 
 ## 安装
+> \>= go1.13.0
 ```
 go install github.com/yezihack/go-mygen
 ```

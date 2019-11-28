@@ -63,12 +63,12 @@ func close() {
 		Conn.Close()
 	}()
 }
-
 func usage() {
 	app.Name = "go-mygen" //项目名称
-	app.Authors = []cli.Author{
-		{"sgfoot", "sgfoot2020@gmail.com"},
-	}
+	app.Authors = []cli.Author{{
+		Name:  "sgfoot",
+		Email: "sgfoot2020@gmail.com",
+	}}
 	app.Version = Version                                                         //版本号
 	app.Copyright = "@Copyright 2019"                                             //版权保护
 	app.Usage = "Quickly generate CURD and documentation for operating MYSQL.etc" //说明

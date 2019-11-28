@@ -21,6 +21,7 @@
 1. 3.1.0beta is english version
 
 ## Install
+> \>= go1.13.0
 ```
 go get github.com/yezihack/go-mygen
 ```
