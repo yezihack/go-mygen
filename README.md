@@ -11,6 +11,8 @@
 
 [English](README.md)|[中文](README-CN.md)
 
+![](assets/img/golang.png)
+
 # go-mygen
 > Code generator tools with MYSQL,avoid ORM performance penalty
 
