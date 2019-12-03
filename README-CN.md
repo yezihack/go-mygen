@@ -35,6 +35,11 @@ go install github.com/yezihack/go-mygen
 - 5.可以自定义生成目录
 - 6.清屏,退出等功能
 
+## 使用方法
+1. 查看帮助 `go-mygen help`
+1. 查看版本 `go-mygen version`
+1. 连接操作 `go-mygen -h localhost -P 3306 -u root -p 123456 -d default `
+
 
 ## 参数说明
 ```
@@ -44,23 +49,6 @@ go install github.com/yezihack/go-mygen
 -p value       数据库密码 (default: "root")
 -c value       编码格式 (default: "utf8mb4")
 -d value       数据库名称
---help         显示命令帮助
---version, -v  显示版本号
-```
-
-## 使用说明
-- 首先必须先连接指定数据库
-- 进行操作提示页面
-- 输入界面上不同的命令进行操作即可
-
-## 显示带密码操作
-```
-go-mygen -h localhost -P 3306 -u root -p 123456 -d default
-```
-
-## 保护密码操作
-```
-go-mygen -h localhost -P 3306 -u root -d dbname
 ```
 
 ## 其它

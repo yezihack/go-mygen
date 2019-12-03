@@ -17,10 +17,8 @@
 > Code generator tools with MYSQL,avoid ORM performance penalty
 
 ## version
-1. 3.0.0beta version
+1. 3.1.0beta version
 1. Compatible with linux,win,mac
-1. 3.0.0beta is china version
-1. 3.1.0beta is english version
 
 ## Install
 > \>= go1.13.0
@@ -30,6 +28,11 @@ go get github.com/yezihack/go-mygen
 ## Using v3 releases
 > [release](https://github.com/yezihack/go-mygen/releases/tag/3.0.0beta)
 
+## QuickStart
+1. See Help `go-mygen help`
+1. See Version `go-mygen version`
+1. Connection `go-mygen -h localhost -P 3306 -u root -p 123456 -d default `
+
 ## Features
 - Generate the markdown document for the database table
 - Generate the structure entities for the golang table
@@ -37,7 +40,6 @@ go get github.com/yezihack/go-mygen
 - Generate golang operation mysql add, delete, modify and select code statements
 - Custom build directory
 - Clear screen, exit and other functions
-
 
 ## Parameters info
 ```
@@ -47,23 +49,6 @@ go get github.com/yezihack/go-mygen
 -p value       Database password (default: "root")
 -c value       Coding format (default: "utf8mb4")
 -d value       Database name
---help         Display command help
---version, -v  Display version number
-```
-
-## QuickStart
-- You must first connect to the specified database
-- For operation tips page
-- Enter different commands on the interface to operate
-
-### Display operation with password
-```
-go-mygen -h localhost -P 3306 -u root -p 123456 -d default
-```
-
-### Protected password operation
-```
-go-mygen -h localhost -P 3306 -u root -d dbname
 ```
 
 ## Other
