@@ -1,13 +1,13 @@
-![](https://img.shields.io/badge/go--mygen-tools-orange?style=flat-square&logo=appveyor)
-![](https://img.shields.io/badge/download-4M-green?style=flat-square&logo=appveyor)
-![](https://img.shields.io/badge/release-linux%2Cmac%2Cwin-blue?style=flat-square&logo=appveyor)
+[![](https://img.shields.io/badge/go--mygen-tools-orange?style=flat-square&logo=appveyor)](https://github.com/yezihack/go-mygen/releases)
+[![](https://img.shields.io/badge/download-4M-green?style=flat-square&logo=appveyor)](https://github.com/yezihack/go-mygen/releases)
+[![](https://img.shields.io/badge/release-linux%2Cmac%2Cwin-blue?style=flat-square&logo=appveyor)](https://github.com/yezihack/go-mygen/releases)
 <br/>
-![](https://img.shields.io/badge/go--mygen--en-3.1.0beta-green)
-![](https://img.shields.io/badge/go--mygen--cn-3.0.0beta-green)
-![](https://img.shields.io/github/stars/yezihack/go-mygen)
-![](https://img.shields.io/github/issues/yezihack/go-mygen)
-![](https://img.shields.io/github/forks/yezihack/go-mygen)
-![](https://img.shields.io/github/license/yezihack/go-mygen)
+[![](https://img.shields.io/badge/go--mygen--en-3.1.0beta-green)](https://github.com/yezihack/go-mygen/tree/3.1.0beta)
+[![](https://img.shields.io/badge/go--mygen--cn-3.0.0beta-green)](https://github.com/yezihack/go-mygen/tree/3.0.0beta)
+[![](https://img.shields.io/github/stars/yezihack/go-mygen)](https://github.com/yezihack/go-mygen/stargazers)
+[![](https://img.shields.io/github/issues/yezihack/go-mygen)](https://github.com/yezihack/go-mygen/issues)
+[![](https://img.shields.io/github/forks/yezihack/go-mygen)](https://github.com/yezihack/go-mygen/network/members)
+[![](https://img.shields.io/github/license/yezihack/go-mygen)](https://github.com/yezihack/go-mygen/blob/3.1.0beta/LICENSE)
 
 [English](README.md)|[中文](README-CN.md)
 
