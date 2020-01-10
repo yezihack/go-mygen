@@ -16,10 +16,10 @@ return " {{.AllFieldList}} "
 //获取多行数据.
 func (m *{{.StructTableName}}Model) getRows(sqlTxt string, params ...interface{}) (rowsResult []*{{.StructTableName}}, err error) {
 query, err := m.DB.Query(sqlTxt, params...)
-defer query.Close()
 if err != nil {
 return
 }
+defer query.Close()
 for query.Next() {
 row := {{.NullStructTableName}}{}
 err = query.Scan(
@@ -52,7 +52,7 @@ if nil != err {
 return
 }
 rowResult = &{{.StructTableName}}{
-{{range .NullFieldsInfo}}{{if eq .GoType "float64"}}{{.HumpName}}:row.{{.HumpName}}.Float64 //{{.Comment}}
+{{range .NullFieldsInfo}}{{if eq .GoType "float64"}}{{.HumpName}}:row.{{.HumpName}}.Float64, //{{.Comment}}
 {{else if eq .GoType "int64"}}{{.HumpName}}:row.{{.HumpName}}.Int64,//{{.Comment}}
 {{else if eq .GoType "time.Time"}}{{.HumpName}}:row.{{.HumpName}}.Time,//{{.Comment}}
 {{else}}{{.HumpName}}:row.{{.HumpName}}.String,//{{.Comment}}
