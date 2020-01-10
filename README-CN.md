@@ -51,6 +51,9 @@ go install github.com/yezihack/go-mygen
 -d value       数据库名称
 ```
 
+## 依赖包
+1. `go get -u github.com/go-bindata/go-bindata/...`
+
 ## 其它
 > 发现错误,欢迎issues
 ```
@@ -64,3 +67,4 @@ xx>> 错误输出
 export GOPROXY=https://goproxy.io
 export GOPROXY=https://gocenter.io
 ```
+

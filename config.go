@@ -3,8 +3,11 @@ package main
 import "os"
 
 const (
-	Version   = "v3.1.0beta"
-	UpdatedAt = " 2019.11.22"
+	ProjectName = "go-mygen"
+	Version     = "v3.1.0beta"
+	UpdatedAt   = " 2019.11.22"
+	Author      = "sgfoot"
+	AuthorEmail = "sgfoot2020@gmail.com"
 )
 
 const (

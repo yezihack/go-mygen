@@ -12,17 +12,15 @@ import (
 )
 
 var (
-	Conn    *sql.DB   //连接对象
-	stop    chan bool //关闭信号
-	app     *cli.App  //cli对象
-	DbConn  DBConfig  //db config
-	formats []string  //format
+	Conn    *sql.DB  //连接对象
+	DbConn  DBConfig //db config
+	formats []string //format
 )
 
 //命令行实现
 func start() {
 	usage()
-	close()
+	go release()
 	DbConn.MaxIdleConn = 5
 	DbConn.MaxOpenConn = 10
 	app.Action = func(c *cli.Context) error {
@@ -57,17 +55,18 @@ func start() {
 	}
 }
 
-func close() {
-	go func() {
-		<-stop
-		Conn.Close()
-	}()
+//释放资源
+func release() {
+	<-stop
+	_ = Conn.Close()
 }
+
+//构建命令使用说明
 func usage() {
-	app.Name = "go-mygen" //项目名称
+	app.Name = ProjectName //项目名称
 	app.Authors = []cli.Author{{
-		Name:  "sgfoot",
-		Email: "sgfoot2020@gmail.com",
+		Name:  Author,
+		Email: AuthorEmail,
 	}}
 	app.Version = Version                                                         //版本号
 	app.Copyright = "@Copyright 2019"                                             //版权保护
