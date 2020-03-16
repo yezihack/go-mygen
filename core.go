@@ -69,7 +69,7 @@ func usage() {
 		Email: AuthorEmail,
 	}}
 	app.Version = Version                                                         //版本号
-	app.Copyright = "@Copyright 2019"                                             //版权保护
+	app.Copyright = "@Copyright " + Copyright                                     //版权保护
 	app.Usage = "Quickly generate CURD and documentation for operating MYSQL.etc" //说明
 	app.Commands = []cli.Command{
 		{

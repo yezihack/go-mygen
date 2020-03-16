@@ -3,3 +3,5 @@ output/*
 .idea/*
 go-mygen.exe
 go-mygen
+vendor
+vendor/*

@@ -320,7 +320,7 @@ func AddToComment(s string, suff string) string {
 	if strings.EqualFold(s, "") {
 		return ""
 	}
-	return "//" + s + suff
+	return "// " + s + suff
 }
 
 //判断是否包存在某字符
