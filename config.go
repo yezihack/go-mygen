@@ -4,9 +4,9 @@ import "os"
 
 const (
 	ProjectName = "go-mygen"
-	Version     = "v3.1.0beta"
-	UpdatedAt   = " 2019.11.22"
-	Author      = "sgfoot"
+	Version     = "v3.1.1beta"
+	Copyright   = "2020.03"
+	Author      = "百里"
 	AuthorEmail = "sgfoot2020@gmail.com"
 )
 
@@ -36,6 +36,8 @@ const (
 //生成的go文件
 const (
 	GODIR_MODELS     = "db_models"       //生成的结构体 go文件名称
+	GODIR_Config     = "config"          //生成的结构体 go文件名称
+	GODIR_Entity     = "entity"          //生成的结构体 go文件名称
 	GOFILE_ENTITY    = "db_entity.go"    //生成的结构体实体 go文件名称
 	GoFile_TableList = "table_list.go"   //表文件
 	GoFile_Example   = "example_test.go" //表文件
@@ -44,6 +46,7 @@ const (
 const (
 	PkgDbModels = "models" //db_models命名空间
 	PkgEntity   = "entity" // entity实体命名空间
+	PkgTable    = "config" //表的空间名称
 )
 
 //帮助文档

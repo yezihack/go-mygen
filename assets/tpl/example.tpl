@@ -21,7 +21,7 @@ MaxIdle int //最大空间连接
 MaxOpen int //最大连接数
 }
 
-//连接数据库
+// 连接数据库
 func InitDB(cfg DBConfigEntity) *sql.DB {
 if strings.EqualFold(cfg.Timezone, "") {
 cfg.Timezone = "'Asia/Shanghai'"
@@ -61,7 +61,7 @@ DB = InitDB(cfg)
 {{.Name}}Db = New{{.Name}}(DB)
 }
 
-//查询所有的数据
+// 查询所有的数据
 func Test{{.Name}}FindWhere(t *testing.T) {
 initConnection()
 book := {{.Name}}{
@@ -73,7 +73,7 @@ t.Error(err)
 }
 fmt.Println(result[0])
 }
-//获取最后一条数据
+// 获取最后一条数据
 func Test{{.Name}}Last(t *testing.T) {
 initConnection()
 result, err := {{.Name}}Db.First(nil)
@@ -82,7 +82,7 @@ t.Error(err)
 }
 fmt.Println(result)
 }
-//获取总数量
+// 获取总数量
 func Test{{.Name}}Count(t *testing.T) {
 initConnection()
 result, err := {{.Name}}Db.First(nil)
@@ -91,7 +91,7 @@ t.Error(err)
 }
 fmt.Println(result)
 }
-//创建数据
+// 创建数据
 func Test{{.Name}}Create(t *testing.T) {
 initConnection()
 dd := {{.Name}}{
@@ -103,7 +103,7 @@ t.Error(err)
 }
 fmt.Println(result)
 }
-//创建数据
+// 创建数据
 func TestExampleUpdate(t *testing.T) {
 initConnection()
 dd := {{.Name}}{
