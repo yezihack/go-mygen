@@ -5,10 +5,11 @@ import (
 	"database/sql"
 	"errors"
 	"fmt"
-	"github.com/urfave/cli"
 	"log"
 	"os"
 	"strings"
+
+	"github.com/urfave/cli"
 )
 
 var (

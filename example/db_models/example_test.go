@@ -3,10 +3,11 @@ package models
 import (
 	"database/sql"
 	"fmt"
-	_ "github.com/go-sql-driver/mysql"
 	"net/url"
 	"strings"
 	"testing"
+
+	_ "github.com/go-sql-driver/mysql"
 )
 
 type DBConfigEntity struct {
