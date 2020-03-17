@@ -17,7 +17,7 @@
 > Code generator tools with MYSQL,avoid ORM performance penalty
 
 ## version
-1. 3.1.0beta version
+1. 3.1.1 version
 1. Compatible with linux,win,mac
 
 ## Install

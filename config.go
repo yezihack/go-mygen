@@ -4,10 +4,10 @@ import "os"
 
 const (
 	ProjectName = "go-mygen"
-	Version     = "v3.1.1beta"
+	Version     = "v3.1.1"
 	Copyright   = "2020.03"
 	Author      = "百里"
-	AuthorEmail = "sgfoot2020@gmail.com"
+	AuthorEmail = "barry300@126.com"
 )
 
 const (
