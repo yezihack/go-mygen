@@ -86,9 +86,12 @@ func (l *Logic) CreateCURD(formatList []string) (err error) {
 	}
 
 	// 生成所有表的文件
-	err = l.GenerateTableList(tableNameList)
-	if err != nil {
-		return err
+	if err = l.GenerateTableList(tableNameList); err != nil {
+		return
+	}
+	//生成init文件
+	if err = l.GenerateInit(); err != nil {
+		return
 	}
 	fmt.Println("`CURD` files created finish!")
 	return nil
@@ -417,6 +420,41 @@ func (l *Logic) GenerateTableList(list []*TableList) (err error) {
 	// 解析
 	content := bytes.NewBuffer([]byte{})
 	err = tpl.Execute(content, list)
+	if err != nil {
+		return
+	}
+	// 表信息写入文件
+	err = WriteAppendFile(file, content.String())
+	if err != nil {
+		return
+	}
+	return
+}
+
+// 生成表列表
+func (l *Logic) GenerateInit() (err error) {
+	file := l.GetMysqlDir() + GoFile_Init
+	// 判断package是否加载过
+	checkStr := "package " + PkgDbModels
+	if l.T.CheckFileContainsChar(file, checkStr) == false {
+		l.T.WriteFile(file, checkStr+"\n")
+	}
+	checkStr = "DBConfig"
+	if l.T.CheckFileContainsChar(file, checkStr) {
+		log.Println(file + "It already exists. Please delete it and regenerate it")
+		return
+	}
+	tplByte, err := Asset(TPL_INIT)
+	if err != nil {
+		return
+	}
+	tpl, err := template.New("init").Parse(string(tplByte))
+	if err != nil {
+		return
+	}
+	// 解析
+	content := bytes.NewBuffer([]byte{})
+	err = tpl.Execute(content, nil)
 	if err != nil {
 		return
 	}

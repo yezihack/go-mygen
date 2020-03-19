@@ -2,9 +2,14 @@ type {{.StructTableName}}Model struct {
 DB *sql.DB
 }
 
-func New{{.StructTableName}}(db *sql.DB) *{{.StructTableName}}Model {
+func New{{.StructTableName}}(db ...*sql.DB) *{{.StructTableName}}Model {
+if len(db) > 0 {
+    return &{{.StructTableName}}Model{
+        DB: db[0],
+    }
+}
 return &{{.StructTableName}}Model{
-DB:db,
+    DB: masterDB,
 }
 }
 
@@ -39,13 +44,13 @@ return
 }
 
 // 获取单行数据
-func (m *{{.StructTableName}}Model) getRow(sql string, params ...interface{}) (rowResult *{{.PkgEntity}}{{.StructTableName}}, err error) {
-query := m.DB.QueryRow(sql, params...)
+func (m *{{.StructTableName}}Model) getRow(sqlText string, params ...interface{}) (rowResult *{{.PkgEntity}}{{.StructTableName}}, err error) {
+query := m.DB.QueryRow(sqlText, params...)
 row := {{.PkgEntity}}{{.NullStructTableName}}{}
 err = query.Scan(
 {{range .NullFieldsInfo}}&row.{{.HumpName}},// {{.Comment}}
 {{end}})
-if nil != err {
+if err != sql.ErrNoRows {
 return
 }
 rowResult = &{{.PkgEntity}}{{.StructTableName}}{
@@ -125,7 +130,7 @@ return
 return
 }
 
-// 获取单行数据
+// 获取最后一行数据
 func (m *{{.StructTableName}}Model) Last(value *{{.PkgEntity}}{{.StructTableName}}) (result *{{.PkgEntity}}{{.StructTableName}}, err error) {
  sqlText := "SELECT" + m.getColumns() + "FROM " + {{.PkgTable}}{{.UpperTableName}} + " ORDER BY ID DESC LIMIT 1"
 result, err = m.getRow(sqlText)
@@ -133,6 +138,16 @@ if err != nil {
 return
 }
 return
+}
+
+// 获取单个数据
+func (m *{{.StructTableName}}Model) One(userId int64) (result int64, err error) {
+	sqlText := "SELECT id FROM " + {{.PkgTable}}{{.UpperTableName}} + " where id=?"
+	rows := m.DB.QueryRow(sqlText, userId)
+	if err = rows.Scan(&result); err != nil {
+		return
+	}
+	return
 }
 
 // 获取行数
@@ -144,4 +159,20 @@ if err != nil {
 return
 }
 return
+}
+
+// 判断是否存在
+func (m *{{.StructTableName}}Model) Exists(id int64) (b bool, err error) {
+	sqlText := "SELECT COUNT(*) FROM " + {{.PkgTable}}{{.UpperTableName}} + " where id = ?"
+	query := m.DB.QueryRow(sqlText, id)
+	var count int64
+	err = query.Scan(&count)
+	if err != nil {
+		return
+	}
+	if count > 0 {
+		b = true
+		return
+	}
+	return
 }

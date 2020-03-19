@@ -7,51 +7,37 @@ all: dev con
 fmt:
 	gofmt -l -w ./
 
-build:
-	go build -v -o go-mygen .
-
 run:
-	./go-mygen
-
-vendor:
-	govendor add +e
-	govendor remove +u
+	output/go-mygen
 
 bindata:
 	go-bindata -pkg main -o ./bindata.go assets/tpl
 
-clean:
-	rm -rf go-mygen
-	rm -rf output/markdown*
-	rm -rf output/db_entity/
-	rm -rf output/db_models/
-
-con:
-	./go-mygen -h localhost -P 3306 -u root -d mysql
-	#./go-mygen -h 192.168.31.142 -P 3306 -u root -d sgfoot -p root
-
 bench:
 	go test -test.bench=".*"  -benchmem
 
-linux:
+win: bindata window
+	output/window/go-mygen.exe help
+
+linux:fmt
 	set CGO_ENABLED=0
 	set GOARCH=amd64
 	set GOOS=linux
 	go build -a -o output/linux/go-mygen .
-window:
+window:fmt
 	set CGO_ENABLED=0
 	set GOARCH=amd64
 	set GOOS=windows
 	go build -a -o output/window/go-mygen.exe .
-mac:
+mac:fmt
 	set CGO_ENABLED=0
 	set GOARCH=amd64
 	set GOOS=darwin
 	go build -a -o output/mac/go-mygen .
-release:clear window linux mac tar
+release:clean window linux mac tar
 	echo "compiled fanish"
 
-clear:
+clean:
 	rm -rf output/*
 
 tar: 
