@@ -1,4 +1,4 @@
-package models
+package mysql
 
 import (
 "database/sql"

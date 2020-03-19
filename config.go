@@ -22,6 +22,7 @@ const (
 	TPL_STRUCTURE = "assets/tpl/structure.tpl" //结构体模板
 	TPL_ENTITY    = "assets/tpl/entity.tpl"    //结构实体模板
 	TPL_TABLES    = "assets/tpl/tables.tpl"    //表结构模板
+	TPL_INIT      = "assets/tpl/init.tpl"      //init模板
 	TPL_MARKDOWN  = "assets/tpl/markdown.tpl"  //markdown模板
 	TPL_EXAMPLE   = "assets/tpl/example.tpl"   //example模板
 )
@@ -40,11 +41,12 @@ const (
 	GODIR_Entity     = "entity"          //生成的结构体 go文件名称
 	GOFILE_ENTITY    = "db_entity.go"    //生成的结构体实体 go文件名称
 	GoFile_TableList = "table_list.go"   //表文件
+	GoFile_Init      = "init.go"         //表文件
 	GoFile_Example   = "example_test.go" //表文件
 )
 
 const (
-	PkgDbModels = "models" //db_models命名空间
+	PkgDbModels = "mysql"  //db_models命名空间
 	PkgEntity   = "entity" // entity实体命名空间
 	PkgTable    = "config" //表的空间名称
 )
