@@ -17,8 +17,11 @@
 > Code generator tools with MYSQL,avoid ORM performance penalty
 
 ## version
-1. 3.1.1 version
+1. 3.2.0 version
 1. Compatible with linux,win,mac
+
+### v3.2.0
+1. Operation 3 sequence, support entity and SQL, configure to store different directories
 
 ## Install
 > \>= go1.13.0
@@ -30,7 +33,7 @@ go get github.com/yezihack/go-mygen
 
 ## QuickStart
 1. See Help `go-mygen help`
-1. See Version `go-mygen version`
+1. See Version `go-mygen v`
 1. Connection `go-mygen -h localhost -P 3306 -u root -p 123456 -d default `
 
 ## Features
