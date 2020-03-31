@@ -16,6 +16,13 @@
 # go-mygen
 > Code generator tools with MYSQL,avoid ORM performance penalty
 
+
+## Install
+> \>= go1.13.0
+```
+go get -u -x github.com/yezihack/go-mygen
+```
+
 ## debug fix 
 1. When the query result is null, the bottom layer is no longer processed and the upper layer is processed.
 ```go
@@ -35,19 +42,15 @@ func main() {
 }
 ```
 
-## version
-1. 3.2.0 version
+## v3.3.0 version
 1. Compatible with linux,win,mac
+1. add stack error
+1. different int32 or int64
 
 ### v3.2.0
 1. Operation 3 sequence, support entity and SQL, configure to store different directories
 
 
-## Install
-> \>= go1.13.0
-```
-go get github.com/yezihack/go-mygen
-```
 ## Using v3 releases
 > [release](https://github.com/yezihack/go-mygen/releases/tag/3.0.0beta)
 
