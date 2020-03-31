@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 
-	"github.com/urfave/cli"
+	"github.com/urfave/cli/v2"
 )
 
 var (

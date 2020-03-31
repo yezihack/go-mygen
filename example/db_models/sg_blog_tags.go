@@ -3,6 +3,7 @@ package models
 
 import (
 	"database/sql"
+	"github.com/pkg/errors"
 
 	_ "github.com/go-sql-driver/mysql"
 )
@@ -25,10 +26,10 @@ func (m *SgBlogTagsModel) getColumns() string {
 //获取多行数据.
 func (m *SgBlogTagsModel) getRows(sqlTxt string, params ...interface{}) (rowsResult []*SgBlogTags, err error) {
 	query, err := m.DB.Query(sqlTxt, params...)
-	defer query.Close()
 	if err != nil {
 		return
 	}
+	defer query.Close()
 	for query.Next() {
 		row := SgBlogTagsNull{}
 		err = query.Scan(
@@ -38,8 +39,9 @@ func (m *SgBlogTagsModel) getRows(sqlTxt string, params ...interface{}) (rowsRes
 			&row.CreatedAt, //创建时间
 			&row.UpdatedAt, //更新时间
 		)
-		if nil != err {
-			continue
+		if err != nil && err != sql.ErrNoRows {
+			err = errors.WithStack(err)
+			return
 		}
 		rowsResult = append(rowsResult, &SgBlogTags{
 			Id:        row.Id.Int64,        //
@@ -55,9 +57,6 @@ func (m *SgBlogTagsModel) getRows(sqlTxt string, params ...interface{}) (rowsRes
 //获取单行数据
 func (m *SgBlogTagsModel) getRow(sql string, params ...interface{}) (rowResult *SgBlogTags, err error) {
 	query := m.DB.QueryRow(sql, params...)
-	if err != nil {
-		return
-	}
 	row := SgBlogTagsNull{}
 	err = query.Scan(
 		&row.Id,        //
@@ -67,6 +66,7 @@ func (m *SgBlogTagsModel) getRow(sql string, params ...interface{}) (rowResult *
 		&row.UpdatedAt, //更新时间
 	)
 	if nil != err {
+		err = errors.WithStack(err)
 		return
 	}
 	rowResult = &SgBlogTags{
@@ -84,6 +84,7 @@ func (m *SgBlogTagsModel) getRow(sql string, params ...interface{}) (rowResult *
 func (m *SgBlogTagsModel) Save(sqlTxt string, value ...interface{}) (b bool, err error) {
 	stmt, err := m.DB.Prepare(sqlTxt)
 	if err != nil {
+		err = errors.WithStack(err)
 		return
 	}
 	defer stmt.Close()

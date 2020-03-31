@@ -93,6 +93,10 @@ func (l *Logic) CreateCURD(formatList []string) (err error) {
 	if err = l.GenerateInit(); err != nil {
 		return
 	}
+	//生成error文件
+	if err = l.GenerateError(); err != nil {
+		return
+	}
 	fmt.Println("`CURD` files created finish!")
 	return nil
 }
@@ -355,6 +359,7 @@ func (l *Logic) GenerateCURDFile(tableName, tableComment string, tableDesc []*Ta
 	l.Once.Do(func() {
 		l.GenerateExample(sqlInfo.StructTableName)
 	})
+
 	if err != nil {
 		return
 	}
@@ -431,7 +436,7 @@ func (l *Logic) GenerateTableList(list []*TableList) (err error) {
 	return
 }
 
-// 生成表列表
+// 生成init
 func (l *Logic) GenerateInit() (err error) {
 	file := l.GetMysqlDir() + GoFile_Init
 	// 判断package是否加载过
@@ -466,6 +471,42 @@ func (l *Logic) GenerateInit() (err error) {
 	return
 }
 
+// 生成init
+func (l *Logic) GenerateError() (err error) {
+	file := l.GetMysqlDir() + GoFile_Error
+	// 判断package是否加载过
+	checkStr := "package " + PkgDbModels
+	if l.T.CheckFileContainsChar(file, checkStr) == false {
+		l.T.WriteFile(file, checkStr+"\n")
+	}
+	// 判断是否已经生成过此文件
+	checkStr = "Stack"
+	if l.T.CheckFileContainsChar(file, checkStr) {
+		log.Println(file + "It already exists. Please delete it and regenerate it")
+		return
+	}
+	tplByte, err := Asset(TPL_Error)
+	if err != nil {
+		return
+	}
+	tpl, err := template.New("error").Parse(string(tplByte))
+	if err != nil {
+		return
+	}
+	// analysis execute template
+	content := bytes.NewBuffer([]byte{})
+	err = tpl.Execute(content, nil)
+	if err != nil {
+		return
+	}
+	// append write to file
+	err = WriteAppendFile(file, content.String())
+	if err != nil {
+		return
+	}
+	return
+}
+
 // 生成SQL文件
 func (l *Logic) GenerateSQL(info *SqlInfo, tableComment string) (err error) {
 	// 写入表名
@@ -475,6 +516,7 @@ func (l *Logic) GenerateSQL(info *SqlInfo, tableComment string) (err error) {
 package %s
 import(
 	"database/sql"
+	"github.com/pkg/errors"
 	_ "github.com/go-sql-driver/mysql"
 )
 `, tableComment, PkgDbModels)

@@ -14,6 +14,25 @@
 # go-mygen
 > 代码生成器,避免ORM带来的性能损耗.
 
+## debug 修复
+1. 查询结果为空时，底层不再处理，交由上层处理。
+```go
+func getRows() (err error) {
+    err = query.Scan(
+        &row.Id,          
+    )
+    if err != nil {
+        return
+    }
+}
+func main() {
+    err := getRows()
+    if err == sql.ErrNoRows {
+        fmt.Println("result is nil")
+    }   
+}
+```
+
 ## 版本
 1. 3.2.0 英文
 1. 兼容linux,win,mac
