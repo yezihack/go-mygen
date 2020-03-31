@@ -9,7 +9,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/urfave/cli"
+	"github.com/urfave/cli/v2"
 )
 
 var (
@@ -25,13 +25,13 @@ func start() {
 	DbConn.MaxIdleConn = 5
 	DbConn.MaxOpenConn = 10
 	app.Action = func(c *cli.Context) error {
-		DbConn.Host = c.String("h")    //数据库地址
-		DbConn.Name = c.String("u")    //数据库用户名称
-		DbConn.Port = c.Int("P")       //端口号
-		DbConn.Pass = c.String("p")    //密码
-		DbConn.Charset = c.String("c") //编码格式
+		DbConn.Host = c.String("h")    // 数据库地址
+		DbConn.Name = c.String("u")    // 数据库用户名称
+		DbConn.Port = c.Int("P")       // 端口号
+		DbConn.Pass = c.String("p")    // 密码
+		DbConn.Charset = c.String("c") // 编码格式
 		if c.NumFlags() > 0 {
-			dbName := c.String("d") //数据库名称
+			dbName := c.String("d") // 数据库名称
 			if dbName == "" {
 				return cli.NewExitError("database is null, please use -d params", 9)
 			}
@@ -65,14 +65,14 @@ func release() {
 //构建命令使用说明
 func usage() {
 	app.Name = ProjectName //项目名称
-	app.Authors = []cli.Author{{
+	app.Authors = []*cli.Author{{
 		Name:  Author,
 		Email: AuthorEmail,
 	}}
 	app.Version = Version                                                         //版本号
 	app.Copyright = "@Copyright " + Copyright                                     //版权保护
 	app.Usage = "Quickly generate CURD and documentation for operating MYSQL.etc" //说明
-	app.Commands = []cli.Command{
+	app.Commands = []*cli.Command{
 		{
 			Name:    "help",
 			Aliases: []string{"h", "?"},
@@ -98,15 +98,16 @@ func usage() {
 		&cli.StringFlag{Name: "h", Value: "127.0.0.1", Usage: "Database address"},
 		&cli.IntFlag{Name: "P", Value: 3306, Usage: "port number"},
 		&cli.StringFlag{Name: "u", Value: "root", Usage: "database username"},
-		&cli.StringFlag{Name: "p", Value: "root", Usage: "database password"},
+		&cli.StringFlag{Name: "p", Value: "", Usage: "database password"},
 		&cli.StringFlag{Name: "c", Value: "utf8mb4", Usage: "database format"},
 		&cli.StringFlag{Name: "d", Usage: "database name"},
 	}
 }
 
-//实现命令功能
+// 实现命令功能
 func Commands() error {
 	var err error
+	fmt.Printf("Commands: %+v\n", DbConn)
 	Conn, err = InitDB(DbConn)
 	if Conn == nil || err != nil {
 		return errors.New("database connect failed>>" + err.Error())

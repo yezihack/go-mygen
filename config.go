@@ -4,27 +4,28 @@ import "os"
 
 const (
 	ProjectName = "go-mygen"
-	Version     = "v3.2.0"
+	Version     = "v3.3.0"
 	Copyright   = "2020.03"
-	Author      = "百里"
+	Author      = "Barry"
 	AuthorEmail = "barry300@126.com"
 )
 
 const (
-	DS              = string(os.PathSeparator) //通用/
-	DbNullPrefix    = "Null"                   //处理数据为空时结构的前缀定义
-	TablePrefix     = "TABLE_"                 //表前缀
-	DefaultSavePath = "output"                 //默认生成目录名称
+	DS              = string(os.PathSeparator) // 通用/
+	DbNullPrefix    = "Null"                   // 处理数据为空时结构的前缀定义
+	TablePrefix     = "TABLE_"                 // 表前缀
+	DefaultSavePath = "output"                 // 默认生成目录名称
 )
 
 const (
-	TPL_CURD      = "assets/tpl/curd.tpl"      //生成CRUD2模板
-	TPL_STRUCTURE = "assets/tpl/structure.tpl" //结构体模板
-	TPL_ENTITY    = "assets/tpl/entity.tpl"    //结构实体模板
-	TPL_TABLES    = "assets/tpl/tables.tpl"    //表结构模板
-	TPL_INIT      = "assets/tpl/init.tpl"      //init模板
-	TPL_MARKDOWN  = "assets/tpl/markdown.tpl"  //markdown模板
-	TPL_EXAMPLE   = "assets/tpl/example.tpl"   //example模板
+	TPL_CURD      = "assets/tpl/curd.tpl"      // 生成CRUD2模板
+	TPL_STRUCTURE = "assets/tpl/structure.tpl" // 结构体模板
+	TPL_ENTITY    = "assets/tpl/entity.tpl"    // 结构实体模板
+	TPL_TABLES    = "assets/tpl/tables.tpl"    // 表结构模板
+	TPL_INIT      = "assets/tpl/init.tpl"      // init模板
+	TPL_MARKDOWN  = "assets/tpl/markdown.tpl"  // markdown模板
+	TPL_EXAMPLE   = "assets/tpl/example.tpl"   // example模板
+	TPL_Error     = "assets/tpl/e.tpl"         // error模板
 )
 
 const (
@@ -34,24 +35,25 @@ const (
 	Linux
 )
 
-//生成的go文件
+// generate file name
 const (
-	GODIR_MODELS     = "db_models"       //生成的结构体 go文件名称
-	GODIR_Config     = "config"          //生成的结构体 go文件名称
-	GODIR_Entity     = "entity"          //生成的结构体 go文件名称
-	GOFILE_ENTITY    = "db_entity.go"    //生成的结构体实体 go文件名称
-	GoFile_TableList = "table_list.go"   //表文件
-	GoFile_Init      = "init.go"         //表文件
-	GoFile_Example   = "example_test.go" //表文件
+	GODIR_MODELS     = "db_models"       // model file
+	GODIR_Config     = "config"          // config file
+	GODIR_Entity     = "entity"          // entity file
+	GOFILE_ENTITY    = "db_entity.go"    // entity table file
+	GoFile_TableList = "table_list.go"   // table file
+	GoFile_Init      = "init.go"         // init file
+	GoFile_Error     = "e.go"            // error file
+	GoFile_Example   = "example_test.go" // example file
 )
 
 const (
-	PkgDbModels = "mysql"  //db_models命名空间
-	PkgEntity   = "entity" // entity实体命名空间
-	PkgTable    = "config" //表的空间名称
+	PkgDbModels = "mysql"  // db_models package name
+	PkgEntity   = "entity" // entity package name
+	PkgTable    = "config" // table package name
 )
 
-//帮助文档
+// help list
 var CmdHelp = []CmdEntity{
 	{"0", "Set build directory"},
 	{"1", "Generate the table markdown document"},
@@ -66,10 +68,10 @@ var CmdHelp = []CmdEntity{
 
 //mysql类型 <=> golang类型
 var MysqlTypeToGoType = map[string]string{
-	"tinyint":    "int64",
-	"smallint":   "int64",
-	"mediumint":  "int64",
-	"int":        "int64",
+	"tinyint":    "int32",
+	"smallint":   "int32",
+	"mediumint":  "int32",
+	"int":        "int32",
 	"integer":    "int64",
 	"bigint":     "int64",
 	"float":      "float64",
@@ -94,10 +96,10 @@ var MysqlTypeToGoType = map[string]string{
 
 //MYSQL => golang mysql NULL TYPE
 var MysqlTypeToGoNullType = map[string]string{
-	"tinyint":    "sql.NullInt64",
-	"smallint":   "sql.NullInt64",
-	"mediumint":  "sql.NullInt64",
-	"int":        "sql.NullInt64",
+	"tinyint":    "sql.NullInt32",
+	"smallint":   "sql.NullInt32",
+	"mediumint":  "sql.NullInt32",
+	"int":        "sql.NullInt32",
 	"integer":    "sql.NullInt64",
 	"bigint":     "sql.NullInt64",
 	"float":      "sql.NullFloat64",

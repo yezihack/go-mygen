@@ -24,8 +24,8 @@ func InitDB(cfg DBConfig) (*sql.DB, error) {
 		cfg.Port,
 		cfg.DBName,
 		cfg.Charset,
-		//url.QueryEscape(cfg.Timezone),
 	)
+	fmt.Println("dsn", dsn)
 	connection, err := sql.Open("mysql", dsn)
 	if err != nil {
 		return nil, err

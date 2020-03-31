@@ -16,12 +16,32 @@
 # go-mygen
 > Code generator tools with MYSQL,avoid ORM performance penalty
 
+## debug fix 
+1. When the query result is null, the bottom layer is no longer processed and the upper layer is processed.
+```go
+func getRows() (err error) {
+    err = query.Scan(
+        &row.Id,          
+    )
+    if err != nil {
+        return
+    }
+}
+func main() {
+    err := getRows()
+    if err == sql.ErrNoRows {
+        fmt.Println("result is nil")
+    }   
+}
+```
+
 ## version
 1. 3.2.0 version
 1. Compatible with linux,win,mac
 
 ### v3.2.0
 1. Operation 3 sequence, support entity and SQL, configure to store different directories
+
 
 ## Install
 > \>= go1.13.0
@@ -30,6 +50,9 @@ go get github.com/yezihack/go-mygen
 ```
 ## Using v3 releases
 > [release](https://github.com/yezihack/go-mygen/releases/tag/3.0.0beta)
+
+## fix 
+get 
 
 ## QuickStart
 1. See Help `go-mygen help`
@@ -61,3 +84,7 @@ xx>  input state
 xx:  message tips
 xx>> error output
 ```
+
+## package 
+1. `go get -u github.com/go-bindata/go-bindata/...`
+1. `github.com/urfave/cli/v2`

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 .PHONY : release fmt bindata bench window linux mac clean tar
 
-VERSION := 3.2.0
+VERSION := 3.3.0
 
 release:clean bindata window linux mac tar
 	echo "compiled fanish"
