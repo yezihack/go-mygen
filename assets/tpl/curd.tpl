@@ -32,7 +32,7 @@ row := {{.PkgEntity}}{{.NullStructTableName}}{}
 err = query.Scan(
 {{range .NullFieldsInfo}}&row.{{.HumpName}},// {{.Comment}}
 {{end}})
-if err != nil &&  err != sql.ErrNoRows {
+if err != nil {
     err = m.E.Stack(err)
     return
 }
@@ -54,7 +54,7 @@ row := {{.PkgEntity}}{{.NullStructTableName}}{}
 err = query.Scan(
 {{range .NullFieldsInfo}}&row.{{.HumpName}},// {{.Comment}}
 {{end}})
-if err != sql.ErrNoRows {
+if err != nil {
 err = m.E.Stack(err)
 return
 }
@@ -63,7 +63,7 @@ rowResult = &{{.PkgEntity}}{{.StructTableName}}{
 {{else if eq .GoType "int64"}}{{.HumpName}}:row.{{.HumpName}}.Int64,// {{.Comment}}
 {{else if eq .GoType "time.Time"}}{{.HumpName}}:row.{{.HumpName}}.Time,// {{.Comment}}
 {{else if eq .GoType "int32"}}{{.HumpName}}:row.{{.HumpName}}.Int32,// {{.Comment}}
-{{else}}{{.HumpName}}:row.{{.HumpName}}.String,//{{.Comment}}
+{{else}}{{.HumpName}}:row.{{.HumpName}}.String,// {{.Comment}}
 {{end}}{{end}}}
 return
 }
