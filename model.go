@@ -25,7 +25,6 @@ func InitDB(cfg DBConfig) (*sql.DB, error) {
 		cfg.DBName,
 		cfg.Charset,
 	)
-	fmt.Println("dsn", dsn)
 	connection, err := sql.Open("mysql", dsn)
 	if err != nil {
 		return nil, err
@@ -225,7 +224,7 @@ func (m *ModelS) Delete(sql string, args ...interface{}) (int64, error) {
 	return count, nil
 }
 
-//增加
+// 增加
 func (m *ModelS) Insert(sql string, args ...interface{}) (int64, error) {
 	stmt, err := m.DB.Prepare(sql)
 	if err != nil {
