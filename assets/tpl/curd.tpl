@@ -239,6 +239,7 @@ func (m *{{.StructTableName}}Model) Pluck(id int64) (result map[int64]interface{
 }
 
 // 单列数据 by 支持切片传入
+// Get column data
 func (m *{{.StructTableName}}Model) PluckByArr(ids []int64) (result map[int64]interface{}, err error) {
     result = make(map[int64]interface{})
     if len(ids) == 0 {
@@ -272,6 +273,7 @@ func (m *{{.StructTableName}}Model) PluckByArr(ids []int64) (result map[int64]in
 }
 
 // 获取单个数据
+// Get one data
 func (m *{{.StructTableName}}Model) One(id int64) (result int64, err error) {
 	sqlText := "SELECT `{{.PrimaryKey}}` FROM " + {{.PkgTable}}{{.UpperTableName}} + " where {{.PrimaryKey}}=?"
 	rows := m.DB.QueryRow(sqlText, id)
@@ -283,6 +285,7 @@ func (m *{{.StructTableName}}Model) One(id int64) (result int64, err error) {
 }
 
 // 获取行数
+// Get line count
 func (m *{{.StructTableName}}Model) Count() (count int64, err error) {
  sqlText := "SELECT COUNT(*) FROM " + {{.PkgTable}}{{.UpperTableName}}
 query := m.DB.QueryRow(sqlText)
@@ -294,8 +297,9 @@ return
 return
 }
 
-// 判断是否存在
-func (m *{{.StructTableName}}Model) Exists(id int64) (b bool, err error) {
+// 判断数据是否存在
+// Check the data is have?
+func (m *{{.StructTableName}}Model) Has(id int64) (b bool, err error) {
 	sqlText := "SELECT COUNT(*) FROM " + {{.PkgTable}}{{.UpperTableName}} + " where {{.PrimaryKey}} = ?"
 	var count int64
     err = m.DB.QueryRow(sqlText, id).Scan(&count)
