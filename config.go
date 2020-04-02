@@ -7,7 +7,7 @@ const (
 	Version     = "v3.3.4"
 	Copyright   = "2020.04"
 	Author      = "Barry"
-	AuthorEmail = "barry300@126.com"
+	AuthorEmail = "freeit@126.com"
 )
 
 const (

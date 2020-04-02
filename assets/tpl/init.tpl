@@ -88,3 +88,7 @@ func SlaveDBClose() error {
 func TxBegin() (*sql.Tx, error) {
 	return masterDB.Begin()
 }
+// repeat response to ?,?,?
+func RepeatQuestionMark(count int) string {
+	return strings.TrimRight(strings.Repeat("?,", count), ",")
+}

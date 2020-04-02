@@ -523,7 +523,7 @@ func (l *Logic) GenerateSQL(info *SqlInfo, tableComment string) (err error) {
 package %s
 import(
 	"database/sql"
-	"github.com/pkg/errors"
+	"strings"
 	_ "github.com/go-sql-driver/mysql"
 )
 `, tableComment, PkgDbModels)
