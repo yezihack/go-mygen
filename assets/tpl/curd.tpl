@@ -238,6 +238,39 @@ func (m *{{.StructTableName}}Model) Pluck(id int64) (result map[int64]interface{
 	return
 }
 
+// 单列数据 by 支持切片传入
+func (m *{{.StructTableName}}Model) PluckByArr(ids []int64) (result map[int64]interface{}, err error) {
+    result = make(map[int64]interface{})
+    if len(ids) == 0 {
+        return
+    }
+	sqlText := "SELECT `{{.PrimaryKey}}`, `{{.SecondField}}` FROM " + {{.PkgTable}}{{.UpperTableName}} + " where " +
+		"{{.PrimaryKey}} in (" + RepeatQuestionMark(len(ids)) + ")"
+	params := make([]interface{}, len(ids))
+	for idx, id := range ids {
+		params[idx] = id
+	}
+	rows, err := m.DB.Query(sqlText, params...)
+	if err != nil {
+		err = m.E.Stack(err)
+		return
+	}
+	defer rows.Close()
+	var (
+		_id int64
+		_val interface{}
+	)
+	for rows.Next() {
+		err = rows.Scan(&_id, &_val)
+		if err != nil {
+			err = m.E.Stack(err)
+			return
+		}
+		result[_id] = _val
+	}
+	return
+}
+
 // 获取单个数据
 func (m *{{.StructTableName}}Model) One(id int64) (result int64, err error) {
 	sqlText := "SELECT `{{.PrimaryKey}}` FROM " + {{.PkgTable}}{{.UpperTableName}} + " where {{.PrimaryKey}}=?"
@@ -264,16 +297,11 @@ return
 // 判断是否存在
 func (m *{{.StructTableName}}Model) Exists(id int64) (b bool, err error) {
 	sqlText := "SELECT COUNT(*) FROM " + {{.PkgTable}}{{.UpperTableName}} + " where {{.PrimaryKey}} = ?"
-	query := m.DB.QueryRow(sqlText, id)
 	var count int64
-	err = query.Scan(&count)
-	if err != nil {
-	    err = m.E.Stack(err)
-		return
-	}
-	if count > 0 {
-		b = true
-		return
-	}
-	return
+    err = m.DB.QueryRow(sqlText, id).Scan(&count)
+    if err != nil {
+        err = m.E.Stack(err)
+        return
+    }
+    return count > 0, nil
 }

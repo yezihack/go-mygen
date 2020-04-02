@@ -107,12 +107,10 @@ func usage() {
 // 实现命令功能
 func Commands() error {
 	var err error
-	fmt.Printf("Commands: %+v\n", DbConn)
 	Conn, err = InitDB(DbConn)
 	if Conn == nil || err != nil {
 		return errors.New("database connect failed>>" + err.Error())
 	}
-	log.Println("Database connected success")
 	//初使工作
 	DbModel := NewDB()
 	DbModel.Using(Conn)
