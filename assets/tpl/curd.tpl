@@ -1,8 +1,10 @@
 type {{.StructTableName}}Model struct {
 E
 DB *sql.DB
+Tx *sql.Tx
 }
 
+// not transaction
 func New{{.StructTableName}}(db ...*sql.DB) *{{.StructTableName}}Model {
 if len(db) > 0 {
     return &{{.StructTableName}}Model{
@@ -13,6 +15,13 @@ return &{{.StructTableName}}Model{
     DB: masterDB,
 }
 }
+// transaction object
+func New{{.StructTableName}}Tx(tx *sql.Tx) *{{.StructTableName}}Model {
+	return &{{.StructTableName}}Model{
+		Tx: tx,
+	}
+}
+
 
 // 获取所有的表字段
 func (m *{{.StructTableName}}Model) getColumns() string {
@@ -91,6 +100,30 @@ b = affectCount > 0
 return
 }
 
+
+// _更新数据
+func (m *{{.StructTableName}}Model) SaveTx(sqlTxt string, value ...interface{}) (b bool, err error) {
+stmt, err := m.Tx.Prepare(sqlTxt)
+if err != nil {
+err = m.E.Stack(err)
+return
+}
+defer stmt.Close()
+result, err := stmt.Exec(value...)
+if err != nil {
+err = m.E.Stack(err)
+return
+}
+var affectCount int64
+affectCount, err = result.RowsAffected()
+if err != nil {
+err = m.E.Stack(err)
+return
+}
+b = affectCount > 0
+return
+}
+
 // 新增信息
 func (m *{{.StructTableName}}Model) Create(value *{{.PkgEntity}}{{.StructTableName}}) (lastId int64, err error) {
 const sqlText = "INSERT INTO " + {{.PkgTable}}{{.UpperTableName}} + " ({{.InsertFieldList}}) VALUES ({{.InsertMark}})"
@@ -115,40 +148,100 @@ return
 return
 }
 
+// 新增信息 tx
+func (m *{{.StructTableName}}Model) CreateTx(value *{{.PkgEntity}}{{.StructTableName}}) (lastId int64, err error) {
+const sqlText = "INSERT INTO " + {{.PkgTable}}{{.UpperTableName}} + " ({{.InsertFieldList}}) VALUES ({{.InsertMark}})"
+stmt, err := m.Tx.Prepare(sqlText)
+if err != nil {
+err = m.E.Stack(err)
+return
+}
+defer stmt.Close()
+result, err := stmt.Exec(
+{{range .InsertInfo}}value.{{.HumpName}},// {{.Comment}}
+{{end}})
+if err != nil {
+err = m.E.Stack(err)
+return
+}
+lastId, err = result.LastInsertId()
+if err != nil {
+err = m.E.Stack(err)
+return
+}
+return
+}
+
 // 更新数据
 func (m *{{.StructTableName}}Model) Update(value *{{.PkgEntity}}{{.StructTableName}}) (b bool, err error) {
- sqlText := "UPDATE " + {{.PkgTable}}{{.UpperTableName}} + " SET {{.UpdateFieldList}} WHERE {{.PrimaryKey}} = ?"
+const sqlText = "UPDATE " + {{.PkgTable}}{{.UpperTableName}} + " SET {{.UpdateFieldList}} WHERE {{.PrimaryKey}} = ?"
 params := make([]interface{}, 0)
 {{range $i, $val := .UpdateListField}}params = append(params, {{$val}})
 {{end}}
 return m.Save(sqlText, params...)
 }
 
+
+// 更新数据 tx
+func (m *{{.StructTableName}}Model) UpdateTx(value *{{.PkgEntity}}{{.StructTableName}}) (b bool, err error) {
+const sqlText = "UPDATE " + {{.PkgTable}}{{.UpperTableName}} + " SET {{.UpdateFieldList}} WHERE {{.PrimaryKey}} = ?"
+params := make([]interface{}, 0)
+{{range $i, $val := .UpdateListField}}params = append(params, {{$val}})
+{{end}}
+return m.SaveTx(sqlText, params...)
+}
+
+
 // 查询多行数据
-func (m *{{.StructTableName}}Model) Find(value *{{.PkgEntity}}{{.StructTableName}}) (resList []*{{.PkgEntity}}{{.StructTableName}}, err error) {
- sqlText := "SELECT" + m.getColumns() + "FROM " + {{.PkgTable}}{{.UpperTableName}}
+func (m *{{.StructTableName}}Model) Find() (resList []*{{.PkgEntity}}{{.StructTableName}}, err error) {
+sqlText := "SELECT" + m.getColumns() + "FROM " + {{.PkgTable}}{{.UpperTableName}}
 resList, err = m.getRows(sqlText)
 return
 }
 
 // 获取单行数据
-func (m *{{.StructTableName}}Model) First(value *{{.PkgEntity}}{{.StructTableName}}) (result *{{.PkgEntity}}{{.StructTableName}}, err error) {
- sqlText := "SELECT" + m.getColumns() + "FROM " + {{.PkgTable}}{{.UpperTableName}} + " LIMIT 1"
-result, err = m.getRow(sqlText)
+func (m *{{.StructTableName}}Model) First(id int64) (result *{{.PkgEntity}}{{.StructTableName}}, err error) {
+sqlText := "SELECT" + m.getColumns() + "FROM " + {{.PkgTable}}{{.UpperTableName}} + " {{.PrimaryKey}} = ? LIMIT 1"
+result, err = m.getRow(sqlText, id)
 return
 }
 
 // 获取最后一行数据
-func (m *{{.StructTableName}}Model) Last(value *{{.PkgEntity}}{{.StructTableName}}) (result *{{.PkgEntity}}{{.StructTableName}}, err error) {
- sqlText := "SELECT" + m.getColumns() + "FROM " + {{.PkgTable}}{{.UpperTableName}} + " ORDER BY ID DESC LIMIT 1"
+func (m *{{.StructTableName}}Model) Last() (result *{{.PkgEntity}}{{.StructTableName}}, err error) {
+sqlText := "SELECT" + m.getColumns() + "FROM " + {{.PkgTable}}{{.UpperTableName}} + " ORDER BY ID DESC LIMIT 1"
 result, err = m.getRow(sqlText)
 return
 }
 
+// 单列数据
+func (m *{{.StructTableName}}Model) Pluck(id int64) (result map[int64]interface{}, err error) {
+	const sqlText = "SELECT `{{.PrimaryKey}}`, `{{.SecondField}}` FROM " + {{.PkgTable}}{{.UpperTableName}} + " where {{.PrimaryKey}} = ?"
+	rows, err := m.DB.Query(sqlText, id)
+	if err != nil {
+		err = m.E.Stack(err)
+		return
+	}
+	defer rows.Close()
+	result = make(map[int64]interface{})
+	var (
+	    _id int64
+	    _val interface{}
+	)
+	for rows.Next() {
+		err = rows.Scan(&_id, &_val)
+		if err != nil {
+		    err = m.E.Stack(err)
+			return
+		}
+		result[_id] = _val
+	}
+	return
+}
+
 // 获取单个数据
-func (m *{{.StructTableName}}Model) One(userId int64) (result int64, err error) {
-	sqlText := "SELECT id FROM " + {{.PkgTable}}{{.UpperTableName}} + " where id=?"
-	rows := m.DB.QueryRow(sqlText, userId)
+func (m *{{.StructTableName}}Model) One(id int64) (result int64, err error) {
+	sqlText := "SELECT `{{.PrimaryKey}}` FROM " + {{.PkgTable}}{{.UpperTableName}} + " where {{.PrimaryKey}}=?"
+	rows := m.DB.QueryRow(sqlText, id)
 	if err = rows.Scan(&result); err != nil {
 	    err = m.E.Stack(err)
 		return
@@ -170,7 +263,7 @@ return
 
 // 判断是否存在
 func (m *{{.StructTableName}}Model) Exists(id int64) (b bool, err error) {
-	sqlText := "SELECT COUNT(*) FROM " + {{.PkgTable}}{{.UpperTableName}} + " where id = ?"
+	sqlText := "SELECT COUNT(*) FROM " + {{.PkgTable}}{{.UpperTableName}} + " where {{.PrimaryKey}} = ?"
 	query := m.DB.QueryRow(sqlText, id)
 	var count int64
 	err = query.Scan(&count)

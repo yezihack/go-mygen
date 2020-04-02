@@ -70,16 +70,21 @@ func initDB(cfg dbConfig) *sql.DB {
 	connection.SetMaxIdleConns(cfg.MaxIdle)
 	return connection
 }
-
+// close db
 func MasterDBClose() error {
 	if masterDB != nil {
 		return masterDB.Close()
 	}
 	return nil
 }
+// close db
 func SlaveDBClose() error {
 	if slaveDB != nil {
 		return slaveDB.Close()
 	}
 	return nil
+}
+// transaction start
+func TxBegin() (*sql.Tx, error) {
+	return masterDB.Begin()
 }
