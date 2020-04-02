@@ -47,7 +47,7 @@ func (m *ModelS) findDbTables() (NameAndComment []TableNameAndComment, err error
 	return
 }
 
-//获取表结构详情
+// 获取表结构详情
 func (m *ModelS) GetTableDesc(tableName string) (reply []*TableDesc, err error) {
 	m.l.Lock()
 	defer m.l.Unlock()

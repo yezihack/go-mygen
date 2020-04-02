@@ -110,12 +110,13 @@ type SqlInfo struct {
 	StructTableName     string              // 结构表名称
 	NullStructTableName string              // 判断为空的表名
 	PkgEntity           string              // 实体空间名称
-	PkgTable            string              //表的空间名称
+	PkgTable            string              // 表的空间名称
 	UpperTableName      string              // 大写的表名
 	AllFieldList        string              // 所有字段列表,如: id,name
 	InsertFieldList     string              // 插入字段列表,如:id,name
 	InsertMark          string              // 插入字段使用多少个?,如: ?,?,?
 	UpdateFieldList     string              // 更新字段列表
+	SecondField         string              // 存放第二个字段
 	UpdateListField     []string            // 更新字段列表
 	FieldsInfo          []*SqlFieldInfo     // 字段信息
 	NullFieldsInfo      []*NullSqlFieldInfo // 判断为空时

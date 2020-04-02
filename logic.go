@@ -294,7 +294,8 @@ func (l *Logic) GenerateCURDFile(tableName, tableComment string, tableDesc []*Ta
 		PrimaryKey      = ""
 		primaryType     = ""
 	)
-
+	// 存放第个字段
+	var secondField string
 	for _, item := range tableDesc {
 		allFields = append(allFields, "`"+item.ColumnName+"`")
 		if item.PrimaryKey == false && item.ColumnName != "updated_at" && item.ColumnName != "created_at" {
@@ -315,6 +316,11 @@ func (l *Logic) GenerateCURDFile(tableName, tableComment string, tableDesc []*Ta
 		if item.PrimaryKey {
 			PrimaryKey = item.ColumnName
 			primaryType = item.GolangType
+		} else {
+			// 除了主键外的任意一个字段即可。
+			if secondField == "" {
+				secondField = item.ColumnName
+			}
 		}
 		fieldsList = append(fieldsList, &SqlFieldInfo{
 			HumpName: l.T.Capitalize(item.ColumnName),
@@ -353,6 +359,7 @@ func (l *Logic) GenerateCURDFile(tableName, tableComment string, tableDesc []*Ta
 		FieldsInfo:          fieldsList,
 		NullFieldsInfo:      nullFieldList,
 		InsertInfo:          InsertInfo,
+		SecondField:         secondField,
 	}
 	err = l.GenerateSQL(sqlInfo, tableComment)
 	// 添加一个实例
