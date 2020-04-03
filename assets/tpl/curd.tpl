@@ -276,8 +276,8 @@ func (m *{{.StructTableName}}Model) PluckByArr(ids []int64) (result map[int64]in
 // Get one data
 func (m *{{.StructTableName}}Model) One(id int64) (result int64, err error) {
 	sqlText := "SELECT `{{.PrimaryKey}}` FROM " + {{.PkgTable}}{{.UpperTableName}} + " where {{.PrimaryKey}}=?"
-	rows := m.DB.QueryRow(sqlText, id)
-	if err = rows.Scan(&result); err != nil {
+	err = m.DB.QueryRow(sqlText, id).Scan(&result)
+	if err != nil && err != sql.ErrNoRows {
 	    err = m.E.Stack(err)
 		return
 	}
@@ -287,14 +287,13 @@ func (m *{{.StructTableName}}Model) One(id int64) (result int64, err error) {
 // 获取行数
 // Get line count
 func (m *{{.StructTableName}}Model) Count() (count int64, err error) {
- sqlText := "SELECT COUNT(*) FROM " + {{.PkgTable}}{{.UpperTableName}}
-query := m.DB.QueryRow(sqlText)
-err = query.Scan(&count)
-if err != nil {
-err = m.E.Stack(err)
-return
-}
-return
+    sqlText := "SELECT COUNT(*) FROM " + {{.PkgTable}}{{.UpperTableName}}
+    err = m.DB.QueryRow(sqlText).Scan(&count)
+    if err != nil && err != sql.ErrNoRows{
+        err = m.E.Stack(err)
+        return
+    }
+    return
 }
 
 // 判断数据是否存在
@@ -303,7 +302,7 @@ func (m *{{.StructTableName}}Model) Has(id int64) (b bool, err error) {
 	sqlText := "SELECT COUNT(*) FROM " + {{.PkgTable}}{{.UpperTableName}} + " where {{.PrimaryKey}} = ?"
 	var count int64
     err = m.DB.QueryRow(sqlText, id).Scan(&count)
-    if err != nil {
+    if err != nil && err != sql.ErrNoRows {
         err = m.E.Stack(err)
         return
     }
