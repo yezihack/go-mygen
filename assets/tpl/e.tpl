@@ -8,6 +8,10 @@ import (
 type E struct {
 }
 
+func NewE() *E {
+	return &E{}
+}
+
 // 记录堆栈
 func (e E) Stack(err error) error {
 	if b, ee := e.isNull(err); b {

@@ -4,7 +4,7 @@ import "os"
 
 const (
 	ProjectName = "go-mygen"
-	Version     = "v3.3.5"
+	Version     = "v3.3.6"
 	Copyright   = "2020.04"
 	Author      = "Barry"
 	AuthorEmail = "freeit@126.com"
