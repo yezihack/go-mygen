@@ -359,3 +359,13 @@ func CheckCharDoSpecialArr(s string, char byte, reg string) []string {
 	s = CheckCharDoSpecial(s, char, reg)
 	return strings.Split(s, string(char))
 }
+
+// 添加``符号
+func AddQuote(str string) string {
+	return "`" + str + "`"
+}
+
+// 去掉 `符号
+func CleanQuote(str string) string {
+	return strings.Replace(str, "`", "", -1)
+}
