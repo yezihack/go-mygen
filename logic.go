@@ -297,17 +297,17 @@ func (l *Logic) GenerateCURDFile(tableName, tableComment string, tableDesc []*Ta
 	// 存放第个字段
 	var secondField string
 	for _, item := range tableDesc {
-		allFields = append(allFields, "`"+item.ColumnName+"`")
+		allFields = append(allFields, AddQuote(item.ColumnName))
 		if item.PrimaryKey == false && item.ColumnName != "updated_at" && item.ColumnName != "created_at" {
-			insertFields = append(insertFields, item.ColumnName)
+			insertFields = append(insertFields, AddQuote(item.ColumnName))
 			InsertInfo = append(InsertInfo, &SqlFieldInfo{
 				HumpName: l.T.Capitalize(item.ColumnName),
 				Comment:  item.ColumnComment,
 			})
 			if item.ColumnName == "identify" {
-				updateList = append(updateList, item.ColumnName+"="+item.ColumnName+"+1")
+				updateList = append(updateList, AddQuote(item.ColumnName)+"="+item.ColumnName+"+1")
 			} else {
-				updateList = append(updateList, item.ColumnName+"=?")
+				updateList = append(updateList, AddQuote(item.ColumnName)+"=?")
 				if item.PrimaryKey == false {
 					updateListField = append(updateListField, "value."+l.T.Capitalize(item.ColumnName))
 				}
@@ -344,7 +344,7 @@ func (l *Logic) GenerateCURDFile(tableName, tableComment string, tableDesc []*Ta
 	}
 	sqlInfo := &SqlInfo{
 		TableName:           tableName,
-		PrimaryKey:          PrimaryKey,
+		PrimaryKey:          AddQuote(PrimaryKey),
 		PrimaryType:         primaryType,
 		StructTableName:     l.T.Capitalize(tableName),
 		NullStructTableName: l.T.Capitalize(tableName) + DbNullPrefix,
@@ -359,7 +359,7 @@ func (l *Logic) GenerateCURDFile(tableName, tableComment string, tableDesc []*Ta
 		FieldsInfo:          fieldsList,
 		NullFieldsInfo:      nullFieldList,
 		InsertInfo:          InsertInfo,
-		SecondField:         secondField,
+		SecondField:         AddQuote(secondField),
 	}
 	err = l.GenerateSQL(sqlInfo, tableComment)
 	// 添加一个实例

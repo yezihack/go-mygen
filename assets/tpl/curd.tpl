@@ -215,7 +215,7 @@ return
 
 // 单列数据
 func (m *{{.StructTableName}}Model) Pluck(id int64) (result map[int64]interface{}, err error) {
-	const sqlText = "SELECT `{{.PrimaryKey}}`, `{{.SecondField}}` FROM " + {{.PkgTable}}{{.UpperTableName}} + " where {{.PrimaryKey}} = ?"
+	const sqlText = "SELECT {{.PrimaryKey}}, {{.SecondField}} FROM " + {{.PkgTable}}{{.UpperTableName}} + " where {{.PrimaryKey}} = ?"
 	rows, err := m.DB.Query(sqlText, id)
 	if err != nil {
 		err = m.E.Stack(err)
@@ -240,12 +240,12 @@ func (m *{{.StructTableName}}Model) Pluck(id int64) (result map[int64]interface{
 
 // 单列数据 by 支持切片传入
 // Get column data
-func (m *{{.StructTableName}}Model) PluckByArr(ids []int64) (result map[int64]interface{}, err error) {
+func (m *{{.StructTableName}}Model) Plucks(ids []int64) (result map[int64]interface{}, err error) {
     result = make(map[int64]interface{})
     if len(ids) == 0 {
         return
     }
-	sqlText := "SELECT `{{.PrimaryKey}}`, `{{.SecondField}}` FROM " + {{.PkgTable}}{{.UpperTableName}} + " where " +
+	sqlText := "SELECT {{.PrimaryKey}}, {{.SecondField}} FROM " + {{.PkgTable}}{{.UpperTableName}} + " where " +
 		"{{.PrimaryKey}} in (" + RepeatQuestionMark(len(ids)) + ")"
 	params := make([]interface{}, len(ids))
 	for idx, id := range ids {
@@ -275,7 +275,7 @@ func (m *{{.StructTableName}}Model) PluckByArr(ids []int64) (result map[int64]in
 // 获取单个数据
 // Get one data
 func (m *{{.StructTableName}}Model) One(id int64) (result int64, err error) {
-	sqlText := "SELECT `{{.PrimaryKey}}` FROM " + {{.PkgTable}}{{.UpperTableName}} + " where {{.PrimaryKey}}=?"
+	sqlText := "SELECT {{.PrimaryKey}} FROM " + {{.PkgTable}}{{.UpperTableName}} + " where {{.PrimaryKey}}=?"
 	err = m.DB.QueryRow(sqlText, id).Scan(&result)
 	if err != nil && err != sql.ErrNoRows {
 	    err = m.E.Stack(err)
@@ -299,7 +299,7 @@ func (m *{{.StructTableName}}Model) Count() (count int64, err error) {
 // 判断数据是否存在
 // Check the data is have?
 func (m *{{.StructTableName}}Model) Has(id int64) (b bool, err error) {
-	sqlText := "SELECT COUNT(*) FROM " + {{.PkgTable}}{{.UpperTableName}} + " where {{.PrimaryKey}} = ?"
+	sqlText := "SELECT {{.PrimaryKey}} FROM " + {{.PkgTable}}{{.UpperTableName}} + " where {{.PrimaryKey}} = ?"
 	var count int64
     err = m.DB.QueryRow(sqlText, id).Scan(&count)
     if err != nil && err != sql.ErrNoRows {
