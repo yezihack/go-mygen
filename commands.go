@@ -34,8 +34,11 @@ func (c *commands) Handlers() map[string]func(args []string) int {
 		"8":     c.Help,
 		"h":     c.Help,
 		"help":  c.Help,
+		"ll":  	 c.Help,
+		"ls":  	 c.Help,
 		"quit":  c.Quit,
 		"q":     c.Quit,
+		"exit":  c.Quit,
 	}
 }
 

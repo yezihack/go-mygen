@@ -5,6 +5,7 @@ import (
 	"database/sql"
 	"errors"
 	"fmt"
+	"github.com/howeyc/gopass"
 	"log"
 	"os"
 	"strings"
@@ -24,7 +25,11 @@ func start() {
 	go release()
 	DbConn.MaxIdleConn = 5
 	DbConn.MaxOpenConn = 10
+
 	app.Action = func(c *cli.Context) error {
+		if c.Bool("debug") {
+			log.SetFlags(log.Lshortfile | log.LstdFlags)
+		}
 		DbConn.Host = c.String("h")    // 数据库地址
 		DbConn.Name = c.String("u")    // 数据库用户名称
 		DbConn.Port = c.Int("P")       // 端口号
@@ -36,13 +41,13 @@ func start() {
 				return cli.NewExitError("database is null, please use -d params", 9)
 			}
 			DbConn.DBName = dbName
-			if DbConn.Pass == "" {
-				fmt.Print("input password>")
-				line, _, err := bufio.NewReader(os.Stdin).ReadLine()
-				if err == nil {
-					DbConn.Pass = string(line)
-					Clean() //清屏
+			if DbConn.Pass == "" { // input password use an star instead, password protected
+				pass, err := gopass.GetPasswdPrompt("input passwd:", true,  os.Stdin, os.Stdout)
+				if err != nil {
+					return err
 				}
+				DbConn.Pass = string(pass)
+				Clean()
 			}
 			if err := Commands(); err != nil {
 				return cli.NewExitError(err, 1)
@@ -97,10 +102,11 @@ func usage() {
 	app.Flags = []cli.Flag{
 		&cli.StringFlag{Name: "h", Value: "127.0.0.1", Usage: "Database address"},
 		&cli.IntFlag{Name: "P", Value: 3306, Usage: "port number"},
-		&cli.StringFlag{Name: "u", Value: "root", Usage: "database username"},
-		&cli.StringFlag{Name: "p", Value: "", Usage: "database password"},
+		&cli.StringFlag{Name: "u", Value: "root", Usage: "database username", Required:true},
+		&cli.StringFlag{Name: "p", Value: "", Usage: "database password", Required:true, DefaultText:""},
 		&cli.StringFlag{Name: "c", Value: "utf8mb4", Usage: "database format"},
 		&cli.StringFlag{Name: "d", Usage: "database name"},
+		&cli.BoolFlag{Name: "debug", Usage: "debug", Value:false},
 	}
 }
 
@@ -131,7 +137,7 @@ func Commands() error {
 
 	br := bufio.NewReader(os.Stdin)
 	for {
-		fmt.Print("input command>")
+		fmt.Print("-> # ")
 		line, _, _ := br.ReadLine()
 		if len(line) == 0 {
 			continue
