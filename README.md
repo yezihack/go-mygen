@@ -2,20 +2,20 @@
 [![](https://img.shields.io/badge/download-4M-green?style=flat-square&logo=appveyor)](https://github.com/yezihack/go-mygen/releases)
 [![](https://img.shields.io/badge/release-linux%2Cmac%2Cwin-blue?style=flat-square&logo=appveyor)](https://github.com/yezihack/go-mygen/releases)
 <br/>
-[![](https://img.shields.io/badge/go--mygen--en-3.1.0beta-green)](https://github.com/yezihack/go-mygen/tree/3.1.0beta)
-[![](https://img.shields.io/badge/go--mygen--cn-3.0.0beta-green)](https://github.com/yezihack/go-mygen/tree/3.0.0beta)
 [![](https://img.shields.io/github/stars/yezihack/go-mygen)](https://github.com/yezihack/go-mygen/stargazers)
 [![](https://img.shields.io/github/issues/yezihack/go-mygen)](https://github.com/yezihack/go-mygen/issues)
 [![](https://img.shields.io/github/forks/yezihack/go-mygen)](https://github.com/yezihack/go-mygen/network/members)
 [![](https://img.shields.io/github/license/yezihack/go-mygen)](https://github.com/yezihack/go-mygen/blob/3.1.0beta/LICENSE)
 
-[English](README.md)|[中文](README-CN.md)
+[English](README.md)
 
 ![](assets/img/golang.png)
 
 # go-mygen
-> Code generator tools with MYSQL,avoid ORM performance penalty
+> Code generator tools with MYSQL,avoid ORM performance penalty, 
+> Go-mygen is a tool that automatically generates MySQL table entities,CRUD and Markdown documents.
 
+> go-mygen是一款自动生成MySQL表实体,CRUD,Markdown文档工具
 
 ## Install
 > \>= go1.13.0
@@ -23,40 +23,11 @@
 go get -u -x github.com/yezihack/go-mygen
 ```
 
-## debug fix 
-1. When the query result is null, the bottom layer is no longer processed and the upper layer is processed.
-```go
-func getRows() (err error) {
-    err = query.Scan(
-        &row.Id,          
-    )
-    if err != nil {
-        return
-    }
-}
-func main() {
-    err := getRows()
-    if err == sql.ErrNoRows {
-        fmt.Println("result is nil")
-    }   
-}
-```
+## Using v3.2 releases
+> [release](https://github.com/yezihack/go-mygen/releases/tag/v3.2.0)
 
-## v3.3.4 version
-1. Compatible with linux,window,mac.(v3.3.0)
-1. add stack error.(v3.3.1)
-1. different int32 or int64.(v3.3.3)
-1. support transaction. (v3.3.4)
-
-### v3.2.0
-1. Operation 3 sequence, support entity and SQL, configure to store different directories
-
-
-## Using v3 releases
-> [release](https://github.com/yezihack/go-mygen/releases/tag/3.0.0beta)
-
-## fix 
-get 
+## Version information
+[go-mygen-v3.3.8](CHANGELOG.md)
 
 ## QuickStart
 1. See Help `go-mygen help`
@@ -68,27 +39,71 @@ get
 - Generate the structure entities for the golang table
 - Custom structure parsing entities, such as json,gorm, XML, etc
 - Generate golang operation mysql add, delete, modify and select code statements
+- Config, Entity and CURD directories are stored separate
 - Custom build directory
 - Clear screen, exit and other functions
+- When Input password use an star instead, password protected
 
 ## Parameters info
+
+> Go-mygen GLOBAL OPTIONS
+
 ```
--h value       Database address (default: "localhost")
--P value       port number (default: 3306)
--u value       Database user name (default: "root")
--p value       Database password (default: "root")
--c value       Coding format (default: "utf8mb4")
--d value       Database name
+GLOBAL OPTIONS:
+   -h value  Database address (default: "127.0.0.1")
+   -P value  port number (default: 3306)
+   -u value  database username (default: "root")
+   -p value  database password
+   -c value  database format (default: "utf8mb4")
+   -d value  database name
+   --debug   debug (default: false) 
 ```
 
-## Other
-> If an error is found, please welcome issues
+> Operation Command (input number)
+
 ```
-xx>  input state
-xx:  message tips
-xx>> error output
+NO:0 Set build directory
+NO:1 Generate the table markdown document
+NO:2 Generate table structure entities
+NO:3 Generate CURD insert, delete, update and select
+NO:4 Sets the struct mapping name
+NO:5 Find or set the table name
+NO:7, c, clear Clear the screen
+NO:8, h, help Show help list
+NO:9, q, quit Quit
 ```
 
-## package 
+> Go-mygen 全局参数说明
+```
+GLOBAL OPTIONS:
+   -h value  Database address (default: "127.0.0.1") 数据库地址,必填
+   -P value  port number (default: 3306) 数据库端口号,必填
+   -u value  database username (default: "root") 数据库名称,必填
+   -p value  database password 数据库登陆密码,必填
+   -c value  database format (default: "utf8mb4") 数据库编码
+   -d value  database name 数据库名称,必填
+   --debug   debug (default: false) 开启调试
+```
+> 操作命令,只需要输入NO号,即可操作相关命令
+
+```
+NO:0 Set build directory 设置存储目录
+NO:1 Generate the table markdown document 生成Markdonw文档
+NO:2 Generate table structure entities 生成Golang代码的实体(即表的实体)
+NO:3 Generate CURD insert, delete, update and select 生成Golang的CRUD代码
+NO:4 Sets the struct mapping name 设置实体解析参数,多个,以逗号分隔. 如`json:"name"`
+NO:5 Find or set the table name 选择需要操作的数据库表, 默认全部
+NO:7, c, clear Clear the screen 清屏
+NO:8, h, help Show help list 显示帮助
+NO:9, q, quit Quit 安全退出
+```
+
+## Package 
+> Thanks for these packages
 1. `go get -u github.com/go-bindata/go-bindata/...`
 1. `github.com/urfave/cli/v2`
+1. `github.com/howeyc/gopass`
+
+
+## Other
+Welcome to issue, Thanks.

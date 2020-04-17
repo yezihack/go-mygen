@@ -6,6 +6,11 @@ VERSION := 3.3.0
 release:clean bindata window linux mac tar
 	echo "compiled fanish"
 
+dev:fmt bindata
+  rm -rf output/dev/*
+  go build -a -o output/dev/go-mygen .
+  output/dev/go-mygen -h 192.168.76.170 -u root -d test -p ""
+
 fmt:
 	gofmt -l -w ./
 
