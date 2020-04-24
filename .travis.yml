@@ -1,0 +1,16 @@
+language: go
+go:
+  - 1.14
+
+sudo: required
+
+os:
+  - linux
+  - osx
+
+install:
+  - echo "install"
+
+script:
+  - echo "script"
+  - make dev
