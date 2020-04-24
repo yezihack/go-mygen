@@ -5,10 +5,11 @@ import (
 	"database/sql"
 	"errors"
 	"fmt"
-	"github.com/howeyc/gopass"
 	"log"
 	"os"
 	"strings"
+
+	"github.com/howeyc/gopass"
 
 	"github.com/urfave/cli/v2"
 )
@@ -41,8 +42,8 @@ func start() {
 				return cli.NewExitError("database is null, please use -d params", 9)
 			}
 			DbConn.DBName = dbName
-			if DbConn.Pass == "" { // input password use an star instead, password protected
-				pass, err := gopass.GetPasswdPrompt("input passwd:", true,  os.Stdin, os.Stdout)
+			if DbConn.Pass == "" { // Use an asterisk instead of the password you entered
+				pass, err := gopass.GetPasswdPrompt("Enter password:", false, os.Stdin, os.Stdout)
 				if err != nil {
 					return err
 				}
@@ -102,11 +103,11 @@ func usage() {
 	app.Flags = []cli.Flag{
 		&cli.StringFlag{Name: "h", Value: "127.0.0.1", Usage: "Database address"},
 		&cli.IntFlag{Name: "P", Value: 3306, Usage: "port number"},
-		&cli.StringFlag{Name: "u", Value: "root", Usage: "database username", Required:true},
-		&cli.StringFlag{Name: "p", Value: "", Usage: "database password", Required:true, DefaultText:""},
+		&cli.StringFlag{Name: "u", Value: "root", Usage: "database username", Required: true},
+		&cli.StringFlag{Name: "p", Value: "", Usage: "database password", Required: true, DefaultText: ""},
 		&cli.StringFlag{Name: "c", Value: "utf8mb4", Usage: "database format"},
 		&cli.StringFlag{Name: "d", Usage: "database name"},
-		&cli.BoolFlag{Name: "debug", Usage: "debug", Value:false},
+		&cli.BoolFlag{Name: "debug", Usage: "debug", Value: false},
 	}
 }
 

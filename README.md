@@ -42,7 +42,7 @@ go get -u -x github.com/yezihack/go-mygen
 - Config, Entity and CURD directories are stored separate
 - Custom build directory
 - Clear screen, exit and other functions
-- When Input password use an star instead, password protected
+- Use an asterisk instead of the password you entered
 
 ## Parameters info
 

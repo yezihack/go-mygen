@@ -201,7 +201,7 @@ return
 
 // 获取单行数据
 func (m *{{.StructTableName}}Model) First(id int64) (result *{{.PkgEntity}}{{.StructTableName}}, err error) {
-sqlText := "SELECT" + m.getColumns() + "FROM " + {{.PkgTable}}{{.UpperTableName}} + " {{.PrimaryKey}} = ? LIMIT 1"
+sqlText := "SELECT" + m.getColumns() + "FROM " + {{.PkgTable}}{{.UpperTableName}} + " WHERE {{.PrimaryKey}} = ? LIMIT 1"
 result, err = m.getRow(sqlText, id)
 return
 }
