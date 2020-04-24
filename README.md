@@ -1,7 +1,4 @@
-[![](https://img.shields.io/badge/go--mygen-tools-orange?style=flat-square&logo=appveyor)](https://github.com/yezihack/go-mygen/releases)
-[![](https://img.shields.io/badge/download-4M-green?style=flat-square&logo=appveyor)](https://github.com/yezihack/go-mygen/releases)
-[![](https://img.shields.io/badge/release-linux%2Cmac%2Cwin-blue?style=flat-square&logo=appveyor)](https://github.com/yezihack/go-mygen/releases)
-<br/>
+[![Build Status](https://travis-ci.org/yezihack/go-mygen.svg?branch=master)](https://travis-ci.org/yezihack/go-mygen)
 [![](https://img.shields.io/github/stars/yezihack/go-mygen)](https://github.com/yezihack/go-mygen/stargazers)
 [![](https://img.shields.io/github/issues/yezihack/go-mygen)](https://github.com/yezihack/go-mygen/issues)
 [![](https://img.shields.io/github/forks/yezihack/go-mygen)](https://github.com/yezihack/go-mygen/network/members)
