@@ -159,7 +159,7 @@ func (l *Logic) GetRoot() string {
 func (l *Logic) GenerateDBStructure(tableName, tableComment, path string, tableDesc []*TableDesc) (err error) {
 	// 加入package
 	packageStr := `// 数据库表内结构体信息
-package mysql
+package service
 ` // 判断package是否加载过
 	// 判断文件是否存在.
 
@@ -230,8 +230,6 @@ func (l *Logic) GenerateDBEntity(req *EntityReq) (err error) {
 package %s
 import (
 	"database/sql"
-	"github.com/go-sql-driver/mysql"
-	"time"
 )
 `, req.EntityPkg)
 	// 判断import是否加载过
@@ -523,7 +521,6 @@ func (l *Logic) GenerateSQL(info *SqlInfo, tableComment string) (err error) {
 package %s
 import(
 	"database/sql"
-	"strings"
 	_ "github.com/go-sql-driver/mysql"
 )
 `, tableComment, PkgDbModels)

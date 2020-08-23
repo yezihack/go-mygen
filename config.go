@@ -38,8 +38,8 @@ const (
 // generate file name
 const (
 	GODIR_MODELS     = "db_models"       // model file
-	GODIR_Config     = "config"          // config file
-	GODIR_Entity     = "entity"          // entity file
+	GODIR_Config     = "model_name"      // config file
+	GODIR_Entity     = "model"           // entity file
 	GOFILE_ENTITY    = "db_entity.go"    // entity table file
 	GoFile_TableList = "table_list.go"   // table file
 	GoFile_Init      = "init.go"         // init file
@@ -48,9 +48,9 @@ const (
 )
 
 const (
-	PkgDbModels = "mysql"  // db_models package name
-	PkgEntity   = "entity" // entity package name
-	PkgTable    = "config" // table package name
+	PkgDbModels = "mysql"      // db_models package name
+	PkgEntity   = "model"      // entity package name
+	PkgTable    = "model_name" // table package name
 )
 
 // help list
@@ -80,8 +80,8 @@ var MysqlTypeToGoType = map[string]string{
 	"date":       "string",
 	"time":       "string",
 	"year":       "string",
-	"datetime":   "time.Time",
-	"timestamp":  "time.Time",
+	"datetime":   "Time",
+	"timestamp":  "Time",
 	"char":       "string",
 	"varchar":    "string",
 	"tinyblob":   "string",
@@ -108,8 +108,8 @@ var MysqlTypeToGoNullType = map[string]string{
 	"date":       "sql.NullString",
 	"time":       "sql.NullString",
 	"year":       "sql.NullString",
-	"datetime":   "mysql.NullTime",
-	"timestamp":  "mysql.NullTime",
+	"datetime":   "Time",
+	"timestamp":  "Time",
 	"char":       "sql.NullString",
 	"varchar":    "sql.NullString",
 	"tinyblob":   "sql.NullString",

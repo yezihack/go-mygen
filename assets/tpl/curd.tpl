@@ -5,15 +5,10 @@ Tx *sql.Tx
 }
 
 // not transaction
-func New{{.StructTableName}}(db ...*sql.DB) *{{.StructTableName}}Model {
-if len(db) > 0 {
+func New{{.StructTableName}}(db *sql.DB) *{{.StructTableName}}Model {
     return &{{.StructTableName}}Model{
-        DB: db[0],
+        DB: db,
     }
-}
-return &{{.StructTableName}}Model{
-    DB: masterDB,
-}
 }
 // transaction object
 func New{{.StructTableName}}Tx(tx *sql.Tx) *{{.StructTableName}}Model {
