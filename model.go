@@ -88,7 +88,9 @@ func (m *ModelS) Find(sql string, args ...interface{}) ([]map[string]interface{}
 			} else {
 				v = val
 			}
-			entity[field] = v //以字段名为键,存储数据
+
+			lowerField := strings.ToLower(field)
+			entity[lowerField] = v //以字段名为键,存储数据
 		}
 		//追加到结果集里
 		result = append(result, entity)
