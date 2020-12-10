@@ -1,4 +1,7 @@
 
+## v3.3.9 version 
+1. Improve program stability
+
 ## v3.3.4 version
 1. Compatible with linux,window,mac.(v3.3.0)
 1. add stack error.(v3.3.1)

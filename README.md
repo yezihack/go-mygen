@@ -14,11 +14,11 @@
 go get -u -x github.com/yezihack/go-mygen
 ```
 
-## Using v3.2 releases
-> [release](https://github.com/yezihack/go-mygen/releases/tag/v3.2.0)
+## Using v3.3.9 releases
+> [release](https://github.com/yezihack/go-mygen/releases/tag/v3.3.9)
 
 ## Version information
-[go-mygen-v3.3.8](CHANGELOG.md)
+[go-mygen](CHANGELOG.md)
 
 ## QuickStart
 1. See Help `go-mygen help`
