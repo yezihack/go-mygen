@@ -8,7 +8,8 @@ release:clean bindata window linux mac tar
 
 dev:fmt bindata
 	rm -rf output/dev/*
-	go build -a -o output/dev/go-mygen .
+#	go build -a -o output/dev/go-mygen .
+	go build -o output/dev/go-mygen .
 
 fmt:
 	gofmt -l -w ./
@@ -23,27 +24,19 @@ win: bindata window
 	output/window/go-mygen.exe help
 
 linux:fmt
-	set CGO_ENABLED=0
-	set GOARCH=amd64
-	set GOOS=linux
-	go build -a -o output/linux/go-mygen .
+	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -o output/linux/go-mygen .
 
 window:fmt
-	set CGO_ENABLED=0
-	set GOARCH=amd64
-	set GOOS=windows
-	go build -a -o output/window/go-mygen.exe .
+	CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -a -o output/window/go-mygen.exe .
 
 mac:fmt
-	set CGO_ENABLED=0
-	set GOARCH=amd64
-	set GOOS=darwin
-	go build -a -o output/mac/go-mygen .
+	CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -a -o output/mac/go-mygen .
 
 clean:
 	rm -rf output/*
 
 tar: 
-	tar -czf output/go-mygen$(VERSION).window-amd64.tar.gz output/window/go-mygen.exe
-	tar -czf output/go-mygen$(VERSION).linux-amd64.tar.gz output/linux/go-mygen
-	tar -czf output/go-mygen$(VERSION).darwin-amd64.tar.gz output/mac/go-mygen
+	tar -zcvf output/go-mygen$(VERSION).window-amd64.tar.gz output/window/go-mygen.exe
+	tar -zcvf output/go-mygen$(VERSION).linux-amd64.tar.gz output/linux/go-mygen
+	tar -zcvf output/go-mygen$(VERSION).darwin-amd64.tar.gz output/mac/go-mygen
+

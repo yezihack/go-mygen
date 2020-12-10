@@ -98,7 +98,7 @@ func assetsTplCurdTpl() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "assets/tpl/curd.tpl", size: 8942, mode: os.FileMode(511), modTime: time.Unix(1587450270, 0)}
+	info := bindataFileInfo{name: "assets/tpl/curd.tpl", size: 8942, mode: os.FileMode(511), modTime: time.Unix(1607498208, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -118,7 +118,7 @@ func assetsTplETpl() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "assets/tpl/e.tpl", size: 887, mode: os.FileMode(511), modTime: time.Unix(1586241653, 0)}
+	info := bindataFileInfo{name: "assets/tpl/e.tpl", size: 887, mode: os.FileMode(511), modTime: time.Unix(1607498208, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -138,7 +138,7 @@ func assetsTplEntityTpl() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "assets/tpl/entity.tpl", size: 328, mode: os.FileMode(511), modTime: time.Unix(1584588363, 0)}
+	info := bindataFileInfo{name: "assets/tpl/entity.tpl", size: 328, mode: os.FileMode(511), modTime: time.Unix(1607498208, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -158,7 +158,7 @@ func assetsTplExampleTpl() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "assets/tpl/example.tpl", size: 2218, mode: os.FileMode(511), modTime: time.Unix(1584588363, 0)}
+	info := bindataFileInfo{name: "assets/tpl/example.tpl", size: 2218, mode: os.FileMode(511), modTime: time.Unix(1607498208, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -178,7 +178,7 @@ func assetsTplInitTpl() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "assets/tpl/init.tpl", size: 1867, mode: os.FileMode(511), modTime: time.Unix(1585828214, 0)}
+	info := bindataFileInfo{name: "assets/tpl/init.tpl", size: 1867, mode: os.FileMode(511), modTime: time.Unix(1607498208, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -198,7 +198,7 @@ func assetsTplMarkdownTpl() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "assets/tpl/markdown.tpl", size: 610, mode: os.FileMode(511), modTime: time.Unix(1584588363, 0)}
+	info := bindataFileInfo{name: "assets/tpl/markdown.tpl", size: 610, mode: os.FileMode(511), modTime: time.Unix(1607498208, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -218,7 +218,7 @@ func assetsTplTablesTpl() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "assets/tpl/tables.tpl", size: 119, mode: os.FileMode(511), modTime: time.Unix(1584588363, 0)}
+	info := bindataFileInfo{name: "assets/tpl/tables.tpl", size: 119, mode: os.FileMode(511), modTime: time.Unix(1607498208, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
