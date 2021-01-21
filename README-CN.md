@@ -4,10 +4,11 @@
 <br/>
 ![](https://img.shields.io/badge/go--mygen--en-3.1.0beta-green)
 ![](https://img.shields.io/badge/go--mygen--cn-3.0.0beta-green)
-![](https://img.shields.io/github/stars/yezihack/go-mygen)
-![](https://img.shields.io/github/issues/yezihack/go-mygen)
-![](https://img.shields.io/github/forks/yezihack/go-mygen)
-![](https://img.shields.io/github/license/yezihack/go-mygen)
+[![workflows](https://github.com/yezihack/go-mygen/workflows/Go/badge.svg)](https://github.com/yezihack/go-mygen/actions)
+[![codecov](https://codecov.io/gh/yezihack/go-mygen/branch/master/graph/badge.svg?token=P45HRJ1ZZ3)](https://codecov.io/gh/yezihack/go-mygen)
+[![Go Report Card](https://goreportcard.com/badge/github.com/yezihack/go-mygen)](https://goreportcard.com/report/github.com/yezihack/go-mygen)
+[![](https://img.shields.io/github/license/yezihack/go-mygen)](https://github.com/yezihack/go-mygen/blob/3.1.0beta/LICENSE)
+
 
 [英文](README.md)|[中文](README-CN.md)
 

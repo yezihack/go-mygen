@@ -1,4 +1,7 @@
-[![Build Status](https://travis-ci.org/yezihack/go-mygen.svg?branch=master)](https://travis-ci.org/yezihack/go-mygen) [![](https://img.shields.io/github/stars/yezihack/go-mygen)](https://github.com/yezihack/go-mygen/stargazers)[![](https://img.shields.io/github/issues/yezihack/go-mygen)](https://github.com/yezihack/go-mygen/issues) [![](https://img.shields.io/github/forks/yezihack/go-mygen)](https://github.com/yezihack/go-mygen/network/members) [![](https://img.shields.io/github/license/yezihack/go-mygen)](https://github.com/yezihack/go-mygen/blob/3.1.0beta/LICENSE)
+[![workflows](https://github.com/yezihack/go-mygen/workflows/Go/badge.svg)](https://github.com/yezihack/go-mygen/actions)
+[![codecov](https://codecov.io/gh/yezihack/go-mygen/branch/master/graph/badge.svg?token=P45HRJ1ZZ3)](https://codecov.io/gh/yezihack/go-mygen)
+[![Go Report Card](https://goreportcard.com/badge/github.com/yezihack/go-mygen)](https://goreportcard.com/report/github.com/yezihack/go-mygen)
+[![](https://img.shields.io/github/license/yezihack/go-mygen)](https://github.com/yezihack/go-mygen/blob/3.1.0beta/LICENSE)
 
 ![](assets/img/golang.png)
 
