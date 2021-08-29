@@ -1,6 +1,9 @@
-package main
+package config
 
-import "os"
+import (
+	"github.com/yezihack/go-mygen/internal/entity"
+	"os"
+)
 
 const (
 	ProjectName = "go-mygen"
@@ -54,7 +57,7 @@ const (
 )
 
 // help list
-var CmdHelp = []CmdEntity{
+var CmdHelp = []entity.CmdEntity{
 	{"0", "Set build directory"},
 	{"1", "Generate the table markdown document"},
 	{"2", "Generate table structure entities"},

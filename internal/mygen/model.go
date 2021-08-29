@@ -1,15 +1,16 @@
-package main
+package mygen
 
 import (
 	"database/sql"
 	"fmt"
+	"github.com/yezihack/go-mygen/internal/entity"
 	"strings"
 
 	_ "github.com/go-sql-driver/mysql"
 )
 
 //连接数据库
-func InitDB(cfg DBConfig) (*sql.DB, error) {
+func InitDB(cfg entity.DBConfig) (*sql.DB, error) {
 	if strings.EqualFold(cfg.Timezone, "") {
 		cfg.Timezone = "'Asia/Shanghai'"
 	}
@@ -38,15 +39,15 @@ func InitDB(cfg DBConfig) (*sql.DB, error) {
 }
 
 //实例一个数据库对象
-func NewDB() *ModelS {
-	return new(ModelS)
+func NewDB() *entity.ModelS {
+	return new(entity.ModelS)
 }
-func (m *ModelS) Using(db *sql.DB) {
+func (m *entity.ModelS) Using(db *sql.DB) {
 	m.DB = db
 }
 
 //查询数据库
-func (m *ModelS) Find(sql string, args ...interface{}) ([]map[string]interface{}, error) {
+func (m *entity.ModelS) Find(sql string, args ...interface{}) ([]map[string]interface{}, error) {
 	stmt, err := m.DB.Prepare(sql)
 	if err != nil {
 		return nil, err
@@ -97,7 +98,7 @@ func (m *ModelS) Find(sql string, args ...interface{}) ([]map[string]interface{}
 }
 
 //查询一行数据,即1维数据
-func (m *ModelS) First(sql string, args ...interface{}) (map[string]interface{}, error) {
+func (m *entity.ModelS) First(sql string, args ...interface{}) (map[string]interface{}, error) {
 	stmt, err := m.DB.Prepare(sql)
 	if err != nil {
 		return nil, err
@@ -142,7 +143,7 @@ func (m *ModelS) First(sql string, args ...interface{}) (map[string]interface{},
 }
 
 //查询一列数据,即1维数据 map
-func (m *ModelS) Pluck(sql string, name string, args ...interface{}) ([]interface{}, error) {
+func (m *entity.ModelS) Pluck(sql string, name string, args ...interface{}) ([]interface{}, error) {
 	stmt, err := m.DB.Prepare(sql)
 	if err != nil {
 		return nil, err
@@ -189,7 +190,7 @@ func (m *ModelS) Pluck(sql string, name string, args ...interface{}) ([]interfac
 }
 
 //更新
-func (m *ModelS) Update(sql string, args ...interface{}) (int64, error) {
+func (m *entity.ModelS) Update(sql string, args ...interface{}) (int64, error) {
 	stmt, err := m.DB.Prepare(sql)
 	if err != nil {
 		return 0, err
@@ -207,7 +208,7 @@ func (m *ModelS) Update(sql string, args ...interface{}) (int64, error) {
 }
 
 //删除
-func (m *ModelS) Delete(sql string, args ...interface{}) (int64, error) {
+func (m *entity.ModelS) Delete(sql string, args ...interface{}) (int64, error) {
 	stmt, err := m.DB.Prepare(sql)
 	if err != nil {
 		return 0, err
@@ -225,7 +226,7 @@ func (m *ModelS) Delete(sql string, args ...interface{}) (int64, error) {
 }
 
 // 增加
-func (m *ModelS) Insert(sql string, args ...interface{}) (int64, error) {
+func (m *entity.ModelS) Insert(sql string, args ...interface{}) (int64, error) {
 	stmt, err := m.DB.Prepare(sql)
 	if err != nil {
 		return 0, err

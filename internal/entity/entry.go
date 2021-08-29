@@ -1,7 +1,8 @@
-package main
+package entity
 
 import (
 	"database/sql"
+	"github.com/yezihack/go-mygen/internal/pkg"
 
 	"sync"
 )
@@ -14,7 +15,7 @@ type CmdEntity struct {
 //  model结构
 type ModelS struct {
 	*sql.DB
-	T        *Tools
+	T        *pkg.Tools
 	l        sync.Mutex            // 锁
 	DBName   string                // 库名
 	Tables   []TableNameAndComment // 所有的表名数据

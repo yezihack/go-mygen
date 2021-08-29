@@ -1,10 +1,11 @@
-package main
+package pkg
 
 import (
 	"bytes"
 	"encoding/json"
 	"errors"
 	"fmt"
+	"github.com/yezihack/go-mygen/internal/config"
 	"io"
 	"io/ioutil"
 	"log"
@@ -269,11 +270,11 @@ func Gofmt(path string) bool {
 //清屏
 func Clean() {
 	switch GetOs() {
-	case Darwin, Linux:
+	case config.Darwin, config.Linux:
 		cmd := exec.Command("clear")
 		cmd.Stdout = os.Stdout
 		cmd.Run()
-	case Window:
+	case config.Window:
 		cmd := exec.Command("cmd", "/c", "cls")
 		cmd.Stdout = os.Stdout
 		cmd.Run()
@@ -284,13 +285,13 @@ func Clean() {
 func GetOs() int {
 	switch runtime.GOOS {
 	case "darwin":
-		return Darwin
+		return config.Darwin
 	case "windows":
-		return Window
+		return config.Window
 	case "linux":
-		return Linux
+		return config.Linux
 	default:
-		return Unknown
+		return config.Unknown
 	}
 }
 

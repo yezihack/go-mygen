@@ -1,12 +1,14 @@
-package main
+package mygen
 
 import (
+	"github.com/yezihack/go-mygen/internal/config"
+	"github.com/yezihack/go-mygen/internal/entity"
 	"sort"
 	"strings"
 )
 
 //将表名赋值给结构对象, 供其它方法使用
-func (m *ModelS) GetTableNameAndComment() (err error) {
+func (m *entity.ModelS) GetTableNameAndComment() (err error) {
 	//读取所有表列表
 	if len(m.Tables) == 0 {
 		m.Tables, err = m.findDbTables()
@@ -22,7 +24,7 @@ func (m *ModelS) GetTableNameAndComment() (err error) {
 }
 
 //向数据库里读取所有的表
-func (m *ModelS) findDbTables() (NameAndComment []TableNameAndComment, err error) {
+func (m *entity.ModelS) findDbTables() (NameAndComment []entity.TableNameAndComment, err error) {
 	m.l.Lock()
 	defer m.l.Unlock()
 	result, err := m.Find("SELECT `TABLE_NAME` AS 'table_name', `TABLE_COMMENT` AS 'table_comment' FROM "+
@@ -31,11 +33,11 @@ func (m *ModelS) findDbTables() (NameAndComment []TableNameAndComment, err error
 		return
 	}
 	//获取表名 与 表注释
-	NameAndComment = make([]TableNameAndComment, 0)
+	NameAndComment = make([]entity.TableNameAndComment, 0)
 	//获取库里所有的表名
 	for idx, info := range result {
 		idx++
-		NameAndComment = append(NameAndComment, TableNameAndComment{
+		NameAndComment = append(NameAndComment, entity.TableNameAndComment{
 			Index:   idx,
 			Name:    info["table_name"].(string),
 			Comment: info["table_comment"].(string),
@@ -49,7 +51,7 @@ func (m *ModelS) findDbTables() (NameAndComment []TableNameAndComment, err error
 }
 
 // 获取表结构详情
-func (m *ModelS) GetTableDesc(tableName string) (reply []*TableDesc, err error) {
+func (m *entity.ModelS) GetTableDesc(tableName string) (reply []*entity.TableDesc, err error) {
 	m.l.Lock()
 	defer m.l.Unlock()
 	result, err := m.Find("select `COLUMN_NAME` AS column_name,`DATA_TYPE` AS data_type, `COLUMN_KEY` AS column_key, "+
@@ -59,7 +61,7 @@ func (m *ModelS) GetTableDesc(tableName string) (reply []*TableDesc, err error) 
 	if err != nil {
 		return
 	}
-	reply = make([]*TableDesc, 0)
+	reply = make([]*entity.TableDesc, 0)
 	i := 0
 	for _, row := range result {
 		var keyBool bool
@@ -72,14 +74,14 @@ func (m *ModelS) GetTableDesc(tableName string) (reply []*TableDesc, err error) 
 		if ok {
 			columnDefault = val
 		}
-		reply = append(reply, &TableDesc{
+		reply = append(reply, &entity.TableDesc{
 			Index:            i,
 			ColumnName:       row["column_name"].(string),
 			GoColumnName:     m.T.Capitalize(row["column_name"].(string)),
 			OriMysqlType:     oriType,
 			UpperMysqlType:   strings.ToUpper(oriType),
-			GolangType:       MysqlTypeToGoType[oriType],
-			MysqlNullType:    MysqlTypeToGoNullType[oriType],
+			GolangType:       config.MysqlTypeToGoType[oriType],
+			MysqlNullType:    config.MysqlTypeToGoNullType[oriType],
 			ColumnComment:    row["column_comment"].(string),
 			IsNull:           row["is_nullable"].(string),
 			DefaultValue:     columnDefault,

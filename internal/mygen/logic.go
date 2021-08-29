@@ -1,8 +1,12 @@
-package main
+package mygen
 
 import (
 	"bytes"
 	"fmt"
+	"github.com/yezihack/go-mygen/internal/config"
+	"github.com/yezihack/go-mygen/internal/entity"
+	"github.com/yezihack/go-mygen/internal/pkg"
+	"github.com/yezihack/go-mygen/third_party"
 	"html/template"
 	"log"
 	"strings"
@@ -11,8 +15,8 @@ import (
 )
 
 type Logic struct {
-	T    *Tools
-	DB   *ModelS
+	T    *pkg.Tools
+	DB   *entity.ModelS
 	Path string
 	Once sync.Once
 	l    sync.Mutex
@@ -21,7 +25,7 @@ type Logic struct {
 // 生成结构实体文件
 func (l *Logic) CreateEntity(formatList []string) (err error) {
 	// 表结构文件路径
-	path := CreateDir(l.Path+GODIR_Entity) + DS + GOFILE_ENTITY
+	path := pkg.CreateDir(l.Path+config.GODIR_Entity) + config.DS + config.GOFILE_ENTITY
 	// 将表结构写入文件
 	for idx, table := range l.DB.DoTables {
 		idx++
@@ -31,14 +35,14 @@ func (l *Logic) CreateEntity(formatList []string) (err error) {
 			log.Fatal("CreateEntityErr>>", err)
 			continue
 		}
-		req := new(EntityReq)
+		req := new(entity.EntityReq)
 		req.Index = idx
 		req.EntityPath = path
 		req.TableName = table.Name
 		req.TableComment = table.Comment
 		req.TableDesc = tableDesc
 		req.FormatList = formatList
-		req.EntityPkg = PkgEntity
+		req.EntityPkg = config.PkgEntity
 		// 生成基础信息
 		err = l.GenerateDBEntity(req)
 		if err != nil {
@@ -51,12 +55,12 @@ func (l *Logic) CreateEntity(formatList []string) (err error) {
 
 // 生成原生的crud查询数据库
 func (l *Logic) CreateCURD(formatList []string) (err error) {
-	tableNameList := make([]*TableList, 0)
+	tableNameList := make([]*entity.TableList, 0)
 	// 表结构文件路径
 	// 将表结构写入文件
 	for _, table := range l.DB.DoTables {
-		tableNameList = append(tableNameList, &TableList{
-			UpperTableName: TablePrefix + l.T.ToUpper(table.Name),
+		tableNameList = append(tableNameList, &entity.TableList{
+			UpperTableName: config.TablePrefix + l.T.ToUpper(table.Name),
 			TableName:      table.Name,
 			Comment:        table.Comment,
 		})
@@ -65,14 +69,14 @@ func (l *Logic) CreateCURD(formatList []string) (err error) {
 		if err != nil {
 			return err
 		}
-		req := new(EntityReq)
+		req := new(entity.EntityReq)
 		req.TableName = table.Name
 		req.TableComment = table.Comment
 		req.TableDesc = tableDesc
-		req.EntityPath = l.GetEntityDir() + GOFILE_ENTITY
+		req.EntityPath = l.GetEntityDir() + config.GOFILE_ENTITY
 		req.FormatList = formatList
-		req.Pkg = PkgDbModels
-		req.EntityPkg = PkgEntity
+		req.Pkg = config.PkgDbModels
+		req.EntityPkg = config.PkgEntity
 		// 生成基础信息
 		err = l.GenerateDBEntity(req)
 		if err != nil {
@@ -103,19 +107,19 @@ func (l *Logic) CreateCURD(formatList []string) (err error) {
 
 // 生成mysql markdown文档
 func (l *Logic) CreateMarkdown() (err error) {
-	data := new(MarkDownData)
+	data := new(entity.MarkDownData)
 	// 将表结构写入文件
 	i := 1
 	for _, table := range l.DB.DoTables {
 		fmt.Println("Doing table:" + table.Name)
-		data.TableList = append(data.TableList, &TableList{
+		data.TableList = append(data.TableList, &entity.TableList{
 			Index:          i,
 			UpperTableName: l.T.ToUpper(table.Name),
 			TableName:      table.Name,
 			Comment:        table.Comment,
 		})
 		// 查询表结构信息
-		desc := new(MarkDownDataChild)
+		desc := new(entity.MarkDownDataChild)
 		desc.List, err = l.DB.GetTableDesc(table.Name)
 		if err != nil {
 			log.Fatal("markdown>>", err)
@@ -137,26 +141,26 @@ func (l *Logic) CreateMarkdown() (err error) {
 
 // 创建和获取MYSQL目录
 func (l *Logic) GetMysqlDir() string {
-	return CreateDir(l.Path + GODIR_MODELS + DS)
+	return pkg.CreateDir(l.Path + config.GODIR_MODELS + config.DS)
 }
 
 // 创建和获取MYSQL目录
 func (l *Logic) GetConfigDir() string {
-	return CreateDir(l.Path + GODIR_MODELS + DS + GODIR_Config + DS)
+	return pkg.CreateDir(l.Path + config.GODIR_MODELS + config.DS + config.GODIR_Config + config.DS)
 }
 
 // 创建和获取MYSQL目录
 func (l *Logic) GetEntityDir() string {
-	return CreateDir(l.Path + GODIR_MODELS + DS + GODIR_Entity + DS)
+	return pkg.CreateDir(l.Path + config.GODIR_MODELS + config.DS + config.GODIR_Entity + config.DS)
 }
 
 // 获取根目录地址
 func (l *Logic) GetRoot() string {
-	return GetRootPath(l.Path) + DS
+	return pkg.GetRootPath(l.Path) + config.DS
 }
 
 // 创建结构体
-func (l *Logic) GenerateDBStructure(tableName, tableComment, path string, tableDesc []*TableDesc) (err error) {
+func (l *Logic) GenerateDBStructure(tableName, tableComment, path string, tableDesc []*entity.TableDesc) (err error) {
 	// 加入package
 	packageStr := `// 数据库表内结构体信息
 package mysql
@@ -172,16 +176,16 @@ package mysql
 		l.T.WriteFileAppend(path, importStr)
 	}
 	// 声明表结构变量
-	TableData := new(TableInfo)
+	TableData := new(entity.TableInfo)
 	TableData.Table = l.T.Capitalize(tableName)
-	TableData.NullTable = DbNullPrefix + TableData.Table
+	TableData.NullTable = config.DbNullPrefix + TableData.Table
 	TableData.TableComment = tableComment
 	// 判断表结构是否加载过
 	if l.T.CheckFileContainsChar(path, "type "+TableData.Table+" struct") == true {
 		return
 	}
 	// 加载模板文件
-	tplByte, err := Asset(TPL_STRUCTURE)
+	tplByte, err := third_party.Asset(config.TPL_STRUCTURE)
 	if err != nil {
 		return
 	}
@@ -195,18 +199,18 @@ package mysql
 		return
 	}
 	// 判断是否含json
-	if !InArrayString("json", fts) {
+	if !pkg.InArrayString("json", fts) {
 		index0 := fts[0]
 		fts[0] = "json"
 		fts = append(fts, index0)
 	}
 	for _, val := range tableDesc {
-		TableData.Fields = append(TableData.Fields, &FieldsInfo{
+		TableData.Fields = append(TableData.Fields, &entity.FieldsInfo{
 			Name:         l.T.Capitalize(val.ColumnName),
 			Type:         val.GolangType,
 			NullType:     val.MysqlNullType,
 			DbOriField:   val.ColumnName,
-			FormatFields: FormatField(val.ColumnName, fts),
+			FormatFields: pkg.FormatField(val.ColumnName, fts),
 			Remark:       val.ColumnComment,
 		})
 	}
@@ -214,7 +218,7 @@ package mysql
 	tpl.Execute(content, TableData)
 	// 表信息写入文件
 
-	err = WriteAppendFile(path, content.String())
+	err = pkg.WriteAppendFile(path, content.String())
 	if err != nil {
 		return
 	}
@@ -222,7 +226,7 @@ package mysql
 }
 
 // 创建结构实体
-func (l *Logic) GenerateDBEntity(req *EntityReq) (err error) {
+func (l *Logic) GenerateDBEntity(req *entity.EntityReq) (err error) {
 	l.l.Lock()
 	defer l.l.Unlock()
 	var s string
@@ -240,18 +244,18 @@ import (
 		l.T.WriteFile(req.EntityPath, s)
 	}
 	// 声明表结构变量
-	TableData := new(TableInfo)
+	TableData := new(entity.TableInfo)
 	TableData.Table = l.T.Capitalize(req.TableName)
-	TableData.NullTable = TableData.Table + DbNullPrefix
-	TableData.TableComment = AddToComment(req.TableComment, "")
-	TableData.TableCommentNull = AddToComment(req.TableComment, " Null Entity")
+	TableData.NullTable = TableData.Table + config.DbNullPrefix
+	TableData.TableComment = pkg.AddToComment(req.TableComment, "")
+	TableData.TableCommentNull = pkg.AddToComment(req.TableComment, " Null Entity")
 	// 判断表结构是否加载过
 	if l.T.CheckFileContainsChar(req.EntityPath, "type "+TableData.Table+" struct") == true {
 		log.Println(req.EntityPath + "It already exists. Please delete it and regenerate it")
 		return
 	}
 	// 加载模板文件
-	tplByte, err := Asset(TPL_ENTITY)
+	tplByte, err := third_party.Asset(config.TPL_ENTITY)
 	if err != nil {
 		return
 	}
@@ -261,20 +265,20 @@ import (
 	}
 	// 装载表字段信息
 	for _, val := range req.TableDesc {
-		TableData.Fields = append(TableData.Fields, &FieldsInfo{
+		TableData.Fields = append(TableData.Fields, &entity.FieldsInfo{
 			Name:         l.T.Capitalize(val.ColumnName),
 			Type:         val.GolangType,
 			NullType:     val.MysqlNullType,
 			DbOriField:   val.ColumnName,
-			FormatFields: FormatField(val.ColumnName, req.FormatList),
-			Remark:       AddToComment(val.ColumnComment, ""),
+			FormatFields: pkg.FormatField(val.ColumnName, req.FormatList),
+			Remark:       pkg.AddToComment(val.ColumnComment, ""),
 		})
 	}
 	content := bytes.NewBuffer([]byte{})
 	tpl.Execute(content, TableData)
 	// 表信息写入文件
 	con := strings.Replace(content.String(), "&#34;", `"`, -1)
-	err = WriteAppendFile(req.EntityPath, con)
+	err = pkg.WriteAppendFile(req.EntityPath, con)
 	if err != nil {
 		return
 	}
@@ -282,13 +286,13 @@ import (
 }
 
 // 生成C增,U删,R查,D改,的文件
-func (l *Logic) GenerateCURDFile(tableName, tableComment string, tableDesc []*TableDesc) (err error) {
+func (l *Logic) GenerateCURDFile(tableName, tableComment string, tableDesc []*entity.TableDesc) (err error) {
 	var (
 		allFields       = make([]string, 0)
 		insertFields    = make([]string, 0)
-		InsertInfo      = make([]*SqlFieldInfo, 0)
-		fieldsList      = make([]*SqlFieldInfo, 0)
-		nullFieldList   = make([]*NullSqlFieldInfo, 0)
+		InsertInfo      = make([]*entity.SqlFieldInfo, 0)
+		fieldsList      = make([]*entity.SqlFieldInfo, 0)
+		nullFieldList   = make([]*entity.NullSqlFieldInfo, 0)
 		updateList      = make([]string, 0)
 		updateListField = make([]string, 0)
 		PrimaryKey      = ""
@@ -297,17 +301,17 @@ func (l *Logic) GenerateCURDFile(tableName, tableComment string, tableDesc []*Ta
 	// 存放第个字段
 	var secondField string
 	for _, item := range tableDesc {
-		allFields = append(allFields, AddQuote(item.ColumnName))
+		allFields = append(allFields, pkg.AddQuote(item.ColumnName))
 		if item.PrimaryKey == false && item.ColumnName != "updated_at" && item.ColumnName != "created_at" {
-			insertFields = append(insertFields, AddQuote(item.ColumnName))
-			InsertInfo = append(InsertInfo, &SqlFieldInfo{
+			insertFields = append(insertFields, pkg.AddQuote(item.ColumnName))
+			InsertInfo = append(InsertInfo, &entity.SqlFieldInfo{
 				HumpName: l.T.Capitalize(item.ColumnName),
 				Comment:  item.ColumnComment,
 			})
 			if item.ColumnName == "identify" {
-				updateList = append(updateList, AddQuote(item.ColumnName)+"="+item.ColumnName+"+1")
+				updateList = append(updateList, pkg.AddQuote(item.ColumnName)+"="+item.ColumnName+"+1")
 			} else {
-				updateList = append(updateList, AddQuote(item.ColumnName)+"=?")
+				updateList = append(updateList, pkg.AddQuote(item.ColumnName)+"=?")
 				if item.PrimaryKey == false {
 					updateListField = append(updateListField, "value."+l.T.Capitalize(item.ColumnName))
 				}
@@ -322,14 +326,14 @@ func (l *Logic) GenerateCURDFile(tableName, tableComment string, tableDesc []*Ta
 				secondField = item.ColumnName
 			}
 		}
-		fieldsList = append(fieldsList, &SqlFieldInfo{
+		fieldsList = append(fieldsList, &entity.SqlFieldInfo{
 			HumpName: l.T.Capitalize(item.ColumnName),
 			Comment:  item.ColumnComment,
 		})
-		nullFieldList = append(nullFieldList, &NullSqlFieldInfo{
+		nullFieldList = append(nullFieldList, &entity.NullSqlFieldInfo{
 			HumpName:     l.T.Capitalize(item.ColumnName),
 			OriFieldType: item.OriMysqlType,
-			GoType:       MysqlTypeToGoType[item.OriMysqlType],
+			GoType:       config.MysqlTypeToGoType[item.OriMysqlType],
 			Comment:      item.ColumnComment,
 		})
 	}
@@ -342,15 +346,15 @@ func (l *Logic) GenerateCURDFile(tableName, tableComment string, tableDesc []*Ta
 	if len(InsertMark) > 0 {
 		InsertMark = InsertMark[:len(InsertMark)-1]
 	}
-	sqlInfo := &SqlInfo{
+	sqlInfo := &entity.SqlInfo{
 		TableName:           tableName,
-		PrimaryKey:          AddQuote(PrimaryKey),
+		PrimaryKey:          pkg.AddQuote(PrimaryKey),
 		PrimaryType:         primaryType,
 		StructTableName:     l.T.Capitalize(tableName),
-		NullStructTableName: l.T.Capitalize(tableName) + DbNullPrefix,
-		PkgEntity:           PkgEntity + ".",
-		PkgTable:            PkgTable + ".",
-		UpperTableName:      TablePrefix + l.T.ToUpper(tableName),
+		NullStructTableName: l.T.Capitalize(tableName) + config.DbNullPrefix,
+		PkgEntity:           config.PkgEntity + ".",
+		PkgTable:            config.PkgTable + ".",
+		UpperTableName:      config.TablePrefix + l.T.ToUpper(tableName),
 		AllFieldList:        strings.Join(allFields, ","),
 		InsertFieldList:     strings.Join(insertFields, ","),
 		InsertMark:          InsertMark,
@@ -359,7 +363,7 @@ func (l *Logic) GenerateCURDFile(tableName, tableComment string, tableDesc []*Ta
 		FieldsInfo:          fieldsList,
 		NullFieldsInfo:      nullFieldList,
 		InsertInfo:          InsertInfo,
-		SecondField:         AddQuote(secondField),
+		SecondField:         pkg.AddQuote(secondField),
 	}
 	err = l.GenerateSQL(sqlInfo, tableComment)
 	// 添加一个实例
@@ -376,10 +380,10 @@ func (l *Logic) GenerateCURDFile(tableName, tableComment string, tableDesc []*Ta
 // 生成一个实例文件
 func (l *Logic) GenerateExample(name string) {
 	// 写入表名
-	file := l.GetMysqlDir() + GoFile_Example
+	file := l.GetMysqlDir() + config.GoFile_Example
 
 	// 解析模板
-	tplByte, err := Asset(TPL_EXAMPLE)
+	tplByte, err := third_party.Asset(config.TPL_EXAMPLE)
 	if err != nil {
 		return
 	}
@@ -400,7 +404,7 @@ func (l *Logic) GenerateExample(name string) {
 		return
 	}
 	// 表信息写入文件
-	err = WriteFile(file, content.String())
+	err = pkg.WriteFile(file, content.String())
 	if err != nil {
 		return
 	}
@@ -408,11 +412,11 @@ func (l *Logic) GenerateExample(name string) {
 }
 
 // 生成表列表
-func (l *Logic) GenerateTableList(list []*TableList) (err error) {
+func (l *Logic) GenerateTableList(list []*entity.TableList) (err error) {
 	// 写入表名
-	file := l.GetConfigDir() + GoFile_TableList
+	file := l.GetConfigDir() + config.GoFile_TableList
 	// 判断package是否加载过
-	checkStr := "package " + PkgTable
+	checkStr := "package " + config.PkgTable
 	if l.T.CheckFileContainsChar(file, checkStr) == false {
 		l.T.WriteFile(file, checkStr+"\n")
 	}
@@ -421,7 +425,7 @@ func (l *Logic) GenerateTableList(list []*TableList) (err error) {
 		log.Println(file + "It already exists. Please delete it and regenerate it")
 		return
 	}
-	tplByte, err := Asset(TPL_TABLES)
+	tplByte, err := third_party.Asset(config.TPL_TABLES)
 	if err != nil {
 		return
 	}
@@ -436,7 +440,7 @@ func (l *Logic) GenerateTableList(list []*TableList) (err error) {
 		return
 	}
 	// 表信息写入文件
-	err = WriteAppendFile(file, content.String())
+	err = pkg.WriteAppendFile(file, content.String())
 	if err != nil {
 		return
 	}
@@ -445,9 +449,9 @@ func (l *Logic) GenerateTableList(list []*TableList) (err error) {
 
 // 生成init
 func (l *Logic) GenerateInit() (err error) {
-	file := l.GetMysqlDir() + GoFile_Init
+	file := l.GetMysqlDir() + config.GoFile_Init
 	// 判断package是否加载过
-	checkStr := "package " + PkgDbModels
+	checkStr := "package " + config.PkgDbModels
 	if l.T.CheckFileContainsChar(file, checkStr) == false {
 		l.T.WriteFile(file, checkStr+"\n")
 	}
@@ -456,7 +460,7 @@ func (l *Logic) GenerateInit() (err error) {
 		log.Println(file + "It already exists. Please delete it and regenerate it")
 		return
 	}
-	tplByte, err := Asset(TPL_INIT)
+	tplByte, err := third_party.Asset(config.TPL_INIT)
 	if err != nil {
 		return
 	}
@@ -471,7 +475,7 @@ func (l *Logic) GenerateInit() (err error) {
 		return
 	}
 	// 表信息写入文件
-	err = WriteAppendFile(file, content.String())
+	err = pkg.WriteAppendFile(file, content.String())
 	if err != nil {
 		return
 	}
@@ -480,9 +484,9 @@ func (l *Logic) GenerateInit() (err error) {
 
 // 生成init
 func (l *Logic) GenerateError() (err error) {
-	file := l.GetMysqlDir() + GoFile_Error
+	file := l.GetMysqlDir() + config.GoFile_Error
 	// 判断package是否加载过
-	checkStr := "package " + PkgDbModels
+	checkStr := "package " + config.PkgDbModels
 	if l.T.CheckFileContainsChar(file, checkStr) == false {
 		l.T.WriteFile(file, checkStr+"\n")
 	}
@@ -492,7 +496,7 @@ func (l *Logic) GenerateError() (err error) {
 		log.Println(file + "It already exists. Please delete it and regenerate it")
 		return
 	}
-	tplByte, err := Asset(TPL_Error)
+	tplByte, err := third_party.Asset(config.TPL_Error)
 	if err != nil {
 		return
 	}
@@ -507,7 +511,7 @@ func (l *Logic) GenerateError() (err error) {
 		return
 	}
 	// append write to file
-	err = WriteAppendFile(file, content.String())
+	err = pkg.WriteAppendFile(file, content.String())
 	if err != nil {
 		return
 	}
@@ -515,7 +519,7 @@ func (l *Logic) GenerateError() (err error) {
 }
 
 // 生成SQL文件
-func (l *Logic) GenerateSQL(info *SqlInfo, tableComment string) (err error) {
+func (l *Logic) GenerateSQL(info *entity.SqlInfo, tableComment string) (err error) {
 	// 写入表名
 	goFile := l.GetMysqlDir() + info.TableName + ".go"
 	s := fmt.Sprintf(`
@@ -526,14 +530,14 @@ import(
 	"strings"
 	_ "github.com/go-sql-driver/mysql"
 )
-`, tableComment, PkgDbModels)
+`, tableComment, config.PkgDbModels)
 	// 判断package是否加载过
 	if l.T.CheckFileContainsChar(goFile, "database/sql") == false {
 		l.T.WriteFile(goFile, s)
 	}
 
 	// 解析模板
-	tplByte, err := Asset(TPL_CURD)
+	tplByte, err := third_party.Asset(config.TPL_CURD)
 	if err != nil {
 		return
 	}
@@ -549,7 +553,7 @@ import(
 	}
 	// 表信息写入文件
 	if l.T.CheckFileContainsChar(goFile, info.StructTableName) == false {
-		err = WriteAppendFile(goFile, content.String())
+		err = pkg.WriteAppendFile(goFile, content.String())
 		if err != nil {
 			return
 		}
@@ -558,10 +562,10 @@ import(
 }
 
 // 生成表列表
-func (l *Logic) GenerateMarkdown(data *MarkDownData) (err error) {
+func (l *Logic) GenerateMarkdown(data *entity.MarkDownData) (err error) {
 	// 写入markdown
 	file := l.Path + fmt.Sprintf("markdown%s.md", time.Now().Format("2006-01-02_150405"))
-	tplByte, err := Asset(TPL_MARKDOWN)
+	tplByte, err := third_party.Asset(config.TPL_MARKDOWN)
 	if err != nil {
 		return
 	}
@@ -573,7 +577,7 @@ func (l *Logic) GenerateMarkdown(data *MarkDownData) (err error) {
 		return
 	}
 	// 表信息写入文件
-	err = WriteAppendFile(file, content.String())
+	err = pkg.WriteAppendFile(file, content.String())
 	if err != nil {
 		return
 	}

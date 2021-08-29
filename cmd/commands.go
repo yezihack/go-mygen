@@ -1,8 +1,13 @@
-package main
+package cmd
 
 import (
 	"bufio"
 	"fmt"
+	"github.com/yezihack/go-mygen"
+	"github.com/yezihack/go-mygen/internal/config"
+	"github.com/yezihack/go-mygen/internal/entity"
+	"github.com/yezihack/go-mygen/internal/mygen"
+	"github.com/yezihack/go-mygen/internal/pkg"
 	"log"
 	"os"
 	"strconv"
@@ -10,10 +15,10 @@ import (
 )
 
 type commands struct {
-	l *Logic
+	l *mygen.Logic
 }
 
-func NewCommands(logic *Logic) *commands {
+func NewCommands(logic *mygen.Logic) *commands {
 	return &commands{
 		l: logic,
 	}
@@ -46,7 +51,7 @@ func (c *commands) Handlers() map[string]func(args []string) int {
 func (c *commands) MarkDown(args []string) int {
 	fmt.Println("Preparing to generate the markdown document...")
 	//检查目录是否存在
-	CreateDir(c.l.Path)
+	pkg.CreateDir(c.l.Path)
 	err := c.l.CreateMarkdown()
 	if err != nil {
 		log.Println("MarkDown>>", err)
@@ -56,7 +61,7 @@ func (c *commands) MarkDown(args []string) int {
 
 //help list
 func (c *commands) Help(args []string) int {
-	for _, row := range CmdHelp {
+	for _, row := range config.CmdHelp {
 		s := fmt.Sprintf("%s %s\n", "NO:"+row.No, row.Msg)
 		fmt.Print(s)
 	}
@@ -69,29 +74,29 @@ func (c *commands) GenerateEntry(args []string) int {
 	line, _, _ := bufio.NewReader(os.Stdin).ReadLine()
 	switch strings.ToLower(string(line)) {
 	case "yes", "y":
-		formats = c._setFormat()
+		main.formats = c._setFormat()
 	}
-	err := c.l.CreateEntity(formats)
+	err := c.l.CreateEntity(main.formats)
 	if err != nil {
 		log.Println("GenerateEntry>>", err.Error())
 	}
-	go Gofmt(GetExeRootDir())
+	go pkg.Gofmt(pkg.GetExeRootDir())
 	return 0
 }
 
 //还可以自定义结构体解析实体,如json,gorm,xml
 func (c *commands) CustomFormat(args []string) int {
-	formats = c._setFormat()
+	main.formats = c._setFormat()
 	return 0
 }
 
 //生成golang操作mysql的CRUD增删改查语句
 func (c *commands) GenerateCURD(args []string) int {
-	err := c.l.CreateCURD(formats)
+	err := c.l.CreateCURD(main.formats)
 	if err != nil {
 		log.Println("GenerateCURD>>", err.Error())
 	}
-	go Gofmt(GetExeRootDir())
+	go pkg.Gofmt(pkg.GetExeRootDir())
 	return 0
 }
 
@@ -128,7 +133,7 @@ func (c *commands) ShowTableList(args []string) int {
 
 //清屏
 func (c *commands) Clean(args []string) int {
-	Clean()
+	pkg.Clean()
 	return 0
 }
 
@@ -138,9 +143,9 @@ func (c *commands) Quit(args []string) int {
 }
 
 //过滤表名
-func (c *commands) _filterTables(ids string, tables []TableNameAndComment) []TableNameAndComment {
+func (c *commands) _filterTables(ids string, tables []entity.TableNameAndComment) []entity.TableNameAndComment {
 	lst := strings.Split(ids, ",")
-	result := make([]TableNameAndComment, 0)
+	result := make([]entity.TableNameAndComment, 0)
 	if strings.ToLower(ids) == "all" {
 		return tables
 	}
@@ -156,7 +161,7 @@ func (c *commands) _filterTables(ids string, tables []TableNameAndComment) []Tab
 }
 
 //显示所有名视图
-func (c *commands) _showTableList(NameAndComment []TableNameAndComment) {
+func (c *commands) _showTableList(NameAndComment []entity.TableNameAndComment) {
 	for idx, table := range NameAndComment {
 		idx++
 		info := fmt.Sprintf("%s:%s", strconv.Itoa(idx), table.Name)
@@ -173,7 +178,7 @@ func (c *commands) _setFormat() []string {
 	fmt.Print("Set the mapping name of the structure, separated by a comma (example :json,gorm)>")
 	input, _, _ := bufio.NewReader(os.Stdin).ReadLine()
 	if string(input) != "" {
-		formatList := CheckCharDoSpecialArr(string(input), ',', `[\w\,\-]+`)
+		formatList := pkg.CheckCharDoSpecialArr(string(input), ',', `[\w\,\-]+`)
 		if len(formatList) > 0 {
 			fmt.Printf("Set format success: %v\n", formatList)
 			return formatList

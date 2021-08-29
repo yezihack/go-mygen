@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/urfave/cli/v2"
+	"github.com/yezihack/go-mygen/internal/mygen"
 )
 
 var (
@@ -12,5 +13,5 @@ var (
 func main() {
 	app = cli.NewApp()
 	stop = make(chan bool)
-	start()
+	mygen.start()
 }

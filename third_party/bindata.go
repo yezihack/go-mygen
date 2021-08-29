@@ -7,7 +7,7 @@
 // assets/tpl/init.tpl
 // assets/tpl/markdown.tpl
 // assets/tpl/tables.tpl
-package main
+package third_party
 
 import (
 	"bytes"

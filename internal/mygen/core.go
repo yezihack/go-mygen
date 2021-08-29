@@ -1,10 +1,14 @@
-package main
+package mygen
 
 import (
 	"bufio"
 	"database/sql"
 	"errors"
 	"fmt"
+	"github.com/yezihack/go-mygen/cmd"
+	"github.com/yezihack/go-mygen/internal/config"
+	"github.com/yezihack/go-mygen/internal/entity"
+	"github.com/yezihack/go-mygen/internal/pkg"
 	"log"
 	"os"
 	"strings"
@@ -15,9 +19,9 @@ import (
 )
 
 var (
-	Conn    *sql.DB  //连接对象
-	DbConn  DBConfig //db config
-	formats []string //format
+	Conn    *sql.DB         //连接对象
+	DbConn  entity.DBConfig //db config
+	formats []string        //format
 )
 
 //命令行实现
@@ -27,7 +31,7 @@ func start() {
 	DbConn.MaxIdleConn = 5
 	DbConn.MaxOpenConn = 10
 
-	app.Action = func(c *cli.Context) error {
+	main.app.Action = func(c *cli.Context) error {
 		if c.Bool("debug") {
 			log.SetFlags(log.Lshortfile | log.LstdFlags)
 		}
@@ -48,7 +52,7 @@ func start() {
 					return err
 				}
 				DbConn.Pass = string(pass)
-				Clean()
+				pkg.Clean()
 			}
 			if err := Commands(); err != nil {
 				return cli.NewExitError(err, 1)
@@ -57,28 +61,28 @@ func start() {
 		return nil
 	}
 	// cli start run
-	if err := app.Run(os.Args); err != nil {
+	if err := main.app.Run(os.Args); err != nil {
 		log.Fatal("RUN>>", err)
 	}
 }
 
 //释放资源
 func release() {
-	<-stop
+	<-main.stop
 	_ = Conn.Close()
 }
 
 //构建命令使用说明
 func usage() {
-	app.Name = ProjectName //项目名称
-	app.Authors = []*cli.Author{{
-		Name:  Author,
-		Email: AuthorEmail,
+	main.app.Name = config.ProjectName //项目名称
+	main.app.Authors = []*cli.Author{{
+		Name:  config.Author,
+		Email: config.AuthorEmail,
 	}}
-	app.Version = Version                                                         //版本号
-	app.Copyright = "@Copyright " + Copyright                                     //版权保护
-	app.Usage = "Quickly generate CURD and documentation for operating MYSQL.etc" //说明
-	app.Commands = []*cli.Command{
+	main.app.Version = config.Version                                                  //版本号
+	main.app.Copyright = "@Copyright " + config.Copyright                              //版权保护
+	main.app.Usage = "Quickly generate CURD and documentation for operating MYSQL.etc" //说明
+	main.app.Commands = []*cli.Command{
 		{
 			Name:    "help",
 			Aliases: []string{"h", "?"},
@@ -98,9 +102,9 @@ func usage() {
 			},
 		},
 	}
-	app.HideVersion = true
-	app.HideHelp = true
-	app.Flags = []cli.Flag{
+	main.app.HideVersion = true
+	main.app.HideHelp = true
+	main.app.Flags = []cli.Flag{
 		&cli.StringFlag{Name: "h", Value: "127.0.0.1", Usage: "Database address"},
 		&cli.IntFlag{Name: "P", Value: 3306, Usage: "port number"},
 		&cli.StringFlag{Name: "u", Value: "root", Usage: "database username", Required: true},
@@ -125,14 +129,14 @@ func Commands() error {
 
 	logic := &Logic{
 		DB:   DbModel,
-		Path: GetExeRootDir() + DefaultSavePath + DS, //默认当前命令所在目录
+		Path: pkg.GetExeRootDir() + config.DefaultSavePath + config.DS, //默认当前命令所在目录
 	}
 	err = logic.DB.GetTableNameAndComment()
 	if err != nil {
 		return err
 	}
 
-	commands := NewCommands(logic)
+	commands := cmd.NewCommands(logic)
 	commands.Help(nil)
 	handlers := commands.Handlers()
 
@@ -153,6 +157,6 @@ func Commands() error {
 			fmt.Println("Unknown command>>", tokens[0])
 		}
 	}
-	stop <- true
+	main.stop <- true
 	return nil
 }
